@@ -1,4 +1,5 @@
 *.pbxuser
+*.xcuserstate
 *.mode1v3
 .DS_Store
 profile
