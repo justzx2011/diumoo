@@ -18,6 +18,7 @@
 		F5824F97144054AC00A44D1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5824F95144054AC00A44D1F /* InfoPlist.strings */; };
 		F5824F99144054AC00A44D1F /* dmuTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F5824F98144054AC00A44D1F /* dmuTests.h */; };
 		F5824F9B144054AC00A44D1F /* dmuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5824F9A144054AC00A44D1F /* dmuTests.m */; };
+		F5824FA514405AF900A44D1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5824FA414405AF900A44D1F /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		F5824F96144054AC00A44D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F5824F98144054AC00A44D1F /* dmuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dmuTests.h; sourceTree = "<group>"; };
 		F5824F9A144054AC00A44D1F /* dmuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dmuTests.m; sourceTree = "<group>"; };
+		F5824FA414405AF900A44D1F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		F5824F60144054AB00A44D1F = {
 			isa = PBXGroup;
 			children = (
+				F5824FA414405AF900A44D1F /* README.md */,
 				F5824F75144054AB00A44D1F /* dmu */,
 				F5824F92144054AC00A44D1F /* dmuTests */,
 				F5824F6E144054AB00A44D1F /* Frameworks */,
@@ -224,6 +227,7 @@
 				F5824F7A144054AB00A44D1F /* InfoPlist.strings in Resources */,
 				F5824F80144054AB00A44D1F /* Credits.rtf in Resources */,
 				F5824F86144054AC00A44D1F /* MainMenu.xib in Resources */,
+				F5824FA514405AF900A44D1F /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
