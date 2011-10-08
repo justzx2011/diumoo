@@ -1,2 +1,4 @@
-dmu.xcodeproj/project.xcworkspace/*
-dmu.xcodeproj/xcuserdata/*
+*.pbxuser
+*.mode1v3
+.DS_Store
+profile
