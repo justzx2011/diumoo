@@ -1,0 +1,447 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F5824F70144054AB00A44D1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5824F6F144054AB00A44D1F /* Cocoa.framework */; };
+		F5824F7A144054AB00A44D1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5824F78144054AB00A44D1F /* InfoPlist.strings */; };
+		F5824F7C144054AB00A44D1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5824F7B144054AB00A44D1F /* main.m */; };
+		F5824F80144054AB00A44D1F /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F5824F7E144054AB00A44D1F /* Credits.rtf */; };
+		F5824F83144054AB00A44D1F /* dmuAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F5824F82144054AB00A44D1F /* dmuAppDelegate.m */; };
+		F5824F86144054AC00A44D1F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5824F84144054AC00A44D1F /* MainMenu.xib */; };
+		F5824F8E144054AC00A44D1F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5824F8D144054AC00A44D1F /* SenTestingKit.framework */; };
+		F5824F8F144054AC00A44D1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5824F6F144054AB00A44D1F /* Cocoa.framework */; };
+		F5824F97144054AC00A44D1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5824F95144054AC00A44D1F /* InfoPlist.strings */; };
+		F5824F99144054AC00A44D1F /* dmuTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F5824F98144054AC00A44D1F /* dmuTests.h */; };
+		F5824F9B144054AC00A44D1F /* dmuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5824F9A144054AC00A44D1F /* dmuTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F5824F90144054AC00A44D1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5824F62144054AB00A44D1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5824F6A144054AB00A44D1F;
+			remoteInfo = dmu;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F5824F6B144054AB00A44D1F /* dmu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dmu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5824F6F144054AB00A44D1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F5824F72144054AB00A44D1F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F5824F73144054AB00A44D1F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F5824F74144054AB00A44D1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F5824F77144054AB00A44D1F /* dmu-Info.plist */ = {isa = PBXFileReference; path = "dmu-Info.plist"; sourceTree = "<group>"; };
+		F5824F79144054AB00A44D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F5824F7B144054AB00A44D1F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F5824F7D144054AB00A44D1F /* dmu-Prefix.pch */ = {isa = PBXFileReference; path = "dmu-Prefix.pch"; sourceTree = "<group>"; };
+		F5824F7F144054AB00A44D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F5824F81144054AB00A44D1F /* dmuAppDelegate.h */ = {isa = PBXFileReference; path = dmuAppDelegate.h; sourceTree = "<group>"; };
+		F5824F82144054AB00A44D1F /* dmuAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dmuAppDelegate.m; sourceTree = "<group>"; };
+		F5824F85144054AC00A44D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F5824F8C144054AC00A44D1F /* dmuTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dmuTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5824F8D144054AC00A44D1F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F5824F94144054AC00A44D1F /* dmuTests-Info.plist */ = {isa = PBXFileReference; path = "dmuTests-Info.plist"; sourceTree = "<group>"; };
+		F5824F96144054AC00A44D1F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F5824F98144054AC00A44D1F /* dmuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dmuTests.h; sourceTree = "<group>"; };
+		F5824F9A144054AC00A44D1F /* dmuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dmuTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F5824F68144054AB00A44D1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5824F70144054AB00A44D1F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5824F88144054AC00A44D1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5824F8E144054AC00A44D1F /* SenTestingKit.framework in Frameworks */,
+				F5824F8F144054AC00A44D1F /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F5824F60144054AB00A44D1F = {
+			isa = PBXGroup;
+			children = (
+				F5824F75144054AB00A44D1F /* dmu */,
+				F5824F92144054AC00A44D1F /* dmuTests */,
+				F5824F6E144054AB00A44D1F /* Frameworks */,
+				F5824F6C144054AB00A44D1F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F5824F6C144054AB00A44D1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5824F6B144054AB00A44D1F /* dmu.app */,
+				F5824F8C144054AC00A44D1F /* dmuTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F5824F6E144054AB00A44D1F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5824F6F144054AB00A44D1F /* Cocoa.framework */,
+				F5824F8D144054AC00A44D1F /* SenTestingKit.framework */,
+				F5824F71144054AB00A44D1F /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5824F71144054AB00A44D1F /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5824F72144054AB00A44D1F /* AppKit.framework */,
+				F5824F73144054AB00A44D1F /* CoreData.framework */,
+				F5824F74144054AB00A44D1F /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F5824F75144054AB00A44D1F /* dmu */ = {
+			isa = PBXGroup;
+			children = (
+				F5824F81144054AB00A44D1F /* dmuAppDelegate.h */,
+				F5824F82144054AB00A44D1F /* dmuAppDelegate.m */,
+				F5824F84144054AC00A44D1F /* MainMenu.xib */,
+				F5824F76144054AB00A44D1F /* Supporting Files */,
+			);
+			path = dmu;
+			sourceTree = "<group>";
+		};
+		F5824F76144054AB00A44D1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F5824F77144054AB00A44D1F /* dmu-Info.plist */,
+				F5824F78144054AB00A44D1F /* InfoPlist.strings */,
+				F5824F7B144054AB00A44D1F /* main.m */,
+				F5824F7D144054AB00A44D1F /* dmu-Prefix.pch */,
+				F5824F7E144054AB00A44D1F /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F5824F92144054AC00A44D1F /* dmuTests */ = {
+			isa = PBXGroup;
+			children = (
+				F5824F98144054AC00A44D1F /* dmuTests.h */,
+				F5824F9A144054AC00A44D1F /* dmuTests.m */,
+				F5824F93144054AC00A44D1F /* Supporting Files */,
+			);
+			path = dmuTests;
+			sourceTree = "<group>";
+		};
+		F5824F93144054AC00A44D1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F5824F94144054AC00A44D1F /* dmuTests-Info.plist */,
+				F5824F95144054AC00A44D1F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F5824F6A144054AB00A44D1F /* dmu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5824F9E144054AC00A44D1F /* Build configuration list for PBXNativeTarget "dmu" */;
+			buildPhases = (
+				F5824F67144054AB00A44D1F /* Sources */,
+				F5824F68144054AB00A44D1F /* Frameworks */,
+				F5824F69144054AB00A44D1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dmu;
+			productName = dmu;
+			productReference = F5824F6B144054AB00A44D1F /* dmu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F5824F8B144054AC00A44D1F /* dmuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5824FA1144054AC00A44D1F /* Build configuration list for PBXNativeTarget "dmuTests" */;
+			buildPhases = (
+				F5824F87144054AC00A44D1F /* Sources */,
+				F5824F88144054AC00A44D1F /* Frameworks */,
+				F5824F89144054AC00A44D1F /* Resources */,
+				F5824F8A144054AC00A44D1F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5824F91144054AC00A44D1F /* PBXTargetDependency */,
+			);
+			name = dmuTests;
+			productName = dmuTests;
+			productReference = F5824F8C144054AC00A44D1F /* dmuTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F5824F62144054AB00A44D1F /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F5824F65144054AB00A44D1F /* Build configuration list for PBXProject "dmu" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F5824F60144054AB00A44D1F;
+			productRefGroup = F5824F6C144054AB00A44D1F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F5824F6A144054AB00A44D1F /* dmu */,
+				F5824F8B144054AC00A44D1F /* dmuTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F5824F69144054AB00A44D1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5824F7A144054AB00A44D1F /* InfoPlist.strings in Resources */,
+				F5824F80144054AB00A44D1F /* Credits.rtf in Resources */,
+				F5824F86144054AC00A44D1F /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5824F89144054AC00A44D1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5824F97144054AC00A44D1F /* InfoPlist.strings in Resources */,
+				F5824F99144054AC00A44D1F /* dmuTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F5824F8A144054AC00A44D1F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F5824F67144054AB00A44D1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5824F7C144054AB00A44D1F /* main.m in Sources */,
+				F5824F83144054AB00A44D1F /* dmuAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5824F87144054AC00A44D1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5824F9B144054AC00A44D1F /* dmuTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F5824F91144054AC00A44D1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5824F6A144054AB00A44D1F /* dmu */;
+			targetProxy = F5824F90144054AC00A44D1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F5824F78144054AB00A44D1F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5824F79144054AB00A44D1F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F5824F7E144054AB00A44D1F /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5824F7F144054AB00A44D1F /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F5824F84144054AC00A44D1F /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5824F85144054AC00A44D1F /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		F5824F95144054AC00A44D1F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5824F96144054AC00A44D1F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F5824F9C144054AC00A44D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F5824F9D144054AC00A44D1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F5824F9F144054AC00A44D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dmu/dmu-Prefix.pch";
+				INFOPLIST_FILE = "dmu/dmu-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F5824FA0144054AC00A44D1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dmu/dmu-Prefix.pch";
+				INFOPLIST_FILE = "dmu/dmu-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F5824FA2144054AC00A44D1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/dmu.app/Contents/MacOS/dmu";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dmu/dmu-Prefix.pch";
+				INFOPLIST_FILE = "dmuTests/dmuTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F5824FA3144054AC00A44D1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/dmu.app/Contents/MacOS/dmu";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "dmu/dmu-Prefix.pch";
+				INFOPLIST_FILE = "dmuTests/dmuTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F5824F65144054AB00A44D1F /* Build configuration list for PBXProject "dmu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5824F9C144054AC00A44D1F /* Debug */,
+				F5824F9D144054AC00A44D1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5824F9E144054AC00A44D1F /* Build configuration list for PBXNativeTarget "dmu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5824F9F144054AC00A44D1F /* Debug */,
+				F5824FA0144054AC00A44D1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F5824FA1144054AC00A44D1F /* Build configuration list for PBXNativeTarget "dmuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5824FA2144054AC00A44D1F /* Debug */,
+				F5824FA3144054AC00A44D1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F5824F62144054AB00A44D1F /* Project object */;
+}
