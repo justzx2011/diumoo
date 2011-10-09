@@ -5,4 +5,7 @@ dmu
 ##Features
 1. 收听豆瓣电台
 2. last.fm 歌曲记录 （scrobling）
+3. 任务栏控制菜单
+
+
 
