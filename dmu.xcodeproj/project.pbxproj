@@ -19,6 +19,7 @@
 		F5824F99144054AC00A44D1F /* dmuTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F5824F98144054AC00A44D1F /* dmuTests.h */; };
 		F5824F9B144054AC00A44D1F /* dmuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5824F9A144054AC00A44D1F /* dmuTests.m */; };
 		F5824FA514405AF900A44D1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5824FA414405AF900A44D1F /* README.md */; };
+		F59098A01441EDA3005A9537 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F590989F1441EDA3005A9537 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		F5824F9A144054AC00A44D1F /* dmuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dmuTests.m; sourceTree = "<group>"; };
 		F5824FA414405AF900A44D1F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F590989C1441DF56005A9537 /* FmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmController.h; sourceTree = "<group>"; };
+		F590989F1441EDA3005A9537 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59098A01441EDA3005A9537 /* WebKit.framework in Frameworks */,
 				F5824F70144054AB00A44D1F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +82,7 @@
 		F5824F60144054AB00A44D1F = {
 			isa = PBXGroup;
 			children = (
+				F590989F1441EDA3005A9537 /* WebKit.framework */,
 				F5824FA414405AF900A44D1F /* README.md */,
 				F590989C1441DF56005A9537 /* FmController.h */,
 				F5824F75144054AB00A44D1F /* dmu */,
