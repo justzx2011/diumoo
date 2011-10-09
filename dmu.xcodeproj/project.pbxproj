@@ -52,6 +52,7 @@
 		F5824F98144054AC00A44D1F /* dmuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dmuTests.h; sourceTree = "<group>"; };
 		F5824F9A144054AC00A44D1F /* dmuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dmuTests.m; sourceTree = "<group>"; };
 		F5824FA414405AF900A44D1F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F590989C1441DF56005A9537 /* FmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				F5824FA414405AF900A44D1F /* README.md */,
+				F590989C1441DF56005A9537 /* FmController.h */,
 				F5824F75144054AB00A44D1F /* dmu */,
 				F5824F92144054AC00A44D1F /* dmuTests */,
 				F5824F6E144054AB00A44D1F /* Frameworks */,
@@ -436,6 +438,7 @@
 				F5824FA0144054AC00A44D1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F5824FA1144054AC00A44D1F /* Build configuration list for PBXNativeTarget "dmuTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +447,7 @@
 				F5824FA3144054AC00A44D1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
