@@ -85,7 +85,6 @@
 		F5824F60144054AB00A44D1F = {
 			isa = PBXGroup;
 			children = (
-				F590989F1441EDA3005A9537 /* WebKit.framework */,
 				F5824FA414405AF900A44D1F /* README.md */,
 				F590989C1441DF56005A9537 /* FmController.h */,
 				F542EC401441F5F500243C08 /* FmView.h */,
@@ -109,6 +108,7 @@
 		F5824F6E144054AB00A44D1F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F590989F1441EDA3005A9537 /* WebKit.framework */,
 				F5824F6F144054AB00A44D1F /* Cocoa.framework */,
 				F5824F8D144054AC00A44D1F /* SenTestingKit.framework */,
 				F5824F71144054AB00A44D1F /* Other Frameworks */,
