@@ -1,4 +1,5 @@
 .DS_Store
+douban_test.json
 # Xcode
 build/*
 *.pbxuser

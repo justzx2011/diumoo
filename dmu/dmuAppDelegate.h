@@ -7,11 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "FmController.h"
+
 
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
+
+    NSMenu *statusMenu;
+    NSStatusItem * statusItem;
+    NSMenuItem * viewContainer;
+    FmController * fmcontroller;
 }
 
-@property (assign) IBOutlet NSWindow *window;
 
 @end

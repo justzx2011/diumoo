@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F542EC421441F5F500243C08 /* FmView.m in Sources */ = {isa = PBXBuildFile; fileRef = F542EC411441F5F500243C08 /* FmView.m */; };
+		F542EC421441F5F500243C08 /* FmController.m in Sources */ = {isa = PBXBuildFile; fileRef = F542EC411441F5F500243C08 /* FmController.m */; };
 		F5824F70144054AB00A44D1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5824F6F144054AB00A44D1F /* Cocoa.framework */; };
 		F5824F7A144054AB00A44D1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5824F78144054AB00A44D1F /* InfoPlist.strings */; };
 		F5824F7C144054AB00A44D1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5824F7B144054AB00A44D1F /* main.m */; };
@@ -35,8 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F542EC401441F5F500243C08 /* FmView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmView.h; sourceTree = "<group>"; };
-		F542EC411441F5F500243C08 /* FmView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmView.m; sourceTree = "<group>"; };
+		F542EC401441F5F500243C08 /* FmController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = FmController.h; path = ../FmController.h; sourceTree = "<group>"; };
+		F542EC411441F5F500243C08 /* FmController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmController.m; path = ../FmController.m; sourceTree = "<group>"; };
 		F5824F6B144054AB00A44D1F /* dmu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dmu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5824F6F144054AB00A44D1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F5824F72144054AB00A44D1F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -57,7 +57,6 @@
 		F5824F98144054AC00A44D1F /* dmuTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dmuTests.h; sourceTree = "<group>"; };
 		F5824F9A144054AC00A44D1F /* dmuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dmuTests.m; sourceTree = "<group>"; };
 		F5824FA414405AF900A44D1F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		F590989C1441DF56005A9537 /* FmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmController.h; sourceTree = "<group>"; };
 		F590989F1441EDA3005A9537 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F5D285D114440198003E79EE /* douban */ = {isa = PBXFileReference; lastKnownFileType = folder; path = douban; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,9 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				F5824FA414405AF900A44D1F /* README.md */,
-				F590989C1441DF56005A9537 /* FmController.h */,
-				F542EC401441F5F500243C08 /* FmView.h */,
-				F542EC411441F5F500243C08 /* FmView.m */,
 				F5824F75144054AB00A44D1F /* dmu */,
 				F5D285D114440198003E79EE /* douban */,
 				F5824F92144054AC00A44D1F /* dmuTests */,
@@ -132,6 +128,8 @@
 		F5824F75144054AB00A44D1F /* dmu */ = {
 			isa = PBXGroup;
 			children = (
+				F542EC401441F5F500243C08 /* FmController.h */,
+				F542EC411441F5F500243C08 /* FmController.m */,
 				F5824F81144054AB00A44D1F /* dmuAppDelegate.h */,
 				F5824F82144054AB00A44D1F /* dmuAppDelegate.m */,
 				F5824F84144054AC00A44D1F /* MainMenu.xib */,
@@ -280,7 +278,7 @@
 			files = (
 				F5824F7C144054AB00A44D1F /* main.m in Sources */,
 				F5824F83144054AB00A44D1F /* dmuAppDelegate.m in Sources */,
-				F542EC421441F5F500243C08 /* FmView.m in Sources */,
+				F542EC421441F5F500243C08 /* FmController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
