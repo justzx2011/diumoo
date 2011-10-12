@@ -17,6 +17,7 @@
     NSMenuItem * viewContainer;
     FmController * fmcontroller;
 }
+-(void) test;
 
 
 @end

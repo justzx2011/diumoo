@@ -25,11 +25,10 @@
     [statusItem setImage: [[NSImage alloc] initByReferencingFile:
                            [[NSBundle mainBundle] pathForResource:@"statusitem" ofType:@"png" inDirectory:@"douban"]]]; 
     [statusItem setMenu:statusMenu];
-
     [statusItem setHighlightMode:YES];
     
     
-    
 }
+
 
 @end
