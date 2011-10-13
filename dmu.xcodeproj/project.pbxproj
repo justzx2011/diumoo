@@ -21,6 +21,7 @@
 		F5824F9B144054AC00A44D1F /* dmuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5824F9A144054AC00A44D1F /* dmuTests.m */; };
 		F5824FA514405AF900A44D1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5824FA414405AF900A44D1F /* README.md */; };
 		F59098A01441EDA3005A9537 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F590989F1441EDA3005A9537 /* WebKit.framework */; };
+		F5AC73DD1446EF3600B9ADB1 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */; };
 		F5D285D214440198003E79EE /* douban in Resources */ = {isa = PBXBuildFile; fileRef = F5D285D114440198003E79EE /* douban */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F542EC401441F5F500243C08 /* FmController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = FmController.h; path = ../FmController.h; sourceTree = "<group>"; };
+		F542EC401441F5F500243C08 /* FmController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FmController.h; path = ../FmController.h; sourceTree = "<group>"; };
 		F542EC411441F5F500243C08 /* FmController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmController.m; path = ../FmController.m; sourceTree = "<group>"; };
 		F5824F6B144054AB00A44D1F /* dmu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dmu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5824F6F144054AB00A44D1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -58,6 +59,8 @@
 		F5824F9A144054AC00A44D1F /* dmuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dmuTests.m; sourceTree = "<group>"; };
 		F5824FA414405AF900A44D1F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F590989F1441EDA3005A9537 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		F5D285D114440198003E79EE /* douban */ = {isa = PBXFileReference; lastKnownFileType = folder; path = douban; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +135,8 @@
 				F542EC411441F5F500243C08 /* FmController.m */,
 				F5824F81144054AB00A44D1F /* dmuAppDelegate.h */,
 				F5824F82144054AB00A44D1F /* dmuAppDelegate.m */,
+				F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */,
+				F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */,
 				F5824F84144054AC00A44D1F /* MainMenu.xib */,
 				F5824F76144054AB00A44D1F /* Supporting Files */,
 			);
@@ -279,6 +284,7 @@
 				F5824F7C144054AB00A44D1F /* main.m in Sources */,
 				F5824F83144054AB00A44D1F /* dmuAppDelegate.m in Sources */,
 				F542EC421441F5F500243C08 /* FmController.m in Sources */,
+				F5AC73DD1446EF3600B9ADB1 /* MainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

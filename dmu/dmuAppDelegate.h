@@ -8,13 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FmController.h"
+#import "MainWindow.h"
 
 
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {
 
-    NSWindow* window;
+    MainWindow* window;
 }
-@property (nonatomic,retain) IBOutlet NSWindow* window;
+@property (nonatomic,retain) IBOutlet MainWindow* window;
 
 
 
