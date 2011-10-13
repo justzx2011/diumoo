@@ -10,17 +10,15 @@
 
 
 @implementation dmuAppDelegate
-@synthesize window;
+@synthesize window,webview;
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    
-    [window makeKeyAndOrderFront:window];
-    [window makeKeyWindow];
+    [webview setFrame: [window frame]];
+    [[webview mainFrame] loadrequest: [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]]];
 
-    
 }
 
 

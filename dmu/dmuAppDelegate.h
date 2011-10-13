@@ -8,14 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FmController.h"
-#import "MainWindow.h"
+//#import "MainWindow.h"
 
 
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {
 
-    MainWindow* window;
+    IBOutlet NSWindow* window;
+    IBOutlet WebView* webview;
 }
-@property (nonatomic,retain) IBOutlet MainWindow* window;
+@property (nonatomic,retain) IBOutlet NSWindow* window;
+@property (nonatomic,retain) IBOutlet WebView* webview;
 
 
 
