@@ -10,25 +10,27 @@
 
 
 @implementation dmuAppDelegate
+@synthesize window;
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    statusMenu=[[[NSMenu alloc] init] retain];
-    viewContainer= [[[NSMenuItem alloc]init] retain];
-    fmcontroller=[[[FmController alloc] init] retain];
-    [viewContainer setView: [fmcontroller webView]];
-    [statusMenu addItem:viewContainer];
-    //[statusMenu addItemWithTitle:@"TEST" action:nil keyEquivalent:@""];
-    statusItem= [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength]retain];
-    [statusItem setImage: [[NSImage alloc] initByReferencingFile:
-                           [[NSBundle mainBundle] pathForResource:@"statusitem" ofType:@"png" inDirectory:@"douban"]]]; 
-    [statusItem setMenu:statusMenu];
-    [statusItem setHighlightMode:YES];
+    
+    [window setStyleMask:NSBorderlessWindowMask];
+    [window setBackgroundColor:[NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1] ];
+    [window setTitle:@"test"];
+    
+    [window setMovableByWindowBackground:NO];
+    [window setFrame:NSMakeRect(0, 0, 600, 300) display:YES];
+    
+    [window setShowsResizeIndicator:NO];
+    [window makeKeyAndOrderFront:window];
+    [window makeMainWindow];
     
     
 }
+
 
 
 @end

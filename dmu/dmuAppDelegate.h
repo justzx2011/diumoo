@@ -12,12 +12,11 @@
 
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {
 
-    NSMenu *statusMenu;
-    NSStatusItem * statusItem;
-    NSMenuItem * viewContainer;
-    FmController * fmcontroller;
+    NSWindow* window;
 }
--(void) test;
+@property (nonatomic,retain) IBOutlet NSWindow* window;
+
+
 
 
 @end
