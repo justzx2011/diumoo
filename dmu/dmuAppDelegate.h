@@ -14,10 +14,10 @@
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {
 
     IBOutlet NSWindow* window;
-    IBOutlet WebView* webview;
+
 }
 @property (nonatomic,retain) IBOutlet NSWindow* window;
-@property (nonatomic,retain) IBOutlet WebView* webview;
+
 
 
 

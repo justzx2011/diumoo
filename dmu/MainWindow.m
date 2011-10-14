@@ -26,17 +26,18 @@
         
 
         [self setFrame:f display:YES];
-        [self setLevel:NSDockWindowLevel];
+        [self setLevel:NSScreenSaverWindowLevel];
         [self setBackingType:NSBackingStoreBuffered];
-        [self setStyleMask:NSTitledWindowMask];
+        [self setStyleMask:NSBorderlessWindowMask];
         [self setBackgroundColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
         [self setMovable:NO];
         [self setContentSize:f.size];
-        [self setAlphaValue:0.9];
+        [self setAlphaValue:0.8];
         
         webview=[[WebView alloc] initWithFrame:[[self contentView]bounds]];
         [[webview mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]]];
         [webview displayIfNeeded];
+        
         
         [[self contentView] addSubview:webview];
         [self makeFirstResponder:webview];
@@ -46,6 +47,11 @@
     }
     
     return self;
+}
+
+-(BOOL)canBecomeKeyWindow
+{
+    return YES;
 }
 
 

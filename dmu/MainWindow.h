@@ -16,6 +16,9 @@
 }
 @property(nonatomic,retain) WebView* webview;
 
+-(BOOL) canBecomeKeyWindow;
+
+
 
 
 
