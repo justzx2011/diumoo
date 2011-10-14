@@ -28,7 +28,7 @@
         [self setFrame:f display:YES];
         [self setLevel:NSDockWindowLevel];
         [self setBackingType:NSBackingStoreBuffered];
-        [self setStyleMask:NSBorderlessWindowMask];
+        [self setStyleMask:NSTitledWindowMask];
         [self setBackgroundColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
         [self setMovable:NO];
         [self setContentSize:f.size];
