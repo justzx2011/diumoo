@@ -9,6 +9,7 @@
 #import "MainWindow.h"
 
 @implementation MainWindow
+@synthesize webview;
 
 
 - (id)init
@@ -20,9 +21,7 @@
 
         NSRect r=[[NSScreen mainScreen] frame];
         NSRect f=NSMakeRect(r.size.width/2-310,r.size.height-272, 620, 250);
-        webview=[[WebView alloc] initWithFrame:f];
-        [[webview mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]]];
-        [webview displayIfNeeded];
+        
 
         
 
@@ -32,17 +31,22 @@
         [self setStyleMask:NSBorderlessWindowMask];
         [self setBackgroundColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
         [self setMovable:NO];
-        [self setContentView:webview];
         [self setContentSize:f.size];
         [self setAlphaValue:0.9];
+        
+        webview=[[WebView alloc] initWithFrame:[[self contentView]bounds]];
+        [[webview mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]]];
+        [webview displayIfNeeded];
+        
+        [[self contentView] addSubview:webview];
+        [self makeFirstResponder:webview];
+        
         [self displayIfNeeded];
+        
     }
     
     return self;
 }
--(BOOL) acceptsFirstResponder;
-{
-    return YES;
-}
+
 
 @end

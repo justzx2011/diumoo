@@ -14,8 +14,9 @@
 @protected
     WebView* webview;
 }
+@property(nonatomic,retain) WebView* webview;
 
--(BOOL) acceptsFirstResponder;
+
 
 
 @end

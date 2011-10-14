@@ -18,7 +18,7 @@
     // Insert code here to initialize your application
     
     [window makeKeyAndOrderFront:window];
-    [window makeKeyWindow];
+
 
     
 }

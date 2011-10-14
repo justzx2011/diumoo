@@ -4,6 +4,20 @@
         <meta charset="UTF-8">
         <title></title>
         <link rel="stylesheet" href="base.css" type="text/css" />
+        <script type="text/javascript" src="jquery.js">
+        </script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+                        $('a').hover(function(){
+                            $('h1').text('change')
+                            },
+                            function(){
+                            $('h1').text('music')
+                            }
+                            )   
+                    }
+                    )
+        </script>
     </head>
     <body>
         <div id="mainframe">
@@ -31,7 +45,7 @@
                     </div>
                     </div>
                     <div class="controllers">
-                        <a href="play"><img src="play.png" alt="" /></a>
+                        <a  href="http://google.com"><img src="play.png" alt="" /></a>
                         <a href="next"><img src="next.png" alt="" /></a>
                         <a href="like"><img src="like.png" alt="" /></a>
                         <a href="trash"><img src="trash.png" alt="" /></a>
