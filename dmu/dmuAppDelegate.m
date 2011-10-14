@@ -17,7 +17,8 @@
 {
     // Insert code here to initialize your application
     [webview setFrame: [window frame]];
-    [[webview mainFrame] loadrequest: [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]]];
+    [[webview mainFrame] loadRequest: [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]]];
+    [webview display];
 
 }
 

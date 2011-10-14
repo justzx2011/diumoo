@@ -57,8 +57,7 @@
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="211277888">
-				<int key="NSWindowStyleMask">14</int>
-				<bool key="NSWindowAllowNontitledResizable">YES</bool>
+				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{441, 498}, {620, 250}}</string>
 				<int key="NSWTFlags">611845120</int>
@@ -133,8 +132,8 @@
 					<string key="NSReuseIdentifierKey">_NS:2818</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1366, 768}}</string>
-				<string key="NSMinSize">{620, 250}</string>
-				<string key="NSMaxSize">{620, 250}</string>
+				<string key="NSMinSize">{620, 272}</string>
+				<string key="NSMaxSize">{620, 272}</string>
 				<int key="NSWindowAnimationBehavior">5</int>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
