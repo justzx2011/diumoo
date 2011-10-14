@@ -1,11 +1,13 @@
-*{cursor:default}
+body{margin:0;
+    font-family:sans-serif;
+}
+h1,h2{font-weight:normal}
 #mainframe{
-    width:620px;
-    height:300px;
     font-size:14px;
     color:#999;
+    width:620px;
+    height:240px;
     overflow:hidden;
-    font-family:sans-serif;
 }
 div{margin:0;}
 #mainframe>div{float:left;overflow:hidden}
@@ -40,15 +42,15 @@ div{margin:0;}
 #channel_bar,#headbar{background-color:#e0e5e2;padding:5px;font-size:12px;margin:5px 0}
 #playcontroller{
     margin-left:5px;
-    width:450px;
+    width:455px;
 }
 #detail{height:150px;width:100%}
-.timeline_wp{padding-top:30px}
+.timeline_wp{padding-top:20px}
 .timeline{background:#e0e5e2;height:3px;}
 .timeline div{background:#9dd6c5;width:50%;height:100%}
 .eta{padding:5px 0;text-align:right;}
 h2{margin:5px 0;color:#096;}
 p{padding:5px 0;margin:0}
 h1{color:#666;padding:20px 0 0 0;margin:0}
-.controllers{text-align:right;padding:20px 0}
+.controllers{text-align:right;padding:20px 0 0 0}
 .rate{float:right;font-size:40px;margin:10px 0;padding:50px 0 0 0;background:#9dd6c5;overflow:hidden;text-align:center;width:50px}
