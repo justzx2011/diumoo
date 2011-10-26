@@ -8,18 +8,17 @@ var RANGE_R=Math.pow(16,10)-MIN_R-1;
 
 //全局对象
 
-var get_playlist_lock=false;
 
-var playlist=[];
-var recently_played=[];
-var auth_obj={};
-var nowplaying;
-var nextplay;
+playlist=[];
+h=[];
+auth_obj={};
+nowplaying=null;
+nextplay=null;
+currentChannel=0;
 
-var nowplaying_audio=$('<audio></audio>').attr('preload','preload');
-var preload_audio=$('<audio></audio>').attr('preload','preload');
+nowplaying_audio=$('<audio></audio>').attr('preload','preload');
+preload_audio=$('<audio></audio>').attr('preload','preload');
 
-$(window).ajaxComplete(function(){get_playlist_lock=false});
 $.fn.extend(
         {'playOnReady':function(){
                                      $(this).each(function(n,a){
@@ -31,7 +30,8 @@ $.fn.extend(
                                  },
          'stop':function(){
             return $(this).each(function(n,a){if(a.tagName.toUpperCase()!="AUDIO")a.pause()})
-         }
+         },
+         'playedPercent':function(){if($(this)[0].tagName.toUpperCase()=="AUDIO") return $(this)[0].currentTime/$(this)[0].duration;else return 0}
         })
 
 
@@ -66,15 +66,19 @@ function auth(email,pass,retry) {
             });
 }
 
-function get_playlist(type,channel,sid,h) {
-    if(get_playlist_lock) return null;
+function get_playlist(type,sid) {
     var data={
                 'type':(type||'n'),
-                'channel':0,
-                'r':Math.round(Math.random()*RANGE_R+MIN_R).toString(16),
+                'channel':currentChannel,
+                'from':'mainsite',
             }
     if(sid) data['sid']=sid;
-    if(h) data['h']=h;
+    if(data.type!='n' && data.type!="r" && data.type!='u'){
+        while(h.length>19) h.shift();
+        h.push('|'+sid.toString()+':'+data.type);
+    }
+    else data['r']=Math.round(Math.random()*RANGE_R+MIN_R).toString(16);
+    if(h.length>0) data['h']=h.join();
     $.ajax('http://douban.fm/j/mine/playlist',
             {
                 'data':data,
@@ -87,11 +91,10 @@ function get_playlist(type,channel,sid,h) {
                 {
                     var list=eval(json);
                     if(list.r) throw(2,'Get Playlist Failed Error');
-                    if(data.type=='n')
+                    if(data.type=='n'|| data.type=='p'||playlist.length=0)
                     { 
                         playlist=list.song;
-                        nextplay=playlist.shift();
-                        fm_next();
+                        if(!nextplay) nextplay=playlist.shift();
                         //remember to fire a new event
                     }
                     
@@ -102,9 +105,16 @@ function get_playlist(type,channel,sid,h) {
 
 function fm_next(){
     if(nextplay){
-        recently_played.push(nowplaying);
+        var tmp=nowplaying;
         nowplaying=nextplay;
-        nextplay=playlist.shift();
+        if(playlist.length>0)nextplay=playlist.shift();
+        if(tmp && tmp.url==nowplaying_audio.attr('src')){
+            if(nowplaying_audio[0].ended||nowplaying_audio.playedPercent()>0.8){
+                if(playlist.length>0) get_playlist('e',nowplaying.sid);
+                else get_playlist('p',tmp.sid);
+            }
+            else get_playlist('s',tmp.sid);
+        }
     }
     else{
         get_playlist();
