@@ -5,13 +5,27 @@
 	<title></title>
     <script type="text/javascript" charset="utf-8" src="jquery.js">
     </script>
-    <script type="text/javascript" charset="utf-8" src="cookie.js">
+    <script type="text/javascript" charset="utf-8" src="proc.js">
     </script>
     <script type="text/javascript" charset="utf-8" src="fm.js">
     </script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+                    p=new proc()
+                    p.append(
+                        function(){
+                            auth.call(this,'airobot1@163.com','akirasphere');
+                        }
+                        ,0,10).append(get_playlist,0,10)
+                    .append(fm_next).run();
+                })
+    </script>
 </head>
 <body>
-    <input type="button" value="Auth" action="auth()">
-	<input type="button" action="getlist()" value="Get List">
+    <input type="button" value="play" onclick="play()">
+    <input type="button" value="pause" onclick="pause()">
+	<input type="button" onclick="like()" value="like">
+	<input type="button" onclick="unlike()" value="unlike">
+    <input type="button" value="next" onclick="fm_next()">
 </body>
 </html>

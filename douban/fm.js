@@ -7,8 +7,6 @@ var MIN_R=Math.pow(16,9);
 var RANGE_R=Math.pow(16,10)-MIN_R-1;
 
 //全局对象
-
-
 playlist=[];
 h=[];
 auth_obj={};
@@ -38,6 +36,7 @@ $.fn.extend(
 
 
 function auth(email,pass,retry) {
+    var ts=this;
     $.ajax('http://douban.fm/j/login',
             {
                 'data':{
@@ -46,9 +45,11 @@ function auth(email,pass,retry) {
                     'source':appname,
                 },
                 'type':'post',
+                'timeout':1000,
                 'beforeSend':function(xhr,settings){
                     xhr.setRequestHeader('cookie','');
                 },
+                'error':function(){ts.retry()},
                 'success':function(data,sta,xhr){
                     
                     try{
@@ -57,16 +58,18 @@ function auth(email,pass,retry) {
                             auth_obj=tmp;
                             auth_obj.cookie=xhr.getResponseHeader('Set-Cookie').match(/expires=.+?,\s*(\w+=".+?");/g).join('').replace(/expires=(.+?,){2}/g,'');
                         }
-                        else throw(0,"Authenticated Failed ("+tmp.err+")");
+                        else throw(0,"Authenticated Failed ("+tmp.err_msg+")");
                     }catch(ex){
-                        throw(1,"Returned Invalid Data");
+                        throw ex;
                     }
+                    ts.finish();
                 }
             
             });
 }
 
 function get_playlist(type,sid) {
+    var ts=this;
     var data={
                 'type':(type||'n'),
                 'channel':currentChannel,
@@ -83,20 +86,23 @@ function get_playlist(type,sid) {
             {
                 'data':data,
                 'type':'get',
+                'timeout':1000,
                 'beforeSend':function(xhr){
                     xhr.setRequestHeader('Cookie',auth_obj.cookie)
                     get_playlist_lock=true;
                 },
+                'error':function(){ts.retry()},
                 'success':function(json,xhr)
                 {
                     var list=eval(json);
                     if(list.r) throw(2,'Get Playlist Failed Error');
-                    if(data.type=='n'|| data.type=='p'||playlist.length=0)
+                    if(data.type=='n'|| data.type=='p'||playlist.length==0)
                     { 
                         playlist=list.song;
                         if(!nextplay) nextplay=playlist.shift();
                         //remember to fire a new event
                     }
+                    ts.finish();
                     
                 },
             });
@@ -134,6 +140,7 @@ function fm_next(){
         else nowplaying_audio.attr('src',nowplaying.url).playOnReady();
         if(nextplay) preload_audio.attr('src',nextplay.url);
     }
+    this.finish();
 };
 
 
