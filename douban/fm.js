@@ -81,6 +81,7 @@ function get_playlist(type,sid) {
         h.push('|'+sid.toString()+':'+data.type);
     }
     else data['r']=Math.round(Math.random()*RANGE_R+MIN_R).toString(16);
+    if(type=='e' && playlist.length>2) return;
     if(h.length>0) data['h']=h.join();
     $.ajax('http://douban.fm/j/mine/playlist',
             {
