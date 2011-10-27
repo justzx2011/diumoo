@@ -7,12 +7,24 @@
     </script>
     <script type="text/javascript" charset="utf-8" src="fm.js">
     </script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+                    f=new fm();
+                    f.auth('airobot1@163.com','akirasphere').next().now();
+                    f.bind(AUTH_S_E,function(e){console.log(e)});
+                    f.bind(NEW_S_E,function(e){console.log(e)});
+                    f.bind(NEXT_S_C_E,function(e){console.log(e)});
+                    f.bind(RATE_E,function(e){console.log(e)});
+                    f.bind(UNRATE_E,function(e){console.log(e)});
+                    f.bind(NEW_P_E,function(e){console.log(e)});
+                })
+    </script>
 </head>
 <body>
-    <input type="button" value="play" onclick="play()">
-    <input type="button" value="pause" onclick="pause()">
-	<input type="button" onclick="like()" value="like">
-	<input type="button" onclick="unlike()" value="unlike">
-    <input type="button" value="next" onclick="fm_next()">
+    <input type="button" value="play" onclick="f.play().now()">
+    <input type="button" value="pause" onclick="f.pause().now()">
+    <input type="button" value="like" onclick="f.rate().now()">
+    <input type="button" value="unlike" onclick="f.unrate().now()">
+    <input type="button" value="next" onclick="f.next().now()">
 </body>
 </html>
