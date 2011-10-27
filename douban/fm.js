@@ -1,34 +1,36 @@
-//全局变量
-APPNAME='dmu';
-APPVERSION='1';
-MIN_R=Math.pow(16,9);
-RANGE_R=Math.pow(16,10)-MIN_R-1;
-AUTH_URL='http://douban.fm/j/login'
-PLAYLIST_URL='http://douban.fm/j/mine/playlist'
-TIMEOUT=10000
+//全局常量
+const APPNAME='dmu';
+const APPVERSION='1';
+const MIN_R=Math.pow(16,9);
+const RANGE_R=Math.pow(16,10)-MIN_R-1;
+const AUTH_URL='http://douban.fm/j/login'
+const PLAYLIST_URL='http://douban.fm/j/mine/playlist'
+const TIMEOUT=5000
+const VOLUME_DURATION=600
+const VOLUME_DELTA=50;
 
 //电台控制代号
 
-NEW='n';
-SKIP='s';
-END='e';
-PLAYING='p';
-RATE='r';
-UNRATE='u';
+const NEW='n';
+const SKIP='s';
+const END='e';
+const PLAYING='p';
+const RATE='r';
+const UNRATE='u';
 
 //全局错误代码
-NETWORK=0;
-AUTH_FAILED=1;
-GET_PLAYLIST_FAILED=2;
+const NETWORK=0;
+const AUTH_FAILED=1;
+const GET_PLAYLIST_FAILED=2;
 
 //全局事件
-NEW_S_E='newsong';
-NEW_P_E='newplaylist';
-NEXT_S_C_E='nextsongchanged';
-VOLUME_E='volumechange';
-RATE_E='rate';
-UNRATE_E='unrate';
-AUTH_S_E='authsuccess';
+const NEW_S_E='newsong';
+const NEW_P_E='newplaylist';
+const NEXT_S_C_E='nextsongchanged';
+const VOLUME_E='volumechange';
+const RATE_E='rate';
+const UNRATE_E='unrate';
+const AUTH_S_E='authsuccess';
 
 
 //电台主控类
@@ -43,6 +45,7 @@ function fm(){
     this._next=null;
     this._channel=1;
     this._errorhandle=null;
+    this._volume=1;
     this.data('fm',this);
     this.push(document.createElement('audio'));
     this.attr('preload','preload');
@@ -238,9 +241,14 @@ fm.prototype.playOnReady = function() {
  * @return this
  */
 fm.prototype.pause = function() {
+    var ts=this;
     return this.queue('fm',
             function(next){
-               this.pause();
+               ts._volume=ts.volume();
+               ts.volume(0).queue('fm',
+                   function(n){
+                   this.pause();
+                   n();})
                next();
     })
 };
@@ -256,7 +264,10 @@ fm.prototype.pause = function() {
 fm.prototype.play = function() {
     var ts=this;
     return this.queue(function(next){
-        if(ts.attr('src') && this.paused && (!this.ended)) this.play();
+        if(ts.attr('src') && this.paused && (!this.ended)) {
+            this.play();
+            ts.volume(ts._volume);
+        }
         else ts.next();
         next();
     })
@@ -370,6 +381,32 @@ fm.prototype.unrate = function(sid) {
 
 
 
+
+/**
+ * 设定和获取当前的音量大笑
+ * @param {float} v
+ * @return 
+ */
+fm.prototype.volume = function(v) {
+    if(typeof(v)!='number') return this[0].volume;
+    else{
+        var ts=this;
+        return this.queue('fm',
+                function(next){
+                    var intv= function(step,start,end){
+                        if(VOLUME_DURATION-step*VOLUME_DELTA >= 0){
+                            ts[0].volume=(VOLUME_DELTA*step/VOLUME_DURATION)*(end-start) + start;
+                            setTimeout(function(){intv(step+1,start,end)},VOLUME_DELTA);
+                        }
+                        else{
+                            ts.fire(VOLUME_E);
+                            next();
+                        }
+                    };
+                    intv(0,ts[0].volume,v);
+        });
+    }
+};
 
 
 
