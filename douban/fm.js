@@ -1,150 +1,126 @@
-//常量
-var source="radio"
-var appname="dmu";
-var appversion="1";
-var MAX_RETRY_TIME=5;
-var MIN_R=Math.pow(16,9);
-var RANGE_R=Math.pow(16,10)-MIN_R-1;
+//全局变量
+APPNAME='dmu';
+APPVERSION='1';
+MIN_R=Math.pow(16,9);
+RANGE_R=Math.pow(16,10)-MIN_R-1;
+AUTH_URL='http://douban.fm/j/login'
+PLAYLIST_URL='http://douban.fm/j/mine/playlist'
 
-//全局对象
-playlist=[];
-h=[];
-auth_obj={};
-nowplaying=null;
-nextplay=null;
-currentChannel=0;
+//电台控制代号
 
-nowplaying_audio=$('<audio></audio>').attr('preload','preload');
-preload_audio=$('<audio></audio>').attr('preload','preload');
+NEW='n';
+SKIP='s';
+END='e';
+PLAYING='p';
+RATE='r';
+UNRATE='u';
 
-$.fn.extend(
-        {'playOnReady':function(){
-                                     $(this).each(function(n,a){
-                                         if(a.tagName.toUpperCase()!="AUDIO") return;
-                                         if(a.readyState==4) a.play();
-                                         else $(a).one('canplay',function(){a.play()});
-                                     })
-                                     return $(this);
-                                 },
-         'stop':function(){
-            return $(this).each(function(n,a){if(a.tagName.toUpperCase()!="AUDIO")a.pause()})
-         },
-         'playedPercent':function(){if($(this)[0].tagName.toUpperCase()=="AUDIO") return $(this)[0].currentTime/$(this)[0].duration;else return 0}
-        })
+//全局错误代码
+NETWORK=0;
+AUTH_FAILED=1;
+GET_PLAYLIST_FAILED=2;
 
+function fm(){
+    this._playlist=[];
+    this._h=[];
+    this._auth=null;
+    this._cookie='';
+    this._nowplaying=null;
+    this._next=null;
+    this._channel=1;
+    this._errorhandle=null;
+    this.data('fm',this);
+    this.push(document.createElement('audio'));
+    this.attr('preload','preload');
 
+}
+fm.prototype=$();
 
-
-function auth(email,pass,retry) {
+/**
+ * 认证获得对应Cookie和auth信息
+ * @param {string} email {string} pass
+ * @return this
+ */
+fm.prototype.auth = function(email,pass) {
     var ts=this;
-    $.ajax('http://douban.fm/j/login',
+    return this.queue(function(next){
+        $.ajax(AUTH_URL,
             {
                 'data':{
                     'alias':email,
                     'form_password':pass,
-                    'source':appname,
+                    'source':'radio',
                 },
-                'type':'post',
-                'timeout':1000,
-                'beforeSend':function(xhr,settings){
-                    xhr.setRequestHeader('cookie','');
-                },
-                'error':function(){ts.retry()},
-                'success':function(data,sta,xhr){
-                    
-                    try{
-                        var tmp=eval(data);
-                        if(typeof(tmp)!="undefined" && !tmp.r){
-                            auth_obj=tmp;
-                            auth_obj.cookie=xhr.getResponseHeader('Set-Cookie').match(/expires=.+?,\s*(\w+=".+?");/g).join('').replace(/expires=(.+?,){2}/g,'');
-                        }
-                        else throw(0,"Authenticated Failed ("+tmp.err_msg+")");
-                    }catch(ex){
-                        throw ex;
-                    }
-                    ts.finish();
+            'type':'post',
+            'timeout':2000,
+            'beforeSend':function(xhr,settings){
+                xhr.setRequestHeader('cookie','');
+            },
+            'error':function(){},
+            'success':function(data,sta,xhr){
+                try{
+                    var tmp=eval(data);
+                }catch(ex){
+                    ts.error(NETWORK);
+                    return;
                 }
-            
-            });
-}
-
-function get_playlist(type,sid) {
-    var ts=this;
-    var data={
-                'type':(type||'n'),
-                'channel':currentChannel,
-                'from':'mainsite',
+                if(typeof(tmp.r)!='undefined' && tmp.r==0){
+                    ts._auth=tmp;
+                    ts._cookie=xhr.getResponseHeader('Set-Cookie').match(/expires=.+?,\s*(\w+=".+?");/g).join('').replace(/expires=(.+?,){2}/g,'');
+                    next();
+                }
+                else ts.error(AUTH_FAILED);
             }
-    if(sid) data['sid']=sid;
-    if(data.type!='n' && data.type!="r" && data.type!='u'){
-        while(h.length>19) h.shift();
-        h.push('|'+sid.toString()+':'+data.type);
-    }
-    else data['r']=Math.round(Math.random()*RANGE_R+MIN_R).toString(16);
-    if(type=='e' && playlist.length>2) return;
-    if(h.length>0) data['h']=h.join();
-    $.ajax('http://douban.fm/j/mine/playlist',
-            {
-                'data':data,
-                'type':'get',
-                'timeout':1000,
-                'beforeSend':function(xhr){
-                    xhr.setRequestHeader('Cookie',auth_obj.cookie)
-                    get_playlist_lock=true;
-                },
-                'error':function(){ts.retry()},
-                'success':function(json,xhr)
-                {
-                    var list=eval(json);
-                    if(list.r) throw(2,'Get Playlist Failed Error');
-                    if(data.type=='n'|| data.type=='p'||playlist.length==0)
-                    { 
-                        playlist=list.song;
-                        if(!nextplay) nextplay=playlist.shift();
-                        //remember to fire a new event
-                    }
-                    ts.finish();
-                    
-                },
+
             });
-}
-
-
-function fm_next(){
-    if(nextplay){
-        var tmp=nowplaying;
-        nowplaying=nextplay;
-        if(playlist.length>0)nextplay=playlist.shift();
-        if(tmp && tmp.url==nowplaying_audio.attr('src')){
-            if(nowplaying_audio[0].ended||nowplaying_audio.playedPercent()>0.8){
-                if(playlist.length>0) get_playlist('e',nowplaying.sid);
-                else get_playlist('p',tmp.sid);
-            }
-            else get_playlist('s',tmp.sid);
-        }
-    }
-    else{
-        get_playlist();
-        //fire an event
-    }
-    if(nowplaying)
-    {
-        if(preload_audio.attr('src')==nowplaying.url)
-        {
-            nowplaying_audio.stop();
-            var tmp=nowplaying_audio;
-            nowplaying_audio=preload_audio;
-            preload_audio=tmp;
-            preload_audio.removeAttr('src').removeAttr('autoplay').attr('preload','preload');
-            nowplaying_audio.attr('autoplay','autoplay').playOnReady();
-        }
-        else nowplaying_audio.attr('src',nowplaying.url).playOnReady();
-        if(nextplay) preload_audio.attr('src',nextplay.url);
-    }
-    this.finish();
+    });
 };
 
 
-function error_handle(err) {
-    throw err
-}
+/**
+ * 获得播放列表
+ * @param {string} type {string} sid
+ * @return this
+ */
+fm.prototype.list = function(type,sid) {
+    var ts=this;
+    return this.queue(
+            function(next){
+                var data={
+                    'type':(type||NEW),
+                    'channel':this._channel,
+                    'from':'mainsite',
+                    'r':(Math.round(Math.random()*RANGE_R+MIN_R).toString(16)),
+                }
+                if(sid) {
+                    data['sid']=sid;
+                    if(data.type!=NEW && data.type!=RATE && data.type!=UNRATE){
+                        this._h.push('|'+sid +':'+data.type);
+                        while(this._h.length>10) this._h.shift();
+                    }
+                }
+                if(data.type=='s' || data.type=='p') data['h']=h.join();
+                $.ajax(PLAYLIST_URL,
+                    {
+                        'data':data,
+                    'type':'get',
+                    'beforeSend':function(xhr){
+                        xhr.setRequestHeader('Cookie',this._cookie);
+                    },
+                    'error':function(){},
+                    'success':function(json){
+                        if(json.toUpperCase()=='OK') return;
+                        try{
+                            var list=eval(json);
+                        }catch(ex){
+                            ts.error(GET_PLAYLIST_FAILED);
+                            return;
+                        }
+                        if(ts.r) return this.error(GET_PLAYLIST_FAILED);
+                        ts._playlist=list;
+                        next();
+                    },
+                    })
+            }
+    )
+};
