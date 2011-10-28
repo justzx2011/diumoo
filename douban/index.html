@@ -1,25 +1,41 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-    <script type="text/javascript" charset="utf-8" src="jquery.js">
-    </script>
-    <script type="text/javascript" charset="utf-8" src="fm.js">
-    </script>
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function(){
-                    f=new fm();
-                    f.auth('airobot1@163.com','akirasphere').next().now();
-                    f.bind(VOLUME_E,function(e){console.log(e)});
-                })
-    </script>
-</head>
-<body>
-    <input type="button" value="play" onclick="f.play().now()">
-    <input type="button" value="pause" onclick="f.pause().now()">
-    <input type="button" value="like" onclick="f.rate().now()">
-    <input type="button" value="unlike" onclick="f.unrate().now()">
-    <input type="button" value="next" onclick="f.next().now()">
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="base.css" type="text/css">
+        <script type="text/javascript" charset="utf-8" src="jquery.js">
+        </script>
+        <script type="text/javascript" charset="utf-8" src="fm.js">
+        </script>
+    </head>
+    <body>
+        <div id="quickbox">
+            <div id="album">
+                <img src="" alt="" class="current" />
+                <img src="" alt="" class="next" />
+            </div> 
+            <div id="right">
+                <div class="detail">
+                    <span class="artist">Artist</span>
+                    -<span class="album_title">Album</span>-
+                    <span class="album_year">2011</span>
+                    <div class="time">
+                        <div class="music_title">Music</div>
+                        <div class="eta">2:00/4:00</div>
+                        <div class="timeline">
+                            <div style="width:50%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="control">
+                    <input type="button" value="play" >
+                    <input type="button" value="pause" >
+                    <input type="button" value="like" >
+                    <input type="button" value="unlike" >
+                    <input type="button" value="next" >
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
