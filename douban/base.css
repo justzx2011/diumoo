@@ -2,8 +2,9 @@ body{
     font-family:sans-serif;
     color:#bbb;
     font-size:16px;
+    cursor:default;
 }
-#quickbox{
+t::#quickbox{
     height:100px;
     width:600px;
 }
@@ -60,15 +61,31 @@ span.artist,.music_title{color:#10a271;}
 .next:hover,.current:hover
 {
     cursor:pointer;
-    -webkit-box-shadow:0 0 5px #030;
+    -webkit-box-shadow:0 0 5px #333;
 }
 
 .control input{
     background-color:transparent;
     border:none;
-    width:30px;
-    height:30px;
+    width:32px;
+    height:32px;
+    background-repeat:no-repeat;
+    cursor:pointer;
 }
-.play_pause{
-    background-image:url();
+.play{
+    background-image:url(images/pause.png);
+}
+.like{
+    background-image:url(images/like.png);
+}
+.trash{
+    background-image:url(images/trash.png);
+}
+.next_button{
+    background-image:url(images/next.png);
+}
+.play:hover,.next_button:hover,.trash:hover
+{
+    -webkit-border-radius:16px;
+    -webkit-box-shadow: 0 0 5px #333;
 }
