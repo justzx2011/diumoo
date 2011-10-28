@@ -295,7 +295,7 @@ fm.prototype._next_ = function() {
                     return next();
                 }
                 ts.current(ts._playlist.shift());
-                ts.next(ts._playlist[0]);
+                ts.next(ts._playlist.shift());
                 //fire an event here!
                 next();
             }
