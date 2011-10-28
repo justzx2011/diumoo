@@ -78,6 +78,9 @@ span.artist,.music_title{color:#10a271;}
 .like{
     background-image:url(images/like.png);
 }
+.liking{
+    background-image:url(images/liking.png);
+}
 .trash{
     background-image:url(images/trash.png);
 }
