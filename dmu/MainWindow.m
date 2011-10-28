@@ -20,7 +20,7 @@
         
 
         NSRect r=[[NSScreen mainScreen] frame];
-        NSRect f=NSMakeRect(r.size.width/2-310,r.size.height-272, 620, 250);
+        NSRect f=NSMakeRect(r.size.width/2-300,r.size.height-122, 600, 100);
         
 
         
@@ -32,7 +32,7 @@
         [self setBackgroundColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
         [self setMovable:NO];
         [self setContentSize:f.size];
-        [self setAlphaValue:0.8];
+        [self setAlphaValue:1];
         
         webview=[[WebView alloc] initWithFrame:[[self contentView]bounds]];
         [[webview mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]]];

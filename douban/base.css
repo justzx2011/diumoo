@@ -37,8 +37,9 @@ img{
     padding:0 10px;
 }
 .detail{
-    font-size:24px;
-    height:70px;
+    font-size:20px;
+    height:50px;
+    padding:5px 0;
 }
 span.artist,.music_title{color:#10a271;}
 .timeline{
@@ -51,8 +52,8 @@ span.artist,.music_title{color:#10a271;}
     background-color:#9dd6c5;
 }
 .time{
+    padding:5px 0;
     height:20px;
-    padding:10px 0;
 }
 .time div{
     float:left;
