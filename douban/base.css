@@ -1,0 +1,51 @@
+body{
+    font-family:sans-serif;
+    color:#bbb;
+    font-size:16px;
+}
+#quickbox{
+    height:100px;
+    width:600px;
+}
+#quickbox>div{
+    float:left;
+}
+#album{
+    width:150px;
+    height:100px;
+}
+#right{
+    width:430px;
+    height:100px;
+    padding:0 10px;
+}
+.detail{
+    font-size:24px;
+    height:70px;
+}
+span.artist,.music_title{color:#10a271;}
+.timeline{
+    margin:5px 0;
+    background-color:#eee;
+    width:100%;
+}
+.timeline div{
+    height:3px;
+    background-color:#9dd6c5;
+}
+.time{
+    height:20px;
+    padding:10px 0;
+}
+.time div{
+    float:left;
+    font-size:16px;
+}
+.time .eta{
+    float:right;
+}
+.control{
+    text-align:right;
+}
+
+
