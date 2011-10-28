@@ -12,12 +12,21 @@ body.quickbox{
     height:100px;
 }
 img{
+    opacity:0;
     -webkit-transition:opacity 0.4s ease-out,
         width 0.4s ease-out,
         height 0.4s ease-out,
         margin-left 0.4s ease-out,
         margin-bottom 0.4 ease-out;
-    ;
+}
+img.show{
+    opacity:1;
+    margin-left:0;
+    margin-top:0;
+}
+img.show:hover
+{
+   opacity:0.8; 
 }
 #quickbox{
     height:100px;
@@ -27,7 +36,7 @@ img{
 #quickbox>div{
     float:left;
 }
-#album{
+#quickbox .album{
     width:160px;
     height:100px;
 }
@@ -73,12 +82,8 @@ span.artist,.music_title{color:#10a271;}
     width:50px;
     height:50px;
     margin-bottom:-50px;
-
-}
-.next:hover,.current:hover
-{
     cursor:pointer;
-    -webkit-box-shadow:0 0 5px #333;
+
 }
 
 .control input{
@@ -120,4 +125,7 @@ span.artist,.music_title{color:#10a271;}
 
 .current.hidden{
     margin-left:-100px;
+}
+.eta,.detail,.artist{
+    -webkit-transition:opacity 0.4s ease-out;
 }

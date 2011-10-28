@@ -1,12 +1,3 @@
-//准备工作
-//
-
-//图片延迟加载控制
-
-$('img').live('load',function(){
-    $(this).css({'opacity':1});
-});
-
 
 /**
  * ui控制类
@@ -40,23 +31,33 @@ ui.prototype._next_s = function(e) {
     return this.queue('ui',function(next){
         if(!ts._quickbox.find('.current').length!=1) ts._quickbox.empty().append('<img class="current"/>'); 
         if(!ts._quickbox.find('.next').length==0) ts._quickbox.append('<img class="next"/>'); 
+        ts._fm.find('.eta,.detail,.artist').css({'opacity':0});
         if(e.song.picture==this._quickbox.find('.next').attr('src')){
-            this._quickbox.find('.current').addClass('hidden');
+            this._quickbox.find('.current').removeClass('show').addClass('hidden');
             this._quickbox.find('.next').addClass('current').removeClass('next');
             setTimeout(function(){
                 this._quickbox.find('#album').append(
-                    $('<img class="next"/>').attr('src',e.next.picture)
-                    .css({'margin-bottom':0})
+                    $('<img class="next"/>').attr('src',e.next.picture).addClass('show')
                     );
                 next();
             },400);
         }else{
-            this._quickbox.children().css({'opacity':0});
+            this._quickbox.children().removeClass('show');
             setTimeout(function(){
-                this._quickbox.find('.current').attr('src',e.current.picture);
-                this._quickbox.find('.next').attr('src',e.current.picture);
+                this._quickbox.find('.current').addClass('show');
+                this._quickbox.find('.next').addClass('show');
                 next();
-            },200);
+            },400);
         }
     })
-    };
+};
+
+
+/**
+ * 认证成功的回调
+ * @param {event} e
+ * @return this
+ */
+fm.prototype._auth_s = function(e) {
+    return this;
+};
