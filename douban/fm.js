@@ -289,13 +289,14 @@ fm.prototype._next_ = function() {
     var ts=this;
     return this.queue('fm',
             function(next){
-                if(ts._playlist.length<=1 ) {
+                if((!ts._current)||(ts._playlist.length<1) ) {
                     ts.list((ts._current)?PLAYING:NEW,ts._current?ts._current.sid:false)
                     .next();
                     return next();
                 }
-                ts.current(ts._playlist.shift());
-                ts.next(ts._playlist[0]);
+                if(ts._next) ts.current(ts._next);
+                else ts.current(ts._playlist.shift());
+                ts.next(ts._playlist.shift());
                 //fire an event here!
                 next();
             }
