@@ -2,11 +2,27 @@ body{
     font-family:sans-serif;
     color:#bbb;
     font-size:16px;
+    overflow:hidden;
+    margin:0;
+    padding:0;
     cursor:default;
 }
-t::#quickbox{
+body.quickbox{
+    width:600px;
+    height:100px;
+}
+img{
+    -webkit-transition:opacity 0.4s ease-out,
+        width 0.4s ease-out,
+        height 0.4s ease-out,
+        margin-left 0.4s ease-out,
+        margin-bottom 0.4 ease-out;
+    ;
+}
+#quickbox{
     height:100px;
     width:600px;
+    overflow:hidden;
 }
 #quickbox>div{
     float:left;
@@ -51,12 +67,12 @@ span.artist,.music_title{color:#10a271;}
 .current{
     width:100px;
     height:100px;
-    -webkit-transition: -webkit-box-shadow 0.2s ease-out;
 }
 .next{
     width:50px;
     height:50px;
-    -webkit-transition: -webkit-box-shadow 0.2s ease-out;
+    margin-bottom:-50px;
+
 }
 .next:hover,.current:hover
 {
@@ -91,4 +107,16 @@ span.artist,.music_title{color:#10a271;}
 {
     -webkit-border-radius:16px;
     -webkit-box-shadow: 0 0 5px #333;
+}
+
+
+
+/*
+ *
+ * 动画
+ *
+ * */
+
+.current.hidden{
+    margin-left:-100px;
 }

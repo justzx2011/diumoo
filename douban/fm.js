@@ -63,7 +63,7 @@ fm.prototype.fire = function(name,target_sid) {
    var ev=document.createEvent('CustomEvent');
    ev.initCustomEvent(name,false,true);
    ev.song=this._current;
-   ev.next = this._current;
+   ev.next = this._next;
    ev.auth = this._auth;
    ev.fm = this;
    if(target_sid) ev.sid = target_sid;
@@ -290,7 +290,7 @@ fm.prototype._next_ = function() {
     var ts=this;
     return this.queue('fm',
             function(next){
-                if((!ts._current)||(ts._playlist.length<1) ) {
+                if(((!ts._current)&&(ts._playlist.length<2))||(ts._playlist.length<1) ) {
                     ts.list((ts._current)?PLAYING:NEW,ts._current?ts._current.sid:false)
                     .next();
                     return next();
@@ -314,7 +314,7 @@ fm.prototype.bye = function(sid) {
     var ts=this;
     return this.queue('fm',
             function(next){
-                    ts.pause().list(BYE,(sid||ts._current)._next_();
+                    ts.pause().list(BYE,(sid||ts._current))._next_();
                     next();
                     });
 };
