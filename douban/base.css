@@ -81,13 +81,13 @@ span.artist,.music_title{color:#10a271;}
 .liking{
     background-image:url(images/liking.png);
 }
-.trash{
-    background-image:url(images/trash.png);
+.bye{
+    background-image:url(images/bye.png);
 }
 .next_button{
     background-image:url(images/next.png);
 }
-.play:hover,.next_button:hover,.trash:hover
+.play:hover,.next_button:hover,.bye:hover
 {
     -webkit-border-radius:16px;
     -webkit-box-shadow: 0 0 5px #333;

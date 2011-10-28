@@ -17,6 +17,7 @@ const END='e';
 const PLAYING='p';
 const RATE='r';
 const UNRATE='u';
+const BYE='b';
 
 //全局错误代码
 const NETWORK=0;
@@ -301,6 +302,21 @@ fm.prototype._next_ = function() {
                 next();
             }
            ); 
+};
+
+
+/**
+ * function intro
+ * @param {type} bye
+ * @return 
+ */
+fm.prototype.bye = function(sid) {
+    var ts=this;
+    return this.queue('fm',
+            function(next){
+                    ts.pause().list(BYE,(sid||ts._current)._next_();
+                    next();
+                    });
 };
 
 
