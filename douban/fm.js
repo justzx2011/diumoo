@@ -27,7 +27,7 @@ const GET_PLAYLIST_FAILED=2;
 const NEW_S_E='newsong';
 const NEW_P_E='newplaylist';
 const NEXT_S_C_E='nextsongchanged';
-const VOLUME_E='volumechange';
+const VOLUME_E='_volumechange';
 const RATE_E='rate';
 const UNRATE_E='unrate';
 const AUTH_S_E='authsuccess';
@@ -222,10 +222,10 @@ fm.prototype.playOnReady = function() {
     var ts=this;
     return this.queue('fm',
            function(next){
-                if(this.readyState==4) this.play();
+                if(this.readyState==4) ts.play();
                 else ts.one('canplay',
                     function(){
-                        this.play();
+                        ts.play();
                 });
                 next();
            });
@@ -244,12 +244,16 @@ fm.prototype.pause = function() {
     var ts=this;
     return this.queue('fm',
             function(next){
+               if(ts[0].duration-ts[0].currentTime <1 ){
+                    this.pause()
+                    return next();
+               }
                ts._volume=ts.volume();
-               ts.volume(0).queue('fm',
-                   function(n){
+               ts.volume(0).ok(
+                   function(){
                    this.pause();
-                   n();})
-               next();
+                   next();
+                   })
     })
 };
 
@@ -391,23 +395,25 @@ fm.prototype.volume = function(v) {
     if(typeof(v)!='number') return this[0].volume;
     else{
         var ts=this;
-        return this.queue('fm',
-                function(next){
-                    var intv= function(step,start,end){
-                        if(VOLUME_DURATION-step*VOLUME_DELTA >= 0){
-                            ts[0].volume=(VOLUME_DELTA*step/VOLUME_DURATION)*(end-start) + start;
-                            setTimeout(function(){intv(step+1,start,end)},VOLUME_DELTA);
-                        }
-                        else{
-                            ts.fire(VOLUME_E);
-                            next();
-                        }
-                    };
-                    intv(0,ts[0].volume,v);
-        });
+        var callback={'ok':function(fc){
+            callback.okf=fc;
+        }
+        
+        };
+        var intv= function(step,start,end){
+            if(VOLUME_DURATION-step*VOLUME_DELTA >= 0){
+                ts[0].volume=(VOLUME_DELTA*step/VOLUME_DURATION)*(end-start) + start;
+                setTimeout(function(){intv(step+1,start,end)},VOLUME_DELTA);
+            }
+            else{
+                ts.fire(VOLUME_E);
+                if(callback.okf) callback.okf.call(ts[0]);
+            }
+        };
+        intv(0,ts[0].volume,v);
+        return callback;
     }
 };
-
 
 
 /**
