@@ -8,6 +8,8 @@ function ui(quickbox) {
     var ts=this;
     this._quickbox=$(quickbox);
     this._album=this._quickbox.find('.album');
+    this._timeline=$('.timeline div');
+    this._eta=$('.eta');
     this._fm=new fm();
     this._fm.bind(NEXT_S_C_E,
             function(e){
@@ -17,6 +19,12 @@ function ui(quickbox) {
             function(e){
                 ts._auth_s(e);
             });
+    this._interval=setInterval(function(){
+        if(!ts._fm[0].paused) {
+            ts._timeline.css({'width':ts._fm._played()});
+            ts._eta.text(ts._fm.eta());
+        }
+    },1000);
 }
 
 ui.prototype=$();

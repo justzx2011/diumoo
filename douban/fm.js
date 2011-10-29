@@ -404,7 +404,7 @@ fm.prototype.unrate = function(sid) {
 
 
 /**
- * 设定和获取当前的音量大笑
+ * 设定和获取当前的音量大小
  * @param {float} v
  * @return 
  */
@@ -432,6 +432,30 @@ fm.prototype.volume = function(v) {
     }
 };
 
+
+
+/**
+ * 返回已经播放过的部分占总部分的比例
+ * @param none
+ * @return {string}
+ */
+fm.prototype._played = function() {
+    return Math.round(this[0].currentTime/this[0].duration * 1000)/10 +'%';
+};
+/**
+ * 获取播放时间情况
+ * @param none 
+ * @return string
+ */
+fm.prototype.eta = function() {
+    var t2s=function(t){
+        var t1=(t/60)-(t/60)%1;
+        var t2=Math.floor(t%60);
+        return (t1<10?'0'+t1:ts) + ':' + (t2<10?'0'+t2:t2);
+    };
+    return t2s(this[0].currentTime) +'/' + t2s(this[0].duration);
+    
+};
 
 /**
  * 立即应用压入队列的操作
