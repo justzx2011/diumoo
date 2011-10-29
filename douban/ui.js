@@ -37,6 +37,8 @@ ui.prototype=$();
 ui.prototype._next_s = function(e) {
     var ts=this;
     ts.detail(e.song);
+    console.log('e:'+e.next.picture);
+    console.log('a:'+ts._album.find('.next').attr('src'));
     if(ts._album.find('.current').length!=1) ts._album.empty().append('<img class="current"/>'); 
     if(ts._album.find('.next').length<1) ts._album.append('<img class="next"/>'); 
     if(e.song.picture==ts._album.find('.next').attr('src')){
@@ -49,7 +51,8 @@ ui.prototype._next_s = function(e) {
                     $(this).addClass('show');
                 })
                 .attr('src',e.next.picture)
-                ).remove('.hidden');
+                );
+            ts._album.find('.hidden').remove();
         },400);
     }else{
         ts._album.children().removeClass('show');

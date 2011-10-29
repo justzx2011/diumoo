@@ -450,6 +450,7 @@ fm.prototype._played = function() {
 fm.prototype.eta = function() {
     var t2s=function(t){
         var t1=(t/60)-(t/60)%1;
+        t1=t1<0?0:t1;
         var t2=Math.floor(t%60);
         return (t1<10?'0'+t1:ts) + ':' + (t2<10?'0'+t2:t2);
     };
