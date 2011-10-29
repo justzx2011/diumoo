@@ -19,6 +19,9 @@ function ui(quickbox) {
             function(e){
                 ts._auth_s(e);
             });
+    this._fm.bind('end',function(){
+        ts._fm.next().now();
+    });
     this._interval=setInterval(function(){
         if(!ts._fm[0].paused) {
             ts._timeline.css({'width':ts._fm._played()});
