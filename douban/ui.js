@@ -6,20 +6,20 @@
  */
 function ui(quickbox) {
     var ts=this;
-    this._quickbox=quickbox;
-    this._album=quickbox.find('.album');
+    this._quickbox=$(quickbox);
+    this._album=this._quickbox.find('.album');
     this._fm=new fm();
     this._fm.bind(NEXT_S_C_E,
-            function(){
-                ts._next_s();
+            function(e){
+                ts._next_s(e);
             })
     this._fm.bind(AUTH_S_E,
-            function(){
-                ts._auth_s();
+            function(e){
+                ts._auth_s(e);
             });
 }
 
-this.prototype=$();
+ui.prototype=$();
 
 /**
  * 下属一首歌回调
@@ -28,30 +28,60 @@ this.prototype=$();
  */
 ui.prototype._next_s = function(e) {
     var ts=this;
-    return this.queue('ui',function(next){
-        if(!ts._quickbox.find('.current').length!=1) ts._quickbox.empty().append('<img class="current"/>'); 
-        if(!ts._quickbox.find('.next').length==0) ts._quickbox.append('<img class="next"/>'); 
-        ts._fm.find('.eta,.detail,.artist').css({'opacity':0});
-        if(e.song.picture==this._quickbox.find('.next').attr('src')){
-            this._quickbox.find('.current').removeClass('show').addClass('hidden');
-            this._quickbox.find('.next').addClass('current').removeClass('next');
-            setTimeout(function(){
-                this._quickbox.find('#album').append(
-                    $('<img class="next"/>').attr('src',e.next.picture).addClass('show')
-                    );
-                next();
-            },400);
-        }else{
-            this._quickbox.children().removeClass('show');
-            setTimeout(function(){
-                this._quickbox.find('.current').addClass('show');
-                this._quickbox.find('.next').addClass('show');
-                next();
-            },400);
-        }
-    })
+    ts.detail(e.song);
+    if(ts._album.find('.current').length!=1) ts._album.empty().append('<img class="current"/>'); 
+    if(ts._album.find('.next').length<1) ts._album.append('<img class="next"/>'); 
+    if(e.song.picture==ts._album.find('.next').attr('src')){
+        ts._album.find('.current').removeClass('show').addClass('hidden');
+        ts._album.find('.next').addClass('current').removeClass('next');
+        setTimeout(function(){
+            ts._album.append(
+                $('<img class="next"/>')
+                .one('load',function(){
+                    $(this).addClass('show');
+                })
+                .attr('src',e.next.picture)
+                ).remove('.hidden');
+        },400);
+    }else{
+        ts._album.children().removeClass('show');
+        setTimeout(function(){
+            ts._album.children()
+            .one('load',
+                function(){
+                    $(this).addClass('show');
+                })
+        ts._album.find('.current')
+            .attr('src',e.song.picture)
+            ts._album.find('.next')
+            .attr('src',e.next.picture)
+        },400);
+    }
+    return this;
 };
 
+/**
+ * 设定歌曲和唱片集信息
+ * @param {string} artist,{string} music,{string} album,{number} year
+ * @return this
+ */
+ui.prototype.detail = function(artist,music,album,year) {
+    var ts=this;
+    if(typeof(artist)=='object'){
+        music=artist.title;
+        album=artist.albumtitle;
+        year=artist.public_time;
+        artist=artist.artist;
+    }
+    $('.eta,.detail').css({'opacity':0});
+    setTimeout(function(){
+        $('.artist').text(artist);
+        $('.album_title').text(album);
+        $('.album_year').text(year);
+        $('.music_title').text(music);
+        $('.eta,.detail').css({'opacity':1});
+    },400)
+};
 
 /**
  * 认证成功的回调

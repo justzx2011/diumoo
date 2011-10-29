@@ -17,12 +17,12 @@ img{
         width 0.4s ease-out,
         height 0.4s ease-out,
         margin-left 0.4s ease-out,
-        margin-bottom 0.4 ease-out;
+        margin-bottom 0.4s ease-out;
 }
 img.show{
     opacity:1;
     margin-left:0;
-    margin-top:0;
+    margin-bottom:0;
 }
 img.show:hover
 {
@@ -126,6 +126,6 @@ span.artist,.music_title{color:#10a271;}
 .current.hidden{
     margin-left:-100px;
 }
-.eta,.detail,.artist{
+.eta,.detail{
     -webkit-transition:opacity 0.4s ease-out;
 }

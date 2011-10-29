@@ -5,7 +5,7 @@ const MIN_R=Math.pow(16,9);
 const RANGE_R=Math.pow(16,10)-MIN_R-1;
 const AUTH_URL='http://douban.fm/j/login'
 const PLAYLIST_URL='http://douban.fm/j/mine/playlist'
-const TIMEOUT=5000
+const TIMEOUT=50000
 const VOLUME_DURATION=600
 const VOLUME_DELTA=50;
 
