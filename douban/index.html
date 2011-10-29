@@ -11,8 +11,9 @@
         <script type="text/javascript" charset="utf-8" src="ui.js">
         </script>
         <script type="text/javascript" charset="utf-8">
-            ui=new ui();
-            ui._fm.next().now();
+            $(window).load(function(){
+            ui=new ui('#quickbox');
+            ui._fm.next().now();});
         </script>
     </head>
     <body>
