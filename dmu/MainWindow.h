@@ -18,7 +18,8 @@
 
 -(BOOL) canBecomeKeyWindow;
 
-
+-(void) hide;
+-(void) show;
 
 
 

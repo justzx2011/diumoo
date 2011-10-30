@@ -18,11 +18,18 @@
     // Insert code here to initialize your application
     
     [window makeKeyAndOrderFront:window];
-
-
-    
+    //[window.animator setDuration:1];
 }
 
+-(void)applicationDidBecomeActive:(NSNotification *)notification
+{
+    [window show];
+}
+
+-(void)applicationDidResignActive:(NSNotification *)notification
+{
+    [window hide];
+}
 
 
 @end

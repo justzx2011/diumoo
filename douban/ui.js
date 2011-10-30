@@ -22,18 +22,20 @@ function ui(quickbox) {
     this._fm.bind('ended',function(){
         ts._fm.next().now();
     });
-    $('.next').click(function(){
+    $('.next,.next_button').live('click',function(){
         ts._fm.next().now();
     });
     this._fm.bind('play',function(){
-        $('.pause').removeClass('pause').addClass('play');
+        $('.pause').addClass('play');
     })
 
-    this._fm.bind('paused',function(){
-        $('.play').removeClass('play').addClass('pause');
+    this._fm.bind('pause',function(){
+        $('.pause').removeClass('play');
     })
-    $('.pause').click(function(){ts._fm.play()});
-    $('.play').click(function(){ts._fm.pause()});
+    $('.pause').click(function(){
+        if($(this).hasClass('play')) ts._fm.pause().now();
+        else ts._fm.play().now();
+    });
 
     this._interval=setInterval(function(){
         if(!ts._fm[0].paused) {

@@ -8,15 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FmController.h"
-//#import "MainWindow.h"
+#import "MainWindow.h"
 
 
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {
 
-    IBOutlet NSWindow* window;
+    IBOutlet MainWindow* window;
 
 }
-@property (nonatomic,retain) IBOutlet NSWindow* window;
+@property (nonatomic,retain) IBOutlet MainWindow* window;
+
+- (void)applicationDidBecomeActive:(NSNotification *)notification;
+-(void)applicationDidResignActive:(NSNotification *)notification;
+
 
 
 

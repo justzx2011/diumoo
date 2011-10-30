@@ -22,11 +22,8 @@
         NSRect r=[[NSScreen mainScreen] frame];
         NSRect f=NSMakeRect(r.size.width/2-300,r.size.height-122, 600, 100);
         
-
-        
-
         [self setFrame:f display:YES];
-        [self setLevel:NSScreenSaverWindowLevel];
+        [self setLevel:NSModalPanelWindowLevel];
         [self setBackingType:NSBackingStoreBuffered];
         [self setStyleMask:NSBorderlessWindowMask];
         [self setBackgroundColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
@@ -53,6 +50,18 @@
 {
     return YES;
 }
+-(void) hide
+{
+    NSRect r=[[NSScreen mainScreen] frame];
+    NSRect f=NSMakeRect(r.size.width/2-300,r.size.height, 600, 100);
+    [self setFrame:f display:YES animate:YES];
 
+}
+-(void) show
+{  
+    NSRect r=[[NSScreen mainScreen] frame];
+    NSRect f=NSMakeRect(r.size.width/2-300,r.size.height-122, 600, 100);
+    [self setFrame:f display:YES animate:YES];
+}
 
 @end
