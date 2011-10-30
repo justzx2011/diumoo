@@ -19,9 +19,22 @@ function ui(quickbox) {
             function(e){
                 ts._auth_s(e);
             });
-    this._fm.bind('end',function(){
+    this._fm.bind('ended',function(){
         ts._fm.next().now();
     });
+    $('.next').click(function(){
+        ts._fm.next().now();
+    });
+    this._fm.bind('play',function(){
+        $('.pause').removeClass('pause').addClass('play');
+    })
+
+    this._fm.bind('paused',function(){
+        $('.play').removeClass('play').addClass('pause');
+    })
+    $('.pause').click(function(){ts._fm.play()});
+    $('.play').click(function(){ts._fm.pause()});
+
     this._interval=setInterval(function(){
         if(!ts._fm[0].paused) {
             ts._timeline.css({'width':ts._fm._played()});
@@ -40,8 +53,6 @@ ui.prototype=$();
 ui.prototype._next_s = function(e) {
     var ts=this;
     ts.detail(e.song);
-    console.log('e:'+e.next.picture);
-    console.log('a:'+ts._album.find('.next').attr('src'));
     if(ts._album.find('.current').length!=1) ts._album.empty().append('<img class="current"/>'); 
     if(ts._album.find('.next').length<1) ts._album.append('<img class="next"/>'); 
     if(e.song.picture==ts._album.find('.next').attr('src')){
@@ -79,12 +90,13 @@ ui.prototype._next_s = function(e) {
  * @param {string} artist,{string} music,{string} album,{number} year
  * @return this
  */
-ui.prototype.detail = function(artist,music,album,year) {
+ui.prototype.detail = function(artist,music,album,year,like) {
     var ts=this;
     if(typeof(artist)=='object'){
         music=artist.title;
         album=artist.albumtitle;
         year=artist.public_time;
+        like=artist.like;
         artist=artist.artist;
     }
     $('.eta,.detail').css({'opacity':0});
@@ -94,6 +106,8 @@ ui.prototype.detail = function(artist,music,album,year) {
         $('.album_year').text(year);
         $('.music_title').text(music);
         $('.eta,.detail').css({'opacity':1});
+        if(like=='1') $('.like').removeClass('like').addClass('liking');
+        else $('.liking').removeClass('liking').addClass('like');
     },400)
 };
 

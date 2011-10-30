@@ -94,6 +94,9 @@ span.artist,.music_title{color:#10a271;}
     background-repeat:no-repeat;
     cursor:pointer;
 }
+.pause{
+    background-image:url(images/play.png);
+}
 .play{
     background-image:url(images/pause.png);
 }
@@ -109,7 +112,7 @@ span.artist,.music_title{color:#10a271;}
 .next_button{
     background-image:url(images/next.png);
 }
-.play:hover,.next_button:hover,.bye:hover
+.pause:hover,.play:hover,.next_button:hover,.bye:hover
 {
     -webkit-border-radius:16px;
     -webkit-box-shadow: 0 0 5px #333;
@@ -124,6 +127,7 @@ span.artist,.music_title{color:#10a271;}
  * */
 
 .current.hidden{
+    opacity:1;
     margin-left:-100px;
 }
 .eta,.detail{
