@@ -20,7 +20,7 @@
 
 -(void) hide;
 -(void) show;
-
+-(void) wake;
 
 
 @end

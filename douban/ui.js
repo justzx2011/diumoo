@@ -4,48 +4,47 @@
  * @param none 
  * @return none
  */
-function ui(quickbox) {
+function ui(q,m) {
     var ts=this;
-    this._quickbox=$(quickbox);
+    this._quickbox=$((quickbox||'#quickbox'));
     this._album=this._quickbox.find('.album');
     this._timeline=$('.timeline div');
     this._eta=$('.eta');
-    this._fm=new fm();
-    this._fm.bind(NEXT_S_C_E,
+    this.bind(NEXT_S_C_E,
             function(e){
                 ts._next_s(e);
             })
-    this._fm.bind(AUTH_S_E,
+    this.bind(AUTH_S_E,
             function(e){
                 ts._auth_s(e);
             });
-    this._fm.bind('ended',function(){
-        ts._fm.next().now();
+    this.bind('ended',function(){
+        ts.next().now();
     });
     $('.next,.next_button').live('click',function(){
-        ts._fm.next().now();
+        ts.next().now();
     });
-    this._fm.bind('play',function(){
+    this.bind('play',function(){
         $('.pause').addClass('play');
     })
 
-    this._fm.bind('pause',function(){
+    this.bind('pause',function(){
         $('.pause').removeClass('play');
     })
     $('.pause').click(function(){
-        if($(this).hasClass('play')) ts._fm.pause().now();
-        else ts._fm.play().now();
+        if($(this).hasClass('play')) ts.pause().now();
+        else ts.play().now();
     });
 
     this._interval=setInterval(function(){
-        if(!ts._fm[0].paused) {
-            ts._timeline.css({'width':ts._fm._played()});
-            ts._eta.text(ts._fm.eta());
+        if(!ts[0].paused) {
+            ts._timeline.css({'width':ts._played()});
+            ts._eta.text(ts.eta());
         }
     },1000);
 }
 
-ui.prototype=$();
+ui.prototype=new fm();
 
 /**
  * 下属一首歌回调
@@ -118,6 +117,7 @@ ui.prototype.detail = function(artist,music,album,year,like) {
  * @param {event} e
  * @return this
  */
-fm.prototype._auth_s = function(e) {
+ui.prototype._auth_s = function(e) {
     return this;
 };
+
