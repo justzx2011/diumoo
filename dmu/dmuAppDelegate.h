@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "FmController.h"
 #import "MainWindow.h"
+#import "Noti.h"
 
 
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {

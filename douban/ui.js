@@ -6,8 +6,7 @@
  */
 function ui(q,m) {
     var ts=this;
-    this._quickbox=$((quickbox||'#quickbox'));
-    this._album=this._quickbox.find('.album');
+    this._album=$('.album');
     this._timeline=$('.timeline div');
     this._eta=$('.eta');
     this.bind(NEXT_S_C_E,
