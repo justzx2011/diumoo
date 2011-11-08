@@ -13,22 +13,17 @@
 {
 @protected
     WebView* webview;
-
-    NSButton* _exit;
     NSRect _show;
     NSRect _hide;
 }
 @property(nonatomic,retain) WebView* webview;
-@property(nonatomic,retain) NSImageView* quickMsgBox;
-
-
 
 -(BOOL) canBecomeKeyWindow;
+
 
 -(void) hide;
 -(void) show;
 -(void) wake;
 -(void) die;
-
 
 @end

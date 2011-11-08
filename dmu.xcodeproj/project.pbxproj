@@ -23,9 +23,7 @@
 		F5824FA514405AF900A44D1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5824FA414405AF900A44D1F /* README.md */; };
 		F59098A01441EDA3005A9537 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F590989F1441EDA3005A9537 /* WebKit.framework */; };
 		F5AC73DD1446EF3600B9ADB1 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */; };
-		F5BAA0451467859E0038CD71 /* Noti.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BAA0441467859E0038CD71 /* Noti.m */; };
 		F5D285D214440198003E79EE /* douban in Resources */ = {isa = PBXBuildFile; fileRef = F5D285D114440198003E79EE /* douban */; };
-		F5E49E971466537A0031A880 /* onlaunch.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E49E961466537A0031A880 /* onlaunch.png */; };
 		F5E49E99146653B40031A880 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = F5E49E98146653B40031A880 /* loading.gif */; };
 		F5E59AE31466731A009C5112 /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E59AE21466731A009C5112 /* exit.png */; };
 /* End PBXBuildFile section */
@@ -66,10 +64,7 @@
 		F590989F1441EDA3005A9537 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
-		F5BAA0431467859E0038CD71 /* Noti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Noti.h; sourceTree = "<group>"; };
-		F5BAA0441467859E0038CD71 /* Noti.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Noti.m; sourceTree = "<group>"; };
 		F5D285D114440198003E79EE /* douban */ = {isa = PBXFileReference; lastKnownFileType = folder; path = douban; sourceTree = "<group>"; };
-		F5E49E961466537A0031A880 /* onlaunch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onlaunch.png; sourceTree = "<group>"; };
 		F5E49E98146653B40031A880 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		F5E59AE21466731A009C5112 /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,7 +98,6 @@
 				F534D30C1466CF0C00950BAF /* doubanmusic.png */,
 				F5E59AE21466731A009C5112 /* exit.png */,
 				F5E49E98146653B40031A880 /* loading.gif */,
-				F5E49E961466537A0031A880 /* onlaunch.png */,
 				F5824FA414405AF900A44D1F /* README.md */,
 				F5824F75144054AB00A44D1F /* dmu */,
 				F5D285D114440198003E79EE /* douban */,
@@ -150,8 +144,6 @@
 				F5824F82144054AB00A44D1F /* dmuAppDelegate.m */,
 				F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */,
 				F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */,
-				F5BAA0431467859E0038CD71 /* Noti.h */,
-				F5BAA0441467859E0038CD71 /* Noti.m */,
 				F5824F84144054AC00A44D1F /* MainMenu.xib */,
 				F5824F76144054AB00A44D1F /* Supporting Files */,
 			);
@@ -261,7 +253,6 @@
 				F5824F86144054AC00A44D1F /* MainMenu.xib in Resources */,
 				F5824FA514405AF900A44D1F /* README.md in Resources */,
 				F5D285D214440198003E79EE /* douban in Resources */,
-				F5E49E971466537A0031A880 /* onlaunch.png in Resources */,
 				F5E49E99146653B40031A880 /* loading.gif in Resources */,
 				F5E59AE31466731A009C5112 /* exit.png in Resources */,
 				F534D30D1466CF0C00950BAF /* doubanmusic.png in Resources */,
@@ -304,7 +295,6 @@
 				F5824F7C144054AB00A44D1F /* main.m in Sources */,
 				F5824F83144054AB00A44D1F /* dmuAppDelegate.m in Sources */,
 				F5AC73DD1446EF3600B9ADB1 /* MainWindow.m in Sources */,
-				F5BAA0451467859E0038CD71 /* Noti.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

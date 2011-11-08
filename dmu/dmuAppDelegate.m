@@ -17,22 +17,17 @@
 {
     // Insert code here to initialize your application
     
-    //[window makeKeyAndOrderFront:window];
-    //[window show];
-    [Noti addTextNoti:@"test1"];
-    [Noti addTextNoti:@"test2"];
-    //[[Noti shared] makeKeyAndOrderFront:[Noti shared]];
-    [Noti  flush];
+    [window makeKeyAndOrderFront:window];
 }
 
 -(void)applicationDidBecomeActive:(NSNotification *)notification
 {
-    //[window show];
+    [window show];
 }
 
 -(void)applicationDidResignActive:(NSNotification *)notification
 {
-    //[window hide];
+    [window hide];
 }
 
 

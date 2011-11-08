@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MainWindow.h"
-#import "Noti.h"
 
 
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {

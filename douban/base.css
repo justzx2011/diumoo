@@ -117,7 +117,21 @@ span.artist,.music_title{color:#10a271;}
     -webkit-border-radius:16px;
     -webkit-box-shadow: 0 0 5px #333;
 }
-
+#onlaunch
+{
+    position:absolute;
+    left:0;
+    top:0;
+    width:600px;
+    height:100px;
+    background:url(images/onlaunch.png);
+    z-index:10;
+}
+#prog{
+    margin-top:75px;
+    font-size:16px;
+    text-align:center;
+}
 
 
 /*
