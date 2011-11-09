@@ -23,11 +23,11 @@ function ui(q,m) {
     $('.next,.next_button').live('click',function(){
         ts.next().now();
     });
-    this.bind('play',function(){
+    this.bind(PLAY_E,function(){
         $('.pause').addClass('play');
     })
 
-    this.bind('pause',function(){
+    this.bind(PAUSE_E,function(){
         $('.pause').removeClass('play');
     })
     $('.pause').click(function(){

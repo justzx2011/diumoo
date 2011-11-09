@@ -32,6 +32,8 @@ const VOLUME_E='_volumechange';
 const RATE_E='rate';
 const UNRATE_E='unrate';
 const AUTH_S_E='authsuccess';
+const PAUSE_E='_pause';
+const PLAY_E='play';
 
 
 //电台主控类
@@ -245,6 +247,7 @@ fm.prototype.pause = function() {
     var ts=this;
     return this.queue('fm',
             function(next){
+                ts.fire(PAUSE_E);
                if(ts[0].duration-ts[0].currentTime <1 ){
                     this.pause()
                     return next();

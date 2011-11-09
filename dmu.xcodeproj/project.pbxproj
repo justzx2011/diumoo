@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5317965146AB3C300681043 /* DomiLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = F5317964146AB3C300681043 /* DomiLoader.m */; };
 		F534D30D1466CF0C00950BAF /* doubanmusic.png in Resources */ = {isa = PBXBuildFile; fileRef = F534D30C1466CF0C00950BAF /* doubanmusic.png */; };
 		F534D30F1466D08100950BAF /* lastfm.png in Resources */ = {isa = PBXBuildFile; fileRef = F534D30E1466D08100950BAF /* lastfm.png */; };
 		F5824F70144054AB00A44D1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5824F6F144054AB00A44D1F /* Cocoa.framework */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F5317963146AB3C300681043 /* DomiLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomiLoader.h; sourceTree = "<group>"; };
+		F5317964146AB3C300681043 /* DomiLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DomiLoader.m; sourceTree = "<group>"; };
 		F534D30C1466CF0C00950BAF /* doubanmusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doubanmusic.png; sourceTree = "<group>"; };
 		F534D30E1466D08100950BAF /* lastfm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lastfm.png; sourceTree = "<group>"; };
 		F5824F6B144054AB00A44D1F /* dmu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dmu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +146,8 @@
 				F5824F81144054AB00A44D1F /* dmuAppDelegate.h */,
 				F5824F82144054AB00A44D1F /* dmuAppDelegate.m */,
 				F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */,
+				F5317963146AB3C300681043 /* DomiLoader.h */,
+				F5317964146AB3C300681043 /* DomiLoader.m */,
 				F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */,
 				F5824F84144054AC00A44D1F /* MainMenu.xib */,
 				F5824F76144054AB00A44D1F /* Supporting Files */,
@@ -295,6 +300,7 @@
 				F5824F7C144054AB00A44D1F /* main.m in Sources */,
 				F5824F83144054AB00A44D1F /* dmuAppDelegate.m in Sources */,
 				F5AC73DD1446EF3600B9ADB1 /* MainWindow.m in Sources */,
+				F5317965146AB3C300681043 /* DomiLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
