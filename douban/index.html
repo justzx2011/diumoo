@@ -10,10 +10,17 @@
         </script>
         <script type="text/javascript" charset="utf-8" src="ui.js">
         </script>
-        <script type="text/javascript" charset="utf-8">
-        </script>
     </head>
     <body>
+        <div id="preload">
+            <img src="images/bye.png" alt="" />
+            <img src="images/like.png" alt="" />
+            <img src="images/liking.png" alt="" />
+            <img src="images/next.png" alt="" />
+            <img src="images/onlaunch.png" alt="" />
+            <img src="images/pause.png" alt="" />
+            <img src="images/play.png" alt="" />
+        </div>
         <div id="onlaunch">
             <div id="prog">
                 初始化应用程序...
@@ -36,6 +43,12 @@
                     </div>
                 </div>
                 <div class="control">
+                    <div id="user_info">
+                        <a href="" id="user_name"></a>(已登录)<br/>
+                        累计收听<span id="played"></span>首
+                        加红心<span id="liked"></span>首
+                        不再播放<span id="baned"></span>首
+                    </div>
                     <input type="button"  class="pause play" >
                     <input type="button"  class="next_button" >
                     <input type="button"  class="likecontrol liking" >

@@ -11,6 +11,7 @@ body.quickbox{
     width:600px;
     height:100px;
 }
+#preload{position:absolute;width:0;height:0;overflow:hidden}
 img{
     opacity:0;
     -webkit-transition:opacity 0.4s ease-out,
@@ -126,13 +127,25 @@ span.artist,.music_title{color:#10a271;}
     height:100px;
     background:url(images/onlaunch.png);
     z-index:10;
+    -webkit-transition:top 0.4s ease-in-out;
 }
 #prog{
     margin-top:75px;
     font-size:16px;
     text-align:center;
 }
-
+#user_info
+{
+    opacity:0;
+    -webkit-transition:opacity 0.4s ease-in-out;
+    margin-top:5px;
+    float:left;
+    text-align:left;
+    font-size:12px;
+    width:250px;
+}
+#user_name{color:#10a271;}
+#user_info span{color:#999}
 
 /*
  *

@@ -6,7 +6,7 @@ const RANGE_R=Math.pow(16,10)-MIN_R-1;
 const AUTH_URL='http://douban.fm/j/login'
 const PLAYLIST_URL='http://douban.fm/j/mine/playlist'
 const TIMEOUT=50000
-const VOLUME_DURATION=600
+const VOLUME_DURATION=1000
 const VOLUME_DELTA=50;
 
 //电台控制代号
@@ -49,6 +49,7 @@ function fm(){
     this._channel=1;
     this._errorhandle=null;
     this._volume=1;
+    this._auth_key=null;
     this.data('fm',this);
     this.push(document.createElement('audio'));
     this.attr('preload','preload');
@@ -107,10 +108,16 @@ fm.prototype.error = function(s,e) {
  * @param {string} email {string} pass
  * @return this
  */
-fm.prototype.auth = function(email,pass) {
+fm.prototype.auth = function() {
     var ts=this;
     return this.queue('fm',
             function(next){
+                if(ts._auth_key == null) {
+                    next();
+                    return;
+                }
+                email=ts._auth_key.email;
+                pass=ts._auth_key.pass;
         $.ajax(AUTH_URL,
             {
                 'data':{
@@ -442,7 +449,8 @@ fm.prototype.volume = function(v) {
  * @param none
  * @return {string}
  */
-fm.prototype._played = function() {
+fm.prototype._played = function(d) {
+    if(d) return this[0].duration-this[0].currentTime;
     return Math.round(this[0].currentTime/this[0].duration * 1000)/10 +'%';
 };
 /**

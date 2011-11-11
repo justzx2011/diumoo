@@ -15,6 +15,10 @@
 #define GET_PLAYLIST 3
 #define READY 4
 
+#define NETWORK_ERROR 0
+#define AUTH_ERORR 1
+#define GET_PLAYLIST_ERROR 2
+
 
 @interface DomiLoader : NSObject
 {
