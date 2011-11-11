@@ -37,9 +37,15 @@
         
         //初始化webview
         webview=[[WebView alloc] initWithFrame:[[self contentView]bounds]];
-        [[webview mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]]];
-        
         [webview displayIfNeeded];
+        
+        //初始化domiloader
+        loader=[[DomiLoader alloc] initWithWebview:webview];
+        
+        //开始加载页面
+        [loader loadRequest:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]];
+        
+        
 
         [[self contentView] addSubview:webview];
         [self display];

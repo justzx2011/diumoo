@@ -12,7 +12,7 @@ function ui(q,m) {
     this.bind(NEXT_S_C_E,
             function(e){
                 ts._next_s(e);
-                window.domi.signal('newsong');
+                window.domi.signal_('newsong');
             })
     this.bind(AUTH_S_E,
             function(e){
@@ -21,23 +21,23 @@ function ui(q,m) {
                 $('#played').text(ts._auth.user_info.play_record.played)
                 $('#baned').text(ts._auth.user_info.play_record.banned)
                 $('#user_info').css({'opacity':1});
-                window.domi.signal('auth_success');
+                window.domi.signal_('auth_success');
             });
     $('.next,.next_button').live('click',function(){
         ts.next().now();
     });
     this.bind(PLAY_E,function(){
         $('.pause').addClass('play');
-        window.domi.signal('play');
+        window.domi.signal_('play');
     })
 
     this.bind(PAUSE_E,function(){
         $('.pause').removeClass('play');
-        window.domi.signal('pause');
+        window.domi.signal_('pause');
     })
 
     this.bind('error',function(e){
-        window.domi.error(e.error_id);
+        window.domi.error_(e.error_id);
     });
 
     $('.pause').click(function(){
@@ -67,7 +67,7 @@ function ui(q,m) {
         }
         if(ts._played(true)<1){
             ts.next().now();
-            window.domi.signal('ended');
+            window.domi.signal_('ended');
         }
     },1000);
 }
@@ -167,7 +167,7 @@ function startInitialize() {
     _U=new ui();
     _U.prog('获取用户名和密码',200)
       .prog(function(){
-           this._auth_key=eval(window.domi.authKey());
+           _U._auth_key=eval(window.domi.authKey());
       })
       .prog('认证中')
       .auth()

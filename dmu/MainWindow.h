@@ -8,11 +8,13 @@
 
 #import <AppKit/AppKit.h>
 #import <WebKit/WebKit.h>
+#import "DomiLoader.h"
 
 @interface MainWindow : NSWindow
 {
 @protected
     WebView* webview;
+    DomiLoader* loader;
     NSRect _show;
     NSRect _hide;
 }

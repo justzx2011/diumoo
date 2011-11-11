@@ -20,7 +20,7 @@
 #define GET_PLAYLIST_ERROR 2
 
 
-@interface DomiLoader : NSObject
+@interface DomiLoader : NSObject 
 {
     int status;
     NSMutableDictionary* _nowplaying;
@@ -29,6 +29,7 @@
 }
 
 -(id) initWithWebview:(WebView*)wb;
+-(void) dealloc;
 
 -(void) error:(NSString*)detail;
 -(void) signal:(NSString*)s;
@@ -40,7 +41,14 @@
 
 -(void) setActionForMusicChanged:(SEL)s;
 
+-(void) loadRequest:(NSURL*) url;
+
+-(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame;
+-(void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame;
+
 +(BOOL) isSelectorExcludedFromWebScript:(SEL)selector;
+
+
 
 
 @end

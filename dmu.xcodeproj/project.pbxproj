@@ -146,9 +146,9 @@
 				F5824F81144054AB00A44D1F /* dmuAppDelegate.h */,
 				F5824F82144054AB00A44D1F /* dmuAppDelegate.m */,
 				F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */,
+				F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */,
 				F5317963146AB3C300681043 /* DomiLoader.h */,
 				F5317964146AB3C300681043 /* DomiLoader.m */,
-				F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */,
 				F5824F84144054AC00A44D1F /* MainMenu.xib */,
 				F5824F76144054AB00A44D1F /* Supporting Files */,
 			);

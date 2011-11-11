@@ -22,6 +22,13 @@
     }
     return self;
 }
+
+-(void)dealloc
+{
+    [webviewInstance release];
+    [super dealloc];
+}
+
 - (id) initWithWebview:(WebView *)wb
 {
     self=[self init];
@@ -32,7 +39,7 @@
 
 -(NSString*) authKey
 {
-    return [NSString stringWithFormat:@"({'%s':'%s'})","airobot1@163.com","akirasphere"];
+    return [NSString stringWithFormat:@"({'email':'%s','pass':'%s'})","airobot1@163.com","akirasphere"];
 }
 
 -(NSNumber*) channel
@@ -60,16 +67,32 @@
 {
     actionForMusicChanged=s;
 }
+-(void) loadRequest:(NSURL*)url
+{
+    [[webviewInstance mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
+}
+
+// Webview Delegate
+
+-(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+    [[sender windowScriptObject] evaluateWebScript:@"startInitialize()"];
+}
+-(void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame
+{
+    [windowObject setValue:self forKey:@"domi"];
+}
 
 +(BOOL) isSelectorExcludedFromWebScript:(SEL)selector
 {
     if (selector==@selector(authKey)) return NO;
     if (selector==@selector(channel)) return NO;
     if (selector==@selector(channel:)) return NO;
-    if (selector==@selector(error)) return NO;
+    if (selector==@selector(error:)) return NO;
     if (selector==@selector(signal:)) return NO;
     return YES;
 }
+
 
 
 
