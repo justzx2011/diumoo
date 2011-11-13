@@ -167,7 +167,10 @@ function startInitialize() {
     _U=new ui();
     _U.prog('获取用户名和密码',200)
       .prog(function(){
+          try{
            _U._auth_key=eval(window.domi.authKey());
+          }
+          catch(e){return};
       })
       .prog('认证中')
       .auth()

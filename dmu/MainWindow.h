@@ -8,13 +8,13 @@
 
 #import <AppKit/AppKit.h>
 #import <WebKit/WebKit.h>
-#import "DomiLoader.h"
+
 
 @interface MainWindow : NSWindow
 {
 @protected
     WebView* webview;
-    DomiLoader* loader;
+    NSMutableDictionary* _nowplaying;
     NSRect _show;
     NSRect _hide;
 }
@@ -27,5 +27,24 @@
 -(void) show;
 -(void) wake;
 -(void) die;
+
+
+
+
+// loader 部分的函数
+-(void) error:(NSString*)detail;
+-(void) signal:(NSString*)s;
+
+-(NSString*) authKey;
+-(NSNumber*) channel;
+-(void) channel:(NSNumber*)n;
+-(NSDictionary *) nowplaying;
+
+-(void) loadRequest:(NSURL*) url;
+
+-(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame;
+-(void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame;
+
++(BOOL) isSelectorExcludedFromWebScript:(SEL)selector;
 
 @end

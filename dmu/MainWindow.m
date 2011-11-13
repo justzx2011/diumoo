@@ -38,15 +38,12 @@
         //初始化webview
         webview=[[WebView alloc] initWithFrame:[[self contentView]bounds]];
         [webview displayIfNeeded];
+        [webview setFrameLoadDelegate:self];
         
-        //初始化domiloader
-        loader=[[DomiLoader alloc] initWithWebview:webview];
         
         //开始加载页面
-        [loader loadRequest:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]];
+        [self loadRequest:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]];
         
-        
-
         [[self contentView] addSubview:webview];
         [self display];
         [self hide];
@@ -80,6 +77,62 @@
 {
     [NSApp terminate:nil];
 }
+
+//loader部分的函数实现
+
+-(NSString*) authKey
+{
+    return [NSString stringWithFormat:@"({'email':'%s','pass':'%s'})","airobot1@163.com","akirasphere"];
+}
+
+-(NSNumber*) channel
+{
+    return [[webview windowScriptObject] evaluateWebScript:@"channel();"];
+}
+-(void) channel:(NSNumber *)n
+{
+    [[webview windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"channel(%d);",[n intValue]]];
+}
+
+-(void) error:(NSString *)detail
+{
+    NSLog(@"%@",detail);
+}
+-(void) signal:(NSString *)s
+{
+    NSLog(@"%@",s);
+}
+-(NSDictionary*) nowplaying
+{
+    return [NSDictionary dictionaryWithDictionary:_nowplaying];
+}
+
+-(void) loadRequest:(NSURL*)url
+{
+    [[webview mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
+}
+
+// Webview Delegate
+
+-(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
+{
+    [[sender windowScriptObject] evaluateWebScript:@"startInitialize()"];
+}
+-(void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame
+{
+    [windowObject setValue:self forKey:@"domi"];
+}
+
++(BOOL) isSelectorExcludedFromWebScript:(SEL)selector
+{
+    if (selector==@selector(authKey)) return NO;
+    if (selector==@selector(channel)) return NO;
+    if (selector==@selector(channel:)) return NO;
+    if (selector==@selector(error:)) return NO;
+    if (selector==@selector(signal:)) return NO;
+    return YES;
+}
+
 
 
 @end
