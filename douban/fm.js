@@ -428,7 +428,9 @@ fm.prototype.volume = function(v) {
         
         };
         var intv= function(step,start,end){
-            if(VOLUME_DURATION-step*VOLUME_DELTA >= 0){
+            if(ts[0].paused) ts[0].volume=end;
+            else if(VOLUME_DURATION-step*VOLUME_DELTA >= 0){
+                
                 ts[0].volume=(VOLUME_DELTA*step/VOLUME_DURATION)*(end-start) + start;
                 setTimeout(function(){intv(step+1,start,end)},VOLUME_DELTA);
             }

@@ -16,7 +16,9 @@
     WebView* webview;
     NSMutableDictionary* _nowplaying;
     NSRect _show;
+    NSRect _original_hide;
     NSRect _hide;
+    BOOL _pined;
 }
 @property(nonatomic,retain) WebView* webview;
 
@@ -26,12 +28,15 @@
 -(void) hide;
 -(void) show;
 -(void) wake;
--(void) die;
-
-
+-(void) exit;
+-(void) pin:(BOOL) pined; //将窗口锁定
+-(void) preferences; //显示偏好设置
 
 
 // loader 部分的函数
+-(void) ready;
+
+
 -(void) error:(NSString*)detail;
 -(void) signal:(NSString*)s;
 

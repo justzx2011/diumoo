@@ -58,8 +58,6 @@ function ui(q,m) {
             }).now();
         }
     });
-
-
     this._interval=setInterval(function(){
         if(!ts[0].paused) {
             ts._timeline.css({'width':ts._played()});
@@ -163,7 +161,22 @@ ui.prototype.prog=function(t,d){
  * @param {none} 
  * @return none
  */
+
+_U=null;
+
 function startInitialize() {
+    $('#exit').click(function(){
+        window._U.pause().prog(
+            function(){window.domi.exit()}
+            ).now();
+    })
+    $('#pin').click(function(){
+        $(this).toggleClass('pined');
+        window.domi.pin_($(this).hasClass('pined'));
+    })
+    $('#preferences').click(function(){window.domi.preferences();})
+
+
     _U=new ui();
     _U.prog('获取用户名和密码',200)
       .prog(function(){
@@ -178,7 +191,10 @@ function startInitialize() {
       .next()
       .prog('准备就绪',200)
       .prog(function(){
-        $('#onlaunch').css({'top':-120});
+          $('#onlaunch').css({'top':-120});
+          try{window.domi.ready();}catch(e){return};
       })
       .now();
 };
+
+

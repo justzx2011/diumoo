@@ -33,6 +33,7 @@ img.show:hover
     height:100px;
     width:600px;
     overflow:hidden;
+    -webkit-transition:opacity 1s ease-in-out;
 }
 #quickbox>div{
     float:left;
@@ -47,11 +48,15 @@ img.show:hover
     padding:0 10px;
 }
 .detail{
+    white-space:nowrap;
     font-size:20px;
     height:50px;
     padding:5px 0;
 }
-span.artist,.music_title{color:#10a271;}
+span.artist,.music_title{color:#10a271;
+    white-space:nowrap;
+width:200px;overflow:hidden;
+}
 .timeline{
     margin:5px 0;
     background-color:#eee;
@@ -84,7 +89,6 @@ span.artist,.music_title{color:#10a271;}
     height:50px;
     margin-bottom:-50px;
     cursor:pointer;
-
 }
 
 .control input{
@@ -146,6 +150,16 @@ span.artist,.music_title{color:#10a271;}
 }
 #user_name{color:#10a271;}
 #user_info span{color:#999}
+
+#appcontrolers div{position:absolute;top:5px;padding:2px;width:10px;height:10px;z-index:11;
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+#appcontrolers div:hover{background-color:#52bae0;}
+#preferences{background-image:url(images/preferences.png);right:35px}
+#pin{background-image:url(images/pin.png);right:20px;}
+#exit{background-image:url(images/exit.png);right:5px;}
+#pin.pined{background-image:url(images/pined.png);background-color:#333};
 
 /*
  *

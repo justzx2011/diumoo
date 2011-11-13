@@ -20,10 +20,9 @@
         
         //初始化所有的frame
         NSRect r=[[NSScreen mainScreen] frame];
-        _show=NSMakeRect(r.size.width/2-300,r.size.height-122,600,122);
-        _hide=NSMakeRect(r.size.width/2-300,r.size.height,600,122);
-        
-        
+        _show=NSMakeRect(r.size.width/2-300,r.size.height,600,122);
+        _original_hide=NSMakeRect(r.size.width/2-300,r.size.height,600,122);
+        _hide=NSMakeRect(r.size.width/2-300,r.size.height-52,600,122);
         
         
         //初始化主窗口
@@ -52,6 +51,11 @@
     
     return self;
 }
+-(void) dealloc
+{
+    [webview release];
+    [super dealloc];
+}
 
 
 
@@ -73,16 +77,41 @@
 {
     [NSApp activateIgnoringOtherApps:YES];
 }
--(void) die
+-(void) exit
 {
+    _show=_original_hide;
+    [self show];
     [NSApp terminate:nil];
 }
+-(void) pin:(BOOL)pined
+{
+    if(pined){ _hide.origin.y=_show.origin.y;_pined=YES;}
+    else{
+        _hide.origin.y=_original_hide.origin.y;
+        _pined=NO;
+    }
+}
+
+-(void) preferences
+{
+    
+}
+
+
+
 
 //loader部分的函数实现
+
+-(void) ready
+{
+    _hide.origin.y=_original_hide.origin.y;
+    [self show];
+}
 
 -(NSString*) authKey
 {
     return [NSString stringWithFormat:@"({'email':'%s','pass':'%s'})","airobot1@163.com","akirasphere"];
+    //return nil;
 }
 
 -(NSNumber*) channel
@@ -116,6 +145,8 @@
 
 -(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
+    _show.origin.y=_original_hide.origin.y-122;
+    [self show];
     [[sender windowScriptObject] evaluateWebScript:@"startInitialize()"];
 }
 -(void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame
@@ -130,6 +161,10 @@
     if (selector==@selector(channel:)) return NO;
     if (selector==@selector(error:)) return NO;
     if (selector==@selector(signal:)) return NO;
+    if (selector==@selector(ready)) return NO;
+    if (selector==@selector(exit)) return NO;
+    if (selector==@selector(pin:)) return NO;
+    if (selector==@selector(preferences)) return NO;
     return YES;
 }
 
