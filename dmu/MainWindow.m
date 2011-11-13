@@ -32,16 +32,28 @@
         [self setStyleMask:NSBorderlessWindowMask];
         [self setBackgroundColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
         
+        //初始化menubar icon
+        _menubar_icon=[[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
         
+        //hack icon的位置
+        
+        NSView *tmpView = [[NSView alloc] initWithFrame:NSMakeRect(0.0,0.0, [_menubar_icon length], [[_menubar_icon statusBar] thickness])];
+        [_menubar_icon setView:tmpView];
+        [[[_menubar_icon view] window] frame];
+        NSLog(@"%@",icon_frame);
+        [_menubar_icon setView:nil];
+        [tmpView release];
+        [_menubar_icon setImage:[NSImage imageNamed:@"icon.png"]];
+        
+
         
         //初始化webview
         webview=[[WebView alloc] initWithFrame:[[self contentView]bounds]];
         [webview displayIfNeeded];
         [webview setFrameLoadDelegate:self];
         
-        
         //开始加载页面
-        [self loadRequest:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]];
+        //[self loadRequest:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]];
         
         [[self contentView] addSubview:webview];
         [self display];
@@ -56,7 +68,6 @@
     [webview release];
     [super dealloc];
 }
-
 
 
 
@@ -94,7 +105,8 @@
 
 -(void) preferences
 {
-    
+    [self hide];
+    if(_preferences) [_preferences makeKeyAndOrderFront:_preferences];
 }
 
 
@@ -105,7 +117,7 @@
 -(void) ready
 {
     _hide.origin.y=_original_hide.origin.y;
-    [self show];
+    [self wake];
 }
 
 -(NSString*) authKey

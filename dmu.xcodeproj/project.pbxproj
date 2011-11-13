@@ -24,6 +24,8 @@
 		F59098A01441EDA3005A9537 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F590989F1441EDA3005A9537 /* WebKit.framework */; };
 		F5AC73DD1446EF3600B9ADB1 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */; };
 		F5D285D214440198003E79EE /* douban in Resources */ = {isa = PBXBuildFile; fileRef = F5D285D114440198003E79EE /* douban */; };
+		F5DFEBA61470106600BE409F /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DFEBA51470106600BE409F /* PreferencesController.m */; };
+		F5DFEBAA1470167B00BE409F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5DFEBA91470167B00BE409F /* icon.png */; };
 		F5E49E99146653B40031A880 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = F5E49E98146653B40031A880 /* loading.gif */; };
 		F5E59AE31466731A009C5112 /* exit.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E59AE21466731A009C5112 /* exit.png */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,9 @@
 		F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		F5D285D114440198003E79EE /* douban */ = {isa = PBXFileReference; lastKnownFileType = folder; path = douban; sourceTree = "<group>"; };
+		F5DFEBA41470106600BE409F /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		F5DFEBA51470106600BE409F /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		F5DFEBA91470167B00BE409F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		F5E49E98146653B40031A880 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		F5E59AE21466731A009C5112 /* exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +99,7 @@
 		F5824F60144054AB00A44D1F = {
 			isa = PBXGroup;
 			children = (
+				F5DFEBA91470167B00BE409F /* icon.png */,
 				F534D30E1466D08100950BAF /* lastfm.png */,
 				F534D30C1466CF0C00950BAF /* doubanmusic.png */,
 				F5E59AE21466731A009C5112 /* exit.png */,
@@ -141,6 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				F5824F81144054AB00A44D1F /* dmuAppDelegate.h */,
+				F5DFEBA41470106600BE409F /* PreferencesController.h */,
+				F5DFEBA51470106600BE409F /* PreferencesController.m */,
 				F5824F82144054AB00A44D1F /* dmuAppDelegate.m */,
 				F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */,
 				F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */,
@@ -257,6 +265,7 @@
 				F5E59AE31466731A009C5112 /* exit.png in Resources */,
 				F534D30D1466CF0C00950BAF /* doubanmusic.png in Resources */,
 				F534D30F1466D08100950BAF /* lastfm.png in Resources */,
+				F5DFEBAA1470167B00BE409F /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +304,7 @@
 				F5824F7C144054AB00A44D1F /* main.m in Sources */,
 				F5824F83144054AB00A44D1F /* dmuAppDelegate.m in Sources */,
 				F5AC73DD1446EF3600B9ADB1 /* MainWindow.m in Sources */,
+				F5DFEBA61470106600BE409F /* PreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

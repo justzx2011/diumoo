@@ -428,7 +428,10 @@ fm.prototype.volume = function(v) {
         
         };
         var intv= function(step,start,end){
-            if(ts[0].paused) ts[0].volume=end;
+            if(ts[0].paused) {
+                ts[0].volume=end;
+                if(callback.okf) callback.okf.call(ts[0]);
+            }
             else if(VOLUME_DURATION-step*VOLUME_DELTA >= 0){
                 
                 ts[0].volume=(VOLUME_DELTA*step/VOLUME_DURATION)*(end-start) + start;

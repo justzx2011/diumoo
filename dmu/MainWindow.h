@@ -14,6 +14,9 @@
 {
 @protected
     WebView* webview;
+    IBOutlet NSWindow* _preferences;
+    NSStatusItem* _menubar_icon;
+    NSRect icon_frame;
     NSMutableDictionary* _nowplaying;
     NSRect _show;
     NSRect _original_hide;
