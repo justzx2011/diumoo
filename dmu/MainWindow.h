@@ -19,9 +19,13 @@
     NSRect icon_frame;
     NSMutableDictionary* _nowplaying;
     NSRect _show;
-    NSRect _original_hide;
     NSRect _hide;
+    NSRect _tiny;
+    NSRect _activate_rect;
+    NSRect _tiny_out_rect;
     BOOL _pined;
+    BOOL _ready;
+    BOOL _quick_showing;
 }
 @property(nonatomic,retain) WebView* webview;
 
@@ -38,7 +42,7 @@
 
 // loader 部分的函数
 -(void) ready;
-
+-(void) tiny;
 
 -(void) error:(NSString*)detail;
 -(void) signal:(NSString*)s;

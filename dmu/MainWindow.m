@@ -17,16 +17,22 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        _pined=NO;
+        _ready=NO;
+        _quick_showing=NO;
         
         //初始化所有的frame
         NSRect r=[[NSScreen mainScreen] frame];
-        _show=NSMakeRect(r.size.width/2-300,r.size.height,600,122);
-        _original_hide=NSMakeRect(r.size.width/2-300,r.size.height,600,122);
-        _hide=NSMakeRect(r.size.width/2-300,r.size.height-52,600,122);
+        float h=[[NSStatusBar systemStatusBar] thickness];
+        _show=NSMakeRect(r.size.width/2-300,r.size.height-100.0-h,600.0,100.0+h);
+        _hide=NSMakeRect(r.size.width/2-300,r.size.height,600.0,100.0+h);
+        _tiny=NSMakeRect(r.size.width/2-300,r.size.height-40.0-h,600.0,100.0+h);
+        _activate_rect=NSMakeRect(r.size.width/2-300,r.size.height-h, 600, h+10.0);
+        _tiny_out_rect=NSMakeRect(r.size.width/2-300,r.size.height-h-40.0, 600, h+50.0);
         
         
         //初始化主窗口
-        [self setFrame:_hide display:YES];
+        [self setFrame:_hide display:YES animate:NO];
         [self setLevel:NSModalPanelWindowLevel];
         [self setBackingType:NSBackingStoreBuffered];
         [self setStyleMask:NSBorderlessWindowMask];
@@ -34,18 +40,7 @@
         
         //初始化menubar icon
         _menubar_icon=[[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
-        
-        //hack icon的位置
-        
-        NSView *tmpView = [[NSView alloc] initWithFrame:NSMakeRect(0.0,0.0, [_menubar_icon length], [[_menubar_icon statusBar] thickness])];
-        [_menubar_icon setView:tmpView];
-        [[[_menubar_icon view] window] frame];
-        NSLog(@"%@",icon_frame);
-        [_menubar_icon setView:nil];
-        [tmpView release];
         [_menubar_icon setImage:[NSImage imageNamed:@"icon.png"]];
-        
-
         
         //初始化webview
         webview=[[WebView alloc] initWithFrame:[[self contentView]bounds]];
@@ -53,11 +48,11 @@
         [webview setFrameLoadDelegate:self];
         
         //开始加载页面
-        //[self loadRequest:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]];
+        [self loadRequest:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]];
         
         [[self contentView] addSubview:webview];
         [self display];
-        [self hide];
+        [self setFrame:_hide display:YES animate:YES];
         
     }
     
@@ -77,11 +72,16 @@
 }
 -(void) hide
 {
-    [self setFrame:_hide display:YES animate:YES];
+    if(_pined) [self tiny];
+    else [self setFrame:_hide display:YES animate:YES];
 }
 -(void) show
-{  
-    [self setFrame:_show display:YES animate:YES];
+{   
+    if(_ready)
+    {
+        [[webview windowScriptObject] evaluateWebScript:@"tiny(false)"];
+        [self setFrame:_show display:YES animate:YES];
+    }
 }
 
 -(void) wake
@@ -90,17 +90,12 @@
 }
 -(void) exit
 {
-    _show=_original_hide;
-    [self show];
+    [self hide];
     [NSApp terminate:nil];
 }
 -(void) pin:(BOOL)pined
 {
-    if(pined){ _hide.origin.y=_show.origin.y;_pined=YES;}
-    else{
-        _hide.origin.y=_original_hide.origin.y;
-        _pined=NO;
-    }
+    _pined=pined;
 }
 
 -(void) preferences
@@ -116,8 +111,26 @@
 
 -(void) ready
 {
-    _hide.origin.y=_original_hide.origin.y;
-    [self wake];
+    _ready=YES;
+    if([NSApp isActive])[self show];
+    else [self wake];
+    [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent* e){
+        if(NSPointInRect([NSEvent mouseLocation], _activate_rect) && !_quick_showing){
+            _quick_showing=YES;
+            [self tiny];
+        }
+        else if(_quick_showing && !NSPointInRect([NSEvent mouseLocation], _tiny_out_rect)){
+            [self hide];
+            _quick_showing=NO;
+        }
+        
+    }];
+}
+
+-(void) tiny
+{
+    [[webview windowScriptObject] evaluateWebScript:@"tiny(true);"];
+    [self setFrame:_tiny display:YES animate:NO];
 }
 
 -(NSString*) authKey
@@ -150,15 +163,16 @@
 
 -(void) loadRequest:(NSURL*)url
 {
+    _ready=NO;
     [[webview mainFrame] loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 // Webview Delegate
 
+
 -(void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
-    _show.origin.y=_original_hide.origin.y-122;
-    [self show];
+    [self setFrame:_show display:YES animate:YES];
     [[sender windowScriptObject] evaluateWebScript:@"startInitialize()"];
 }
 -(void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame
