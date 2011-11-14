@@ -37,6 +37,7 @@
         [self setBackingType:NSBackingStoreBuffered];
         [self setStyleMask:NSBorderlessWindowMask];
         [self setBackgroundColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
+        [self setCollectionBehavior:NSWindowCollectionBehaviorTransient];
         
         //初始化menubar icon
         _menubar_icon=[[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
@@ -79,8 +80,8 @@
 {   
     if(_ready)
     {
-        [[webview windowScriptObject] evaluateWebScript:@"tiny(false)"];
         [self setFrame:_show display:YES animate:YES];
+        [[webview windowScriptObject] evaluateWebScript:@"tiny(false);"];
     }
 }
 
@@ -129,8 +130,8 @@
 
 -(void) tiny
 {
-    [[webview windowScriptObject] evaluateWebScript:@"tiny(true);"];
     [self setFrame:_tiny display:YES animate:NO];
+    [[webview windowScriptObject] evaluateWebScript:@"tiny(true);"];
 }
 
 -(NSString*) authKey

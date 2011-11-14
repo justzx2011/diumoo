@@ -361,7 +361,7 @@ fm.prototype.next = function(obj) {
                 if(!$(this).attr('src')) ts._next_();
                 else if(this.ended||(typeof(obj)=='boolean' && obj)) ts.list(END,ts._current.sid)._next_(); 
                 else if(this.paused==false) ts.pause().list(SKIP,ts._current.sid)._next_();
-                else ts.list(SKIP,ts._current.sid)._next_().now().volume(this._volume);
+                else ts.list(SKIP,ts._current.sid)._next_().volume(this._volume);
                 next();
             }
             )
