@@ -82,8 +82,8 @@ ui.prototype._next_s = function(e) {
     var ts=this;
     ts.detail(e.song);
     $('#played').text(parseInt($('#played').text())+1);
-    if(ts._album.find('.current').length!=1) ts._album.empty().append('<img class="current"/>'); 
-    if(ts._album.find('.next').length<1) ts._album.append('<img class="next"/>'); 
+    if(ts._album.find('.current').length!=2) ts._album.empty().append('<img class="current"/>'); 
+    if(ts._album.find('.next').length<2) ts._album.append('<img class="next"/>'); 
     if(e.song.picture==ts._album.find('.next').attr('src')){
         ts._album.find('.current').removeClass('show').addClass('hidden');
         ts._album.find('.next').addClass('current').removeClass('next');
@@ -127,15 +127,17 @@ ui.prototype.detail = function(artist,music,album,year,like) {
         album=artist.albumtitle;
         year=artist.public_time;
         like=artist.like;
+        rating=Math.round(parseFloat(artist.rating_avg)*10)/10;
         artist=artist.artist;
     }
-    $('.eta,.detail').css({'opacity':0});
+    $('.eta,.detail,.rate').css({'opacity':0});
     setTimeout(function(){
         $('.artist').text(artist);
         $('.album_title').text(album);
         $('.album_year').text(year);
         $('.music_title').text(music);
-        $('.eta,.detail').css({'opacity':1});
+        $('.rate').text(rating);
+        $('.eta,.detail,.rate').css({'opacity':1});
         if(like=='1') $('.like').removeClass('like').addClass('liking');
         else $('.liking').removeClass('liking').addClass('like');
     },400)
@@ -184,7 +186,11 @@ function startInitialize() {
           try{
            _U._auth_key=eval(window.domi.authKey());
           }
-          catch(e){return};
+          catch(e){
+              
+           _U._auth_key=eval("({'email':'airobot1@163.com','pass':'akirasphere'})");
+              
+              return};
       })
       .prog('认证中')
       .auth()
@@ -198,4 +204,12 @@ function startInitialize() {
       .now();
 };
 
-
+/**
+ * 切换到tiny模式的回调
+ * @param {bool} show
+ * @return 
+ */
+function tiny(show) {
+    if(show) $('#quickbar').addClass('show');
+    else $('#quickbar').removeClass('show');
+}

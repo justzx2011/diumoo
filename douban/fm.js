@@ -175,7 +175,6 @@ fm.prototype.list = function(type,sid) {
                 var data={
                     'type':(type||NEW),
                     'channel':ts._channel,
-                    'from':'mainsite',
                     'r':(Math.round(Math.random()*RANGE_R+MIN_R).toString(16)),
                 }
                 if(sid) {
@@ -185,14 +184,14 @@ fm.prototype.list = function(type,sid) {
                         while(ts._h.length>10) ts._h.shift();
                     }
                 }
-                if(data.type==SKIP || data.type==PLAYING) data['h']=ts._h.join();
+                if(data.type==SKIP || data.type==PLAYING||data.type==RATE|| data.type==UNRATE) data['h']=ts._h.join()+'|'+sid + ':' + data.type;
                 $.ajax(PLAYLIST_URL,
                     {
                         'data':data,
                     'type':'get',
                     'timeout':TIMEOUT,
                     'beforeSend':function(xhr){
-                        xhr.setRequestHeader('Cookie',this._cookie);
+                        xhr.setRequestHeader('Cookie',ts._cookie);
                     },
                     'error':function(e){
                         ts.error(NETWORK,e);
