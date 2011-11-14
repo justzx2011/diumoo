@@ -159,7 +159,7 @@ width:200px;overflow:hidden;
 #preferences{background-image:url(images/preferences.png);right:35px}
 #pin{background-image:url(images/pin.png);right:20px;}
 #exit{background-image:url(images/exit.png);right:5px;}
-#pin.pined{background-image:url(images/pined.png);background-color:#333};
+#pin.pined{background-image:url(images/pined.png);background-color:#333}
 
 /*
  *
