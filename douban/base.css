@@ -21,7 +21,6 @@ img{
         margin-bottom 0.4s ease-out;
 }
 img.show{
-    opacity:1;
     margin-left:0;
     margin-bottom:0;
 }
@@ -81,6 +80,7 @@ width:200px;overflow:hidden;
     text-align:right;
 }
 .current{
+    opacity:1;
     width:100px;
     height:100px;
 }
@@ -88,6 +88,7 @@ width:200px;overflow:hidden;
     width:50px;
     height:50px;
     margin-bottom:-50px;
+    opacity:0.4;
     cursor:pointer;
 }
 
@@ -161,16 +162,39 @@ width:200px;overflow:hidden;
 #exit{background-image:url(images/exit.png);right:5px;}
 #pin.pined{background-image:url(images/pined.png);background-color:#333}
 
+
+#quickbar{
+    background:#fff;
+position:fixed;
+height:40px;
+width:440px;
+left:0;
+bottom:-40px;
+-webkit-transition:bottom 0.2s ease-in-out;
+}
+#quickbar.show{bottom:0;}
+#quickbar>div{float:left;font-size:16px;margin-right:5px;}
+#quickbar>.album{width:80px;}
+#quickbar img{width:40px;height:40px;}
+#quickbar .eta{background-color:#aaa;color:#fff;padding:2px 5px;font-size:12px;}
+.rate{font-size:18px;
+background:#52bae0;
+color:white;
+padding:0 5px;
+}
+#quickbar .detail{width:270px;overflow:hidden;white-space:nowrap}
+
 /*
  *
  * 动画
  *
  * */
 
-.current.hidden{
-    opacity:1;
+#quickbox .current.hidden{
     margin-left:-100px;
 }
+#quickbar .current.hidden{margin-left:-40px;}
 .eta,.detail{
     -webkit-transition:opacity 0.4s ease-out;
 }
+.next:hover{opacity:0.8;}
