@@ -65,7 +65,7 @@ function ui(q,m) {
             ts._eta.text(ts.eta());
         }
         if(ts._played(true)<1){
-            ts.next().now();
+            ts.next(true).now();
             //window.domi.signal_('ended');
         }
     },1000);
