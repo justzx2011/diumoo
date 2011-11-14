@@ -253,6 +253,7 @@ fm.prototype.pause = function() {
     var ts=this;
     return this.queue('fm',
             function(next){
+                if(ts[0].paused) return next();
                 ts.fire(PAUSE_E);
                if(ts[0].duration-ts[0].currentTime <1 ){
                     this.pause()
