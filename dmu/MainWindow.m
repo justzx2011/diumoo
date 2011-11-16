@@ -128,8 +128,8 @@
     _ready=YES;
     [self show];
     [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent* e){
-        if([NSEvent mouseLocation].y>active_border){
-            
+        if(_pined);
+        else if([NSEvent mouseLocation].y>active_border){
             [self tiny];
         }
         else if(_quick_showing && !NSPointInRect([NSEvent mouseLocation], _tiny_out_rect)){
