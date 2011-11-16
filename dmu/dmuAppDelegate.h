@@ -12,15 +12,22 @@
 
 @interface dmuAppDelegate : NSObject <NSApplicationDelegate> {
 
-    IBOutlet MainWindow* window;
+    IBOutlet NSMenu* mainMenu;
+    IBOutlet MainWindow* window;    
+    NSStatusItem* statusItem;
+
 
 }
 @property (nonatomic,retain) IBOutlet MainWindow* window;
+@property(nonatomic,retain) NSMenu* mainMenu;
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification;
 -(void)applicationDidResignActive:(NSNotification *)notification;
 
 
+-(IBAction)exit:(id)sender;
+-(IBAction)showOrHideQuickbox:(NSMenuItem*)sender;
+-(IBAction)pinQuickbox:(id)sender;
 
 
 

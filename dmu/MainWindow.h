@@ -10,22 +10,21 @@
 #import <WebKit/WebKit.h>
 
 
-@interface MainWindow : NSWindow
+@interface MainWindow : NSWindow 
 {
 @protected
     WebView* webview;
-    IBOutlet NSWindow* _preferences;
-    NSStatusItem* _menubar_icon;
     NSRect icon_frame;
     NSMutableDictionary* _nowplaying;
     NSRect _show;
     NSRect _hide;
     NSRect _tiny;
-    NSRect _activate_rect;
     NSRect _tiny_out_rect;
     BOOL _pined;
     BOOL _ready;
+    BOOL _loading;
     BOOL _quick_showing;
+    float active_border;
 }
 @property(nonatomic,retain) WebView* webview;
 
@@ -34,10 +33,10 @@
 
 -(void) hide;
 -(void) show;
--(void) wake;
--(void) exit;
+-(void) showOrHide;
+
+-(void) exit:(BOOL)now;
 -(void) pin:(BOOL) pined; //将窗口锁定
--(void) preferences; //显示偏好设置
 
 
 // loader 部分的函数

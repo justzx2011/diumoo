@@ -168,18 +168,6 @@ ui.prototype.prog=function(t,d){
 _U=null;
 
 function startInitialize() {
-    $('#exit').click(function(){
-        window._U.pause().prog(
-            function(){window.domi.exit()}
-            ).now();
-    })
-    $('#pin').click(function(){
-        $(this).toggleClass('pined');
-        window.domi.pin_($(this).hasClass('pined'));
-    })
-    $('#preferences').click(function(){window.domi.preferences();})
-
-
     _U=new ui();
     _U.prog('获取用户名和密码',200)
       .prog(function(){
@@ -212,4 +200,13 @@ function startInitialize() {
 function tiny(show) {
     if(show) $('#quickbar').addClass('show');
     else $('#quickbar').removeClass('show');
+}
+
+function exit()
+{
+    _U.pause().prog(
+                function(){
+                    window.domi.exit_(true);
+                }
+            ).now();
 }

@@ -54,7 +54,7 @@ img.show:hover
 }
 span.artist,.music_title{color:#10a271;
     white-space:nowrap;
-width:200px;overflow:hidden;
+width:300px;overflow:hidden;
 }
 .timeline{
     margin:5px 0;
@@ -167,7 +167,7 @@ width:200px;overflow:hidden;
     background:#fff;
 position:fixed;
 height:40px;
-width:440px;
+width:600px;
 left:0;
 bottom:-40px;
 -webkit-transition:bottom 0.2s ease-in-out;
@@ -178,11 +178,12 @@ bottom:-40px;
 #quickbar img{width:40px;height:40px;}
 #quickbar .eta{background-color:#aaa;color:#fff;padding:2px 5px;font-size:12px;}
 .rate{font-size:18px;
-background:#52bae0;
+background:url(images/rate.png) 2px center no-repeat #52bae0;
 color:white;
 padding:0 5px;
+margin-bottom:2px;
 }
-#quickbar .detail{width:270px;overflow:hidden;white-space:nowrap}
+#quickbar .detail{width:400px;overflow:hidden;white-space:nowrap}
 
 /*
  *

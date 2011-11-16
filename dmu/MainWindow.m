@@ -19,6 +19,7 @@
         // Initialization code here.
         _pined=NO;
         _ready=NO;
+        _loading=NO;
         _quick_showing=NO;
         
         //初始化所有的frame
@@ -27,21 +28,19 @@
         _show=NSMakeRect(r.size.width/2-300,r.size.height-100.0-h,600.0,100.0+h);
         _hide=NSMakeRect(r.size.width/2-300,r.size.height,600.0,100.0+h);
         _tiny=NSMakeRect(r.size.width/2-300,r.size.height-40.0-h,600.0,100.0+h);
-        _activate_rect=NSMakeRect(r.size.width/2-300,r.size.height-h, 600, h+10.0);
         _tiny_out_rect=NSMakeRect(r.size.width/2-300,r.size.height-h-40.0, 600, h+50.0);
+        active_border=r.size.height-1.0;
         
         
         //初始化主窗口
-        [self setFrame:_hide display:YES animate:NO];
+        [self setFrame:_hide display:YES];
         [self setLevel:NSModalPanelWindowLevel];
         [self setBackingType:NSBackingStoreBuffered];
         [self setStyleMask:NSBorderlessWindowMask];
         [self setBackgroundColor:[NSColor colorWithCalibratedWhite:1 alpha:1]];
         [self setCollectionBehavior:NSWindowCollectionBehaviorTransient];
         
-        //初始化menubar icon
-        _menubar_icon=[[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
-        [_menubar_icon setImage:[NSImage imageNamed:@"icon.png"]];
+
         
         //初始化webview
         webview=[[WebView alloc] initWithFrame:[[self contentView]bounds]];
@@ -53,7 +52,7 @@
         
         [[self contentView] addSubview:webview];
         [self display];
-        [self setFrame:_hide display:YES animate:YES];
+        [self setFrame:_hide display:YES];
         
     }
     
@@ -74,36 +73,50 @@
 -(void) hide
 {
     if(_pined) [self tiny];
-    else [self setFrame:_hide display:YES animate:YES];
+    else if(_loading && !_ready) [self setFrame:_tiny display:YES];
+    else {
+        [self setFrame:_hide display:YES animate:YES];
+        _quick_showing=NO;
+    }
+
 }
 -(void) show
 {   
     if(_ready)
     {
-        [self setFrame:_show display:YES animate:YES];
+        if(_quick_showing){
+            [self setFrame:_show display:YES];
+            _quick_showing=NO;
+        }
+        else [self setFrame:_show display:YES animate:YES];
         [[webview windowScriptObject] evaluateWebScript:@"tiny(false);"];
     }
 }
 
--(void) wake
+-(void) showOrHide
 {
-    [NSApp activateIgnoringOtherApps:YES];
+    if([self frame].origin.y!=_show.origin.y) [self show];
+    else [self hide];
 }
--(void) exit
+
+
+-(void) exit:(BOOL)now
 {
-    [self hide];
-    [NSApp terminate:nil];
+    if(now) {
+        [self setFrame:_hide display:YES animate:YES];
+        [NSApp terminate:nil];
+        return;
+    }
+    [[webview windowScriptObject] evaluateWebScript:@"exit();"];
+
+    
 }
 -(void) pin:(BOOL)pined
 {
     _pined=pined;
+    if(pined) [self tiny];
 }
 
--(void) preferences
-{
-    [self hide];
-    if(_preferences) [_preferences makeKeyAndOrderFront:_preferences];
-}
 
 
 
@@ -113,16 +126,14 @@
 -(void) ready
 {
     _ready=YES;
-    if([NSApp isActive])[self show];
-    else [self wake];
+    [self show];
     [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent* e){
-        if(NSPointInRect([NSEvent mouseLocation], _activate_rect) && !_quick_showing){
-            _quick_showing=YES;
+        if([NSEvent mouseLocation].y>active_border){
+            
             [self tiny];
         }
         else if(_quick_showing && !NSPointInRect([NSEvent mouseLocation], _tiny_out_rect)){
             [self hide];
-            _quick_showing=NO;
         }
         
     }];
@@ -130,7 +141,8 @@
 
 -(void) tiny
 {
-    [self setFrame:_tiny display:YES animate:NO];
+    _quick_showing=YES;
+    [self setFrame:_tiny display:YES];
     [[webview windowScriptObject] evaluateWebScript:@"tiny(true);"];
 }
 
@@ -185,12 +197,10 @@
 {
     if (selector==@selector(authKey)) return NO;
     if (selector==@selector(channel)) return NO;
-    if (selector==@selector(channel:)) return NO;
     if (selector==@selector(error:)) return NO;
     if (selector==@selector(signal:)) return NO;
     if (selector==@selector(ready)) return NO;
-    if (selector==@selector(exit)) return NO;
-    if (selector==@selector(pin:)) return NO;
+    if (selector==@selector(exit:)) return NO;
     if (selector==@selector(preferences)) return NO;
     return YES;
 }
