@@ -48,7 +48,7 @@
         [webview setFrameLoadDelegate:self];
         
         //开始加载页面
-        [self loadRequest:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"douban"]]];
+       
         
         [[self contentView] addSubview:webview];
         [self display];
@@ -65,11 +65,11 @@
 }
 
 
-
 -(BOOL)canBecomeKeyWindow
 {
     return YES;
 }
+
 -(void) hide
 {
     if(_pined) [self tiny];
@@ -117,6 +117,13 @@
     if(pined) [self tiny];
 }
 
+-(void) reload
+{
+    [self hide];
+    _ready=NO;
+    _loading=NO;
+    [webview reload:nil];
+}
 
 
 
@@ -148,17 +155,17 @@
 
 -(NSString*) authKey
 {
-    return [NSString stringWithFormat:@"({'email':'%s','pass':'%s'})","airobot1@163.com","akirasphere"];
+    return [NSString stringWithFormat:@"({'email':'%@','pass':'%@'})",
+            [[NSUserDefaults standardUserDefaults] stringForKey:@"douban.email"],
+            [[NSUserDefaults standardUserDefaults] stringForKey:@"douban.pass"]];
     //return nil;
 }
 
--(NSNumber*) channel
+-(BOOL) channel:(NSNumber *)n
 {
-    return [[webview windowScriptObject] evaluateWebScript:@"channel();"];
-}
--(void) channel:(NSNumber *)n
-{
-    [[webview windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"channel(%d);",[n intValue]]];
+    if(_ready)
+        [[webview windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"channel(%d);",[n intValue]]];
+    return _ready;
 }
 
 -(void) error:(NSString *)detail
@@ -196,12 +203,11 @@
 +(BOOL) isSelectorExcludedFromWebScript:(SEL)selector
 {
     if (selector==@selector(authKey)) return NO;
-    if (selector==@selector(channel)) return NO;
     if (selector==@selector(error:)) return NO;
     if (selector==@selector(signal:)) return NO;
     if (selector==@selector(ready)) return NO;
     if (selector==@selector(exit:)) return NO;
-    if (selector==@selector(preferences)) return NO;
+    if (selector==@selector(reload)) return NO;
     return YES;
 }
 

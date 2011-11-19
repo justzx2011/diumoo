@@ -28,8 +28,8 @@
 }
 @property(nonatomic,retain) WebView* webview;
 
--(BOOL) canBecomeKeyWindow;
 
+-(BOOL) canBecomeKeyWindow;
 
 -(void) hide;
 -(void) show;
@@ -37,6 +37,8 @@
 
 -(void) exit:(BOOL)now;
 -(void) pin:(BOOL) pined; //将窗口锁定
+-(void) reload;
+
 
 
 // loader 部分的函数
@@ -47,8 +49,7 @@
 -(void) signal:(NSString*)s;
 
 -(NSString*) authKey;
--(NSNumber*) channel;
--(void) channel:(NSNumber*)n;
+-(BOOL) channel:(NSNumber*)n;
 -(NSDictionary *) nowplaying;
 
 -(void) loadRequest:(NSURL*) url;

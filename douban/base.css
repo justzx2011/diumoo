@@ -184,6 +184,11 @@ padding:0 5px;
 margin-bottom:2px;
 }
 #quickbar .detail{width:400px;overflow:hidden;white-space:nowrap}
+#prog.error{color:red;}
+#prog a{color:white;background:#52bae0; padding:2px 5px; margin:2px;
+-webkit-border-radius:5px;
+font-size:14px;
+}
 
 /*
  *

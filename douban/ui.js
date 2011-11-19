@@ -69,6 +69,16 @@ function ui(q,m) {
             //window.domi.signal_('ended');
         }
     },1000);
+
+
+    ts.error(function(e){
+        var pg=$('#prog');
+        if(e.error_id==NETWORK) pg.text('发生网络错误');
+        else if(e.error_id==AUTH_FAILED) pg.text('认证失败!').append('<a onclick="startInitialize(true);">跳过</a>');
+        else pg.text('发生未知错误，程序已终止');
+        pg.append('<a onclick="window.domi.reload()">重试</a>').addClass('error');
+    })
+
 }
 
 ui.prototype=new fm();
@@ -144,14 +154,27 @@ ui.prototype.detail = function(artist,music,album,year,like) {
 };
 
 ui.prototype.channel = function(n){
-    if(typeof(n)=='number') this._channel=n;
-    else return this._channel;
+    if(typeof(n)=='number'){
+        this._channel=n;
+        this._playlist.length=0;
+        this._next=null;
+        this.next().now();
+    }
+
 }
-ui.prototype.prog=function(t,d){
+ui.prototype.prog=function(t,d,e,c){
     var ts=this;
     return this.queue('fm',
             function(next){
-                if(typeof(t)=='function') t.call(ts);
+                if(typeof(t)=='function'){ 
+                    var r=t.call(ts);
+                    if(r){
+                        $('#prog').text((e||"发生错误，程序已中断")).append(
+                                "<a onclick='window.domi.reload();'>重试</a>"
+                            ).addClass('error')
+                            return;
+                    }
+                }
                 else $('#prog').text(t);
                 if(d>100) setTimeout(next,d);
                 else next();
@@ -167,21 +190,14 @@ ui.prototype.prog=function(t,d){
 
 _U=null;
 
-function startInitialize() {
+function startInitialize(d) {
     _U=new ui();
-    _U.prog('获取用户名和密码',200)
+    if(d) {$('#prog').removeClass();_U.now();return}
+    _U.prog('开始认证')
       .prog(function(){
-          try{
            _U._auth_key=eval(window.domi.authKey());
-          }
-          catch(e){
-              
-           _U._auth_key=eval("({'email':'airobot1@163.com','pass':'akirasphere'})");
-              
-              return};
       })
-      .prog('认证中')
-      .auth()
+        .auth(d) 
       .prog('认证成功',200)
       .next()
       .prog('准备就绪',200)
@@ -204,9 +220,16 @@ function tiny(show) {
 
 function exit()
 {
+    _U.queue('fm').length=0;
     _U.pause().prog(
                 function(){
                     window.domi.exit_(true);
                 }
             ).now();
+}
+
+function channel(c)
+{
+    _U.queue('fm').length=0;
+    _U.channel(c).now();
 }

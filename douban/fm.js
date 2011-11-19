@@ -108,7 +108,7 @@ fm.prototype.error = function(s,e) {
  * @param {string} email {string} pass
  * @return this
  */
-fm.prototype.auth = function() {
+fm.prototype.auth = function(failed) {
     var ts=this;
     return this.queue('fm',
             function(next){
@@ -464,13 +464,13 @@ fm.prototype._played = function(d) {
  * @param none 
  * @return string
  */
-fm.prototype.eta = function() {
-    var t2s=function(t){
-        var t1=(t/60)-(t/60)%1;
+t2s=function(t){
+        var t1=Math.floor(t/60);
         t1=t1<0?0:t1;
         var t2=Math.floor(t%60);
-        return (t1<10?'0'+t1:ts) + ':' + (t2<10?'0'+t2:t2);
-    };
+        return (t1<10?('0'+t1):t1) + ':' + (t2<10?'0'+t2:t2);
+};
+fm.prototype.eta = function() {
     return t2s(this[0].currentTime) +'/' + t2s(this[0].duration);
     
 };
