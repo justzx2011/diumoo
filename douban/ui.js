@@ -160,6 +160,7 @@ ui.prototype.channel = function(n){
         this._next=null;
         this.next().now();
     }
+    else{window.domi.error_(n);}
 
 }
 ui.prototype.prog=function(t,d,e,c){
@@ -195,7 +196,10 @@ function startInitialize(d) {
     if(d) {$('#prog').removeClass();_U.now();return}
     _U.prog('开始认证')
       .prog(function(){
+          try{
            _U._auth_key=eval(window.domi.authKey());
+          }
+          catch(e){return}
       })
         .auth(d) 
       .prog('认证成功',200)
@@ -231,5 +235,5 @@ function exit()
 function channel(c)
 {
     _U.queue('fm').length=0;
-    _U.channel(c).now();
+    _U.channel(c);
 }
