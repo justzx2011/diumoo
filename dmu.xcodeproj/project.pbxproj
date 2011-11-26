@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F534D30D1466CF0C00950BAF /* doubanmusic.png in Resources */ = {isa = PBXBuildFile; fileRef = F534D30C1466CF0C00950BAF /* doubanmusic.png */; };
 		F534D30F1466D08100950BAF /* lastfm.png in Resources */ = {isa = PBXBuildFile; fileRef = F534D30E1466D08100950BAF /* lastfm.png */; };
+		F552FC50147FA81C002F9D44 /* dj.plist in Resources */ = {isa = PBXBuildFile; fileRef = F552FC4F147FA81C002F9D44 /* dj.plist */; };
 		F563A92514752F97000D9BF3 /* confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = F563A92414752F97000D9BF3 /* confirm.png */; };
 		F5824F70144054AB00A44D1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5824F6F144054AB00A44D1F /* Cocoa.framework */; };
 		F5824F7A144054AB00A44D1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5824F78144054AB00A44D1F /* InfoPlist.strings */; };
@@ -23,7 +24,6 @@
 		F5824F9B144054AC00A44D1F /* dmuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5824F9A144054AC00A44D1F /* dmuTests.m */; };
 		F5824FA514405AF900A44D1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F5824FA414405AF900A44D1F /* README.md */; };
 		F59098A01441EDA3005A9537 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F590989F1441EDA3005A9537 /* WebKit.framework */; };
-		F5A35CFB1477FBBD00D1E88C /* dj.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5A35CF91477FBBD00D1E88C /* dj.plist */; };
 		F5A35CFC1477FBBD00D1E88C /* public.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5A35CFA1477FBBD00D1E88C /* public.plist */; };
 		F5AC73DD1446EF3600B9ADB1 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */; };
 		F5D285D214440198003E79EE /* douban in Resources */ = {isa = PBXBuildFile; fileRef = F5D285D114440198003E79EE /* douban */; };
@@ -43,6 +43,7 @@
 /* Begin PBXFileReference section */
 		F534D30C1466CF0C00950BAF /* doubanmusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doubanmusic.png; sourceTree = "<group>"; };
 		F534D30E1466D08100950BAF /* lastfm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lastfm.png; sourceTree = "<group>"; };
+		F552FC4F147FA81C002F9D44 /* dj.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dj.plist; sourceTree = "<group>"; };
 		F563A92414752F97000D9BF3 /* confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirm.png; sourceTree = "<group>"; };
 		F5824F6B144054AB00A44D1F /* dmu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dmu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5824F6F144054AB00A44D1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -65,7 +66,6 @@
 		F5824F9A144054AC00A44D1F /* dmuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dmuTests.m; sourceTree = "<group>"; };
 		F5824FA414405AF900A44D1F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F590989F1441EDA3005A9537 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		F5A35CF91477FBBD00D1E88C /* dj.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dj.plist; sourceTree = "<group>"; };
 		F5A35CFA1477FBBD00D1E88C /* public.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = public.plist; sourceTree = "<group>"; };
 		F5AC73DB1446EF3600B9ADB1 /* MainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
 		F5AC73DC1446EF3600B9ADB1 /* MainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		F563A91F14752D96000D9BF3 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				F5A35CF91477FBBD00D1E88C /* dj.plist */,
+				F552FC4F147FA81C002F9D44 /* dj.plist */,
 				F5A35CFA1477FBBD00D1E88C /* public.plist */,
 				F563A92414752F97000D9BF3 /* confirm.png */,
 				F5DFEBA91470167B00BE409F /* icon.png */,
@@ -271,8 +271,8 @@
 				F534D30F1466D08100950BAF /* lastfm.png in Resources */,
 				F5DFEBAA1470167B00BE409F /* icon.png in Resources */,
 				F563A92514752F97000D9BF3 /* confirm.png in Resources */,
-				F5A35CFB1477FBBD00D1E88C /* dj.plist in Resources */,
 				F5A35CFC1477FBBD00D1E88C /* public.plist in Resources */,
+				F552FC50147FA81C002F9D44 /* dj.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,10 +38,10 @@
 
 
 -(IBAction)exit:(id)sender;
--(IBAction)showOrHideQuickbox:(NSMenuItem*)sender;
+-(IBAction)showOrHideQuickbox:(id)sender;
 -(IBAction)pinQuickbox:(id)sender;
 
--(IBAction)channel:(NSMenuItem*)sender;
+-(IBAction)_channel:(id)sender;
 
 -(IBAction)showDoubanAccountWindow:(id)sender;
 -(IBAction)setDoubanAccount:(id)sender;

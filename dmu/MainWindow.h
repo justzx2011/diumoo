@@ -49,7 +49,8 @@
 -(void) signal:(NSString*)s;
 
 -(NSString*) authKey;
--(BOOL) channel:(NSNumber*)n;
+-(BOOL) channel:(NSInteger)n;
+-(BOOL) dj_channel:(NSInteger) n withPid: (NSInteger) pid;
 -(NSDictionary *) nowplaying;
 
 -(void) loadRequest:(NSURL*) url;

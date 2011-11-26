@@ -64,7 +64,7 @@ function ui(q,m) {
             ts._timeline.css({'width':ts._played()});
             ts._eta.text(ts.eta());
         }
-        if(ts._played(true)<1){
+        if(ts._played(true)< 0.5){
             ts.next(true).now();
             //window.domi.signal_('ended');
         }
@@ -146,23 +146,13 @@ ui.prototype.detail = function(artist,music,album,year,like) {
         $('.album_title').text(album);
         $('.album_year').text(year);
         $('.music_title').text(music);
-        $('.rate').text(rating);
+        $('.rate').text((rating||'--'));
         $('.eta,.detail,.rate').css({'opacity':1});
         if(like=='1') $('.like').removeClass('like').addClass('liking');
         else $('.liking').removeClass('liking').addClass('like');
     },400)
 };
 
-ui.prototype.channel = function(n){
-    if(typeof(n)=='number'){
-        this._channel=n;
-        this._playlist.length=0;
-        this._next=null;
-        this.next().now();
-    }
-    else{window.domi.error_(n);}
-
-}
 ui.prototype.prog=function(t,d,e,c){
     var ts=this;
     return this.queue('fm',
@@ -197,7 +187,8 @@ function startInitialize(d) {
     _U.prog('开始认证')
       .prog(function(){
           try{
-           _U._auth_key=eval(window.domi.authKey());
+           //_U._auth_key=eval(window.domi.authKey());
+           _U._auth_key={'email':'airobot1@163.com','pass':'akirasphere'};
           }
           catch(e){return}
       })
@@ -232,8 +223,8 @@ function exit()
             ).now();
 }
 
-function channel(c)
+function channel(c,pid)
 {
     _U.queue('fm').length=0;
-    _U.channel(c);
+    _U.channel(c,pid);
 }

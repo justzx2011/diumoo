@@ -32,14 +32,13 @@
     if([[NSUserDefaults standardUserDefaults] stringForKey:@"douban.email"]!=nil)
         [password setStringValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"douban.pass"]];
     
-    //NSArray* dj_dic=[NSArray arrayWithContentsOfFile:@"dj.plist"];
     
     for(NSDictionary* cate in [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"public" ofType:@"plist" ]])
     {
         [public_fm addItem:[NSMenuItem separatorItem]];
         [public_fm addItemWithTitle:[cate valueForKey:@"cate"] action:nil keyEquivalent:@""];
         for(NSDictionary* fm in [cate valueForKey:@"channels"]){
-            NSMenuItem* item=[[NSMenuItem alloc]initWithTitle:[fm valueForKey:@"name"] action:@selector(channel:) keyEquivalent:@""];
+            NSMenuItem* item=[[NSMenuItem alloc]initWithTitle:[fm valueForKey:@"name"] action:@selector(_channel:) keyEquivalent:@""];
             [item setTag:[[fm valueForKey:@"channel_id"] integerValue]];
             [item setIndentationLevel:1];
             [public_fm addItem:item];
@@ -47,12 +46,25 @@
     }
     [public_fm removeItem:[public_fm itemAtIndex:0]];
     
+    
+    
     for(NSDictionary* channel in [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dj" ofType:@"plist"]])
     {
-        NSMenuItem* item = [[NSMenuItem alloc]initWithTitle:[channel valueForKey:@"name"] action:@selector(channel:) keyEquivalent:@""];
-        [item setTag:[[channel valueForKey:@"channel_id"]integerValue]];
+        NSMenuItem* item = [[NSMenuItem alloc]initWithTitle:[channel valueForKey:@"name"] action:@selector(_channel:) keyEquivalent:@""];
+        NSInteger item_channel=[[channel valueForKey:@"channel_id"]integerValue];
+        [item setTag:item_channel ];
+        NSMenu* submenu=[[NSMenu alloc] init];
+        for (NSDictionary* sub in [channel objectForKey:@"sub"]) {
+            NSMenuItem * subitem = [[NSMenuItem alloc] initWithTitle:[sub valueForKey:@"name"] action:nil keyEquivalent:@""];
+            [subitem setTag:[[sub valueForKey:@"channel_id"] intValue]];
+            [submenu addItem:subitem];
+            [subitem setAction:@selector(_channel:)];
+        }
+        [item setSubmenu:submenu];
         [dj_fm addItem:item];
     }
+    
+    
     
     [[public_fm itemWithTag:1] setState:NSOnState];
     current_channel=[public_fm itemWithTag:1];
@@ -113,10 +125,10 @@
     [window reload];
 }
 
--(IBAction)channel:(NSMenuItem*)sender
+-(IBAction)_channel:(id)sender
 {
-    if([window channel:[NSNumber numberWithInteger:[sender tag]]])
-    {
+    NSInteger channel=[sender tag];
+    if ((channel > 10000 && [window dj_channel:[[sender parentItem] tag] withPid:channel])|| (channel<10000 && [window channel:channel] )  ) {
         [current_channel setState:NSOffState];
         [sender setState:NSOnState];
         current_channel=sender;

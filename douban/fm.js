@@ -34,6 +34,7 @@ const UNRATE_E='unrate';
 const AUTH_S_E='authsuccess';
 const PAUSE_E='_pause';
 const PLAY_E='play';
+const PLAYLIST_END="playlist_end"
 
 
 //电台主控类
@@ -140,7 +141,7 @@ fm.prototype.auth = function(failed) {
                     ts.error(NETWORK);
                     return;
                 }
-                if(typeof(tmp.r)!='undefined' && tmp.r==0){
+                if(typeof(tmp.r)!='undefined'){
                     ts._auth=tmp;
                     ts._cookie=xhr.getResponseHeader('Set-Cookie').match(/expires=.+?,\s*(\w+=".+?");/g).join('').replace(/expires=(.+?,){2}/g,'');
                     ts.fire(AUTH_S_E);
@@ -153,10 +154,6 @@ fm.prototype.auth = function(failed) {
     });
 };
 
-
-
-
-
 /**
  * 获得播放列表,或者设定播放列表
  * @param {string/array} type {string} sid
@@ -165,8 +162,15 @@ fm.prototype.auth = function(failed) {
 fm.prototype.list = function(type,sid) {
     if(typeof(type)=='object' ||typeof(type)=='array')
     {
-        this._playlist=type;
-        this.fire(NEW_P_E);
+        if(type.length>0)
+        {
+            this._playlist=type;
+            this.fire(NEW_P_E);
+       }
+        else if(this._playlist.length<1){
+            this.queue('fm').length=0;
+            window.domi.signal_(PLAYLIST_END);
+        }
         return this;
     }
     var ts=this;
@@ -174,7 +178,7 @@ fm.prototype.list = function(type,sid) {
             function(next){
                 var data={
                     'type':(type||NEW),
-                    'channel':ts._channel,
+                    'channel':(ts._channel>10000?'dj':ts._channel),
                     'r':(Math.round(Math.random()*RANGE_R+MIN_R).toString(16)),
                 }
                 if(sid) {
@@ -184,6 +188,7 @@ fm.prototype.list = function(type,sid) {
                         while(ts._h.length>10) ts._h.shift();
                     }
                 }
+                if(ts._channel>10000 && ts._pid) data['pid']=ts._pid;
                 if(data.type==SKIP || data.type==PLAYING||data.type==RATE|| data.type==UNRATE) data['h']=ts._h.join()+'|'+sid + ':' + data.type;
                 $.ajax(PLAYLIST_URL,
                     {
@@ -191,7 +196,7 @@ fm.prototype.list = function(type,sid) {
                     'type':'get',
                     'timeout':TIMEOUT,
                     'beforeSend':function(xhr){
-                        xhr.setRequestHeader('Cookie',ts._cookie);
+                        xhr.setRequestHeader('Cookie',(ts._cookie + (ts._channel>10000?((ts._cookie==''?'':'; ')+' dj_id='+ts._channel):'')));
                     },
                     'error':function(e){
                         ts.error(NETWORK,e);
@@ -367,6 +372,18 @@ fm.prototype.next = function(obj) {
             )
 };
 
+/**
+ * 改变电台频道
+ * @param {number} n
+ * @return 
+ */
+fm.prototype.channel = function(n,pid) {
+        this._channel=n;
+        this._next=null;
+        this._pid=pid;
+        this.list(NEW)._next_().volume(this._volume);
+        this.now();
+};
 
 /**
  * 获取、设定当前歌曲

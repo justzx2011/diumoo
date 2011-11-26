@@ -161,10 +161,17 @@
     //return nil;
 }
 
--(BOOL) channel:(NSNumber *)n
+-(BOOL) channel:(NSInteger)n
 {
     if(_ready)
-        [[webview windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"channel(%d);",[n intValue]]];
+        [[webview windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"channel(%d);",n]];
+    return _ready;
+}
+
+-(BOOL) dj_channel:(NSInteger) n withPid:(NSInteger)pid
+{
+    if(_ready)
+        [[webview windowScriptObject] evaluateWebScript:[NSString stringWithFormat:@"channel(%d,%d);",n,pid]];
     return _ready;
 }
 
