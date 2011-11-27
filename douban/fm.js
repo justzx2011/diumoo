@@ -381,7 +381,7 @@ fm.prototype.channel = function(n,pid) {
         this._channel=n;
         this._next=null;
         this._pid=pid;
-        this.list(NEW)._next_().volume(this._volume);
+        this.pause().list(NEW)._next_().volume(this._volume);
         this.now();
 };
 
