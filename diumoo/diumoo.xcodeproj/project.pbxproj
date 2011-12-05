@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
+		F56A841D148CF92800AE6F1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F56A841B148CF92800AE6F1E /* InfoPlist.strings */; };
+		F56A841F148CF92800AE6F1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F56A841E148CF92800AE6F1E /* main.m */; };
+		F56A8423148CF92800AE6F1E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F56A8421148CF92800AE6F1E /* Credits.rtf */; };
+		F56A8426148CF92800AE6F1E /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F56A8425148CF92800AE6F1E /* diumooAppDelegate.m */; };
+		F56A8429148CF92800AE6F1E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56A8427148CF92800AE6F1E /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F56A840E148CF92800AE6F1E /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F56A8412148CF92800AE6F1E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F56A8415148CF92800AE6F1E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F56A8416148CF92800AE6F1E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F56A8417148CF92800AE6F1E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F56A841A148CF92800AE6F1E /* diumoo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "diumoo-Info.plist"; sourceTree = "<group>"; };
+		F56A841C148CF92800AE6F1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F56A841E148CF92800AE6F1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F56A8420148CF92800AE6F1E /* diumoo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "diumoo-Prefix.pch"; sourceTree = "<group>"; };
+		F56A8422148CF92800AE6F1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F56A8424148CF92800AE6F1E /* diumooAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = diumooAppDelegate.h; sourceTree = "<group>"; };
+		F56A8425148CF92800AE6F1E /* diumooAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = diumooAppDelegate.m; sourceTree = "<group>"; };
+		F56A8428148CF92800AE6F1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F56A840B148CF92800AE6F1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F56A8403148CF92800AE6F1E = {
+			isa = PBXGroup;
+			children = (
+				F56A8418148CF92800AE6F1E /* diumoo */,
+				F56A8411148CF92800AE6F1E /* Frameworks */,
+				F56A840F148CF92800AE6F1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F56A840F148CF92800AE6F1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F56A840E148CF92800AE6F1E /* diumoo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F56A8411148CF92800AE6F1E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F56A8412148CF92800AE6F1E /* Cocoa.framework */,
+				F56A8414148CF92800AE6F1E /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F56A8414148CF92800AE6F1E /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F56A8415148CF92800AE6F1E /* AppKit.framework */,
+				F56A8416148CF92800AE6F1E /* CoreData.framework */,
+				F56A8417148CF92800AE6F1E /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F56A8418148CF92800AE6F1E /* diumoo */ = {
+			isa = PBXGroup;
+			children = (
+				F56A8424148CF92800AE6F1E /* diumooAppDelegate.h */,
+				F56A8425148CF92800AE6F1E /* diumooAppDelegate.m */,
+				F56A8427148CF92800AE6F1E /* MainMenu.xib */,
+				F56A8419148CF92800AE6F1E /* Supporting Files */,
+			);
+			path = diumoo;
+			sourceTree = "<group>";
+		};
+		F56A8419148CF92800AE6F1E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F56A841A148CF92800AE6F1E /* diumoo-Info.plist */,
+				F56A841B148CF92800AE6F1E /* InfoPlist.strings */,
+				F56A841E148CF92800AE6F1E /* main.m */,
+				F56A8420148CF92800AE6F1E /* diumoo-Prefix.pch */,
+				F56A8421148CF92800AE6F1E /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F56A840D148CF92800AE6F1E /* diumoo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F56A842C148CF92800AE6F1E /* Build configuration list for PBXNativeTarget "diumoo" */;
+			buildPhases = (
+				F56A840A148CF92800AE6F1E /* Sources */,
+				F56A840B148CF92800AE6F1E /* Frameworks */,
+				F56A840C148CF92800AE6F1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = diumoo;
+			productName = diumoo;
+			productReference = F56A840E148CF92800AE6F1E /* diumoo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F56A8405148CF92800AE6F1E /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F56A8408148CF92800AE6F1E /* Build configuration list for PBXProject "diumoo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F56A8403148CF92800AE6F1E;
+			productRefGroup = F56A840F148CF92800AE6F1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F56A840D148CF92800AE6F1E /* diumoo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F56A840C148CF92800AE6F1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F56A841D148CF92800AE6F1E /* InfoPlist.strings in Resources */,
+				F56A8423148CF92800AE6F1E /* Credits.rtf in Resources */,
+				F56A8429148CF92800AE6F1E /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F56A840A148CF92800AE6F1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F56A841F148CF92800AE6F1E /* main.m in Sources */,
+				F56A8426148CF92800AE6F1E /* diumooAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F56A841B148CF92800AE6F1E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F56A841C148CF92800AE6F1E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F56A8421148CF92800AE6F1E /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F56A8422148CF92800AE6F1E /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F56A8427148CF92800AE6F1E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F56A8428148CF92800AE6F1E /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F56A842A148CF92800AE6F1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F56A842B148CF92800AE6F1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F56A842D148CF92800AE6F1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
+				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F56A842E148CF92800AE6F1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
+				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F56A8408148CF92800AE6F1E /* Build configuration list for PBXProject "diumoo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F56A842A148CF92800AE6F1E /* Debug */,
+				F56A842B148CF92800AE6F1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F56A842C148CF92800AE6F1E /* Build configuration list for PBXNativeTarget "diumoo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F56A842D148CF92800AE6F1E /* Debug */,
+				F56A842E148CF92800AE6F1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F56A8405148CF92800AE6F1E /* Project object */;
+}
