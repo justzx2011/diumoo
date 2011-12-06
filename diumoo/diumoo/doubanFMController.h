@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface doubanFMController : NSObject
+@interface doubanFMController : NSObject{
+    NSMutableURLRequest* request;
+    NSURLConnection* connection;
+}
+@property (assign,nonatomic) NSMutableURLRequest* request;
 
 @end

@@ -9,12 +9,18 @@
 #import "doubanFMController.h"
 
 @implementation doubanFMController
+@synthesize request;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        //初始化 request
+        request=[[NSMutableURLRequest alloc]init];
+        [request setTimeoutInterval:5];
+        
+        //初始化Connection
+        connection=[[NSURLConnection alloc]initWithRequest:request delegate:self startImmediately:NO];
     }
     
     return self;

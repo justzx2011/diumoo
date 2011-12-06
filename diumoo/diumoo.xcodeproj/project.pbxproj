@@ -13,6 +13,7 @@
 		F56A8423148CF92800AE6F1E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F56A8421148CF92800AE6F1E /* Credits.rtf */; };
 		F56A8426148CF92800AE6F1E /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F56A8425148CF92800AE6F1E /* diumooAppDelegate.m */; };
 		F56A8429148CF92800AE6F1E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56A8427148CF92800AE6F1E /* MainMenu.xib */; };
+		F5B2E5C8148DDB90008960EC /* doubanFMController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B2E5C7148DDB90008960EC /* doubanFMController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		F56A8424148CF92800AE6F1E /* diumooAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = diumooAppDelegate.h; sourceTree = "<group>"; };
 		F56A8425148CF92800AE6F1E /* diumooAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = diumooAppDelegate.m; sourceTree = "<group>"; };
 		F56A8428148CF92800AE6F1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F5B2E5C6148DDB8F008960EC /* doubanFMController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = doubanFMController.h; sourceTree = "<group>"; };
+		F5B2E5C7148DDB90008960EC /* doubanFMController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doubanFMController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 			children = (
 				F56A8424148CF92800AE6F1E /* diumooAppDelegate.h */,
 				F56A8425148CF92800AE6F1E /* diumooAppDelegate.m */,
+				F5B2E5C6148DDB8F008960EC /* doubanFMController.h */,
+				F5B2E5C7148DDB90008960EC /* doubanFMController.m */,
 				F56A8427148CF92800AE6F1E /* MainMenu.xib */,
 				F56A8419148CF92800AE6F1E /* Supporting Files */,
 			);
@@ -164,6 +169,7 @@
 			files = (
 				F56A841F148CF92800AE6F1E /* main.m in Sources */,
 				F56A8426148CF92800AE6F1E /* diumooAppDelegate.m in Sources */,
+				F5B2E5C8148DDB90008960EC /* doubanFMController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +251,10 @@
 		F56A842D148CF92800AE6F1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
@@ -256,6 +266,10 @@
 		F56A842E148CF92800AE6F1E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
@@ -283,6 +297,7 @@
 				F56A842E148CF92800AE6F1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
