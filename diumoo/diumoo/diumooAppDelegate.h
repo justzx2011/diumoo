@@ -7,9 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "doubanFMController.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
+    doubanFMController* c;
 }
 
 @property (assign) IBOutlet NSWindow *window;
