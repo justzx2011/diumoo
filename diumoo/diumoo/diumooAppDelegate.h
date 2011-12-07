@@ -10,10 +10,10 @@
 #import "doubanFMController.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
+    //NSWindow *window;
     doubanFMController* c;
 }
 
-@property (assign) IBOutlet NSWindow *window;
+//@property (assign) IBOutlet NSWindow *window;
 
 @end

@@ -10,14 +10,14 @@
 
 @implementation diumooAppDelegate
 
-@synthesize window;
+//@synthesize window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
     c=[[doubanFMController alloc] init];
-    [c authWithUsername:@"airobot1@163.com" andPassword:@"akirasphere"];
-    [c requestPlaylistWithType:NEW andSid:@""];
+    [c play];
+    
 }
 
 @end

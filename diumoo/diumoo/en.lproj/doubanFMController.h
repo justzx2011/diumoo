@@ -19,9 +19,11 @@
 #define TIMEOUT 5
 
 #define MIN_RAND 68719476736
+#define MAX_RETRY_TIMES 5
 
 #import <Foundation/Foundation.h>
 #import "CJSONDeserializer.h"
+#import "musicPlayer.h"
 
 @interface doubanFMController : NSObject{
     NSMutableURLRequest* request;
@@ -30,24 +32,31 @@
     NSArray* cookie;
     NSInteger channel;
     NSDictionary* currentMusic;
-    NSDictionary* nextMusic;
+    //NSDictionary* nextMusic;
     NSDictionary* user_info;
     //一个线程锁
     NSLock* lock;
     
     //类别
     NSSet* replacePlaylist;
-    NSSet* doNotReplacePlaylist;
+    NSSet* recordType;
+    
+    //播放器
+    musicPlayer* player;
+    
     
 }
 
-@property (assign,nonatomic) NSDictionary* currentMusic;
-@property (assign,nonatomic) NSDictionary* nextMusic;
+//@property (assign,nonatomic) NSDictionary* currentMusic;
+//@property (assign,nonatomic) NSDictionary* nextMusic;
 @property (assign,nonatomic) NSDictionary* user_info;
 @property (assign,nonatomic) NSLock* lock;
 
 -(BOOL) authWithUsername:(NSString*) name andPassword:(NSString*) password;
--(BOOL) requestPlaylistWithType:(NSString*)type andSid: (NSString*) sid; 
+-(BOOL) requestPlaylistWithType:(NSString*)type andSid: (NSNumber*) sid; 
+-(NSDictionary* ) getNewSongByType:(NSString *)t andSid: (NSNumber*) sid;
+
+-(void) play;
 
 
 @end

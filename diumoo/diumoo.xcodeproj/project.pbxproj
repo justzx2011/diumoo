@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F52CE61E148F3D900068D6FF /* musicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F52CE620148F3D900068D6FF /* musicPlayer.m */; };
+		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
 		F56A841D148CF92800AE6F1E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F56A841B148CF92800AE6F1E /* InfoPlist.strings */; };
 		F56A841F148CF92800AE6F1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F56A841E148CF92800AE6F1E /* main.m */; };
@@ -27,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F52CE61C148F3D850068D6FF /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/musicPlayer.h; sourceTree = "<group>"; };
+		F52CE61F148F3D900068D6FF /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = en; path = en.lproj/musicPlayer.m; sourceTree = "<group>"; };
+		F52CE621148F3D960068D6FF /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/doubanFMController.h; sourceTree = "<group>"; };
+		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F56A840E148CF92800AE6F1E /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56A8412148CF92800AE6F1E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F56A8415148CF92800AE6F1E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -40,7 +46,6 @@
 		F56A8424148CF92800AE6F1E /* diumooAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = diumooAppDelegate.h; sourceTree = "<group>"; };
 		F56A8425148CF92800AE6F1E /* diumooAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = diumooAppDelegate.m; sourceTree = "<group>"; };
 		F56A8428148CF92800AE6F1E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		F5B2E5C6148DDB8F008960EC /* doubanFMController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = doubanFMController.h; sourceTree = "<group>"; };
 		F5B2E5C7148DDB90008960EC /* doubanFMController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doubanFMController.m; sourceTree = "<group>"; };
 		F5B2E5E5148DFC99008960EC /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		F5B2E5E6148DFC99008960EC /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */,
 				F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,9 +83,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F52CE616148F24700068D6FF /* mediaController */ = {
+			isa = PBXGroup;
+			children = (
+				F52CE622148F3D960068D6FF /* doubanFMController.h */,
+				F5B2E5C7148DDB90008960EC /* doubanFMController.m */,
+			);
+			name = mediaController;
+			sourceTree = "<group>";
+		};
+		F52CE618148F24880068D6FF /* mediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				F52CE61D148F3D850068D6FF /* musicPlayer.h */,
+				F52CE620148F3D900068D6FF /* musicPlayer.m */,
+			);
+			name = mediaPlayer;
+			sourceTree = "<group>";
+		};
 		F56A8403148CF92800AE6F1E = {
 			isa = PBXGroup;
 			children = (
+				F52CE623148F46FF0068D6FF /* QTKit.framework */,
 				F5B2E5E4148DFC99008960EC /* TouchJson */,
 				F56A8418148CF92800AE6F1E /* diumoo */,
 				F56A8411148CF92800AE6F1E /* Frameworks */,
@@ -117,10 +142,10 @@
 		F56A8418148CF92800AE6F1E /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				F52CE618148F24880068D6FF /* mediaPlayer */,
+				F52CE616148F24700068D6FF /* mediaController */,
 				F56A8424148CF92800AE6F1E /* diumooAppDelegate.h */,
 				F56A8425148CF92800AE6F1E /* diumooAppDelegate.m */,
-				F5B2E5C6148DDB8F008960EC /* doubanFMController.h */,
-				F5B2E5C7148DDB90008960EC /* doubanFMController.m */,
 				F56A8427148CF92800AE6F1E /* MainMenu.xib */,
 				F56A8419148CF92800AE6F1E /* Supporting Files */,
 			);
@@ -223,6 +248,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = F56A8403148CF92800AE6F1E;
 			productRefGroup = F56A840F148CF92800AE6F1E /* Products */;
@@ -265,12 +291,37 @@
 				F5B2E604148DFC99008960EC /* CJSONDeserializer.m in Sources */,
 				F5B2E605148DFC99008960EC /* CJSONScanner.m in Sources */,
 				F5B2E606148DFC99008960EC /* CJSONSerializer.m in Sources */,
+				F52CE61E148F3D900068D6FF /* musicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		F52CE61D148F3D850068D6FF /* musicPlayer.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F52CE61C148F3D850068D6FF /* en */,
+			);
+			name = musicPlayer.h;
+			sourceTree = "<group>";
+		};
+		F52CE620148F3D900068D6FF /* musicPlayer.m */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F52CE61F148F3D900068D6FF /* en */,
+			);
+			name = musicPlayer.m;
+			sourceTree = "<group>";
+		};
+		F52CE622148F3D960068D6FF /* doubanFMController.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F52CE621148F3D960068D6FF /* en */,
+			);
+			name = doubanFMController.h;
+			sourceTree = "<group>";
+		};
 		F56A841B148CF92800AE6F1E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
