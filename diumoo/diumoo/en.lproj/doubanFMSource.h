@@ -1,5 +1,5 @@
 //
-//  doubanFMController.h
+//  doubanFMSource.h
 //  diumoo
 //
 //  Created by Shanzi on 11-12-6.
@@ -23,40 +23,35 @@
 
 #import <Foundation/Foundation.h>
 #import "CJSONDeserializer.h"
-#import "musicPlayer.h"
 
-@interface doubanFMController : NSObject{
+@interface doubanFMSource : NSObject{
     NSMutableURLRequest* request;
     NSMutableArray* playlist;
     NSMutableString* h;
     NSArray* cookie;
     NSInteger channel;
-    NSDictionary* currentMusic;
     //NSDictionary* nextMusic;
     NSDictionary* user_info;
     //一个线程锁
-    NSLock* lock;
-    
+    NSCondition* condition;
     //类别
     NSSet* replacePlaylist;
     NSSet* recordType;
     
-    //播放器
-    musicPlayer* player;
-    
-    
 }
 
-//@property (assign,nonatomic) NSDictionary* currentMusic;
-//@property (assign,nonatomic) NSDictionary* nextMusic;
-@property (assign,nonatomic) NSDictionary* user_info;
-@property (assign,nonatomic) NSLock* lock;
-
 -(BOOL) authWithUsername:(NSString*) name andPassword:(NSString*) password;
--(BOOL) requestPlaylistWithType:(NSString*)type andSid: (NSNumber*) sid; 
--(NSDictionary* ) getNewSongByType:(NSString *)t andSid: (NSNumber*) sid;
+-(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSInteger)sid; 
+-(NSDictionary* ) getNewSongByType:(NSString *)t andSid:(NSInteger)sid;
+-(id) _quick_unlock:(id) r;
 
--(void) play;
+//Source 接口
+
+-(NSDictionary*) getNewSong;
+-(NSDictionary*) getNewSongBySkip:(NSInteger) sid;
+-(NSDictionary*) getNewSongWhenEnd: (NSInteger) sid;
+-(BOOL) rateSongById:(NSInteger) sid;
+-(BOOL) unrateSongById:(NSInteger) sid;
 
 
 @end

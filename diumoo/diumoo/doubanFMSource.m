@@ -1,15 +1,14 @@
 //
-//  doubanFMController.m
+//  doubanFMSource.m
 //  diumoo
 //
 //  Created by Shanzi on 11-12-6.
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
-#import "doubanFMController.h"
+#import "doubanFMSource.h"
 
-@implementation doubanFMController
-@synthesize /*currentMusic,nextMusic,*/lock,user_info;
+@implementation doubanFMSource
 
 - (id)init
 {
@@ -24,7 +23,7 @@
         [request setHTTPShouldHandleCookies:NO];
         
         //初始化lock
-        lock =[[[NSLock alloc] init] retain];
+        condition=[[NSCondition alloc]init];
         
         //将Cookie设置为空
         cookie=nil;
@@ -43,6 +42,7 @@
         if([[NSUserDefaults standardUserDefaults] valueForKey:@"doubanfm.channel"])
             channel=[ [[NSUserDefaults standardUserDefaults]valueForKey:@"doubanfm.channel"]integerValue];
         else channel=1;
+        
     }
     
     return self;
@@ -50,7 +50,8 @@
 
 -(BOOL) authWithUsername:(NSString*) name andPassword:(NSString*) password
 {
-    if([name isNotEqualTo:@""] && [password isNotEqualTo:@""] && [lock tryLock]){
+    [condition lock];
+    if([name isNotEqualTo:@""] && [password isNotEqualTo:@""]){
         //生成表单body
         NSData* body=[[NSString stringWithFormat:@"alias=%@&form_password=%@&source=radio\n",name,password] dataUsingEncoding:NSUTF8StringEncoding];
         
@@ -72,17 +73,16 @@
                 user_info=[obj valueForKey:@"user_info"];
                 cookie = [NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]];
                 NSLog(@"%@",cookie);
-                [lock unlock];
+                [condition unlock];
                 return YES;
             }
         }
-        [lock unlock];
     }
+    [condition unlock];
     return NO;
 }
--(BOOL) requestPlaylistWithType:(NSString*)type andSid: (NSNumber*) sid
+-(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSInteger)sid
 {
-    if([lock tryLock]){
         //生成获取列表的参数
         //    | 生成随机数
         long rnd=rand();
@@ -96,11 +96,11 @@
             [_cookie addObject:[NSHTTPCookie cookieWithProperties:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:channel] forKey:@"dj_id"]]];
         }
         else _s=[NSString stringWithFormat:@"channel=%d",channel];
-        if([sid intValue]!=0 )
-            _s=[NSString stringWithFormat:@"%@&sid=%@",_s,sid];
-        if([type isNotEqualTo:NEW])_s=[NSString stringWithFormat:@"%@&h=%@:%@%@",_s,sid,type,h];
+        if([type isNotEqualTo:NEW]&&sid!=0)
+            _s=[NSString stringWithFormat:@"%@&sid=%d",_s,sid];
+        if([type isNotEqualTo:NEW])_s=[NSString stringWithFormat:@"%@&h=%d:%@%@",_s,sid,type,h];
         if([recordType containsObject:type])
-            [h appendString:[NSString stringWithFormat:@"%%7C%@:%@",sid,type]];
+            [h appendString:[NSString stringWithFormat:@"%%7C%d:%@",sid,type]];
         
         
         // 构造request
@@ -126,31 +126,29 @@
                     NSArray* song=[list valueForKey:@"song"];
                     if([replacePlaylist containsObject:type] && [song count]>0)[playlist removeAllObjects];
                     [playlist addObjectsFromArray:[list valueForKey:@"song"]];
-                    //NSLog(@"%@",playlist);
-                    [lock unlock];
+
                     return YES;
                 }
                 
             }
         }
-        [lock unlock];
-    }
     return NO;
 }
 
--(NSDictionary*) getNewSongByType:(NSString *)t andSid:(NSNumber*)sid
+-(NSDictionary*) getNewSongByType:(NSString *)t andSid:(NSInteger)sid
 {
     int retry=0;
-    do [self requestPlaylistWithType:t andSid:sid];
+    do{
+        [self requestPlaylistWithType:t andSid:sid];
+    }
     while([playlist count]==0 && (retry++)<MAX_RETRY_TIMES);
+    
+    if([playlist count]==0) 
+        @throw [NSException exceptionWithName:@"Network" reason:@"Request timeout" userInfo:nil];
         
-    if([lock tryLock]){
-        if([playlist count]==0) 
-            @throw [NSException exceptionWithName:@"Network" reason:@"Request timeout" userInfo:nil];
-        NSDictionary* current=[playlist objectAtIndex:0];
+        NSDictionary* current=[[playlist objectAtIndex:0] retain];
         [playlist removeObjectAtIndex:0];
-        [currentMusic release];
-        currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
+        NSDictionary* currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
                       [current valueForKey:@"albumtitle"],@"Album",
                       [current valueForKey:@"rating_avg"],@"Album Rating",
                       [current valueForKey:@"album"],@"Store URL",
@@ -162,54 +160,60 @@
                       [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
                       @"Playing",@"Player Info",
                        nil] retain];
-        [lock unlock];
+        [current release];
+        sid=[[current valueForKey:@"sid"] integerValue];
         return currentMusic;
-    }
     return nil;
 }
 
--(void) play
+-(id) _quick_unlock:(id)r
 {
-    if(player==nil ){
-        @try {
-            //得到一首新歌
-            [self getNewSongByType:NEW andSid:0];
-            
-            //将Controller上锁，以免在此过程中player被改变
-            if(![lock tryLock]) return;
-            NSError* err=nil;
-            player=[[musicPlayer alloc] initWithURL:[NSURL URLWithString:[currentMusic valueForKey:@"Location"]] error:&err];
-            
-            //尝试初始化player之后解除线程锁
-            [lock unlock];
-            
-            //对初始化结果进行测试，如果player初始化失败，则抛出错误
-            if(err==NULL) [player autoplay];
-            else @throw [NSException exceptionWithName:@"Player" reason:@"Can not init player with url" userInfo:nil];
-
-        }
-        @catch (NSException *exception) {
-            NSLog(@"%@",exception);
-        }
-    }
-    else
-        if([lock tryLock]) [player play],[player resumeVolume],[lock unlock];
+    [condition unlock];
+    return r;
 }
 
+-(NSDictionary*) getNewSong
+{
+    [condition lock];
+    return [self _quick_unlock:[self getNewSongByType:NEW andSid:0]];
+}
+
+-(NSDictionary*) getNewSongBySkip:(NSInteger)sid
+{
+    [condition lock];
+    return [self _quick_unlock:[self getNewSongByType:SKIP andSid:sid]];
+}
+-(NSDictionary*) getNewSongWhenEnd:(NSInteger)sid
+{
+    [condition lock];
+    return [self _quick_unlock:[self getNewSongByType:END andSid:sid]];
+}
+-(BOOL) rateSongById:(NSInteger)sid
+{
+    [condition lock];
+    BOOL r=[self requestPlaylistWithType:RATE andSid:sid];
+    [condition unlock];
+    return r;
+}
+
+-(BOOL) unrateSongById:(NSInteger) sid
+{
+    [condition lock];
+    BOOL r=[self requestPlaylistWithType:UNRATE andSid:sid];
+    [condition unlock];
+    return r;
+}
 
 -(void) dealloc
 {
-    [lock lock];
     [cookie release];
-    [currentMusic release];
-    //[nextMusic release];
     [replacePlaylist release];
     [recordType release];
     [playlist release];
     [request release];
     [h release];
     [user_info release];
-    [lock release];
+    [condition release];
     [super dealloc];
 }
 

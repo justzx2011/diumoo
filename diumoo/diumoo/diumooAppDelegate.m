@@ -17,7 +17,8 @@
     // Insert code here to initialize your application
     c=[[doubanFMController alloc] init];
     [c play];
-    
+    [NSThread sleepForTimeInterval:10];
+    [c pause];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  remoteMusicSourcePlayer.h
+//  musicPlayer.h
 //  diumoo
 //
 //  Created by Shanzi on 11-12-8.
@@ -7,7 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QTKit/QTKit.h>
 
-@interface remoteMusicSourcePlayer : NSObject
+@interface musicPlayer : NSObject
+{
+    QTMovie* player;
+    NSDictionary* current_music;
+    NSCondition* condition;
+}
+
+-(void) startToPlay:(NSDictionary*) music;
+
+-(void) play;
+-(void) pause;
+
+-(float) volume;
+-(void) setVolume:(float) v;
 
 @end
