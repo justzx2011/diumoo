@@ -50,8 +50,11 @@
 -(NSDictionary*) getNewSong;
 -(NSDictionary*) getNewSongBySkip:(NSInteger) sid;
 -(NSDictionary*) getNewSongWhenEnd: (NSInteger) sid;
--(BOOL) rateSongById:(NSInteger) sid;
--(BOOL) unrateSongById:(NSInteger) sid;
+-(NSDictionary*) getNewSongByBye:(NSInteger) sid;
+-(BOOL) rateSongBySid:(NSInteger) sid;
+-(BOOL) unrateSongBySid:(NSInteger) sid;
+-(void) setChannel:(NSInteger) channel;
+-(NSInteger) channel;
 
 
 @end

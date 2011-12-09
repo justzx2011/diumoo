@@ -7,13 +7,20 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "doubanFMController.h"
+#import "doubanFMSource.h"
+#import "musicPlayer.h"
+#import "musicController.h"
+#import "growlNotifier.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     //NSWindow *window;
-    doubanFMController* c;
+    musicPlayer* p;
+    doubanFMSource* s;
+    musicController* c;
+    growlNotifier* g;
 }
 
 //@property (assign) IBOutlet NSWindow *window;
+-(void) applicationWillTerminate:(NSNotification *)notification;
 
 @end

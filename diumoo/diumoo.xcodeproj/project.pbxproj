@@ -26,7 +26,24 @@
 		F5922BCD149112C8003D7BF0 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5922BC1149112C8003D7BF0 /* CJSONScanner.m */; };
 		F5922BCE149112C8003D7BF0 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5922BC3149112C8003D7BF0 /* CJSONSerializer.m */; };
 		F5B2E5C8148DDB90008960EC /* doubanFMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B2E5C7148DDB90008960EC /* doubanFMSource.m */; };
+		F5E5E66B1492404C00804996 /* musicController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E5E66A1492404C00804996 /* musicController.m */; };
+		F5E5E67114926F7000804996 /* growlNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E5E67014926F7000804996 /* growlNotifier.m */; };
+		F5E5E675149276E100804996 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E5E674149276E100804996 /* Growl.framework */; };
+		F5E5E6771492771D00804996 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5E5E674149276E100804996 /* Growl.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F5E5E6761492770600804996 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F5E5E6771492771D00804996 /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F52CE621148F3D960068D6FF /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/doubanFMSource.h; sourceTree = "<group>"; };
@@ -68,6 +85,11 @@
 		F5922BC3149112C8003D7BF0 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		F5922BC4149112C8003D7BF0 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		F5B2E5C7148DDB90008960EC /* doubanFMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doubanFMSource.m; sourceTree = "<group>"; };
+		F5E5E6691492404C00804996 /* musicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = musicController.h; sourceTree = "<group>"; };
+		F5E5E66A1492404C00804996 /* musicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = musicController.m; sourceTree = "<group>"; };
+		F5E5E66F14926F7000804996 /* growlNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = growlNotifier.h; sourceTree = "<group>"; };
+		F5E5E67014926F7000804996 /* growlNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = growlNotifier.m; sourceTree = "<group>"; };
+		F5E5E674149276E100804996 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +99,7 @@
 			files = (
 				F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */,
 				F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */,
+				F5E5E675149276E100804996 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				F5922BAC149112C8003D7BF0 /* TouchJSON */,
-				F52CE623148F46FF0068D6FF /* QTKit.framework */,
 				F56A8418148CF92800AE6F1E /* diumoo */,
 				F56A8411148CF92800AE6F1E /* Frameworks */,
 				F56A840F148CF92800AE6F1E /* Products */,
@@ -123,6 +145,8 @@
 		F56A8411148CF92800AE6F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F5E5E674149276E100804996 /* Growl.framework */,
+				F52CE623148F46FF0068D6FF /* QTKit.framework */,
 				F56A8412148CF92800AE6F1E /* Cocoa.framework */,
 				F56A8414148CF92800AE6F1E /* Other Frameworks */,
 			);
@@ -142,6 +166,8 @@
 		F56A8418148CF92800AE6F1E /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				F5E5E66C14926EDD00804996 /* notificationer */,
+				F5E5E66714923FF700804996 /* mediaController */,
 				F52CE618148F24880068D6FF /* mediaPlayer */,
 				F52CE616148F24700068D6FF /* mediaSource */,
 				F56A8424148CF92800AE6F1E /* diumooAppDelegate.h */,
@@ -216,6 +242,24 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		F5E5E66714923FF700804996 /* mediaController */ = {
+			isa = PBXGroup;
+			children = (
+				F5E5E6691492404C00804996 /* musicController.h */,
+				F5E5E66A1492404C00804996 /* musicController.m */,
+			);
+			name = mediaController;
+			sourceTree = "<group>";
+		};
+		F5E5E66C14926EDD00804996 /* notificationer */ = {
+			isa = PBXGroup;
+			children = (
+				F5E5E66F14926F7000804996 /* growlNotifier.h */,
+				F5E5E67014926F7000804996 /* growlNotifier.m */,
+			);
+			name = notificationer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,6 +270,7 @@
 				F56A840A148CF92800AE6F1E /* Sources */,
 				F56A840B148CF92800AE6F1E /* Frameworks */,
 				F56A840C148CF92800AE6F1E /* Resources */,
+				F5E5E6761492770600804996 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -291,6 +336,8 @@
 				F5922BCC149112C8003D7BF0 /* CJSONDeserializer.m in Sources */,
 				F5922BCD149112C8003D7BF0 /* CJSONScanner.m in Sources */,
 				F5922BCE149112C8003D7BF0 /* CJSONSerializer.m in Sources */,
+				F5E5E66B1492404C00804996 /* musicController.m in Sources */,
+				F5E5E67114926F7000804996 /* growlNotifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +430,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../Growl-1.3.1-SDK/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
@@ -398,6 +446,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../Growl-1.3.1-SDK/Framework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";

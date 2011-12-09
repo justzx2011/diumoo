@@ -9,19 +9,24 @@
 #import <Foundation/Foundation.h>
 #import <QTKit/QTKit.h>
 
+#define VOLUME_DURATION 10.0
+#define VOLUME_INTERVAL 0.1
+
 @interface musicPlayer : NSObject
 {
     QTMovie* player;
-    NSDictionary* current_music;
     NSCondition* condition;
 }
 
--(void) startToPlay:(NSDictionary*) music;
+-(void) _start_to_play_notification:(NSDictionary*) m;
+-(BOOL) startToPlay:(NSDictionary*) music;
+
+-(void) _pause;
+-(void) _set_volume:(float) v;
+
 
 -(void) play;
 -(void) pause;
-
--(float) volume;
--(void) setVolume:(float) v;
+-(void) ended;
 
 @end

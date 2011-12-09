@@ -157,6 +157,7 @@
                       [current valueForKey:@"title"],@"Title",
                       [current valueForKey:@"url"],@"Location",
                       [current valueForKey:@"sid"],@"sid",
+                      [current valueForKey:@"picture"],@"picture",
                       [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
                       @"Playing",@"Player Info",
                        nil] retain];
@@ -188,7 +189,14 @@
     [condition lock];
     return [self _quick_unlock:[self getNewSongByType:END andSid:sid]];
 }
--(BOOL) rateSongById:(NSInteger)sid
+
+-(NSDictionary*) getNewSongByBye:(NSInteger)sid
+{
+    [condition lock];
+    return [self _quick_unlock:[self getNewSongByType:BYE andSid:sid]];
+}
+
+-(BOOL) rateSongBySid:(NSInteger)sid
 {
     [condition lock];
     BOOL r=[self requestPlaylistWithType:RATE andSid:sid];
@@ -196,12 +204,24 @@
     return r;
 }
 
--(BOOL) unrateSongById:(NSInteger) sid
+-(BOOL) unrateSongBySid:(NSInteger) sid
 {
     [condition lock];
     BOOL r=[self requestPlaylistWithType:UNRATE andSid:sid];
     [condition unlock];
     return r;
+}
+
+-(NSInteger) channel
+{
+    return channel;
+}
+
+-(void) setChannel:(NSInteger)c
+{
+    [condition lock];
+    channel=c;
+    [condition unlock];
 }
 
 -(void) dealloc
