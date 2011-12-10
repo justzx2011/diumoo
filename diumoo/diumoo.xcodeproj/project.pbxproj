@@ -26,6 +26,7 @@
 		F5922BCD149112C8003D7BF0 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5922BC1149112C8003D7BF0 /* CJSONScanner.m */; };
 		F5922BCE149112C8003D7BF0 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5922BC3149112C8003D7BF0 /* CJSONSerializer.m */; };
 		F5B2E5C8148DDB90008960EC /* doubanFMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B2E5C7148DDB90008960EC /* doubanFMSource.m */; };
+		F5E17A3F1493A3E4002978A4 /* menu.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E17A3E1493A3E4002978A4 /* menu.m */; };
 		F5E5E66B1492404C00804996 /* musicController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E5E66A1492404C00804996 /* musicController.m */; };
 		F5E5E67114926F7000804996 /* growlNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E5E67014926F7000804996 /* growlNotifier.m */; };
 		F5E5E675149276E100804996 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E5E674149276E100804996 /* Growl.framework */; };
@@ -85,6 +86,8 @@
 		F5922BC3149112C8003D7BF0 /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		F5922BC4149112C8003D7BF0 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		F5B2E5C7148DDB90008960EC /* doubanFMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doubanFMSource.m; sourceTree = "<group>"; };
+		F5E17A3D1493A3E4002978A4 /* menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
+		F5E17A3E1493A3E4002978A4 /* menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menu.m; sourceTree = "<group>"; };
 		F5E5E6691492404C00804996 /* musicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = musicController.h; sourceTree = "<group>"; };
 		F5E5E66A1492404C00804996 /* musicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = musicController.m; sourceTree = "<group>"; };
 		F5E5E66F14926F7000804996 /* growlNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = growlNotifier.h; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 		F56A8418148CF92800AE6F1E /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				F5E17A361493A362002978A4 /* mediaView */,
 				F5E5E66C14926EDD00804996 /* notificationer */,
 				F5E5E66714923FF700804996 /* mediaController */,
 				F52CE618148F24880068D6FF /* mediaPlayer */,
@@ -240,6 +244,15 @@
 				F5922BC4149112C8003D7BF0 /* JSONRepresentation.h */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		F5E17A361493A362002978A4 /* mediaView */ = {
+			isa = PBXGroup;
+			children = (
+				F5E17A3D1493A3E4002978A4 /* menu.h */,
+				F5E17A3E1493A3E4002978A4 /* menu.m */,
+			);
+			name = mediaView;
 			sourceTree = "<group>";
 		};
 		F5E5E66714923FF700804996 /* mediaController */ = {
@@ -338,6 +351,7 @@
 				F5922BCE149112C8003D7BF0 /* CJSONSerializer.m in Sources */,
 				F5E5E66B1492404C00804996 /* musicController.m in Sources */,
 				F5E5E67114926F7000804996 /* growlNotifier.m in Sources */,
+				F5E17A3F1493A3E4002978A4 /* menu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,7 +38,10 @@
     NSSet* replacePlaylist;
     NSSet* recordType;
     
+    NSDictionary* channelList;
+    
 }
+@property(assign,nonatomic) NSDictionary* channelList;
 
 -(BOOL) authWithUsername:(NSString*) name andPassword:(NSString*) password;
 -(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSInteger)sid; 
@@ -55,6 +58,7 @@
 -(BOOL) unrateSongBySid:(NSInteger) sid;
 -(void) setChannel:(NSInteger) channel;
 -(NSInteger) channel;
+
 
 
 @end

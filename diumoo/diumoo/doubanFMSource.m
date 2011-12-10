@@ -9,6 +9,7 @@
 #import "doubanFMSource.h"
 
 @implementation doubanFMSource
+@synthesize channelList;
 
 - (id)init
 {
@@ -226,6 +227,7 @@
 
 -(void) dealloc
 {
+    [channelList release];
     [cookie release];
     [replacePlaylist release];
     [recordType release];
