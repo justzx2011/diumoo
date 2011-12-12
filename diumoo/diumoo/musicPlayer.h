@@ -24,9 +24,11 @@
 -(void) _pause;
 -(void) _set_volume:(float) v;
 
+-(BOOL) isPlaying;
 
 -(void) play;
 -(void) pause;
 -(void) ended;
+-(void) playing_rate;
 
 @end

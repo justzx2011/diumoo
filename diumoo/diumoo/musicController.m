@@ -19,7 +19,7 @@
         state=0;
         current=nil;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded) name:@"player.end" object:nil];
-    }
+        }
     
     return self;
 }
@@ -42,8 +42,11 @@
 -(BOOL) setSource:(id)s
 {
     if([lock tryLock]!=YES) return NO;
-    if(s!=nil)
-        source=[s retain],state=state|SOURCE_STATE_READY;
+    if(s!=nil){
+        source=[s retain];
+        state=state|SOURCE_STATE_READY;
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.sourceChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[s performSelector:@selector(cans)],@"cans",[s performSelector:@selector(channelList)] ,@"channels", nil]];
+    }
     else
     {
         [player pause],[source release],source=nil;
@@ -55,6 +58,16 @@
     return YES;
 }
 
+-(id) getPlayer
+{
+    return player;
+}
+
+-(id) getSource
+{
+    return source;
+}
+
 -(BOOL) _start_to_play
 {
     if([source respondsToSelector:@selector(getNewSong)])
@@ -64,12 +77,16 @@
     return NO;
 }
 
+-(BOOL) play_pause
+{
+    return ([self play] ==YES || [self pause] == YES);
+}
 
 
 -(BOOL) play
 {
     if([lock tryLock]!=YES) return NO;
-    if( player!=nil && [player respondsToSelector:@selector(play)])
+    if( player!=nil && [player respondsToSelector:@selector(play)] && [player isPlaying]!=YES)
         [player play],[[NSNotificationCenter defaultCenter] postNotificationName:@"controller.play" object:nil userInfo:current];
     else return [lock unlock],NO;
     return [lock unlock], YES;
@@ -78,7 +95,7 @@
 -(BOOL) pause
 {
     if([lock tryLock]!=YES) return NO;
-    if(player != nil && [player respondsToSelector:@selector(pause)])
+    if(player != nil && [player respondsToSelector:@selector(pause)] && [player isPlaying])
         [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.pause" object:nil userInfo:current],[player pause];
     else return [lock unlock],NO;
     return [lock unlock],YES;
@@ -88,8 +105,8 @@
 {
     if([lock tryLock]!=YES) return NO;
     if(source!=nil && current!=nil && [source respondsToSelector:@selector(getNewSongBySkip:)])
-        if(([current release],(current=[source getNewSongBySkip:[[current valueForKey:@"sid"]integerValue]]))!=nil)
-            if(player!=nil && [player respondsToSelector:@selector(startToPlay:)] && [player startToPlay:current])
+        if(player!=nil && ([player pause],[current release],(current=[source getNewSongBySkip:[[current valueForKey:@"sid"]integerValue]]))!=nil)
+            if( [player respondsToSelector:@selector(startToPlay:)] && [player startToPlay:current])
                 return [lock unlock],YES;
     return NO;
 }
@@ -130,6 +147,7 @@
 
 -(BOOL) changeChannelTo:(NSInteger)channel
 {
+    [self pause];
     if([lock tryLock]!=YES) return NO;
     if(player!=nil && source!=nil
        && [player respondsToSelector:@selector(startToPlay:)]
@@ -158,8 +176,10 @@
 
 
 
+
 -(void) dealloc
 {
+    [self pause];
     [player release];
     [source release];
     [current release];

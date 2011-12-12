@@ -24,8 +24,12 @@
 
 -(BOOL) setPlayer:(id) player;
 -(BOOL) setSource:(id) source;
+-(id) getPlayer;
+-(id) getSource;
+
 
 -(BOOL) _start_to_play;
+-(BOOL) play_pause;
 -(BOOL) play;
 -(BOOL) pause;
 -(BOOL) skip;

@@ -16,6 +16,8 @@
     if (self) {
         // Initialization code here.
         condition=[[[NSCondition alloc] init] retain];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
     }
     
     return self;
@@ -35,10 +37,8 @@
     NSError* e=nil;
     NSLog(@"%@",music);
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
-    if(e==NULL) [player autoplay];
+    if(e==NULL) [player autoplay],[self _start_to_play_notification:music];
     [condition unlock];
-    [self _start_to_play_notification:music];
     return (e==NULL);
 }
 -(void) _pause
@@ -71,6 +71,11 @@
     
 }
 
+-(BOOL) isPlaying
+{
+    return (player!=nil && [player rate]>0.99);
+}
+
 
 -(void) dealloc
 {
@@ -82,6 +87,14 @@
 -(void) ended
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.end" object:nil userInfo:nil];
+}
+
+-(void) playing_rate
+{
+    [condition lock];
+    if(player==nil) return;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
+    [condition unlock];
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "musicPlayer.h"
 #import "musicController.h"
 #import "growlNotifier.h"
+#import "menu.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     //NSWindow *window;
@@ -18,9 +19,10 @@
     doubanFMSource* s;
     musicController* c;
     growlNotifier* g;
+    menu* m;
 }
 
-//@property (assign) IBOutlet NSWindow *window;
+-(void) backinit;
 -(void) applicationWillTerminate:(NSNotification *)notification;
 
 @end

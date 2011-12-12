@@ -9,7 +9,6 @@
 #import "doubanFMSource.h"
 
 @implementation doubanFMSource
-@synthesize channelList;
 
 - (id)init
 {
@@ -42,7 +41,10 @@
         //将电台设置为上次收听的电台
         if([[NSUserDefaults standardUserDefaults] valueForKey:@"doubanfm.channel"])
             channel=[ [[NSUserDefaults standardUserDefaults]valueForKey:@"doubanfm.channel"]integerValue];
-        else channel=1;
+        else channel=0;
+        
+        //读取电台频道信息
+        channelList=[[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dchannels" ofType:@"plist"]] retain];
         
     }
     
@@ -94,7 +96,16 @@
         [_cookie addObjectsFromArray:cookie];
         if(channel>10000){
             _s=[NSString stringWithFormat: @"channel=dj&pid=%d",channel];
-            [_cookie addObject:[NSHTTPCookie cookieWithProperties:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:channel] forKey:@"dj_id"]]];
+            NSDictionary* dic=[NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSString stringWithFormat:@"%d",channel],
+                               NSHTTPCookieValue,
+                               @"dj_id",NSHTTPCookieName,
+                               @"/",NSHTTPCookiePath,
+                               @".douban.fm",NSHTTPCookieDomain
+                               ,nil];
+            NSLog(@"%@",dic);
+            NSLog(@"%@",[NSHTTPCookie cookieWithProperties:dic]);
+           // [_cookie addObject:];
         }
         else _s=[NSString stringWithFormat:@"channel=%d",channel];
         if([type isNotEqualTo:NEW]&&sid!=0)
@@ -149,21 +160,25 @@
         
         NSDictionary* current=[[playlist objectAtIndex:0] retain];
         [playlist removeObjectAtIndex:0];
-        NSDictionary* currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
+    NSLog(@"%@",current);
+    NSDictionary* currentMusic=nil;
+        NSString* art=[current valueForKey:@"artist"];
+        if(art==nil) art = [current valueForKey:@"dj_name"];
+        currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
                       [current valueForKey:@"albumtitle"],@"Album",
-                      [current valueForKey:@"rating_avg"],@"Album Rating",
                       [current valueForKey:@"album"],@"Store URL",
                       [current valueForKey:@"public_time"],@"Year",
-                      [current valueForKey:@"artist"], @"Artist" ,
+                      art, @"Artist" ,
                       [current valueForKey:@"title"],@"Title",
                       [current valueForKey:@"url"],@"Location",
                       [current valueForKey:@"sid"],@"sid",
                       [current valueForKey:@"picture"],@"picture",
                       [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
                       @"Playing",@"Player Info",
+                       [current valueForKey:@"like"],@"Like",
+                       [current valueForKey:@"rating_avg"],@"Album Rating",
                        nil] retain];
         [current release];
-        sid=[[current valueForKey:@"sid"] integerValue];
         return currentMusic;
     return nil;
 }
@@ -223,6 +238,16 @@
     [condition lock];
     channel=c;
     [condition unlock];
+}
+
+-(NSSet*)cans
+{
+    return [NSSet setWithObjects:@"play",@"next",@"rate",@"bye", nil];
+}
+
+-(NSArray*) channelList
+{
+    return channelList;
 }
 
 -(void) dealloc

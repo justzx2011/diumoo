@@ -15,32 +15,19 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    g=[[growlNotifier alloc] init];
-    s=[[doubanFMSource alloc] init];
-    p=[[musicPlayer alloc] init];
-    c=[[musicController alloc] init];
+    g=[[[growlNotifier alloc] init] retain];
+    s=[[[doubanFMSource alloc] init] retain];
+    p=[[[musicPlayer alloc] init] retain];
+    c=[[[musicController alloc] init] retain];
+    m=[[[menu alloc]init] retain];
+    [m setController:c];
+    [self performSelectorInBackground:@selector(backinit) withObject:nil];
+}
+
+-(void)backinit
+{
     [c setSource:s];
     [c setPlayer:p];
-    NSLog(@"wait for 30s");
-    [NSThread sleepForTimeInterval:30];
-    NSLog(@"will pause");
-    [c pause];
-    NSLog(@"paused");
-    NSLog(@"wait for 10s");
-    [NSThread sleepForTimeInterval:10];
-    NSLog(@"will play");
-    [c play];
-    NSLog(@"played");
-    NSLog(@"wait for 30s");
-    [NSThread sleepForTimeInterval:30];
-    NSLog(@"will skip");
-    [c skip];
-    NSLog(@"skiped");
-    NSLog(@"wait for 30s");
-    [NSThread sleepForTimeInterval:30];
-    NSLog(@"will change channel");
-    [c changeChannelTo:4];
-    NSLog(@"channel changed");
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
