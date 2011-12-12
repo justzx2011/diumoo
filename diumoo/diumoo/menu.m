@@ -67,15 +67,15 @@
         pause=[[NSImage imageNamed:@"pause.png"] retain];
         pause_alt=[[NSImage imageNamed:@"pause-alt.png"] retain];
         
-        rated=[[NSImage imageNamed:@"rated.png"] retain];
-        unrate=[[NSImage imageNamed:@"unrate.png"] retain];
+        like=[[NSImage imageNamed:@"like.png"] retain];
+        unlike=[[NSImage imageNamed:@"unlike.png"] retain];
         
         
         
         [back setImage:[NSImage imageNamed:@"back.png"]];
         [play_pause setImage:play];
         [next setImage:[NSImage imageNamed:@"next.png"]];
-        [rate setImage:unrate];
+        [rate setImage:unlike];
         [bye setImage:[NSImage imageNamed:@"bye.png"]];
         
         [back setButtonType:NSMomentaryChangeButton];
@@ -88,7 +88,7 @@
         [play_pause setAlternateImage:play_alt];
         [next setAlternateImage:[NSImage imageNamed:@"next-alt.png"]];
         [bye setAlternateImage:[NSImage imageNamed:@"bye-alt.png"]];
-        [rate setAlternateImage:rated];
+        [rate setAlternateImage: like];
         
         
         [back setBordered:NO];
@@ -234,12 +234,14 @@
     NSSize imgsize=[image size];
     [albumView setFrameSize:NSMakeSize(imgsize.width+IMAGE_VIEW_MARGIN*2, imgsize.height + IMAGE_VIEW_MARGIN*2)];
     NSDictionary* info=n.userInfo;
+
+    if([[info valueForKey:@"Like"] intValue]==1) [rate setState:NSOnState];
+    else [rate setState:NSOffState];
+    
     NSString * aa=@"未知艺术家";
     if([info valueForKey:@"Artist"]!=nil)
     {
         if([info valueForKey:@"Album"]!=nil) aa=[NSString stringWithFormat:@"%@ < %@ >",[info valueForKey:@"Artist"],[info valueForKey:@"Album"]];
-        if([aa length]>20) aa=[info valueForKey:@"Artist"] ;
-        NSLog(@"%@",aa);
     }
     else if([info valueForKey:@"Album"]!=nil) aa=[info valueForKey:@"Album"];
     
@@ -268,8 +270,8 @@
     [play release];
     [play_alt release];
     [pause_alt release];
-    [unrate release];
-    [rated release];
+    [like release];
+    [unlike release];
     [rate release];
     [bye release];
     [albumItem release];
@@ -314,7 +316,11 @@
             if([controller respondsToSelector:@selector(skip)]) [controller performSelectorInBackground:@selector(skip) withObject:nil];
             break;
         case 3:
-            if([controller respondsToSelector:@selector(rate)]) [controller performSelectorInBackground:@selector(rate) withObject:nil];
+            if([rate state]==NSOnState)
+                if([controller respondsToSelector:@selector(rate)]) [controller performSelectorInBackground:@selector(rate) withObject:nil];
+            else
+                if([controller respondsToSelector:@selector(unrate)]) [controller performSelectorInBackground:@selector(unrate) withObject:nil];
+            
             break;
         case 4:
             if([controller respondsToSelector:@selector(bye)]) [controller performSelectorInBackground:@selector(bye) withObject:nil];

@@ -37,7 +37,7 @@
     NSString* d=[NSString stringWithFormat:@"\n%@ - %@ \n< %@ > %@",[user_info valueForKey:@"Title"],[user_info valueForKey:@"Artist"],[user_info valueForKey:@"Album"],
                  [user_info valueForKey:@"Year"]];
     NSData* image=nil;
-    if([noti object]&& [[noti object] respondsToSelector:@selector(TIFFRepresentation)])
+    if([noti object]!=nil && [[noti object] respondsToSelector:@selector(TIFFRepresentation)])
         image=[[noti object] TIFFRepresentation];
     if(image==nil) image=[[NSImage imageNamed:@"album.png"] TIFFRepresentation];
     [GrowlApplicationBridge notifyWithTitle:@"Now Playing" description:d notificationName:@"New Song" iconData:image priority:0 isSticky:NO clickContext:nil];

@@ -48,7 +48,7 @@
 -(id) _quick_unlock:(id) r;
 
 //Source 接口
-
+-(NSString*) sourceName;
 -(NSDictionary*) getNewSong;
 -(NSDictionary*) getNewSongBySkip:(NSInteger) sid;
 -(NSDictionary*) getNewSongWhenEnd: (NSInteger) sid;

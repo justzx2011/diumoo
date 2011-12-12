@@ -28,8 +28,8 @@
     
     NSImage * play;
     NSImage * pause;
-    NSImage * unrate;
-    NSImage * rated;
+    NSImage * unlike;
+    NSImage * like;
     
     NSImage * play_alt;
     NSImage * pause_alt;

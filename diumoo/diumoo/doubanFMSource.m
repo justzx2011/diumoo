@@ -250,6 +250,11 @@
     return channelList;
 }
 
+-(NSString*) sourceName
+{
+    return @"豆瓣电台";
+}
+
 -(void) dealloc
 {
     [channelList release];
