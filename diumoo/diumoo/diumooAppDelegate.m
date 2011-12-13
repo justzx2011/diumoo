@@ -20,8 +20,13 @@
     p=[[[musicPlayer alloc] init] retain];
     c=[[[musicController alloc] init] retain];
     m=[[[menu alloc]init] retain];
+    v= [[musicVisualizer alloc] init];
+    [s authWithUsername:@"airobot1@163.com" andPassword:@"akirasphere"];
     [m setController:c];
     [self performSelectorInBackground:@selector(backinit) withObject:nil];
+    [v showWindow:self];
+
+    
 }
 
 -(void)backinit

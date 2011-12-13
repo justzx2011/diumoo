@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "musicController.h"
 
 #define ICON_WIDTH 32
 #define ALBUM_VIEW_WIDTH 200
@@ -37,7 +38,8 @@
     
     NSMenuItem * albumItem;
     NSImageView * albumView;
-    NSMenuItem * album_artist;
+    NSMenuItem * artist;
+    NSMenuItem * album;
     NSMenuItem * title;
     NSMenuItem * perfsItem;
     NSMenuItem * aboutItem;
@@ -46,22 +48,23 @@
     NSCondition* condition;
     NSMenuItem* current;
     
-    id controller;
+    musicController* controller;
 }
 
 
 -(void) setController:(id) c;
--(void) reformMenuWithChannels:(NSArray*)channels andCans: (NSSet*) cans;
+-(void) reformMenuWithSourceName:(NSString*) name channels:(NSArray*)channels andCans: (NSSet*) cans;
 -(void) _reform:(NSNotification*) noti;
 
 -(void) _build_channel_menu:(NSArray*) dic with: (NSMenu*) menu andTabLength:(NSInteger) n;
 
--(void) backDetail:(NSNotification*) n;
 -(void) setDetail:(NSNotification*) n;
 -(void) rateChanged:(NSNotification*)n;
 
 -(IBAction)exitApp:(id)sender;
--(void) backChannel:(NSNumber*) c;
+-(void) backChannelTo:(NSNumber*) c;
 -(IBAction)channelAction:(id)sender;
 -(IBAction)buttonAction:(id)sender;
+
+-(void) enablesNotification:(NSNotification*)n;
 @end

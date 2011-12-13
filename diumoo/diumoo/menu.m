@@ -26,7 +26,8 @@
         
         controlItem=[[[NSMenuItem alloc]init]retain];
         albumItem=[[[NSMenuItem alloc]init] retain];
-        album_artist=[[[NSMenuItem alloc]initWithTitle:@"artist < albume >" action:nil keyEquivalent:@""] retain];
+        artist=[[[NSMenuItem alloc]initWithTitle:@"未知艺术家" action:nil keyEquivalent:@""] retain];
+        album=[[[NSMenuItem alloc]initWithTitle:@"<未知唱片集>" action:nil keyEquivalent:@""] retain];
         title=[[[NSMenuItem alloc]initWithTitle:@"Music Title" action:nil keyEquivalent:@""] retain];
         perfsItem=[[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ] retain];
         exit=[[[NSMenuItem alloc]initWithTitle:@"退出" action:nil keyEquivalent:@""] retain];
@@ -121,13 +122,17 @@
     controller=c;
     if(c!=nil)[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(_reform:) name:@"controller.sourceChanged" object:nil],
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setDetail:) name:@"player.startToPlay" object:nil],
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateChanged:) name:@"player.rateChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateChanged:) name:@"player.rateChanged" object:nil],
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enablesNotification:) name:@"source.enables" object:nil]
+        ;
     else [self removeObserver:self forKeyPath:@"controller.sourceChanged"],[self removeObserver:self forKeyPath:@"player.startToPlay"],
-        [self removeObserver:self forKeyPath:@"player.rateChanged"];
+        [self removeObserver:self forKeyPath:@"player.rateChanged"],
+        [self removeObserver:self forKeyPath:@"source.enables"]
+        ;
     [condition unlock];
 }
 
--(void) reformMenuWithChannels:(NSArray*)channels andCans: (NSSet*) cans
+-(void) reformMenuWithSourceName:(NSString*) name channels:(NSArray*)channels andCans: (NSSet*) cans
 {
     [condition lock];
     
@@ -155,9 +160,13 @@
         }
     [mainMenu addItem:[NSMenuItem separatorItem]];
     [mainMenu addItem:albumItem];
-    [mainMenu addItem:album_artist];
+    [mainMenu addItem:album];
+    [mainMenu addItem:artist];
     [mainMenu addItem:title];
     [mainMenu addItem:[NSMenuItem separatorItem]];
+    
+    if(name!=nil)
+        [mainMenu addItemWithTitle:name action:nil keyEquivalent:@""];
     
     if(channels!=nil)
     {
@@ -218,7 +227,7 @@
 -(void) _reform:(NSNotification*) n
 {
     NSDictionary* userinfo = n.userInfo;
-    [self reformMenuWithChannels:[userinfo valueForKey:@"channels"] andCans:[userinfo valueForKey:@"cans"]];
+    [self reformMenuWithSourceName:[userinfo valueForKey:@"sourceName"] channels:[userinfo valueForKey:@"channels"]  andCans:[userinfo valueForKey:@"cans"]];
 }
 
 
@@ -238,53 +247,54 @@
     if([[info valueForKey:@"Like"] intValue]==1) [rate setState:NSOnState];
     else [rate setState:NSOffState];
     
-    NSString * aa=@"未知艺术家";
     if([info valueForKey:@"Artist"]!=nil)
-    {
-        if([info valueForKey:@"Album"]!=nil) aa=[NSString stringWithFormat:@"%@ < %@ >",[info valueForKey:@"Artist"],[info valueForKey:@"Album"]];
-    }
-    else if([info valueForKey:@"Album"]!=nil) aa=[info valueForKey:@"Album"];
+        [artist setTitle:[NSString stringWithFormat:@"%@",[info valueForKey:@"Artist"]]];
+    else [artist setTitle:@"未知艺术家"];
     
+    NSString *year=nil;
     
-    [album_artist setTitle:aa];
+    if([info valueForKey:@"Year"]!=nil) year=[NSString stringWithFormat:@" %@",[info valueForKey:@"Year"]];
+    else year=@"";
+    
+    if([info valueForKey:@"Album"]!=nil)
+        [album setTitle:[NSString stringWithFormat:@"< %@ > %@",[info valueForKey:@"Album"],year]];
+    else [album setTitle:@"< 未知唱片集 >"];
+    
     if([info valueForKey:@"Title"]!=nil)
         [title setTitle:[info valueForKey:@"Title"]];
-    else [title setTitle:@""];
+    else [title setTitle:@"未知歌曲"];
   //  NSLog(@">>>>>>>>>>>>>>>>end");
         [condition unlock];
 }
 
--(void)dealloc
-{
-    [item release];
-    [mainMenu release];
-    [aboutItem release];
-    [exit release];
-    [perfsItem release];
-    [controlItem release];
-    [controlView release];
-    [back release];
-    [next release];
-    [play_pause release];
-    [pause release];
-    [play release];
-    [play_alt release];
-    [pause_alt release];
-    [like release];
-    [unlike release];
-    [rate release];
-    [bye release];
-    [albumItem release];
-    [albumView release];
-    [title release];
-    [album_artist release];
-    [condition release];
-}
+
 
 -(void) backChannelTo:(NSNumber*) c
 {
     if([controller respondsToSelector:@selector(changeChannelTo:)] ) 
         [controller changeChannelTo:[c integerValue]];
+}
+
+-(void) enablesNotification:(NSNotification *)n
+{
+    [condition lock];
+    NSLog(@"=>>>>>>>>>>>>>>>test: %@",n.userInfo);
+    NSSet* enables=nil;
+    if((enables=[n.userInfo valueForKey:@"enables"])==nil){ 
+        [condition unlock];
+        return;
+    }
+    if([enables containsObject:@"back"]) [back setEnabled:YES];
+    else [back setEnabled:NO];
+    if([enables containsObject:@"play"]) [play_pause setEnabled:YES];
+    else [play_pause setEnabled:NO];
+    if([enables containsObject:@"next"]) [next setEnabled:YES];
+    else [next setEnabled:NO];
+    if([enables containsObject:@"like"]) [rate setEnabled:YES];
+    else [rate setEnabled:NO];
+    if([enables containsObject:@"bye"]) [bye setEnabled:YES];
+    else [bye setEnabled:NO];
+    [condition unlock];
 }
 
 -(IBAction)channelAction:(id)sender
@@ -338,6 +348,34 @@
     float r = [[n.userInfo valueForKey:@"rate"] floatValue];
     if(r>0.99) [play_pause setImage:pause],[play_pause setAlternateImage:pause_alt];
     else [play_pause setImage:play],[play_pause setAlternateImage:play_alt];
+}
+
+-(void)dealloc
+{
+    [item release];
+    [mainMenu release];
+    [aboutItem release];
+    [exit release];
+    [perfsItem release];
+    [controlItem release];
+    [controlView release];
+    [back release];
+    [next release];
+    [play_pause release];
+    [pause release];
+    [play release];
+    [play_alt release];
+    [pause_alt release];
+    [like release];
+    [unlike release];
+    [rate release];
+    [bye release];
+    [albumItem release];
+    [albumView release];
+    [title release];
+    [album release];
+    [artist release];
+    [condition release];
 }
 
 @end

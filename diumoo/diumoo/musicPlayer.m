@@ -37,8 +37,8 @@
     NSError* e=nil;
     NSLog(@"%@",music);
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain];
-    if(e==NULL) [player autoplay],[self _start_to_play_notification:music];
-    [condition unlock];
+    if(e==NULL) [self _start_to_play_notification:music];
+    [condition unlock],[player autoplay];;
     return (e==NULL);
 }
 -(void) _pause

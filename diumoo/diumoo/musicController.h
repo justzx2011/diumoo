@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "mediaSourceBase.h"
+#import "musicPlayer.h"
+
 #define PLAYER_STATE_READY (1)
 #define SOURCE_STATE_READY (1<<1)
 
 @interface musicController : NSObject
 {
-    id player;
-    id source;
+    musicPlayer* player;
+    mediaSourceBase* source;
     NSDictionary* current;
     NSLock* lock;
     
@@ -22,8 +25,8 @@
 
 -(void) musicEnded;
 
--(BOOL) setPlayer:(id) player;
--(BOOL) setSource:(id) source;
+-(BOOL) setPlayer:(musicPlayer*) player;
+-(BOOL) setSource:(mediaSourceBase*) source;
 -(id) getPlayer;
 -(id) getSource;
 

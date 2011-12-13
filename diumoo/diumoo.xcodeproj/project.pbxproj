@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
+		F53B931F149730A800BEFEC5 /* mediaSourceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B931E149730A800BEFEC5 /* mediaSourceBase.m */; };
 		F5424E4C14963CC10047D993 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = F5424E4A14963CC00047D993 /* like.png */; };
 		F5424E4D14963CC10047D993 /* unlike.png in Resources */ = {isa = PBXBuildFile; fileRef = F5424E4B14963CC00047D993 /* unlike.png */; };
 		F5424E4F14963F7C0047D993 /* bye.png in Resources */ = {isa = PBXBuildFile; fileRef = F5424E4E14963F7C0047D993 /* bye.png */; };
@@ -65,6 +66,8 @@
 /* Begin PBXFileReference section */
 		F52CE621148F3D960068D6FF /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/doubanFMSource.h; sourceTree = "<group>"; };
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		F53B931D149730A800BEFEC5 /* mediaSourceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mediaSourceBase.h; sourceTree = "<group>"; };
+		F53B931E149730A800BEFEC5 /* mediaSourceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mediaSourceBase.m; sourceTree = "<group>"; };
 		F5424E4A14963CC00047D993 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		F5424E4B14963CC00047D993 /* unlike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlike.png; sourceTree = "<group>"; };
 		F5424E4E14963F7C0047D993 /* bye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bye.png; path = diumoo/bye.png; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 			children = (
 				F52CE622148F3D960068D6FF /* doubanFMSource.h */,
 				F5B2E5C7148DDB90008960EC /* doubanFMSource.m */,
+				F53B931D149730A800BEFEC5 /* mediaSourceBase.h */,
+				F53B931E149730A800BEFEC5 /* mediaSourceBase.m */,
 			);
 			name = mediaSource;
 			sourceTree = "<group>";
@@ -157,6 +162,13 @@
 				F5922BAA1491107F003D7BF0 /* musicPlayer.m */,
 			);
 			name = mediaPlayer;
+			sourceTree = "<group>";
+		};
+		F53B93211497358900BEFEC5 /* visualizer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = visualizer;
 			sourceTree = "<group>";
 		};
 		F56A8403148CF92800AE6F1E = {
@@ -202,6 +214,7 @@
 		F56A8418148CF92800AE6F1E /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				F53B93211497358900BEFEC5 /* visualizer */,
 				F5E17A361493A362002978A4 /* mediaView */,
 				F5E5E66C14926EDD00804996 /* notificationer */,
 				F5E5E66714923FF700804996 /* mediaController */,
@@ -432,6 +445,7 @@
 				F5E5E66B1492404C00804996 /* musicController.m in Sources */,
 				F5E5E67114926F7000804996 /* growlNotifier.m in Sources */,
 				F5E17A3F1493A3E4002978A4 /* menu.m in Sources */,
+				F53B931F149730A800BEFEC5 /* mediaSourceBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

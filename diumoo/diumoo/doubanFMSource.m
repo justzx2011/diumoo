@@ -23,20 +23,26 @@
         [request setHTTPShouldHandleCookies:NO];
         
         //初始化lock
-        condition=[[NSCondition alloc]init];
+        condition=[[[NSCondition alloc]init] retain];
         
         //将Cookie设置为空
         cookie=nil;
         
         //初始化两个set
-        replacePlaylist = [[NSSet alloc] initWithObjects:NEW,SKIP,BYE, nil];
-        recordType = [[NSSet alloc] initWithObjects:RATE,END,SKIP,BYE, nil];
+        replacePlaylist = [[[NSSet alloc] initWithObjects:NEW,SKIP,BYE, nil] retain];
+        recordType = [[[NSSet alloc] initWithObjects:RATE,END,SKIP,BYE, nil] retain];
+        
+        privateEnables=[[NSSet setWithObjects:@"play",@"next",@"like",@"bye", nil] retain];
+        publicEnables = [[NSSet setWithObjects:@"play",@"next", nil] retain];
+        publicWithLoggedInEnables = [[NSSet setWithObjects:@"play",@"next",@"like", nil] retain];
         
         //初始化playlist
-        playlist=[[NSMutableArray alloc] initWithCapacity:20];
+        playlist=[[[NSMutableArray alloc] initWithCapacity:20] retain];
         
         //初始化h
-        h=[[NSMutableString alloc] init];
+        h=[[[NSMutableString alloc] init] retain];
+        
+        loggedIn = NO;
         
         //将电台设置为上次收听的电台
         if([[NSUserDefaults standardUserDefaults] valueForKey:@"doubanfm.channel"])
@@ -75,7 +81,7 @@
                 [user_info release];
                 user_info=[obj valueForKey:@"user_info"];
                 cookie = [NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]];
-                NSLog(@"%@",cookie);
+                loggedIn=YES;
                 [condition unlock];
                 return YES;
             }
@@ -235,8 +241,13 @@
 
 -(void) setChannel:(NSInteger)c
 {
+    NSSet* r=nil;
     [condition lock];
     channel=c;
+    if(channel==0 && loggedIn==YES) r=privateEnables;
+    else if(loggedIn==YES) r=publicWithLoggedInEnables;
+    else r=publicEnables;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:r forKey:@"enables"]];
     [condition unlock];
 }
 
@@ -261,6 +272,8 @@
     [cookie release];
     [replacePlaylist release];
     [recordType release];
+    [privateEnables release];
+    [publicEnables release];
     [playlist release];
     [request release];
     [h release];

@@ -16,15 +16,16 @@
 
 #define AUTH_URL [NSURL URLWithString:@"http://douban.fm/j/login"]
 #define PLAYLIST_URL_STRING @"http://douban.fm/j/mine/playlist"
-#define TIMEOUT 5
+#define TIMEOUT 10
 
 #define MIN_RAND 68719476736
 #define MAX_RETRY_TIMES 5
 
 #import <Foundation/Foundation.h>
 #import "CJSONDeserializer.h"
+#import "mediaSourceBase.h"
 
-@interface doubanFMSource : NSObject{
+@interface doubanFMSource : mediaSourceBase{
     NSMutableURLRequest* request;
     NSMutableArray* playlist;
     NSMutableString* h;
@@ -38,8 +39,12 @@
     NSSet* replacePlaylist;
     NSSet* recordType;
     
-    NSArray* channelList;
+    BOOL loggedIn;
+    NSSet* privateEnables;
+    NSSet* publicEnables;
+    NSSet* publicWithLoggedInEnables;
     
+    NSArray* channelList;
 }
 
 -(BOOL) authWithUsername:(NSString*) name andPassword:(NSString*) password;
@@ -60,6 +65,5 @@
 
 -(NSArray*) channelList;
 -(NSSet*) cans;
-
 
 @end

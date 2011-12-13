@@ -12,6 +12,7 @@
 #import "musicController.h"
 #import "growlNotifier.h"
 #import "menu.h"
+#import "musicVisualizer.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     //NSWindow *window;
@@ -20,6 +21,8 @@
     musicController* c;
     growlNotifier* g;
     menu* m;
+    musicVisualizer* v;
+    
 }
 
 -(void) backinit;
