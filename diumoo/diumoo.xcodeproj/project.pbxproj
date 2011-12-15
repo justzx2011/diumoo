@@ -19,6 +19,7 @@
 		F577CE75149A2AB800DDB91F /* ServicePerformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F577CE6A149A2AB800DDB91F /* ServicePerformer.m */; };
 		F577CE76149A2AB800DDB91F /* menu.m in Sources */ = {isa = PBXBuildFile; fileRef = F577CE6D149A2AB800DDB91F /* menu.m */; };
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
+		F577CE87149A2BA600DDB91F /* diumoo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F577CE85149A2BA600DDB91F /* diumoo-Info.plist */; };
 		F5C6C1FE149A28DF0045B3EE /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
 		F5C6C1FF149A28DF0045B3EE /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1E7149A28DF0045B3EE /* CDataScanner.m */; };
 		F5C6C200149A28DF0045B3EE /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1EA149A28DF0045B3EE /* CFilteringJSONSerializer.m */; };
@@ -69,6 +70,8 @@
 		F577CE6A149A2AB800DDB91F /* ServicePerformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicePerformer.m; sourceTree = "<group>"; };
 		F577CE6C149A2AB800DDB91F /* menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
 		F577CE6D149A2AB800DDB91F /* menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menu.m; sourceTree = "<group>"; };
+		F577CE85149A2BA600DDB91F /* diumoo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "diumoo-Info.plist"; sourceTree = "<group>"; };
+		F577CE86149A2BA600DDB91F /* diumoo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "diumoo-Prefix.pch"; sourceTree = "<group>"; };
 		F5C6C1E4149A28DF0045B3EE /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = extern/Growl.framework; sourceTree = "<group>"; };
 		F5C6C1E6149A28DF0045B3EE /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		F5C6C1E7149A28DF0045B3EE /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 		F577CE56149A2AB800DDB91F /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				F577CE85149A2BA600DDB91F /* diumoo-Info.plist */,
+				F577CE86149A2BA600DDB91F /* diumoo-Prefix.pch */,
 				F577CE57149A2AB800DDB91F /* controlCenter */,
 				F577CE5A149A2AB800DDB91F /* diumooAppDelegate.h */,
 				F577CE5B149A2AB800DDB91F /* diumooAppDelegate.m */,
@@ -327,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F577CE87149A2BA600DDB91F /* diumoo-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

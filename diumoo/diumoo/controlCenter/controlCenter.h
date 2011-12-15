@@ -10,9 +10,7 @@
 #import "mediaSourceBase.h"
 #import "musicPlayer.h"
 
-#define ENDED @"ended"
-#define RATE_CHANGED @"ratechanged"
-#define START_TO_PLAY @"starttoplay"
+
 
 #define PLAYER_STATE_READY (1)
 #define SOURCE_STATE_READY (1<<1)
@@ -26,26 +24,6 @@
     NSInteger state;
 }
 
-+(controlCenter*) sharedControlCenter;
-
-+(void) postNotificationInBackgroudWithTypeName:(NSString*) s andUserInfo:(NSDictionary*)info;
-
-+(void)music:(NSDictionary*) music playingEndedNotificationFromPlayer:(musicPlayer*) player;
-+(void)music:(NSDictionary*) music startToPlayNotificationFromPlayer:(musicPlayer*) player withImage:(NSImage*)image;
-+(void)music:(NSDictionary*) music playingRateChangedNotificationFromPlayer:(musicPlayer*) player;
-
-+(void)sendPlayControlSignal;
-+(void)sendPauseControlSignal;
-+(void)sendPlayOrPauseControlSignal;
-+(void)sendLikeControlSignal;
-+(void)sendUnlikeControlSignal;
-+(void)sendByeControlSignal;
-+(void)sendSkipControlSignal;
-
-+(void) addObserver:(id) obj;
-+(void) addObserver:(id) obj forNotificationNames:(NSArray*) list; 
-
--(void) musicEnded;
 
 -(BOOL) setPlayer:(musicPlayer*) player;
 -(BOOL) setSource:(mediaSourceBase*) source;
