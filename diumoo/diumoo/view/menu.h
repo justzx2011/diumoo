@@ -21,7 +21,6 @@
     NSMenuItem* controlItem;
     NSView * controlView;
     
-    NSButton * back;
     NSButton * play_pause;
     NSButton * next;
     NSButton * rate;

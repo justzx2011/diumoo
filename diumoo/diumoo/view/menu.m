@@ -35,20 +35,16 @@
         
         NSRect b_rect=NSMakeRect(0, 0, ICON_WIDTH, ICON_WIDTH); 
         
-        back=[[[NSButton alloc] initWithFrame:b_rect] retain];
         play_pause=[[[NSButton alloc]initWithFrame:b_rect] retain];
         next=[[[NSButton alloc]initWithFrame:b_rect] retain];
         rate=[[[NSButton alloc]initWithFrame:b_rect] retain];
         bye=[[[NSButton alloc]initWithFrame:b_rect] retain];
         
-        [back setTag:0];
         [play_pause setTag:1];
         [next setTag:2];
         [rate setTag:3];
         [bye setTag:4];
         
-        [back setTarget:self];
-        [back setAction:@selector(buttonAction:)];
         
         [play_pause setTarget:self];
         [play_pause setAction:@selector(buttonAction:)];
@@ -73,26 +69,24 @@
         
         
         
-        [back setImage:[NSImage imageNamed:@"back.png"]];
         [play_pause setImage:play];
         [next setImage:[NSImage imageNamed:@"next.png"]];
         [rate setImage:unlike];
         [bye setImage:[NSImage imageNamed:@"bye.png"]];
         
-        [back setButtonType:NSMomentaryChangeButton];
+
         [play_pause setButtonType:NSMomentaryChangeButton];
         [next setButtonType:NSMomentaryChangeButton];
         [bye setButtonType:NSMomentaryChangeButton];
         [rate setButtonType:NSToggleButton];
         
-        [back setAlternateImage:[NSImage imageNamed:@"back-alt.png"]];
+
         [play_pause setAlternateImage:play_alt];
         [next setAlternateImage:[NSImage imageNamed:@"next-alt.png"]];
         [bye setAlternateImage:[NSImage imageNamed:@"bye-alt.png"]];
         [rate setAlternateImage: like];
         
         
-        [back setBordered:NO];
         [play_pause setBordered:NO];
         [next setBordered:NO];
         [rate setBordered:NO];
@@ -109,6 +103,14 @@
         
         [exit setAction:@selector(exitApp:)];
         [exit setTarget:self];
+        
+        int i = 0;
+        
+        [play_pause setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:play_pause]; 
+        [next setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:next]; 
+        [rate setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:rate];
+        [bye setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:bye];
+        [controlView setFrameSize:NSMakeSize(i*ICON_WIDTH+40, ICON_WIDTH+8)];
         
         condition=[[NSCondition alloc] init];
     }
@@ -137,27 +139,8 @@
     [condition lock];
     
     [mainMenu removeAllItems];
-        if(cans!=nil){
-            
-            int i = 0;
-            if([cans containsObject:@"back"]) [back setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:back];
-            else [back removeFromSuperview];
-            
-            if([cans containsObject:@"play"]) [play_pause setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:play_pause]; 
-            else [play_pause removeFromSuperview];
-            
-            if([cans containsObject:@"next"]) [next setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:next]; 
-            else [next removeFromSuperview];
-            
-            if([cans containsObject:@"rate"]) [rate setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:rate];
-            else [rate removeFromSuperview];
-            
-            if([cans containsObject:@"bye"]) [bye setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:bye];
-            else [bye removeFromSuperview];
-            
-            [controlView setFrameSize:NSMakeSize(i*ICON_WIDTH+40, ICON_WIDTH+8)];
-            [mainMenu addItem:controlItem];
-        }
+    
+    [mainMenu addItem:controlItem];
     [mainMenu addItem:[NSMenuItem separatorItem]];
     [mainMenu addItem:albumItem];
     [mainMenu addItem:album];
@@ -248,7 +231,7 @@
     else [rate setState:NSOffState];
     
     if([info valueForKey:@"Artist"]!=nil)
-        NSLog(@"%@",[info valueForKey:@"Artist"]),[artist setTitle:[info valueForKey:@"Artist"]];
+        [artist setTitle:[NSString stringWithFormat:@"%@",[info valueForKey:@"Artist"]]];
     else [artist setTitle:@"未知艺术家"];
     
     NSString *year=nil;
@@ -284,8 +267,7 @@
         [condition unlock];
         return;
     }
-    if([enables containsObject:@"back"]) [back setEnabled:YES];
-    else [back setEnabled:NO];
+
     if([enables containsObject:@"play"]) [play_pause setEnabled:YES];
     else [play_pause setEnabled:NO];
     if([enables containsObject:@"next"]) [next setEnabled:YES];
@@ -359,7 +341,6 @@
     [perfsItem release];
     [controlItem release];
     [controlView release];
-    [back release];
     [next release];
     [play_pause release];
     [pause release];

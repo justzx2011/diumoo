@@ -11,7 +11,6 @@
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
 		F58A8C74149A2EB3004E60AD /* controlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C5D149A2EB3004E60AD /* controlCenter.m */; };
-		F58A8C75149A2EB3004E60AD /* diumoo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F58A8C5E149A2EB3004E60AD /* diumoo-Info.plist */; };
 		F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */; };
 		F58A8C77149A2EB3004E60AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C62149A2EB3004E60AD /* main.m */; };
 		F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C65149A2EB3004E60AD /* doubanFMSource.m */; };
@@ -149,12 +148,12 @@
 		F58A8C5A149A2EB3004E60AD /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
-				F58A8C5B149A2EB3004E60AD /* controlCenter */,
 				F58A8C5E149A2EB3004E60AD /* diumoo-Info.plist */,
 				F58A8C5F149A2EB3004E60AD /* diumoo-Prefix.pch */,
 				F58A8C60149A2EB3004E60AD /* diumooAppDelegate.h */,
 				F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */,
 				F58A8C62149A2EB3004E60AD /* main.m */,
+				F58A8C5B149A2EB3004E60AD /* controlCenter */,
 				F58A8C63149A2EB3004E60AD /* mediaSource */,
 				F58A8C68149A2EB3004E60AD /* notifier */,
 				F58A8C6B149A2EB3004E60AD /* player */,
@@ -319,7 +318,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F58A8C75149A2EB3004E60AD /* diumoo-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
