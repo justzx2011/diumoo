@@ -9,15 +9,15 @@
 #import <Cocoa/Cocoa.h>
 #import "doubanFMSource.h"
 #import "musicPlayer.h"
-#import "musicController.h"
 #import "growlNotifier.h"
 #import "menu.h"
+#import "controlCenter.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     //NSWindow *window;
     musicPlayer* p;
     doubanFMSource* s;
-    musicController* c;
+    controlCenter* c;
     growlNotifier* g;
     menu* m;
 }

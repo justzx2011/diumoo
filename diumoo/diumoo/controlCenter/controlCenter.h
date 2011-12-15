@@ -10,8 +10,6 @@
 #import "mediaSourceBase.h"
 #import "musicPlayer.h"
 
-
-
 #define PLAYER_STATE_READY (1)
 #define SOURCE_STATE_READY (1<<1)
 
@@ -21,9 +19,11 @@
     mediaSourceBase* source;
     NSDictionary* current;
     NSLock* lock;
+    
     NSInteger state;
 }
 
+-(void) musicEnded;
 
 -(BOOL) setPlayer:(musicPlayer*) player;
 -(BOOL) setSource:(mediaSourceBase*) source;

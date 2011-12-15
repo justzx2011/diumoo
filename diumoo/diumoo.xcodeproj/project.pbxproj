@@ -154,10 +154,10 @@
 			children = (
 				F577CE85149A2BA600DDB91F /* diumoo-Info.plist */,
 				F577CE86149A2BA600DDB91F /* diumoo-Prefix.pch */,
-				F577CE57149A2AB800DDB91F /* controlCenter */,
 				F577CE5A149A2AB800DDB91F /* diumooAppDelegate.h */,
 				F577CE5B149A2AB800DDB91F /* diumooAppDelegate.m */,
 				F577CE5C149A2AB800DDB91F /* main.m */,
+				F577CE57149A2AB800DDB91F /* controlCenter */,
 				F577CE5D149A2AB800DDB91F /* mediaSource */,
 				F577CE62149A2AB800DDB91F /* notifier */,
 				F577CE65149A2AB800DDB91F /* player */,

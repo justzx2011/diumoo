@@ -7,44 +7,8 @@
 //
 
 #import "controlCenter.h"
- 
-static controlCenter* sharedControlCenter;
 
 @implementation controlCenter
-
-
-
-+(controlCenter*) sharedControlCenter
-{
-    if(sharedControlCenter==nil)
-        sharedControlCenter=[[controlCenter alloc] init];
-    return sharedControlCenter;
-}
-
-+(void)postNotificationInBackgroudWithTypeName:(NSString *)s andUserInfo:(NSDictionary *)info
-{
-    NSNotification* n=[NSNotification notificationWithName:s object:[controlCenter sharedControlCenter] userInfo:info];
-    [[NSNotificationCenter defaultCenter] performSelectorInBackground:@selector(postNotification:) withObject:n];
-}
-
-+(void)music:(NSDictionary *)music playingEndedNotificationFromPlayer:(musicPlayer *)player
-{
-    controlCenter* center=[controlCenter sharedControlCenter];
-    if(player!=[center getPlayer])return;
-    [controlCenter postNotificationInBackgroudWithTypeName:ENDED andUserInfo:music];
-}
-+(void)music:(NSDictionary *)music playingRateChangedNotificationFromPlayer:(musicPlayer *)player
-{
-    controlCenter* center=[controlCenter sharedControlCenter];
-    if(player!=[center getPlayer]) return;
-    [controlCenter postNotificationInBackgroudWithTypeName:RATE_CHANGED andUserInfo:music];
-}
-+(void) music:(NSDictionary *)music startToPlayNotificationFromPlayer:(musicPlayer *)player withImage:(NSImage *)image;
-{
-    controlCenter* center=[controlCenter sharedControlCenter];
-    if(player!=[center getPlayer]) return;
-    [controlCenter postNotificationInBackgroudWithTypeName:START_TO_PLAY andUserInfo:music];
-}
 
 - (id)init
 {

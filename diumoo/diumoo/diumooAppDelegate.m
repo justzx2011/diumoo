@@ -18,7 +18,7 @@
     g=[[[growlNotifier alloc] init] retain];
     s=[[[doubanFMSource alloc] init] retain];
     p=[[[musicPlayer alloc] init] retain];
-    c=[[[musicController alloc] init] retain];
+    c=[[[controlCenter alloc] init] retain];
     m=[[[menu alloc]init] retain];
     [m setController:c];
     [self performSelectorInBackground:@selector(backinit) withObject:nil];
