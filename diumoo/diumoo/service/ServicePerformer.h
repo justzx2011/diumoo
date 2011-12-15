@@ -10,7 +10,7 @@
 
 @interface ServicePerformer : NSObject
 {
-    NSPasteboard* defualtPasteboard;
+    NSPasteBoard * defualtPasteboard;
     NSDictionary* allowedService;
 }
 

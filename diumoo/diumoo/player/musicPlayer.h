@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <QTKit/QTKit.h>
-#import "controlCenter.h"
 
 #define VOLUME_DURATION 10.0
 #define VOLUME_INTERVAL 0.1

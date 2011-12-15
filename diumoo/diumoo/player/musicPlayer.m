@@ -23,17 +23,21 @@
     return self;
 }
 
+-(void) _start_to_play_notification:(NSDictionary *)m
+{
+    NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[m valueForKey:@"picture"]]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:m];
+}
+
 -(BOOL) startToPlay:(NSDictionary *)music
 {
     [condition lock];
     if(player!=nil && [player rate]!=0) [self _pause]; 
     [player release];
-    NSImage*image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
-    if(image==nil) return NO;
     NSError* e=nil;
     NSLog(@"%@",music);
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain];
-    if(e==NULL) ;
+    if(e==NULL) [self _start_to_play_notification:music];
     [condition unlock],[player autoplay];;
     return (e==NULL);
 }
