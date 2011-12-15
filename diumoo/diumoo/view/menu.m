@@ -26,9 +26,10 @@
         
         controlItem=[[[NSMenuItem alloc]init]retain];
         albumItem=[[[NSMenuItem alloc]init] retain];
-        artist=[[[NSMenuItem alloc]initWithTitle:@"未知艺术家" action:nil keyEquivalent:@""] retain];
-        album=[[[NSMenuItem alloc]initWithTitle:@"<未知唱片集>" action:nil keyEquivalent:@""] retain];
-        title=[[[NSMenuItem alloc]initWithTitle:@"Music Title" action:nil keyEquivalent:@""] retain];
+        dv=[[DetailView alloc] init];
+
+        
+        
         perfsItem=[[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ] retain];
         exit=[[[NSMenuItem alloc]initWithTitle:@"退出" action:nil keyEquivalent:@""] retain];
         aboutItem=[[[NSMenuItem alloc]initWithTitle:@"关于" action:nil keyEquivalent:@""] retain];
@@ -97,19 +98,17 @@
         [controlView displayIfNeeded];
         [controlItem setView:controlView];
         
-        albumView=[[[NSImageView alloc] initWithFrame:NSMakeRect(0, 0, ALBUM_VIEW_WIDTH, ALBUM_VIEW_WIDTH)]retain];
-        [albumView displayIfNeeded];
-        [albumItem setView:albumView];
+        [albumItem setView:[dv view]];
         
         [exit setAction:@selector(exitApp:)];
         [exit setTarget:self];
         
         int i = 0;
         
-        [play_pause setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:play_pause]; 
-        [next setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:next]; 
-        [rate setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:rate];
-        [bye setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+8, 4)],[controlView addSubview:bye];
+        [play_pause setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:play_pause]; 
+        [next setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:next]; 
+        [rate setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:rate];
+        [bye setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:bye];
         [controlView setFrameSize:NSMakeSize(i*ICON_WIDTH+40, ICON_WIDTH+8)];
         
         condition=[[NSCondition alloc] init];
@@ -125,11 +124,13 @@
     if(c!=nil)[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(_reform:) name:@"controller.sourceChanged" object:nil],
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setDetail:) name:@"player.startToPlay" object:nil],
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateChanged:) name:@"player.rateChanged" object:nil],
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enablesNotification:) name:@"source.enables" object:nil]
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enablesNotification:) name:@"source.enables" object:nil],
+        [dv setServiceTarget:c withSelector:@selector(service:)]
         ;
     else [self removeObserver:self forKeyPath:@"controller.sourceChanged"],[self removeObserver:self forKeyPath:@"player.startToPlay"],
         [self removeObserver:self forKeyPath:@"player.rateChanged"],
-        [self removeObserver:self forKeyPath:@"source.enables"]
+        [self removeObserver:self forKeyPath:@"source.enables"],
+        [dv setServiceTarget:nil withSelector:nil]
         ;
     [condition unlock];
 }
@@ -143,9 +144,7 @@
     [mainMenu addItem:controlItem];
     [mainMenu addItem:[NSMenuItem separatorItem]];
     [mainMenu addItem:albumItem];
-    [mainMenu addItem:album];
-    [mainMenu addItem:artist];
-    [mainMenu addItem:title];
+
     [mainMenu addItem:[NSMenuItem separatorItem]];
     
     if(name!=nil)
@@ -221,31 +220,8 @@
     NSImage * image;
     if(n.object!=nil) image=n.object;
     else image=[NSImage imageNamed:@"album.png"];
-    [image retain];
-    [albumView setImage:image];
-    NSSize imgsize=[image size];
-    [albumView setFrameSize:NSMakeSize(imgsize.width+IMAGE_VIEW_MARGIN*2, imgsize.height + IMAGE_VIEW_MARGIN*2)];
-    NSDictionary* info=n.userInfo;
+    [dv setDetail:n.userInfo withImage:image];
 
-    if([[info valueForKey:@"Like"] intValue]==1) [rate setState:NSOnState];
-    else [rate setState:NSOffState];
-    
-    if([info valueForKey:@"Artist"]!=nil)
-        [artist setTitle:[NSString stringWithFormat:@"%@",[info valueForKey:@"Artist"]]];
-    else [artist setTitle:@"未知艺术家"];
-    
-    NSString *year=nil;
-    
-    if([info valueForKey:@"Year"]!=nil) year=[NSString stringWithFormat:@" %@",[info valueForKey:@"Year"]];
-    else year=@"";
-    
-    if([info valueForKey:@"Album"]!=nil)
-        [album setTitle:[NSString stringWithFormat:@"< %@ > %@",[info valueForKey:@"Album"],year]];
-    else [album setTitle:@"< 未知唱片集 >"];
-    
-    if([info valueForKey:@"Title"]!=nil)
-        [title setTitle:[info valueForKey:@"Title"]];
-    else [title setTitle:@"未知歌曲"];
   //  NSLog(@">>>>>>>>>>>>>>>>end");
         [condition unlock];
 }
@@ -332,6 +308,7 @@
     else [play_pause setImage:play],[play_pause setAlternateImage:play_alt];
 }
 
+
 -(void)dealloc
 {
     [item release];
@@ -352,10 +329,7 @@
     [rate release];
     [bye release];
     [albumItem release];
-    [albumView release];
-    [title release];
-    [album release];
-    [artist release];
+    [dv release];
     [condition release];
 }
 

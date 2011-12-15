@@ -166,6 +166,24 @@
 }
 
 
+-(void) service:(NSString *)s
+{
+    if(current==nil) return;
+    if([s isEqualToString:@"twitter"])
+    {
+        
+        NSString* str=[NSString stringWithFormat:@"#nowplaying %@ - %@ ",[current valueForKey:@"Title"],[current valueForKey:@"Artist"]];
+        
+        NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
+        
+        [pb setData:[str dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
+        NSPerformService(@"Tweet", pb);
+        [pb release];
+    }
+    else{
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/#q=%@+%@",[current valueForKey:@"Title"],[current valueForKey:@"Artist"]]]];
+    }
+}
 
 
 

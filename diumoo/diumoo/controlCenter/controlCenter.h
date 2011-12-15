@@ -41,4 +41,6 @@
 -(BOOL) bye;
 -(BOOL) changeChannelTo:(NSInteger) channel;
 
+-(void) service:(NSString*)s;
+
 @end

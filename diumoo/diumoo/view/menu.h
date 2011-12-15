@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "controlCenter.h"
+#import "DetailView.h"
 
 #define ICON_WIDTH 32
 #define ALBUM_VIEW_WIDTH 200
@@ -36,10 +37,9 @@
     
     
     NSMenuItem * albumItem;
-    NSImageView * albumView;
-    NSMenuItem * artist;
-    NSMenuItem * album;
-    NSMenuItem * title;
+    DetailView* dv;
+    
+    
     NSMenuItem * perfsItem;
     NSMenuItem * aboutItem;
     NSMenuItem * exit;
@@ -64,6 +64,8 @@
 -(void) backChannelTo:(NSNumber*) c;
 -(IBAction)channelAction:(id)sender;
 -(IBAction)buttonAction:(id)sender;
+
+
 
 -(void) enablesNotification:(NSNotification*)n;
 @end

@@ -27,6 +27,7 @@
 {
     NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[m valueForKey:@"Picture"]]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:m];
+    [image release];
 }
 
 -(BOOL) startToPlay:(NSDictionary *)music
