@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        lock=[[[NSLock alloc]init] retain];
+        lock=[[NSLock alloc]init] ;
         state=0;
         current=nil;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded) name:@"player.end" object:nil];
@@ -34,7 +34,6 @@
         [player pause],[player release],player=nil;
         if(state & PLAYER_STATE_READY) state-=PLAYER_STATE_READY;
     }
-    if((state & PLAYER_STATE_READY) && (state & SOURCE_STATE_READY)) [self _start_to_play];
     [lock unlock];
     return YES;
 }
@@ -52,8 +51,7 @@
         [player pause],[source release],source=nil;
         if(state & SOURCE_STATE_READY) state-=SOURCE_STATE_READY;
     }
-    if((state & PLAYER_STATE_READY) && (state & SOURCE_STATE_READY))
-        if([self _start_to_play]!=YES) return NO;
+    if([self _start_to_play]!=YES) return NO;
     [lock unlock];
     return YES;
 }
@@ -190,8 +188,6 @@
 -(void) dealloc
 {
     [self pause];
-    [player release];
-    [source release];
     [current release];
     [lock release];
     [super dealloc];

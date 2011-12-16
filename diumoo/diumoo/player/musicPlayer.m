@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        condition=[[[NSCondition alloc] init] retain];
+        condition=[[NSCondition alloc] init] ;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
     }
@@ -78,12 +78,6 @@
 }
 
 
--(void) dealloc
-{
-    [condition release];
-    [player release];
-    [super dealloc];
-}
 
 -(void) ended
 {
@@ -98,4 +92,10 @@
     [condition unlock];
 }
 
+-(void) dealloc
+{
+    [condition release];
+    [player release];
+    [super dealloc];
+}
 @end

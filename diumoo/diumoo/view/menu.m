@@ -15,31 +15,31 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        item=[[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+        item=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] ;
         [item setImage:[NSImage imageNamed:@"icon.png"]];
         [item setAlternateImage:[ NSImage imageNamed:@"icon-alt.png"]];
         [item setHighlightMode:YES];
         
-        mainMenu=[[[NSMenu alloc]init] retain];
+        mainMenu=[[NSMenu alloc]init] ;
         
         [item setMenu:mainMenu];
         
-        controlItem=[[[NSMenuItem alloc]init]retain];
-        albumItem=[[[NSMenuItem alloc]init] retain];
+        controlItem=[[NSMenuItem alloc]init];
+        albumItem=[[NSMenuItem alloc]init];
         dv=[[DetailView alloc] init];
 
         
         
-        perfsItem=[[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ] retain];
-        exit=[[[NSMenuItem alloc]initWithTitle:@"退出" action:nil keyEquivalent:@""] retain];
-        aboutItem=[[[NSMenuItem alloc]initWithTitle:@"关于" action:nil keyEquivalent:@""] retain];
+        perfsItem=[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ] ;
+        exit=[[NSMenuItem alloc]initWithTitle:@"退出" action:nil keyEquivalent:@""];
+        aboutItem=[[NSMenuItem alloc]initWithTitle:@"关于" action:nil keyEquivalent:@""] ;
         
         NSRect b_rect=NSMakeRect(0, 0, ICON_WIDTH, ICON_WIDTH); 
         
-        play_pause=[[[NSButton alloc]initWithFrame:b_rect] retain];
-        next=[[[NSButton alloc]initWithFrame:b_rect] retain];
-        rate=[[[NSButton alloc]initWithFrame:b_rect] retain];
-        bye=[[[NSButton alloc]initWithFrame:b_rect] retain];
+        play_pause=[[NSButton alloc]initWithFrame:b_rect] ;
+        next=[[NSButton alloc]initWithFrame:b_rect] ;
+        rate=[[NSButton alloc]initWithFrame:b_rect] ;
+        bye=[[NSButton alloc]initWithFrame:b_rect] ;
         
         [play_pause setTag:1];
         [next setTag:2];
@@ -59,14 +59,14 @@
         [bye setTarget:self];
         [bye setAction:@selector(buttonAction:)];
         
-        play=[[NSImage imageNamed:@"play.png"] retain];
-        play_alt=[[NSImage imageNamed:@"play-alt.png"] retain];
+        play=[NSImage imageNamed:@"play.png"] ;
+        play_alt=[NSImage imageNamed:@"play-alt.png"] ;
         
-        pause=[[NSImage imageNamed:@"pause.png"] retain];
-        pause_alt=[[NSImage imageNamed:@"pause-alt.png"] retain];
+        pause=[NSImage imageNamed:@"pause.png"] ;
+        pause_alt=[NSImage imageNamed:@"pause-alt.png"];
         
-        like=[[NSImage imageNamed:@"like.png"] retain];
-        unlike=[[NSImage imageNamed:@"unlike.png"] retain];
+        like=[NSImage imageNamed:@"like.png"];
+        unlike=[NSImage imageNamed:@"unlike.png"] ;
         
         
         
@@ -94,7 +94,7 @@
         [bye setBordered:NO];
         
         
-        controlView=[[[NSView alloc] initWithFrame:NSMakeRect(0, 0, 0,ICON_WIDTH+8)] retain];
+        controlView=[[NSView alloc] initWithFrame:NSMakeRect(0, 0, 0,ICON_WIDTH+8)] ;
         [controlView displayIfNeeded];
         [controlItem setView:controlView];
         

@@ -18,29 +18,29 @@
         srand((int)time(0));
         
         //初始化 request
-        request=[[[NSMutableURLRequest alloc]init] retain];
+        request=[[NSMutableURLRequest alloc]init] ;
         [request setTimeoutInterval:TIMEOUT];
         [request setHTTPShouldHandleCookies:NO];
         
         //初始化lock
-        condition=[[[NSCondition alloc]init] retain];
+        condition=[[NSCondition alloc]init] ;
         
         //将Cookie设置为空
         cookie=nil;
         
         //初始化两个set
-        replacePlaylist = [[[NSSet alloc] initWithObjects:NEW,SKIP,BYE, nil] retain];
-        recordType = [[[NSSet alloc] initWithObjects:RATE,END,SKIP,BYE, nil] retain];
+        replacePlaylist = [[NSSet alloc] initWithObjects:NEW,SKIP,BYE, nil] ;
+        recordType = [[NSSet alloc] initWithObjects:RATE,END,SKIP,BYE, nil] ;
         
-        privateEnables=[[NSSet setWithObjects:@"play",@"next",@"like",@"bye", nil] retain];
-        publicEnables = [[NSSet setWithObjects:@"play",@"next", nil] retain];
-        publicWithLoggedInEnables = [[NSSet setWithObjects:@"play",@"next",@"like", nil] retain];
+        privateEnables=[NSSet setWithObjects:@"play",@"next",@"like",@"bye", nil] ;
+        publicEnables = [NSSet setWithObjects:@"play",@"next", nil] ;
+        publicWithLoggedInEnables = [NSSet setWithObjects:@"play",@"next",@"like", nil] ;
         
         //初始化playlist
-        playlist=[[[NSMutableArray alloc] initWithCapacity:20] retain];
+        playlist=[[NSMutableArray alloc] initWithCapacity:20] ;
         
         //初始化h
-        h=[[[NSMutableString alloc] init] retain];
+        h=[[NSMutableString alloc] init] ;
         
         loggedIn = NO;
         
@@ -50,7 +50,7 @@
         else channel=0;
         
         //读取电台频道信息
-        channelList=[[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dchannels" ofType:@"plist"]] retain];
+        channelList=[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dchannels" ofType:@"plist"]] ;
         
     }
     
@@ -172,13 +172,13 @@
     }
     else [self performSelectorInBackground:@selector(_back_request:) withObject:[
           NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:sid],@"sid",t,@"type", nil ]];
-        NSDictionary* current=[[playlist objectAtIndex:0] retain];
+        NSDictionary* current=[playlist objectAtIndex:0] ;
         [playlist removeObjectAtIndex:0];
         NSLog(@"%@",current);
         NSDictionary* currentMusic=nil;
         NSString* art=[current valueForKey:@"artist"];
         if(art==nil) art = [current valueForKey:@"dj_name"];
-        currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
+        currentMusic=[NSDictionary dictionaryWithObjectsAndKeys:
                       [current valueForKey:@"albumtitle"],@"Album",
                       [current valueForKey:@"album"],@"Store URL",
                       [current valueForKey:@"public_time"],@"Year",
@@ -190,8 +190,9 @@
                       [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
                        [current valueForKey:@"like"],@"Like",
                        [current valueForKey:@"rating_avg"],@"Album Rating",
-                       nil] retain];
+                       nil] ;
         [current release];
+        [currentMusic autorelease];
         return currentMusic;
     return nil;
 }
