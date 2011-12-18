@@ -183,7 +183,7 @@
                       [current valueForKey:@"album"],@"Store URL",
                       [current valueForKey:@"public_time"],@"Year",
                       art, @"Artist" ,
-                      [current valueForKey:@"title"],@"Title",
+                      [current valueForKey:@"title"],@"Name",
                       [current valueForKey:@"url"],@"Location",
                       [current valueForKey:@"sid"],@"sid",
                       [current valueForKey:@"picture"],@"Picture",

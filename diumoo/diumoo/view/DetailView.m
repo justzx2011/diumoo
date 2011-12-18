@@ -43,8 +43,8 @@
         [album setStringValue:[info valueForKey:@"Album"]];
     else [album setStringValue:@"未知唱片集"];
     
-    if([info valueForKey:@"Title"]!=nil)
-        [music setStringValue:[info valueForKey:@"Title"]];
+    if([info valueForKey:@"Name"]!=nil)
+        [music setStringValue:[info valueForKey:@"Name"]];
     else [music setStringValue:@"未知歌曲"];
 }
 

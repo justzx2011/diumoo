@@ -10,13 +10,14 @@
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
 		F5766D18149D8D5800D5FDA6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D16149D8D5800D5FDA6 /* MainMenu.xib */; };
+		F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D26149D950200D5FDA6 /* prefsPanel.xib */; };
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
 		F58A8C74149A2EB3004E60AD /* controlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C5D149A2EB3004E60AD /* controlCenter.m */; };
 		F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */; };
 		F58A8C77149A2EB3004E60AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C62149A2EB3004E60AD /* main.m */; };
 		F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C65149A2EB3004E60AD /* doubanFMSource.m */; };
 		F58A8C79149A2EB3004E60AD /* mediaSourceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C67149A2EB3004E60AD /* mediaSourceBase.m */; };
-		F58A8C7A149A2EB3004E60AD /* growlNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6A149A2EB3004E60AD /* growlNotifier.m */; };
+		F58A8C7A149A2EB3004E60AD /* notifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6A149A2EB3004E60AD /* notifier.m */; };
 		F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6D149A2EB3004E60AD /* musicPlayer.m */; };
 		F58A8C7D149A2EB3004E60AD /* menu.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C73149A2EB3004E60AD /* menu.m */; };
 		F58A8C89149A3CDA004E60AD /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C87149A3CDA004E60AD /* DetailView.m */; };
@@ -73,6 +74,8 @@
 		F56A8416148CF92800AE6F1E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F56A8417148CF92800AE6F1E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F5766D17149D8D5800D5FDA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F5766D1A149D931900D5FDA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		F5766D27149D950200D5FDA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "diumoo/zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
 		F58A8C5C149A2EB3004E60AD /* controlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlCenter.h; sourceTree = "<group>"; };
 		F58A8C5D149A2EB3004E60AD /* controlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlCenter.m; sourceTree = "<group>"; };
 		F58A8C5E149A2EB3004E60AD /* diumoo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "diumoo-Info.plist"; sourceTree = "<group>"; };
@@ -84,8 +87,8 @@
 		F58A8C65149A2EB3004E60AD /* doubanFMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doubanFMSource.m; sourceTree = "<group>"; };
 		F58A8C66149A2EB3004E60AD /* mediaSourceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mediaSourceBase.h; sourceTree = "<group>"; };
 		F58A8C67149A2EB3004E60AD /* mediaSourceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mediaSourceBase.m; sourceTree = "<group>"; };
-		F58A8C69149A2EB3004E60AD /* growlNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = growlNotifier.h; sourceTree = "<group>"; };
-		F58A8C6A149A2EB3004E60AD /* growlNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = growlNotifier.m; sourceTree = "<group>"; };
+		F58A8C69149A2EB3004E60AD /* notifier.h */ = {isa = PBXFileReference; fileEncoding = 4; path = notifier.h; sourceTree = "<group>"; };
+		F58A8C6A149A2EB3004E60AD /* notifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = notifier.m; sourceTree = "<group>"; };
 		F58A8C6C149A2EB3004E60AD /* musicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = musicPlayer.h; sourceTree = "<group>"; };
 		F58A8C6D149A2EB3004E60AD /* musicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = musicPlayer.m; sourceTree = "<group>"; };
 		F58A8C72149A2EB3004E60AD /* menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
@@ -189,6 +192,14 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		F5766D1B149D93EF00D5FDA6 /* preferencePanel */ = {
+			isa = PBXGroup;
+			children = (
+				F5766D26149D950200D5FDA6 /* prefsPanel.xib */,
+			);
+			name = preferencePanel;
+			sourceTree = "<group>";
+		};
 		F58A8C5A149A2EB3004E60AD /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +214,7 @@
 				F58A8C68149A2EB3004E60AD /* notifier */,
 				F58A8C6B149A2EB3004E60AD /* player */,
 				F58A8C71149A2EB3004E60AD /* view */,
+				F5766D1B149D93EF00D5FDA6 /* preferencePanel */,
 			);
 			path = diumoo;
 			sourceTree = "<group>";
@@ -230,8 +242,8 @@
 		F58A8C68149A2EB3004E60AD /* notifier */ = {
 			isa = PBXGroup;
 			children = (
-				F58A8C69149A2EB3004E60AD /* growlNotifier.h */,
-				F58A8C6A149A2EB3004E60AD /* growlNotifier.m */,
+				F58A8C69149A2EB3004E60AD /* notifier.h */,
+				F58A8C6A149A2EB3004E60AD /* notifier.m */,
 			);
 			path = notifier;
 			sourceTree = "<group>";
@@ -411,6 +423,7 @@
 				F5C38F40149C58A40082FEE4 /* twitter.png in Resources */,
 				F5C38F42149C58AF0082FEE4 /* google.png in Resources */,
 				F5766D18149D8D5800D5FDA6 /* MainMenu.xib in Resources */,
+				F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +449,7 @@
 				F58A8C77149A2EB3004E60AD /* main.m in Sources */,
 				F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */,
 				F58A8C79149A2EB3004E60AD /* mediaSourceBase.m in Sources */,
-				F58A8C7A149A2EB3004E60AD /* growlNotifier.m in Sources */,
+				F58A8C7A149A2EB3004E60AD /* notifier.m in Sources */,
 				F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */,
 				F58A8C7D149A2EB3004E60AD /* menu.m in Sources */,
 				F58A8C89149A3CDA004E60AD /* DetailView.m in Sources */,
@@ -450,8 +463,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				F5766D17149D8D5800D5FDA6 /* en */,
+				F5766D1A149D931900D5FDA6 /* zh-Hans */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		F5766D26149D950200D5FDA6 /* prefsPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5766D27149D950200D5FDA6 /* zh-Hans */,
+			);
+			name = prefsPanel.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

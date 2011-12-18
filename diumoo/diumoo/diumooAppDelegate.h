@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "doubanFMSource.h"
 #import "musicPlayer.h"
-#import "growlNotifier.h"
+#import "notifier.h"
 #import "menu.h"
 #import "controlCenter.h"
 
@@ -18,7 +18,7 @@
     musicPlayer* p;
     doubanFMSource* s;
     controlCenter* c;
-    growlNotifier* g;
+    notifier* g;
     menu* m;
 }
 

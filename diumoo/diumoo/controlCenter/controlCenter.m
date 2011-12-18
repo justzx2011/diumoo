@@ -169,7 +169,7 @@
     if([s isEqualToString:@"twitter"])
     {
         
-        NSString* str=[NSString stringWithFormat:@"#nowplaying %@ - %@ ",[current valueForKey:@"Title"],[current valueForKey:@"Artist"]];
+        NSString* str=[NSString stringWithFormat:@"#nowplaying %@ - %@ ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
         
         NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
         
@@ -178,7 +178,7 @@
         [pb release];
     }
     else{
-        NSString* unencode=[NSString stringWithFormat:@"%@+%@",[current valueForKey:@"Title"],[current valueForKey:@"Artist"]];
+        NSString* unencode=[NSString stringWithFormat:@"%@+%@",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
         CFStringRef encoded=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
         NSLog(@"%@",encoded);
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/#q=%@",encoded]]];

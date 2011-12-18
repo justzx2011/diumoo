@@ -15,11 +15,11 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    g=[[[growlNotifier alloc] init] retain];
-    s=[[[doubanFMSource alloc] init] retain];
-    p=[[[musicPlayer alloc] init] retain];
-    c=[[[controlCenter alloc] init] retain];
-    m=[[[menu alloc]init] retain];
+    g=[[notifier alloc] init];
+    s=[[doubanFMSource alloc] init];
+    p=[[musicPlayer alloc] init];
+    c=[[controlCenter alloc] init];
+    m=[[menu alloc]init];
     [m setController:c];
     [self performSelectorInBackground:@selector(backinit) withObject:nil];
 }
@@ -34,6 +34,16 @@
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
     [c pause];
+}
+
+-(void) dealloc
+{
+    [c release];
+    [p release];
+    [s release];
+    [m release];
+    [g release];
+    [super dealloc];
 }
 
 @end

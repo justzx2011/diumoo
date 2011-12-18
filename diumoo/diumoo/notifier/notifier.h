@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Growl/Growl.h>
-@interface growlNotifier : NSObject <GrowlApplicationBridgeDelegate>
+@interface notifier : NSObject <GrowlApplicationBridgeDelegate>
 
 -(NSDictionary* )registrationDictionaryForGrowl;
--(void) growlNotification:(NSNotification*) noti;
+
+-(void) notify:(NSNotification*)noti;
+
+-(void) growlNotification:(NSDictionary*) userinfo withImage: (id) image;
+-(void) iTunesNotification:(NSDictionary*)noti;
 
 @end
