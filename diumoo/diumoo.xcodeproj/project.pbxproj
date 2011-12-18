@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
+		F5766D18149D8D5800D5FDA6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D16149D8D5800D5FDA6 /* MainMenu.xib */; };
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
 		F58A8C74149A2EB3004E60AD /* controlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C5D149A2EB3004E60AD /* controlCenter.m */; };
 		F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */; };
@@ -71,6 +72,7 @@
 		F56A8415148CF92800AE6F1E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F56A8416148CF92800AE6F1E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F56A8417148CF92800AE6F1E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F5766D17149D8D5800D5FDA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F58A8C5C149A2EB3004E60AD /* controlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlCenter.h; sourceTree = "<group>"; };
 		F58A8C5D149A2EB3004E60AD /* controlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlCenter.m; sourceTree = "<group>"; };
 		F58A8C5E149A2EB3004E60AD /* diumoo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "diumoo-Info.plist"; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		F58A8C5A149A2EB3004E60AD /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				F5766D16149D8D5800D5FDA6 /* MainMenu.xib */,
 				F58A8C5E149A2EB3004E60AD /* diumoo-Info.plist */,
 				F58A8C5F149A2EB3004E60AD /* diumoo-Prefix.pch */,
 				F58A8C60149A2EB3004E60AD /* diumooAppDelegate.h */,
@@ -407,6 +410,7 @@
 				F58A8CAB149A48DF004E60AD /* unlike.png in Resources */,
 				F5C38F40149C58A40082FEE4 /* twitter.png in Resources */,
 				F5C38F42149C58AF0082FEE4 /* google.png in Resources */,
+				F5766D18149D8D5800D5FDA6 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +444,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F5766D16149D8D5800D5FDA6 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5766D17149D8D5800D5FDA6 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F56A842A148CF92800AE6F1E /* Debug */ = {
