@@ -255,6 +255,7 @@
     if(channel==0 && loggedIn==YES) r=privateEnables;
     else if(loggedIn==YES) r=publicWithLoggedInEnables;
     else r=publicEnables;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:r forKey:@"enables"]];
     [condition unlock];
 }
 

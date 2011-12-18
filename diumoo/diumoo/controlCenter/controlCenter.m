@@ -51,7 +51,6 @@
         [player pause],[source release],source=nil;
         if(state & SOURCE_STATE_READY) state-=SOURCE_STATE_READY;
     }
-    if([self _start_to_play]!=YES) return NO;
     [lock unlock];
     return YES;
 }
@@ -66,7 +65,7 @@
     return source;
 }
 
--(BOOL) _start_to_play
+-(BOOL) startToPlay
 {
     [source setChannel:0];
     current=[[source getNewSong] retain];
@@ -179,7 +178,10 @@
         [pb release];
     }
     else{
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/#q=%@+%@",[current valueForKey:@"Title"],[current valueForKey:@"Artist"]]]];
+        NSString* unencode=[NSString stringWithFormat:@"%@+%@",[current valueForKey:@"Title"],[current valueForKey:@"Artist"]];
+        CFStringRef encoded=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
+        NSLog(@"%@",encoded);
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/#q=%@",encoded]]];
     }
 }
 

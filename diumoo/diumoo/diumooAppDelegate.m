@@ -28,6 +28,7 @@
 {
     [c setSource:s];
     [c setPlayer:p];
+    [c startToPlay];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification

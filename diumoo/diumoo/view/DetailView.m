@@ -29,7 +29,7 @@
     [album_img setFrameSize:[img size]];
     [album_img setImage:img];
     
-    [[self view]setFrameSize:NSMakeSize([img size].width+75,[img size].height+100)];
+    [[self view]setFrameSize:NSMakeSize(230,[img size].height+130)];
     
     if([info valueForKey:@"Artist"]!=nil)
         [artist setStringValue:[info valueForKey:@"Artist"]];

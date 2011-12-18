@@ -31,7 +31,7 @@
 -(id) getSource;
 
 
--(BOOL) _start_to_play;
+-(BOOL) startToPlay;
 -(BOOL) play_pause;
 -(BOOL) play;
 -(BOOL) pause;

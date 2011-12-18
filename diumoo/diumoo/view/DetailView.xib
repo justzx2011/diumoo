@@ -78,8 +78,8 @@
 					</object>
 					<object class="NSButton" id="722388319">
 						<reference key="NSNextResponder" ref="1005"/>
-						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{181, 196}, {24, 25}}</string>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{45, 248}, {24, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="588429977"/>
@@ -97,7 +97,7 @@
 							</object>
 							<string key="NSCellIdentifier">_NS:1491</string>
 							<reference key="NSControlView" ref="722388319"/>
-							<int key="NSButtonFlags">-2033958657</int>
+							<int key="NSButtonFlags">-2042347265</int>
 							<int key="NSButtonFlags2">163</int>
 							<object class="NSCustomResource" key="NSNormalImage">
 								<string key="NSClassName">NSImage</string>
@@ -111,8 +111,8 @@
 					</object>
 					<object class="NSButton" id="285813124">
 						<reference key="NSNextResponder" ref="1005"/>
-						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{181, 219}, {24, 25}}</string>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{20, 248}, {24, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="722388319"/>
@@ -125,7 +125,7 @@
 							<reference key="NSSupport" ref="336638652"/>
 							<string key="NSCellIdentifier">_NS:1491</string>
 							<reference key="NSControlView" ref="285813124"/>
-							<int key="NSButtonFlags">-2033958657</int>
+							<int key="NSButtonFlags">-2042347265</int>
 							<int key="NSButtonFlags2">163</int>
 							<object class="NSCustomResource" key="NSNormalImage">
 								<string key="NSClassName">NSImage</string>
@@ -143,7 +143,6 @@
 						<string key="NSFrame">{{19, 9}, {184, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:3936</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="938940158">
@@ -219,7 +218,7 @@
 						<string key="NSClassName">NSImageView</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{225, 250}</string>
+				<string key="NSFrameSize">{230, 280}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="621860275"/>
@@ -324,12 +323,12 @@
 						<reference key="object" ref="1005"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="621860275"/>
-							<reference ref="285813124"/>
-							<reference ref="722388319"/>
 							<reference ref="588429977"/>
 							<reference ref="71912215"/>
 							<reference ref="652317762"/>
 							<reference ref="256070778"/>
+							<reference ref="285813124"/>
+							<reference ref="722388319"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -500,8 +499,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="google">{24, 24}</string>
-			<string key="twitter">{24, 24}</string>
+			<string key="google">{32, 32}</string>
+			<string key="twitter">{32, 32}</string>
 		</dictionary>
 	</data>
 </archive>
