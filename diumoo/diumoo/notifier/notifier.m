@@ -53,14 +53,12 @@
 {
     NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
     [dic setValuesForKeysWithDictionary:noti];
+    NSString * name=[dic valueForKey:@"Name"];
+    [dic setValue:[NSString stringWithFormat:@"%@ - %@",name,[dic valueForKey:@"Artist"]] forKey:@"Name"];
+    
     [dic setValue:@"Playing" forKey:@"Player State"];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
 }
 
--(void) dealloc
-{
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:nil];
-    [super dealloc];
-}
 
 @end

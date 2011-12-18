@@ -34,16 +34,8 @@
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
     [c pause];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:nil];
 }
 
--(void) dealloc
-{
-    [c release];
-    [p release];
-    [s release];
-    [m release];
-    [g release];
-    [super dealloc];
-}
 
 @end
