@@ -47,7 +47,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 240}, {480, 270}}</string>
 				<int key="NSWTFlags">544735232</int>
-				<string key="NSWindowTitle">偏好设置</string>
+				<string key="NSWindowTitle">Preference</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<object class="NSToolbar" key="NSViewClass" id="677635537">
 					<object class="NSMutableString" key="NSToolbarIdentifier">
@@ -80,8 +80,8 @@
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
 									<characters key="NS.bytes">104C9F35-D486-4910-A75E-5913C5830768</characters>
 								</object>
-								<string key="NSToolbarItemLabel">通用</string>
-								<string key="NSToolbarItemPaletteLabel">Toolbar Item</string>
+								<string key="NSToolbarItemLabel">General</string>
+								<string key="NSToolbarItemPaletteLabel">General</string>
 								<string key="NSToolbarItemToolTip"/>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
@@ -102,8 +102,8 @@
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
 									<characters key="NS.bytes">5D6F8F0F-E178-4465-B0E2-019B6DBE92D8</characters>
 								</object>
-								<string key="NSToolbarItemLabel">关于</string>
-								<string key="NSToolbarItemPaletteLabel">关于</string>
+								<string key="NSToolbarItemLabel">About</string>
+								<string key="NSToolbarItemPaletteLabel">About</string>
 								<string key="NSToolbarItemToolTip"/>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
@@ -124,8 +124,8 @@
 								<object class="NSMutableString" key="NSToolbarItemIdentifier">
 									<characters key="NS.bytes">98DAF96D-F482-485A-A3A8-D380444298F3</characters>
 								</object>
-								<string key="NSToolbarItemLabel">账户设置</string>
-								<string key="NSToolbarItemPaletteLabel">账户设置</string>
+								<string key="NSToolbarItemLabel">Account</string>
+								<string key="NSToolbarItemPaletteLabel">Account</string>
 								<string key="NSToolbarItemToolTip"/>
 								<nil key="NSToolbarItemView"/>
 								<object class="NSCustomResource" key="NSToolbarItemImage">
@@ -367,6 +367,9 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">2</int>
 						<reference key="object" ref="1006"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -488,7 +491,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

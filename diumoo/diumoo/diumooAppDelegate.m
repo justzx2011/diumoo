@@ -37,5 +37,12 @@
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:nil];
 }
 
+-(void) showPreference:(id)sender
+{
+    preference* pref=[[preference alloc] init];
+    [[pref window] makeKeyAndOrderFront:[pref window]];
+    [pref autorelease];
+}
+
 
 @end

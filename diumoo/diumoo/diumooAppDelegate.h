@@ -12,6 +12,7 @@
 #import "notifier.h"
 #import "menu.h"
 #import "controlCenter.h"
+#import "preference.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     //NSWindow *window;
@@ -24,5 +25,7 @@
 
 -(void) backinit;
 -(void) applicationWillTerminate:(NSNotification *)notification;
+
+-(IBAction)showPreference:(id)sender;
 
 @end

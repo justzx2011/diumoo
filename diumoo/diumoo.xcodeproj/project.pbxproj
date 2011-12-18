@@ -11,6 +11,7 @@
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
 		F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D26149D950200D5FDA6 /* prefsPanel.xib */; };
 		F5766D34149DA0EC00D5FDA6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D32149DA0EC00D5FDA6 /* MainMenu.xib */; };
+		F5766D3C149DB16500D5FDA6 /* preference.m in Sources */ = {isa = PBXBuildFile; fileRef = F5766D3B149DB16500D5FDA6 /* preference.m */; };
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
 		F58A8C74149A2EB3004E60AD /* controlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C5D149A2EB3004E60AD /* controlCenter.m */; };
 		F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */; };
@@ -76,6 +77,9 @@
 		F5766D27149D950200D5FDA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "diumoo/zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
 		F5766D33149DA0EC00D5FDA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F5766D35149DA12E00D5FDA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
+		F5766D3A149DB16500D5FDA6 /* preference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = preference.h; path = preference/preference.h; sourceTree = "<group>"; };
+		F5766D3B149DB16500D5FDA6 /* preference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = preference.m; path = preference/preference.m; sourceTree = "<group>"; };
+		F5766D3D149DB4AA00D5FDA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		F58A8C5C149A2EB3004E60AD /* controlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlCenter.h; sourceTree = "<group>"; };
 		F58A8C5D149A2EB3004E60AD /* controlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlCenter.m; sourceTree = "<group>"; };
 		F58A8C5E149A2EB3004E60AD /* diumoo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "diumoo-Info.plist"; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				F5766D26149D950200D5FDA6 /* prefsPanel.xib */,
+				F5766D3A149DB16500D5FDA6 /* preference.h */,
+				F5766D3B149DB16500D5FDA6 /* preference.m */,
 			);
 			name = preferencePanel;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */,
 				F58A8C7D149A2EB3004E60AD /* menu.m in Sources */,
 				F58A8C89149A3CDA004E60AD /* DetailView.m in Sources */,
+				F5766D3C149DB16500D5FDA6 /* preference.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +473,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F5766D27149D950200D5FDA6 /* zh-Hans */,
+				F5766D3D149DB4AA00D5FDA6 /* en */,
 			);
 			name = prefsPanel.xib;
 			path = ..;
