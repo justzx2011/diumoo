@@ -18,7 +18,7 @@
 @interface musicPlayer : NSObject
 {
     QTMovie* player;
-   // NSCondition* condition;
+    NSCondition* cond;
     FrequencyLevels* level;
     BOOL token;
 }

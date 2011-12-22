@@ -229,6 +229,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     CGPathAddCurveToPoint(path, NULL, i*40+80, *(values+i)/2, i*40+100, 0, i*40+120, 0);
     CGContextAddPath(ctx, path);
     CGContextFillPath(ctx);
+    CGPathRelease(path);
     CGContextRestoreGState(ctx);
 }
 

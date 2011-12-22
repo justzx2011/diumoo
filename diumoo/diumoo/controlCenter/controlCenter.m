@@ -69,7 +69,8 @@
 {
     [source setChannel:0];
     current=[[source getNewSong] retain];
-    if(current!=nil)return [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO],YES;
+    if(current!=nil )
+        return  [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO],YES;
     return NO;
 }
 
@@ -83,7 +84,8 @@
 {
     if([lock tryLock]!=YES) return NO;
     if( player!=nil && [player isPlaying]!=YES)
-        [player play],[[NSNotificationCenter defaultCenter] postNotificationName:@"controller.play" object:nil userInfo:current];
+        [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"controller.play" object:nil userInfo:current];
     else return [lock unlock],NO;
     return [lock unlock], YES;
 }
@@ -93,8 +95,8 @@
     if([lock tryLock]!=YES) return NO;
     if(player != nil && [player isPlaying])
     {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.pause" object:nil userInfo:current];
-        [player pause];
+      //  [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.pause" object:nil userInfo:current];
+        [player performSelectorOnMainThread:@selector(pause) withObject:nil waitUntilDone:NO];
     }
     else return [lock unlock],NO;
     return [lock unlock],YES;
@@ -105,8 +107,13 @@
     if([lock tryLock]!=YES) return NO;
     if(source!=nil && current!=nil )
         if(player!=nil && ([player pause],[current release],(current=[source getNewSongBySkip:[[current valueForKey:@"sid"]integerValue]]))!=nil)
-            if( [player respondsToSelector:@selector(startToPlay:)] && [player startToPlay:current])
-                return [lock unlock],YES;
+            if( [player respondsToSelector:@selector(startToPlay:)])
+            {
+                [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+                [lock unlock];
+                return YES;
+            }
+    [lock unlock];
     return NO;
 }
 
@@ -115,7 +122,8 @@
     if([lock tryLock]!=YES)return NO;
     if(source!=nil && current !=nil && 
         [source rateSongBySid:[[current valueForKey:@"sid"]integerValue]] ) 
-        return [[NSNotificationCenter defaultCenter] postNotificationName:@"controller.rate" object:nil userInfo:current],[lock unlock],YES;
+        return [lock unlock],YES;
+        //return [[NSNotificationCenter defaultCenter] postNotificationName:@"controller.rate" object:nil userInfo:current],[lock unlock],YES;
     return [lock unlock],NO;
         
 }
@@ -125,7 +133,8 @@
     if([lock tryLock]!=YES)return NO;
     if(source!=nil && current !=nil && 
        [source unrateSongBySid:[[current valueForKey:@"sid"]integerValue]] ) 
-        return [[NSNotificationCenter defaultCenter] postNotificationName:@"controller.unrate" object:nil userInfo:current],[lock unlock],YES;
+        return [lock unlock],YES;
+       // return [[NSNotificationCenter defaultCenter] postNotificationName:@"controller.unrate" object:nil userInfo:current],[lock unlock],YES;
     return [lock unlock],NO;
     
 }
@@ -133,9 +142,13 @@
 {
     if([lock tryLock]!=YES)return NO;
     if(source!=nil && current!=nil && player!=nil
-       && ([current release],current=[[source getNewSongByBye:[[current valueForKey:@"sid"] integerValue]] retain])!=nil
-       && [player startToPlay:current]
-       ) return [lock unlock],YES;
+       && ([current release],current=[[source getNewSongByBye:[[current valueForKey:@"sid"] integerValue]] retain])!=nil)
+    {
+        [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+        [lock unlock];
+        return YES;
+    }
+        
     return [lock unlock],NO;
        
 }
@@ -146,10 +159,13 @@
     if([lock tryLock]!=YES)
         return NO;
     if(player!=nil && source!=nil
-       && (current=([source setChannel:channel],[source getNewSong]))!=nil
-       && [player startToPlay:current]
-       )
-        return [lock unlock],YES;
+       && (current=([source setChannel:channel],[source getNewSong]))!=nil)
+    {
+        [player startToPlay:current];
+        [lock unlock];
+        return YES;
+    }
+        
     return [lock unlock],NO;
 }
 
@@ -160,7 +176,7 @@
        && source!=nil
        && current!=nil
        && ([current release],current = [[source getNewSongWhenEnd:[[current valueForKey:@"sid"] integerValue]] retain])!=nil)
-        [player startToPlay: current];
+        [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
     [lock unlock];
 }
 
@@ -180,9 +196,9 @@
     }
     else{
         NSString* unencode=[NSString stringWithFormat:@"%@+%@",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
-        NSString* encoded=(NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
+        CFStringRef encoded=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/#q=%@",encoded]]];
-        [encoded release];
+        CFRelease(encoded);
     }
 }
 

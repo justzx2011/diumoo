@@ -30,11 +30,22 @@
     NSImage* img;
     if(image!=nil)img=image;
     else img=[NSImage imageNamed:@"album.png"];
-    [album_img setFrameSize:[img size]];
+
+    
+    float scale=250/([image size].width>[image size].height?image.size.width:image.size.height);
+    if(scale<1.0)
+    {
+        [album_img setFrameSize:NSMakeSize(image.size.width*scale, image.size.height*scale)];
+        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 130)];
+    }
+    else{
+        [album_img setFrameSize:[img size]];
+        [[self view]setFrameSize:NSMakeSize(230,[img size].height+130)];
+    }
+    
+    
+    
     [album_img setImage:img];
-    
-    [[self view]setFrameSize:NSMakeSize(230,[img size].height+130)];
-    
     if([info valueForKey:@"Artist"]!=nil)
         [artist setStringValue:[info valueForKey:@"Artist"]];
     else [artist setStringValue:@"未知艺术家"];
