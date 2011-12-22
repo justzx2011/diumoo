@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        condition=[[NSCondition alloc] init] ;
+        lock=[[NSLock alloc] init] ;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
     }
@@ -32,14 +32,17 @@
 
 -(BOOL) startToPlay:(NSDictionary *)music
 {
-    [condition lock];
-    if(player!=nil && [player rate]!=0) [self _pause]; 
+    if(![lock tryLock]) return NO;
+    if(player!=nil && [player rate]!=0) [self _pause];
+    [player invalidate];
     [player release];
     NSError* e=nil;
-    NSLog(@"%@",music);
+    //NSLog(@"%@",music);
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain];
-    if(e==NULL) [self _start_to_play_notification:music];
-    [condition unlock],[player autoplay];;
+    
+    [player autoplay];
+    [lock unlock];
+    if(e==NULL) [self performSelectorInBackground:@selector(_start_to_play_notification:) withObject:music];
     return (e==NULL);
 }
 -(void) _pause
@@ -48,15 +51,15 @@
 }
 -(void) play
 {
-    [condition lock];
+    if(![lock tryLock])return;
     if(player != nil&& [player rate]==0) [player play], [self _set_volume:1.0];
-    [condition unlock];
+    [lock unlock];
 }
 -(void) pause
 {
-    [condition lock];
+    if(![lock tryLock])return;
     [self _pause];
-    [condition unlock];
+    [lock unlock];
 }
 
 -(void) _set_volume:(float)v
@@ -86,15 +89,15 @@
 
 -(void) playing_rate
 {
-    [condition lock];
+    if(![lock tryLock])return;
     if(player==nil) return;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
-    [condition unlock];
+    [lock unlock];
 }
 
 -(void) dealloc
 {
-    [condition release];
+    [lock release];
     [player release];
     [super dealloc];
 }

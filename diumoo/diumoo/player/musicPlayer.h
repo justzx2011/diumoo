@@ -15,7 +15,7 @@
 @interface musicPlayer : NSObject
 {
     QTMovie* player;
-    NSCondition* condition;
+    NSLock* lock;
 }
 
 -(void) _start_to_play_notification:(NSDictionary*) m;

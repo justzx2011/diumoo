@@ -69,8 +69,8 @@
 {
     [source setChannel:0];
     current=[[source getNewSong] retain];
-    if(current!=nil && [player startToPlay:current])
-        return YES;
+    if(current!=nil )
+        return  [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO],YES;
     return NO;
 }
 
@@ -103,8 +103,13 @@
     if([lock tryLock]!=YES) return NO;
     if(source!=nil && current!=nil )
         if(player!=nil && ([player pause],[current release],(current=[source getNewSongBySkip:[[current valueForKey:@"sid"]integerValue]]))!=nil)
-            if( [player respondsToSelector:@selector(startToPlay:)] && [player startToPlay:current])
-                return [lock unlock],YES;
+            if( [player respondsToSelector:@selector(startToPlay:)])
+            {
+                [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+                [lock unlock];
+                return YES;
+            }
+                
     return NO;
 }
 
