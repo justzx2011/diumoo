@@ -126,9 +126,7 @@
         [request setHTTPMethod:@"GET"];
         [request setHTTPBody:nil];
         [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
-        
-        NSLog(@"%@",[request URL]);
-        
+        [_cookie release];
         // 发送请求
         NSHTTPURLResponse* r=nil;
         NSError* e=nil;
@@ -165,6 +163,7 @@
         int retry=0;
         do{
             [self requestPlaylistWithType:t andSid:sid];
+            [NSThread sleepForTimeInterval:5];
         }
         while([playlist count]==0 && (retry++)<MAX_RETRY_TIMES);
         
@@ -174,7 +173,6 @@
           NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:sid],@"sid",t,@"type", nil ]];
         NSDictionary* current=[playlist objectAtIndex:0] ;
         [playlist removeObjectAtIndex:0];
-        NSLog(@"%@",current);
         NSDictionary* currentMusic=nil;
         NSString* art=[current valueForKey:@"artist"];
         if(art==nil) art = [current valueForKey:@"dj_name"];
@@ -191,8 +189,6 @@
                        [current valueForKey:@"like"],@"Like",
                        [current valueForKey:@"rating_avg"],@"Album Rating",
                        nil] ;
-        [current release];
-        [currentMusic autorelease];
         return currentMusic;
     return nil;
 }

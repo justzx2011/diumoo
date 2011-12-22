@@ -58,6 +58,7 @@
     
     [dic setValue:@"Playing" forKey:@"Player State"];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
+    [dic release];
 }
 
 

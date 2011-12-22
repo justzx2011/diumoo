@@ -23,7 +23,6 @@
     menu* m;
 }
 
--(void) backinit;
 -(void) applicationWillTerminate:(NSNotification *)notification;
 
 -(IBAction)showPreference:(id)sender;

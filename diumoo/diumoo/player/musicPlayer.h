@@ -8,14 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <QTKit/QTKit.h>
+#import "FrequencyLevels.h"
 
-#define VOLUME_DURATION 10.0
+#define VOLUME_DURATION 5.0
 #define VOLUME_INTERVAL 0.1
+
+
 
 @interface musicPlayer : NSObject
 {
     QTMovie* player;
-    NSCondition* condition;
+   // NSCondition* condition;
+    FrequencyLevels* level;
+    BOOL token;
 }
 
 -(void) _start_to_play_notification:(NSDictionary*) m;

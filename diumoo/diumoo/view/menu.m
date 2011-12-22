@@ -30,7 +30,7 @@
 
         
         
-        perfsItem=[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ] ;
+        prefsItem=[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ] ;
         exit=[[NSMenuItem alloc]initWithTitle:@"退出" action:nil keyEquivalent:@""];
         aboutItem=[[NSMenuItem alloc]initWithTitle:@"关于" action:nil keyEquivalent:@""] ;
         
@@ -103,6 +103,12 @@
         [exit setAction:@selector(exitApp:)];
         [exit setTarget:self];
         
+        [prefsItem setAction:@selector(showPrefs:)];
+        [prefsItem setTarget:self];
+        
+        [aboutItem setAction:@selector(showPrefs:)];
+        [aboutItem setTarget:self];
+        
         int i = 0;
         
         [play_pause setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:play_pause]; 
@@ -115,6 +121,12 @@
     }
     
     return self;
+}
+
+-(IBAction)showPrefs:(id)sender
+{
+    if(sender==prefsItem) [preference showPreferenceWithView:GENERAL_PREFERENCE_ID];
+    else [preference showPreferenceWithView:INFO_PREFERENCE_ID];
 }
 
 -(void) setController:(id) c
@@ -156,7 +168,7 @@
     }
     
     [mainMenu addItem:[NSMenuItem separatorItem]];
-    [mainMenu addItem:perfsItem];
+    [mainMenu addItem:prefsItem];
     [mainMenu addItem:aboutItem];
     [mainMenu addItem:[NSMenuItem separatorItem]];
     [mainMenu addItem:exit];
@@ -196,6 +208,7 @@
             NSMenuItem* sitem=[[NSMenuItem alloc] initWithTitle:[channel valueForKey:@"cate"] action:nil keyEquivalent:@""];
             [menu addItem:sitem];
             [self _build_channel_menu:[channel valueForKey:@"channels"] with:menu andTabLength:(n+1)];
+            [sitem autorelease];
         }
     }
     if([[menu itemAtIndex:0] isSeparatorItem]) [menu removeItemAtIndex:0];
@@ -315,7 +328,7 @@
     [mainMenu release];
     [aboutItem release];
     [exit release];
-    [perfsItem release];
+    [prefsItem release];
     [controlItem release];
     [controlView release];
     [next release];
@@ -331,6 +344,7 @@
     [albumItem release];
     [dv release];
     [condition release];
+    [super dealloc];
 }
 
 @end

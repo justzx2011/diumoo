@@ -21,14 +21,9 @@
     c=[[controlCenter alloc] init];
     m=[[menu alloc]init];
     [m setController:c];
-    [self performSelectorInBackground:@selector(backinit) withObject:nil];
-}
-
--(void)backinit
-{
     [c setSource:s];
     [c setPlayer:p];
-    [c startToPlay];
+    [c performSelectorInBackground:@selector(startToPlay) withObject:nil];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
@@ -37,11 +32,10 @@
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:nil];
 }
 
--(void) showPreference:(id)sender
+-(IBAction)showPreference:(id)sender
 {
-    preference* pref=[[preference alloc] init];
-    [[pref window] makeKeyAndOrderFront:[pref window]];
-    [pref autorelease];
+    if([sender tag]==3) [preference showPreferenceWithView:INFO_PREFERENCE_ID];
+    else [preference showPreferenceWithView:GENERAL_PREFERENCE_ID];
 }
 
 

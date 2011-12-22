@@ -8,6 +8,7 @@
 
 #import "musicPlayer.h"
 
+
 @implementation musicPlayer
 
 - (id)init
@@ -15,12 +16,26 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        condition=[[NSCondition alloc] init] ;
+       // condition=[[NSCondition alloc] init] ;
+        token=NO;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(load_state:) name:QTMovieLoadStateDidChangeNotification object:nil];
+        level=[[FrequencyLevels alloc] init];
     }
     
     return self;
+}
+
+-(void) load_state:(NSNotification*)n
+{
+    if([[n.object attributeForKey: QTMovieLoadStateAttribute] intValue]>=QTMovieLoadStatePlayable)
+    {
+        if(token) return;
+        [level setMovie:n.object];
+        [level toggleFreqLevels:NSOnState];
+        token=YES;
+    }
 }
 
 -(void) _start_to_play_notification:(NSDictionary *)m
@@ -32,31 +47,45 @@
 
 -(BOOL) startToPlay:(NSDictionary *)music
 {
-    [condition lock];
-    if(player!=nil && [player rate]!=0) [self _pause]; 
+   // [condition lock];
+    if(player!=nil && [player rate]!=0)
+        [self _pause]; 
+    [level toggleFreqLevels:NSOffState];
+    //[player invalidate];
     [player release];
     NSError* e=nil;
     NSLog(@"%@",music);
+    token=NO;
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain];
-    if(e==NULL) [self _start_to_play_notification:music];
-    [condition unlock],[player autoplay];;
+    if(e==NULL){
+        [self _start_to_play_notification:music];
+        [player autoplay];
+    }
+ //   [condition unlock];
+
     return (e==NULL);
 }
 -(void) _pause
 {
-    if(player!=nil&&[player rate]!=0)[self _set_volume:0],[player stop];
+    if(player!=nil&&[player rate]!=0){
+        [self _set_volume:0];
+        [player stop];
+    }
 }
 -(void) play
 {
-    [condition lock];
-    if(player != nil&& [player rate]==0) [player play], [self _set_volume:1.0];
-    [condition unlock];
+//    [condition lock];
+    if(player != nil&& [player rate]==0){ 
+        [player play];
+        [self _set_volume:1.0];
+    }
+//    [condition unlock];
 }
 -(void) pause
 {
-    [condition lock];
+//    [condition lock];
     [self _pause];
-    [condition unlock];
+//    [condition unlock];
 }
 
 -(void) _set_volume:(float)v
@@ -86,16 +115,19 @@
 
 -(void) playing_rate
 {
-    [condition lock];
+//    [condition lock];
     if(player==nil) return;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
-    [condition unlock];
+    
+//    [condition unlock];
 }
+
 
 -(void) dealloc
 {
-    [condition release];
+//    [condition release];
     [player release];
     [super dealloc];
 }
 @end
+

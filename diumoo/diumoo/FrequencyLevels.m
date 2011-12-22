@@ -52,7 +52,7 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
 
 #define LEVEL_OFFSET		8
 #define LEVEL_WIDTH		30
-#define LEVEL_HEIGHT		200
+#define LEVEL_HEIGHT		100
 
 static UInt32 numberOfBandLevels    = 32;       // increase this number for more frequency bands
 static UInt32 numberOfChannels       = 1;       // for StereoMix - If using DeviceMix, you need to get the channel count of the device.
@@ -82,6 +82,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 {
 
     self = [super init];
+    color=CGColorCreateGenericRGB(0, 0.5, 1.0, 1.0);
 	
     // allocate memory for the QTAudioFrequencyLevels struct and set it up
     // depending on the number of channels and frequency bands you want    
@@ -99,8 +100,17 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
     // create the layers
     mContainer = [[CALayer layer] retain];
-    [mContainer setFrame:CGRectMake (0, 0, 1280,200)];
+    [mContainer setFrame:CGRectMake (0, 0, 1400,200)];
     [mContainer setDelegate:self];
+    
+    window =[[[NSWindow alloc] initWithContentRect:NSMakeRect([NSScreen mainScreen].frame.size.width/2-700, 0, 1400, 200) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO] retain];
+    [window setHasShadow:NO];
+    [window setOpaque:NO];
+    [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.0 alpha:0.0]];
+    [window setLevel:NSModalPanelWindowLevel];
+    [[window contentView] setWantsLayer:YES];
+    [[[window contentView] layer] insertSublayer:mContainer atIndex:0];
+    [window orderFront:window];
 
     return self;
 }
@@ -112,7 +122,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     // cleanup
     
     [mContainer release];
-    
+    [window release];
     
     free(mFreqResults);
     free(values);
@@ -182,6 +192,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     
     // get the levels from the movie
     OSStatus err = GetMovieAudioFrequencyLevels([mMovie quickTimeMovie], kQTAudioMeter_StereoMix, mFreqResults);
+    //NSLog(@"%@",[mMovie quickTimeMovie]);
     if (!err) 
     {
         // iterate though the frequency level array and though the UI elements getting
@@ -202,7 +213,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 -(void) drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
 {
     CGContextSaveGState(ctx);
-    CGContextSetFillColorWithColor(ctx, CGColorCreateGenericRGB(0, 0.5, 1.0, 1.0));
+    CGContextSetFillColorWithColor(ctx, color);
     CGContextMoveToPoint(ctx, 0, 0);
     CGMutablePathRef path=CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 0);

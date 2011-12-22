@@ -20,6 +20,10 @@
     return self;
 }
 
+-(void) awakeFromNib
+{
+    [album_img setImage:[NSImage imageNamed:@"album.png"]];
+}
 
 -(void) setDetail:(NSDictionary*) info withImage:(NSImage*) image
 {

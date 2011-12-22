@@ -82,7 +82,7 @@
 						<string key="NSFrame">{{45, 248}, {24, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="588429977"/>
+						<reference key="NSNextKeyView" ref="621860275"/>
 						<string key="NSReuseIdentifierKey">_NS:1491</string>
 						<int key="NSTag">1</int>
 						<bool key="NSEnabled">YES</bool>
@@ -140,7 +140,7 @@
 					<object class="NSTextField" id="652317762">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{19, 9}, {208, 17}}</string>
+						<string key="NSFrame">{{19, 9}, {201, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:3936</string>
@@ -148,7 +148,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="938940158">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">未知歌曲</string>
+							<string key="NSContents">请稍后...</string>
 							<object class="NSFont" key="NSSupport" id="440756500">
 								<string key="NSName">STHeitiSC-Light</string>
 								<double key="NSSize">13</double>
@@ -166,7 +166,7 @@
 					<object class="NSTextField" id="71912215">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{19, 24}, {208, 17}}</string>
+						<string key="NSFrame">{{19, 24}, {201, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="652317762"/>
@@ -175,7 +175,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="769670578">
 							<int key="NSCellFlags">67239488</int>
 							<int key="NSCellFlags2">272631808</int>
-							<string key="NSContents">未知艺术家</string>
+							<string key="NSContents">正在加载中</string>
 							<reference key="NSSupport" ref="440756500"/>
 							<string key="NSCellIdentifier">_NS:3936</string>
 							<reference key="NSControlView" ref="71912215"/>
@@ -186,7 +186,7 @@
 					<object class="NSTextField" id="588429977">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{19, 65}, {208, 19}}</string>
+						<string key="NSFrame">{{19, 64}, {201, 20}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="256070778"/>
@@ -195,7 +195,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="145979633">
 							<int key="NSCellFlags">67239488</int>
 							<int key="NSCellFlags2">272631808</int>
-							<string key="NSContents">未知唱片集</string>
+							<string key="NSContents">diumoo</string>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">STHeitiSC-Light</string>
 								<double key="NSSize">16</double>
@@ -213,7 +213,7 @@
 						<string key="NSFrame">{{22, 92}, {150, 150}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="285813124"/>
+						<reference key="NSNextKeyView" ref="588429977"/>
 						<string key="NSReuseIdentifierKey">_NS:499</string>
 						<string key="NSClassName">NSImageView</string>
 					</object>
@@ -221,7 +221,7 @@
 				<string key="NSFrameSize">{230, 280}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="621860275"/>
+				<reference key="NSNextKeyView" ref="285813124"/>
 				<string key="NSClassName">NSView</string>
 			</object>
 		</array>
@@ -325,10 +325,10 @@
 							<reference ref="621860275"/>
 							<reference ref="588429977"/>
 							<reference ref="71912215"/>
-							<reference ref="652317762"/>
 							<reference ref="256070778"/>
 							<reference ref="285813124"/>
 							<reference ref="722388319"/>
+							<reference ref="652317762"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

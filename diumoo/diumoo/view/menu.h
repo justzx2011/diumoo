@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "controlCenter.h"
 #import "DetailView.h"
+#import "preference.h"
 
 #define ICON_WIDTH 32
 #define ALBUM_VIEW_WIDTH 200
@@ -40,7 +41,7 @@
     DetailView* dv;
     
     
-    NSMenuItem * perfsItem;
+    NSMenuItem * prefsItem;
     NSMenuItem * aboutItem;
     NSMenuItem * exit;
     
@@ -64,7 +65,7 @@
 -(void) backChannelTo:(NSNumber*) c;
 -(IBAction)channelAction:(id)sender;
 -(IBAction)buttonAction:(id)sender;
-
+-(IBAction)showPrefs:(id)sender;
 
 
 -(void) enablesNotification:(NSNotification*)n;

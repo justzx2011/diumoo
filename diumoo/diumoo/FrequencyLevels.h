@@ -62,7 +62,9 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
     NSTimer				*mTimer;
     QTAudioFrequencyLevels	*mFreqResults;
     CALayer				*mContainer;		// our root layer containing all sublayers
-    QTMovie				*mMovie;			// the movie in its QTKit representation
+    QTMovie				*mMovie; // the movie in its QTKit representation
+    NSWindow* window;
+    CGColorRef color;
 }
 
 + (FrequencyLevels*)levelsWithMovie:(QTMovie *)movie;

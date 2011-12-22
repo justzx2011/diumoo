@@ -69,8 +69,7 @@
 {
     [source setChannel:0];
     current=[[source getNewSong] retain];
-    if(current!=nil && [player startToPlay:current])
-        return YES;
+    if(current!=nil)return [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO],YES;
     return NO;
 }
 
@@ -93,7 +92,10 @@
 {
     if([lock tryLock]!=YES) return NO;
     if(player != nil && [player isPlaying])
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.pause" object:nil userInfo:current],[player pause];
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.pause" object:nil userInfo:current];
+        [player pause];
+    }
     else return [lock unlock],NO;
     return [lock unlock],YES;
 }
@@ -175,13 +177,12 @@
         
         [pb setData:[str dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
         NSPerformService(@"Tweet", pb);
-        [pb release];
     }
     else{
         NSString* unencode=[NSString stringWithFormat:@"%@+%@",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
-        CFStringRef encoded=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
-        NSLog(@"%@",encoded);
+        NSString* encoded=(NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/#q=%@",encoded]]];
+        [encoded release];
     }
 }
 
