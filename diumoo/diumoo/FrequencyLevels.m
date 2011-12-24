@@ -100,10 +100,10 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
     // create the layers
     mContainer = [[CALayer layer] retain];
-    [mContainer setFrame:CGRectMake (0, 0, 1400,200)];
+    [mContainer setFrame:CGRectMake (0, 0, 1400,100)];
     [mContainer setDelegate:self];
     
-    window =[[[NSWindow alloc] initWithContentRect:NSMakeRect([NSScreen mainScreen].frame.size.width/2-700, 0, 1400, 200) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO] retain];
+    window =[[[NSWindow alloc] initWithContentRect:NSMakeRect([NSScreen mainScreen].frame.size.width/2-700, 0, 1400, 100) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO] retain];
     [window setHasShadow:NO];
     [window setOpaque:NO];
     [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.0 alpha:0.0]];
@@ -227,6 +227,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     i++;
     CGPathAddCurveToPoint(path, NULL, i*40+40, (*(values+i)+*(values+i-1))/2, i*40+60, *(values+i), i*40+80, *(values+i)/2);
     CGPathAddCurveToPoint(path, NULL, i*40+80, *(values+i)/2, i*40+100, 0, i*40+120, 0);
+    CGPathCloseSubpath(path);
     CGContextAddPath(ctx, path);
     CGContextFillPath(ctx);
     CGPathRelease(path);

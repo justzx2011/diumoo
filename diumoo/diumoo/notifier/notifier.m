@@ -39,6 +39,7 @@
 
 -(void) growlNotification:(NSDictionary*)user_info withImage:(id)img
 {
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableGrowl"] integerValue]!=NSOnState) return;
     if(!([GrowlApplicationBridge isGrowlRunning]))return;
     NSString* d=[NSString stringWithFormat:@"\n%@ - %@ \n< %@ > %@",[user_info valueForKey:@"Name"],[user_info valueForKey:@"Artist"],[user_info valueForKey:@"Album"],
                  [user_info valueForKey:@"Year"]];
@@ -51,11 +52,9 @@
 
 -(void) iTunesNotification:(NSDictionary*)noti
 {
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableiTunes"] integerValue]!=NSOnState) return;
     NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
     [dic setValuesForKeysWithDictionary:noti];
-    NSString * name=[dic valueForKey:@"Name"];
-    [dic setValue:[NSString stringWithFormat:@"%@ - %@",name,[dic valueForKey:@"Artist"]] forKey:@"Name"];
-    
     [dic setValue:@"Playing" forKey:@"Player State"];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
     [dic release];

@@ -161,7 +161,7 @@
     if(player!=nil && source!=nil
        && (current=([source setChannel:channel],[source getNewSong]))!=nil)
     {
-        [player startToPlay:current];
+        [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
         [lock unlock];
         return YES;
     }
@@ -188,6 +188,7 @@
     {
         
         NSString* str=[NSString stringWithFormat:@"#nowplaying %@ - %@ ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"TwitterAlbum"] integerValue]==NSOnState) str=[str stringByAppendingFormat:@" (%@) ",[current valueForKey:@"Album"]];
         
         NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
         

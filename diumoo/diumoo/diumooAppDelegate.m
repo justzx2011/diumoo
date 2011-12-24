@@ -34,6 +34,11 @@
 
 -(IBAction)showPreference:(id)sender
 {
+    if([NSThread isMainThread])
+    {
+        [self performSelectorInBackground:@selector(showPreference:) withObject:sender];
+        return;
+    }
     if([sender tag]==3) [preference showPreferenceWithView:INFO_PREFERENCE_ID];
     else [preference showPreferenceWithView:GENERAL_PREFERENCE_ID];
 }
