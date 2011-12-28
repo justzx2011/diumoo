@@ -82,6 +82,7 @@
                 user_info=[obj valueForKey:@"user_info"];
                 cookie = [NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]];
                 loggedIn=YES;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:(channel==0?privateEnables:publicWithLoggedInEnables) forKey:@"enables"]];
                 [condition unlock];
                 return YES;
             }
@@ -127,6 +128,7 @@
         [request setHTTPBody:nil];
         [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
         [_cookie release];
+    NSLog(@"cookie release");
         // 发送请求
         NSHTTPURLResponse* r=nil;
         NSError* e=nil;
@@ -171,12 +173,12 @@
     }
     else [self performSelectorInBackground:@selector(_back_request:) withObject:[
           NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:sid],@"sid",t,@"type", nil ]];
-        NSDictionary* current=[playlist objectAtIndex:0] ;
-        [playlist removeObjectAtIndex:0];
-        NSDictionary* currentMusic=nil;
-        NSString* art=[current valueForKey:@"artist"];
-        if(art==nil) art = [current valueForKey:@"dj_name"];
-        currentMusic=[NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary* current=[playlist objectAtIndex:0] ;
+    [playlist removeObjectAtIndex:0];
+    NSDictionary* currentMusic=nil;
+    NSString* art=[current valueForKey:@"artist"];
+    if(art==nil) art = [current valueForKey:@"dj_name"];
+    currentMusic=[NSDictionary dictionaryWithObjectsAndKeys:
                       [current valueForKey:@"albumtitle"],@"Album",
                       [current valueForKey:@"album"],@"Store URL",
                       [current valueForKey:@"public_time"],@"Year",
@@ -189,8 +191,8 @@
                        [current valueForKey:@"like"],@"Like",
                        [current valueForKey:@"rating_avg"],@"Album Rating",
                        nil] ;
-        return currentMusic;
-    return nil;
+    NSLog(@"NewSongEnd");
+    return currentMusic;
 }
 
 -(id) _quick_unlock:(id)r
@@ -252,6 +254,7 @@
     else if(loggedIn==YES) r=publicWithLoggedInEnables;
     else r=publicEnables;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:r forKey:@"enables"]];
+    [playlist removeAllObjects];
     [condition unlock];
 }
 

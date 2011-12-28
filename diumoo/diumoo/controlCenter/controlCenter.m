@@ -8,7 +8,22 @@
 
 #import "controlCenter.h"
 
+controlCenter* sharedCenter;
+
 @implementation controlCenter
+
++(controlCenter*) sharedCenter
+{
+    if(sharedCenter==nil)
+        sharedCenter= [[[controlCenter alloc] init] retain];
+   return sharedCenter;
+}
++(BOOL) tryAuth:(NSDictionary*) dic
+{
+    mediaSourceBase* source=[[controlCenter sharedCenter] getSource];
+    if(source!=nil) return [source authWithUsername:[dic valueForKey:@"username"] andPassword:[dic valueForKey:@"password"]];
+    return NO;
+}
 
 - (id)init
 {
@@ -68,7 +83,10 @@
 -(BOOL) startToPlay
 {
     [source setChannel:0];
+    NSLog(@"before retain");
+    NSLog(@"source: %@",source);
     current=[[source getNewSong] retain];
+    NSLog(@"after retain");
     if(current!=nil )
         return  [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO],YES;
     return NO;
@@ -96,7 +114,7 @@
     if(player != nil && [player isPlaying])
     {
       //  [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.pause" object:nil userInfo:current];
-        [player performSelectorOnMainThread:@selector(pause) withObject:nil waitUntilDone:NO];
+        [player performSelectorOnMainThread:@selector(pause) withObject:nil waitUntilDone:YES];
     }
     else return [lock unlock],NO;
     return [lock unlock],YES;
@@ -106,7 +124,7 @@
 {
     if([lock tryLock]!=YES) return NO;
     if(source!=nil && current!=nil )
-        if(player!=nil && ([player pause],[current release],(current=[source getNewSongBySkip:[[current valueForKey:@"sid"]integerValue]]))!=nil)
+        if(player!=nil && ([player pause],[current release],(current=[[source getNewSongBySkip:[[current valueForKey:@"sid"]integerValue]] retain]))!=nil)
             if( [player respondsToSelector:@selector(startToPlay:)])
             {
                 [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
@@ -142,7 +160,7 @@
 {
     if([lock tryLock]!=YES)return NO;
     if(source!=nil && current!=nil && player!=nil
-       && ([current release],current=[[source getNewSongByBye:[[current valueForKey:@"sid"] integerValue]] retain])!=nil)
+       && ([current release],current=[[source getNewSongByBye:[[current valueForKey:@"sid"] integerValue]] retain] )!=nil)
     {
         [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
         [lock unlock];
@@ -195,11 +213,29 @@
         [pb setData:[str dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
         NSPerformService(@"Tweet", pb);
     }
-    else{
-        NSString* unencode=[NSString stringWithFormat:@"%@+%@",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
+    else if([s isEqualToString:@"google"]){
+        NSString* unencode=nil;
+        NSInteger type=[[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"GoogleSearchType"] integerValue];
+        switch (type) {
+            case 1:
+                unencode=[NSString stringWithFormat:@"%@+%@",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
+                break;
+            case 2:
+                unencode=[NSString stringWithFormat:@"%@+%@+%@",[current valueForKey:@"Name"],[current valueForKey:@"Artist"],[current valueForKey:@"Album"]];
+                break;
+            default:
+                unencode=[current valueForKey:@"Name"];
+                break;
+        }
+        
         CFStringRef encoded=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/#q=%@",encoded]]];
         CFRelease(encoded);
+    }
+    else
+    {
+        NSLog(@"%@",[current valueForKey:@"Store URL"]);
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"http://music.douban.com" stringByAppendingString:[current valueForKey:@"Store URL"]]]];
     }
 }
 

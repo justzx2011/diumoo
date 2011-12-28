@@ -73,8 +73,17 @@
 {
     if([target respondsToSelector:selector]){
         NSString* s;
-        if([sender tag]==0) s=@"twitter";
-        else s=@"google";
+        switch ([sender tag]) {
+            case 1:
+                s=@"twitter";
+                break;
+            case 2:
+                s=@"google";
+                break;
+            default:
+                s=@"douban";
+                break;
+        }
         
         [target performSelector:selector withObject:s];
     }

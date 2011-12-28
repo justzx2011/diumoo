@@ -45,7 +45,9 @@
 {
     NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[m valueForKey:@"Picture"]]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:m];
+    NSLog(@"before image relase");
     [image release];
+    NSLog(@"image release");
 }
 
 -(BOOL) startToPlay:(NSDictionary *)music
@@ -53,12 +55,18 @@
     [cond lock];
     //if(![lock tryLock]) return NO;
     [level toggleFreqLevels: NSOffState];
-    if(player!=nil && [player rate]!=0) [self _pause];
-    [player invalidate];
-    [player release];
+    if(player!=nil && [player rate]!=0)
+    {
+        [self _pause];
+        NSLog(@"before player released");
+        [player invalidate];
+        [player release];
+        NSLog(@"player released");
+    }
     NSError* e=nil;
-    //NSLog(@"%@",music);
+    NSLog(@"before movie retain");
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain]; 
+    NSLog(@"after movie retain");
     token=NO;
     
     if(e==NULL) 

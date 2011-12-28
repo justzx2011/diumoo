@@ -16,6 +16,10 @@
 		F5766D34149DA0EC00D5FDA6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D32149DA0EC00D5FDA6 /* MainMenu.xib */; };
 		F5766D3C149DB16500D5FDA6 /* preference.m in Sources */ = {isa = PBXBuildFile; fileRef = F5766D3B149DB16500D5FDA6 /* preference.m */; };
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
+		F57EBD2F14AB1E5B00484ED1 /* diumooApp.m in Sources */ = {isa = PBXBuildFile; fileRef = F57EBD2E14AB1E5B00484ED1 /* diumooApp.m */; };
+		F57EBD3214AB3F2200484ED1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57EBD3114AB3F2100484ED1 /* Carbon.framework */; };
+		F57EBD3514AB44FF00484ED1 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F57EBD3414AB44FF00484ED1 /* EMKeychainItem.m */; };
+		F57EBD3714AB50D800484ED1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57EBD3614AB50D800484ED1 /* Security.framework */; };
 		F58A8C74149A2EB3004E60AD /* controlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C5D149A2EB3004E60AD /* controlCenter.m */; };
 		F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */; };
 		F58A8C77149A2EB3004E60AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C62149A2EB3004E60AD /* main.m */; };
@@ -56,6 +60,7 @@
 		F5C6C206149A28DF0045B3EE /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1F8149A28DF0045B3EE /* CJSONDeserializer.m */; };
 		F5C6C207149A28DF0045B3EE /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1FA149A28DF0045B3EE /* CJSONScanner.m */; };
 		F5C6C208149A28DF0045B3EE /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1FC149A28DF0045B3EE /* CJSONSerializer.m */; };
+		F5D9C0EA14A8BC3E00029663 /* douban.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D9C0E914A8BC3E00029663 /* douban.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +92,12 @@
 		F5766D3A149DB16500D5FDA6 /* preference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = preference.h; path = preference/preference.h; sourceTree = "<group>"; };
 		F5766D3B149DB16500D5FDA6 /* preference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = preference.m; path = preference/preference.m; sourceTree = "<group>"; };
 		F5766D3D149DB4AA00D5FDA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
+		F57EBD2D14AB1E5B00484ED1 /* diumooApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diumooApp.h; sourceTree = "<group>"; };
+		F57EBD2E14AB1E5B00484ED1 /* diumooApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = diumooApp.m; sourceTree = "<group>"; };
+		F57EBD3114AB3F2100484ED1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		F57EBD3314AB44FF00484ED1 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
+		F57EBD3414AB44FF00484ED1 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
+		F57EBD3614AB50D800484ED1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F58A8C5C149A2EB3004E60AD /* controlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlCenter.h; sourceTree = "<group>"; };
 		F58A8C5D149A2EB3004E60AD /* controlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlCenter.m; sourceTree = "<group>"; };
 		F58A8C5E149A2EB3004E60AD /* diumoo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "diumoo-Info.plist"; sourceTree = "<group>"; };
@@ -148,6 +159,7 @@
 		F5C6C1FB149A28DF0045B3EE /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
 		F5C6C1FC149A28DF0045B3EE /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		F5C6C1FD149A28DF0045B3EE /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		F5D9C0E914A8BC3E00029663 /* douban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = douban.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +167,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F57EBD3714AB50D800484ED1 /* Security.framework in Frameworks */,
+				F57EBD3214AB3F2200484ED1 /* Carbon.framework in Frameworks */,
 				F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */,
 				F54951B314A18F3B00068581 /* QuickTime.framework in Frameworks */,
 				F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */,
@@ -178,7 +192,6 @@
 		F56A8403148CF92800AE6F1E = {
 			isa = PBXGroup;
 			children = (
-				F53B258114A2305E00903039 /* QuartzCore.framework */,
 				F58A8C8B149A48DE004E60AD /* resources */,
 				F58A8C5A149A2EB3004E60AD /* diumoo */,
 				F5C6C1E3149A28DF0045B3EE /* extern */,
@@ -198,6 +211,9 @@
 		F56A8411148CF92800AE6F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F57EBD3614AB50D800484ED1 /* Security.framework */,
+				F57EBD3114AB3F2100484ED1 /* Carbon.framework */,
+				F53B258114A2305E00903039 /* QuartzCore.framework */,
 				F54951B214A18F3B00068581 /* QuickTime.framework */,
 				F5C6C1E4149A28DF0045B3EE /* Growl.framework */,
 				F52CE623148F46FF0068D6FF /* QTKit.framework */,
@@ -220,6 +236,8 @@
 		F5766D1B149D93EF00D5FDA6 /* preferencePanel */ = {
 			isa = PBXGroup;
 			children = (
+				F57EBD3314AB44FF00484ED1 /* EMKeychainItem.h */,
+				F57EBD3414AB44FF00484ED1 /* EMKeychainItem.m */,
 				F5766D26149D950200D5FDA6 /* prefsPanel.xib */,
 				F5766D3A149DB16500D5FDA6 /* preference.h */,
 				F5766D3B149DB16500D5FDA6 /* preference.m */,
@@ -231,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				F5766D32149DA0EC00D5FDA6 /* MainMenu.xib */,
+				F57EBD2D14AB1E5B00484ED1 /* diumooApp.h */,
+				F57EBD2E14AB1E5B00484ED1 /* diumooApp.m */,
 				F58A8C5E149A2EB3004E60AD /* diumoo-Info.plist */,
 				F58A8C5F149A2EB3004E60AD /* diumoo-Prefix.pch */,
 				F58A8C60149A2EB3004E60AD /* diumooAppDelegate.h */,
@@ -300,6 +320,7 @@
 		F58A8C8B149A48DE004E60AD /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F5D9C0E914A8BC3E00029663 /* douban.png */,
 				F58C5E90149F089D00DDDF95 /* icon.icns */,
 				F5C38F41149C58AF0082FEE4 /* google.png */,
 				F5C38F3F149C58A40082FEE4 /* twitter.png */,
@@ -457,6 +478,7 @@
 				F5766D34149DA0EC00D5FDA6 /* MainMenu.xib in Resources */,
 				F58C5E8F149F081200DDDF95 /* album.png in Resources */,
 				F58C5E91149F089D00DDDF95 /* icon.icns in Resources */,
+				F5D9C0EA14A8BC3E00029663 /* douban.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +510,8 @@
 				F58A8C89149A3CDA004E60AD /* DetailView.m in Sources */,
 				F5766D3C149DB16500D5FDA6 /* preference.m in Sources */,
 				F53B258A14A23EA000903039 /* FrequencyLevels.m in Sources */,
+				F57EBD2F14AB1E5B00484ED1 /* diumooApp.m in Sources */,
+				F57EBD3514AB44FF00484ED1 /* EMKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,8 +543,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COPY_PHASE_STRIP = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -531,13 +555,13 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -546,18 +570,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -565,7 +590,7 @@
 		F56A842D148CF92800AE6F1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -575,7 +600,7 @@
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
-				GCC_VERSION = 4.2;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -585,7 +610,7 @@
 		F56A842E148CF92800AE6F1E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -595,7 +620,7 @@
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
-				GCC_VERSION = 4.2;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -48,11 +48,9 @@
     NSCondition* condition;
     NSMenuItem* current;
     
-    controlCenter* controller;
 }
 
 
--(void) setController:(id) c;
 -(void) reformMenuWithSourceName:(NSString*) name channels:(NSArray*)channels andCans: (NSSet*) cans;
 -(void) _reform:(NSNotification*) noti;
 

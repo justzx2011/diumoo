@@ -11,16 +11,15 @@
 #import "musicPlayer.h"
 #import "notifier.h"
 #import "menu.h"
-#import "controlCenter.h"
-#import "preference.h"
+
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     //NSWindow *window;
     musicPlayer* p;
     doubanFMSource* s;
-    controlCenter* c;
     notifier* g;
     menu* m;
+
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification;

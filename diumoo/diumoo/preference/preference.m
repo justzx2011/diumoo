@@ -7,6 +7,7 @@
 //
 
 #import "preference.h"
+#import "controlCenter.h"
 
 static preference* shared;
 
@@ -23,6 +24,12 @@ static preference* shared;
     [[preference sharedPreference] selectPreferenceViewWithID:view_id];
 }
 
++(NSDictionary*) authPrefsData
+{
+    NSString* username=[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username"].password;
+    NSString* password=[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password"].password;
+    return [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password", nil];
+}
 -(id)init
 {
     self=[super initWithWindowNibName:@"prefsPanel"];
@@ -53,12 +60,53 @@ static preference* shared;
         if([item tag]==view_id) {idi=item;break;}
         else if([item tag]==0) idi=item;
     }
+    if(view_id==ACCOUT_PREFERENCE_ID)
+    {
+        NSString* username=[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username"].password;
+        NSString* password=[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password"].password;
+        [email setStringValue:(username!=nil?username:@"")];
 
+        [pass setStringValue:(password!=nil?password:@"")];
+    }
     [mainview selectTabViewItemAtIndex:[idi tag]];
     [toolbar setSelectedItemIdentifier:idi.itemIdentifier];
 }
 
+-(IBAction)desktopWaveLevelChanged:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"preferences.desktopWaveLevelChanged" object:[sender selectedItem]];
+}
 
+-(IBAction)updatePassword:(id)sender
+{
+    NSString* username=[email stringValue];
+    NSString* password=[pass stringValue];
+    if([username length]==0 || [password length]==0)
+    {
+        NSRunCriticalAlertPanel(@"输入错误", @"请完整填写用户名和密码",@"取消",nil,nil);
+    }
+    
+   else if([controlCenter tryAuth:[NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password", nil]])
+    {
+        [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username" password:username];
+        [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password" password:password];
+
+        NSRunInformationalAlertPanel(@"登陆成功！", @"成功验证了您的账户，您现在可以记录您的播放偏好了！",@"知道了", nil, nil);
+    }
+    else
+    {
+        NSRunCriticalAlertPanel(@"认证失败", @"账户认证失败，请检查您提供的账号是否正确", @"取消", nil, nil);
+    }
+    
+}
+
+-(IBAction)clearPassword:(id)sender
+{
+    [[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username"] removeFromKeychain];
+    [[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password"] removeFromKeychain];
+    [email setStringValue:@""];
+    [pass setStringValue:@""];
+}
 
 -(void) dealloc
 {

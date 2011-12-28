@@ -23,12 +23,15 @@
     NSInteger state;
 }
 
++(controlCenter*) sharedCenter;
++(BOOL) tryAuth:(NSDictionary*) dic;
+
 -(void) musicEnded;
 
 -(BOOL) setPlayer:(musicPlayer*) player;
 -(BOOL) setSource:(mediaSourceBase*) source;
 -(id) getPlayer;
--(id) getSource;
+-(mediaSourceBase*) getSource;
 
 
 -(BOOL) startToPlay;

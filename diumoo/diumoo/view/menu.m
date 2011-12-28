@@ -118,6 +118,15 @@
         [controlView setFrameSize:NSMakeSize(i*ICON_WIDTH+40, ICON_WIDTH+8)];
         
         condition=[[NSCondition alloc] init];
+        
+        controlCenter* c=[controlCenter sharedCenter];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(_reform:) name:@"controller.sourceChanged" object:nil],
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setDetail:) name:@"player.startToPlay" object:nil],
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateChanged:) name:@"player.rateChanged" object:nil],
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enablesNotification:) name:@"source.enables" object:nil],
+        [dv setServiceTarget:c withSelector:@selector(service:)];
+        ;
+        
     }
     
     return self;
@@ -129,23 +138,6 @@
     else [preference showPreferenceWithView:INFO_PREFERENCE_ID];
 }
 
--(void) setController:(id) c
-{
-    [condition lock];
-    controller=c;
-    if(c!=nil)[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(_reform:) name:@"controller.sourceChanged" object:nil],
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setDetail:) name:@"player.startToPlay" object:nil],
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateChanged:) name:@"player.rateChanged" object:nil],
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enablesNotification:) name:@"source.enables" object:nil],
-        [dv setServiceTarget:c withSelector:@selector(service:)]
-        ;
-    else [self removeObserver:self forKeyPath:@"controller.sourceChanged"],[self removeObserver:self forKeyPath:@"player.startToPlay"],
-        [self removeObserver:self forKeyPath:@"player.rateChanged"],
-        [self removeObserver:self forKeyPath:@"source.enables"],
-        [dv setServiceTarget:nil withSelector:nil]
-        ;
-    [condition unlock];
-}
 
 -(void) reformMenuWithSourceName:(NSString*) name channels:(NSArray*)channels andCans: (NSSet*) cans
 {
@@ -243,8 +235,7 @@
 
 -(void) backChannelTo:(NSNumber*) c
 {
-    if([controller respondsToSelector:@selector(changeChannelTo:)] ) 
-        [controller changeChannelTo:[c integerValue]];
+        [[controlCenter sharedCenter] changeChannelTo:[c integerValue]];
 }
 
 -(void) enablesNotification:(NSNotification *)n
@@ -286,6 +277,7 @@
 {
     [condition lock];
     NSInteger tag=[sender tag];
+    controlCenter* controller=[controlCenter sharedCenter];
     switch (tag) {
         case 0:
             if([controller respondsToSelector:@selector(back)]) [controller performSelectorInBackground:@selector(back) withObject:nil];

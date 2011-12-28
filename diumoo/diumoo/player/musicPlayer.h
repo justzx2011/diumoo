@@ -10,7 +10,7 @@
 #import <QTKit/QTKit.h>
 #import "FrequencyLevels.h"
 
-#define VOLUME_DURATION 5.0
+#define VOLUME_DURATION 10.0
 #define VOLUME_INTERVAL 0.1
 
 

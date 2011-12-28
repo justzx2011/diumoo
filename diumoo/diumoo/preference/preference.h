@@ -7,11 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "EMKeychainItem.h"
 
 #define GENERAL_PREFERENCE_ID 0
 #define ACCOUT_PREFERENCE_ID 1
-#define SERVICE_PREFERENCE_ID 2
-#define INFO_PREFERENCE_ID 3
+#define INFO_PREFERENCE_ID 2
 
 
 @interface preference : NSWindowController
@@ -19,13 +19,18 @@
     
     IBOutlet NSToolbar* toolbar;
     IBOutlet NSTabView* mainview;
-    
+    IBOutlet NSTextField* email;
+    IBOutlet NSSecureTextField* pass;
 }
 
 +(id) sharedPreference;
 +(void)showPreferenceWithView:(NSInteger) view_id;
++(NSDictionary*) authPrefsData;
 
 -(IBAction)selectPreferenceView:(id)sender;
+-(IBAction)desktopWaveLevelChanged:(id)sender;
 -(void) selectPreferenceViewWithID:(NSInteger) view_id;
+-(IBAction)clearPassword:(id)sender;
+-(IBAction)updatePassword:(id)sender;
 
 @end

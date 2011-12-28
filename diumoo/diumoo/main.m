@@ -7,8 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "diumooApp.h"
 
 int main(int argc, char *argv[])
 {
-    return NSApplicationMain(argc, (const char **)argv);
+    [diumooApp sharedApplication];
+    [NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
+    [NSApp run];
+    return 0;
 }

@@ -59,6 +59,8 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
 @interface FrequencyLevels (internal)
     - (void)levelTimerMethod:(NSTimer*)theTimer;
+-(void) setLevel:(NSInteger)level;
+-(void) desktop_wave_level_changed:(NSNotification*)n;
 @end
 
 @implementation FrequencyLevels
@@ -103,16 +105,50 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     [mContainer setFrame:CGRectMake (0, 0, 1400,100)];
     [mContainer setDelegate:self];
     
+    waveState=NSOffState;
+    
     window =[[[NSWindow alloc] initWithContentRect:NSMakeRect([NSScreen mainScreen].frame.size.width/2-700, 0, 1400, 100) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO] retain];
     [window setHasShadow:NO];
     [window setOpaque:NO];
     [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.0 alpha:0.0]];
-    [window setLevel:NSModalPanelWindowLevel];
     [[window contentView] setWantsLayer:YES];
     [[[window contentView] layer] insertSublayer:mContainer atIndex:0];
-    [window orderFront:window];
+    [self setLevel:[[[[NSUserDefaultsController sharedUserDefaultsController]values]valueForKey:@"DesktopWaveLevel"]integerValue]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(desktop_wave_level_changed:) name:@"preferences.desktopWaveLevelChanged" object:nil];
+    
 
     return self;
+}
+
+-(void) desktop_wave_level_changed:(NSNotification *)n
+{
+    NSLog(@"%d",[n.object tag]);
+    [self setLevel:[n.object tag]];
+}
+
+-(void) setLevel:(NSInteger)level
+{
+    if(level==0){
+        if(window==nil) return;
+        [self toggleFreqLevels:NSOffState];
+        [window orderOut:window];
+        return;
+    }
+    switch (level) {
+        case 1:
+            [window setLevel:NSModalPanelWindowLevel];
+            break;
+        case 2:
+            [window setLevel:kCGDesktopWindowLevel];
+            break;
+    }
+    
+    if(waveState==NSOffState){
+        [window orderFront:window];
+        [self toggleFreqLevels:NSOnState];
+    }
+    
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -174,12 +210,14 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
         
         [[NSRunLoop currentRunLoop] addTimer:mTimer forMode:(NSString *)kCFRunLoopCommonModes];
 		mContainer.hidden = NO;
+        waveState=NSOnState;
     } 
     else 
     {
         // turning it off, stop the timer and hide the level layers
         [mTimer invalidate];
         mContainer.hidden = YES;
+        waveState=NSOffState;
     }
 }
 

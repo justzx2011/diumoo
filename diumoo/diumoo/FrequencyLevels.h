@@ -57,6 +57,7 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
 {
 
 @private
+    NSInteger waveState;
     NSCondition* condition;
     Float32* values;
     NSTimer				*mTimer;
