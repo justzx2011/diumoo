@@ -11,7 +11,7 @@
 #import "musicPlayer.h"
 #import "notifier.h"
 #import "menu.h"
-
+#import "SPMediaKeyTap.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     //NSWindow *window;
@@ -19,10 +19,12 @@
     doubanFMSource* s;
     notifier* g;
     menu* m;
+    SPMediaKeyTap *keyTap;
 
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification;
+-(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
 
 -(IBAction)showPreference:(id)sender;
 

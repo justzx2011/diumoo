@@ -226,9 +226,11 @@
     if(n.object!=nil) image=n.object;
     else image=[NSImage imageNamed:@"album.png"];
     [dv setDetail:n.userInfo withImage:image];
-
+    if([[n.userInfo valueForKey:@"Like"] boolValue])
+        [rate setState:NSOnState];
+    else [rate setState:NSOffState];
   //  NSLog(@">>>>>>>>>>>>>>>>end");
-        [condition unlock];
+    [condition unlock];
 }
 
 

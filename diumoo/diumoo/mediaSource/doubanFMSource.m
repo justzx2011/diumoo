@@ -95,7 +95,7 @@
 {
         //生成获取列表的参数
         //    | 生成随机数
-        long rnd=rand();
+        int rnd=rand();
         rnd=rnd<MIN_RAND?rnd+MIN_RAND:rnd;
         //    | 生成channel
         NSString* _s=@"";
@@ -110,9 +110,9 @@
                                @"/",NSHTTPCookiePath,
                                @".douban.fm",NSHTTPCookieDomain
                                ,nil];
-            NSLog(@"%@",dic);
-            NSLog(@"%@",[NSHTTPCookie cookieWithProperties:dic]);
-           // [_cookie addObject:];
+            //NSLog(@"%@",dic);
+            //NSLog(@"%@",[NSHTTPCookie cookieWithProperties:dic]);
+           [_cookie addObject:[NSHTTPCookie cookieWithProperties:dic]];
         }
         else _s=[NSString stringWithFormat:@"channel=%d",channel];
         if([type isNotEqualTo:NEW]&&sid!=0)
@@ -120,7 +120,7 @@
         if([type isNotEqualTo:NEW])_s=[NSString stringWithFormat:@"%@&h=%d:%@%@",_s,sid,type,h];
         if([recordType containsObject:type])
             [h appendString:[NSString stringWithFormat:@"%%7C%d:%@",sid,type]];
-        
+    NSLog(@"%@",_cookie);
         
         // 构造request
         [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%x&%@",PLAYLIST_URL_STRING,type,rnd,_s]]];
@@ -128,8 +128,9 @@
         [request setHTTPBody:nil];
         [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
         [_cookie release];
-    NSLog(@"cookie release");
+    NSLog(@"%@",[request URL]);
         // 发送请求
+    
         NSHTTPURLResponse* r=nil;
         NSError* e=nil;
         NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
@@ -174,6 +175,7 @@
     else [self performSelectorInBackground:@selector(_back_request:) withObject:[
           NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:sid],@"sid",t,@"type", nil ]];
     NSDictionary* current=[playlist objectAtIndex:0] ;
+    NSLog(@"%@",current);
     [playlist removeObjectAtIndex:0];
     NSDictionary* currentMusic=nil;
     NSString* art=[current valueForKey:@"artist"];
@@ -186,12 +188,11 @@
                       [current valueForKey:@"title"],@"Name",
                       [current valueForKey:@"url"],@"Location",
                       [current valueForKey:@"sid"],@"sid",
-                      [current valueForKey:@"picture"],@"Picture",
+                      [[current valueForKey:@"picture"] stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],@"Picture",
                       [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
                        [current valueForKey:@"like"],@"Like",
                        [current valueForKey:@"rating_avg"],@"Album Rating",
                        nil] ;
-    NSLog(@"NewSongEnd");
     return currentMusic;
 }
 

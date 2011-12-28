@@ -41,8 +41,6 @@ static preference* shared;
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-
-    
 }
 
 -(IBAction) selectPreferenceView:(id)sender

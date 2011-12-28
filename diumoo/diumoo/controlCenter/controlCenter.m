@@ -7,6 +7,7 @@
 //
 
 #import "controlCenter.h"
+#import "preference.h"
 
 controlCenter* sharedCenter;
 
@@ -83,10 +84,8 @@ controlCenter* sharedCenter;
 -(BOOL) startToPlay
 {
     [source setChannel:0];
-    NSLog(@"before retain");
-    NSLog(@"source: %@",source);
+    [controlCenter tryAuth:[preference authPrefsData]];
     current=[[source getNewSong] retain];
-    NSLog(@"after retain");
     if(current!=nil )
         return  [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO],YES;
     return NO;

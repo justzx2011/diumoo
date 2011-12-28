@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B258114A2305E00903039 /* QuartzCore.framework */; };
-		F53B258A14A23EA000903039 /* FrequencyLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = F53B258914A23EA000903039 /* FrequencyLevels.m */; };
 		F54951B314A18F3B00068581 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54951B214A18F3B00068581 /* QuickTime.framework */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
 		F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D26149D950200D5FDA6 /* prefsPanel.xib */; };
@@ -18,7 +17,6 @@
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
 		F57EBD2F14AB1E5B00484ED1 /* diumooApp.m in Sources */ = {isa = PBXBuildFile; fileRef = F57EBD2E14AB1E5B00484ED1 /* diumooApp.m */; };
 		F57EBD3214AB3F2200484ED1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57EBD3114AB3F2100484ED1 /* Carbon.framework */; };
-		F57EBD3514AB44FF00484ED1 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F57EBD3414AB44FF00484ED1 /* EMKeychainItem.m */; };
 		F57EBD3714AB50D800484ED1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57EBD3614AB50D800484ED1 /* Security.framework */; };
 		F58A8C74149A2EB3004E60AD /* controlCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C5D149A2EB3004E60AD /* controlCenter.m */; };
 		F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */; };
@@ -61,6 +59,9 @@
 		F5C6C207149A28DF0045B3EE /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1FA149A28DF0045B3EE /* CJSONScanner.m */; };
 		F5C6C208149A28DF0045B3EE /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1FC149A28DF0045B3EE /* CJSONSerializer.m */; };
 		F5D9C0EA14A8BC3E00029663 /* douban.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D9C0E914A8BC3E00029663 /* douban.png */; };
+		F5DAA05714AB6408004404AA /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA05614AB6408004404AA /* EMKeychainItem.m */; };
+		F5DAA05A14AB6442004404AA /* FrequencyLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA05914AB6442004404AA /* FrequencyLevels.m */; };
+		F5DAA06114AB65CB004404AA /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,8 +80,6 @@
 /* Begin PBXFileReference section */
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F53B258114A2305E00903039 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		F53B258814A23EA000903039 /* FrequencyLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequencyLevels.h; sourceTree = "<group>"; };
-		F53B258914A23EA000903039 /* FrequencyLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequencyLevels.m; sourceTree = "<group>"; };
 		F54951B214A18F3B00068581 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		F56A840E148CF92800AE6F1E /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56A8412148CF92800AE6F1E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -95,8 +94,6 @@
 		F57EBD2D14AB1E5B00484ED1 /* diumooApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diumooApp.h; sourceTree = "<group>"; };
 		F57EBD2E14AB1E5B00484ED1 /* diumooApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = diumooApp.m; sourceTree = "<group>"; };
 		F57EBD3114AB3F2100484ED1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		F57EBD3314AB44FF00484ED1 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
-		F57EBD3414AB44FF00484ED1 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		F57EBD3614AB50D800484ED1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F58A8C5C149A2EB3004E60AD /* controlCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = controlCenter.h; sourceTree = "<group>"; };
 		F58A8C5D149A2EB3004E60AD /* controlCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = controlCenter.m; sourceTree = "<group>"; };
@@ -160,6 +157,12 @@
 		F5C6C1FC149A28DF0045B3EE /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		F5C6C1FD149A28DF0045B3EE /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		F5D9C0E914A8BC3E00029663 /* douban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = douban.png; sourceTree = "<group>"; };
+		F5DAA05514AB6408004404AA /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMKeychainItem.h; path = preference/EMKeychainItem.h; sourceTree = "<group>"; };
+		F5DAA05614AB6408004404AA /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMKeychainItem.m; path = preference/EMKeychainItem.m; sourceTree = "<group>"; };
+		F5DAA05814AB6442004404AA /* FrequencyLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrequencyLevels.h; path = visualizer/FrequencyLevels.h; sourceTree = "<group>"; };
+		F5DAA05914AB6442004404AA /* FrequencyLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrequencyLevels.m; path = visualizer/FrequencyLevels.m; sourceTree = "<group>"; };
+		F5DAA05F14AB65CB004404AA /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = mediaKeyTap/SPMediaKeyTap.h; sourceTree = "<group>"; };
+		F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = mediaKeyTap/SPMediaKeyTap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +186,8 @@
 		F53B258314A2326200903039 /* visualizer */ = {
 			isa = PBXGroup;
 			children = (
-				F53B258814A23EA000903039 /* FrequencyLevels.h */,
-				F53B258914A23EA000903039 /* FrequencyLevels.m */,
+				F5DAA05814AB6442004404AA /* FrequencyLevels.h */,
+				F5DAA05914AB6442004404AA /* FrequencyLevels.m */,
 			);
 			name = visualizer;
 			sourceTree = "<group>";
@@ -236,8 +239,8 @@
 		F5766D1B149D93EF00D5FDA6 /* preferencePanel */ = {
 			isa = PBXGroup;
 			children = (
-				F57EBD3314AB44FF00484ED1 /* EMKeychainItem.h */,
-				F57EBD3414AB44FF00484ED1 /* EMKeychainItem.m */,
+				F5DAA05514AB6408004404AA /* EMKeychainItem.h */,
+				F5DAA05614AB6408004404AA /* EMKeychainItem.m */,
 				F5766D26149D950200D5FDA6 /* prefsPanel.xib */,
 				F5766D3A149DB16500D5FDA6 /* preference.h */,
 				F5766D3B149DB16500D5FDA6 /* preference.m */,
@@ -256,6 +259,7 @@
 				F58A8C60149A2EB3004E60AD /* diumooAppDelegate.h */,
 				F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */,
 				F58A8C62149A2EB3004E60AD /* main.m */,
+				F5DAA05B14AB6454004404AA /* mediaKeyTap */,
 				F53B258314A2326200903039 /* visualizer */,
 				F58A8C5B149A2EB3004E60AD /* controlCenter */,
 				F58A8C63149A2EB3004E60AD /* mediaSource */,
@@ -404,6 +408,15 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		F5DAA05B14AB6454004404AA /* mediaKeyTap */ = {
+			isa = PBXGroup;
+			children = (
+				F5DAA05F14AB65CB004404AA /* SPMediaKeyTap.h */,
+				F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */,
+			);
+			name = mediaKeyTap;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -509,9 +522,10 @@
 				F58A8C7D149A2EB3004E60AD /* menu.m in Sources */,
 				F58A8C89149A3CDA004E60AD /* DetailView.m in Sources */,
 				F5766D3C149DB16500D5FDA6 /* preference.m in Sources */,
-				F53B258A14A23EA000903039 /* FrequencyLevels.m in Sources */,
 				F57EBD2F14AB1E5B00484ED1 /* diumooApp.m in Sources */,
-				F57EBD3514AB44FF00484ED1 /* EMKeychainItem.m in Sources */,
+				F5DAA05714AB6408004404AA /* EMKeychainItem.m in Sources */,
+				F5DAA05A14AB6442004404AA /* FrequencyLevels.m in Sources */,
+				F5DAA06114AB65CB004404AA /* SPMediaKeyTap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
