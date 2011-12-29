@@ -93,64 +93,60 @@
 }
 -(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSInteger)sid
 {
-        //生成获取列表的参数
-        //    | 生成随机数
-        int rnd=rand();
-        rnd=rnd<MIN_RAND?rnd+MIN_RAND:rnd;
-        //    | 生成channel
-        NSString* _s=@"";
-        NSMutableArray* _cookie=[[NSMutableArray alloc] init];
-        [_cookie addObjectsFromArray:cookie];
-        if(channel>10000){
-            _s=[NSString stringWithFormat: @"channel=dj&pid=%d",channel];
-            NSDictionary* dic=[NSDictionary dictionaryWithObjectsAndKeys:
-                               [NSString stringWithFormat:@"%d",channel],
-                               NSHTTPCookieValue,
-                               @"dj_id",NSHTTPCookieName,
-                               @"/",NSHTTPCookiePath,
-                               @".douban.fm",NSHTTPCookieDomain
-                               ,nil];
-            //NSLog(@"%@",dic);
-            //NSLog(@"%@",[NSHTTPCookie cookieWithProperties:dic]);
-           [_cookie addObject:[NSHTTPCookie cookieWithProperties:dic]];
-        }
-        else _s=[NSString stringWithFormat:@"channel=%d",channel];
-        if([type isNotEqualTo:NEW]&&sid!=0)
-            _s=[NSString stringWithFormat:@"%@&sid=%d",_s,sid];
-        if([type isNotEqualTo:NEW])_s=[NSString stringWithFormat:@"%@&h=%d:%@%@",_s,sid,type,h];
-        if([recordType containsObject:type])
-            [h appendString:[NSString stringWithFormat:@"%%7C%d:%@",sid,type]];
-    NSLog(@"%@",_cookie);
-        
-        // 构造request
-        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%x&%@",PLAYLIST_URL_STRING,type,rnd,_s]]];
-        [request setHTTPMethod:@"GET"];
-        [request setHTTPBody:nil];
-        [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
-        [_cookie release];
-    NSLog(@"%@",[request URL]);
-        // 发送请求
+    //生成获取列表的参数
+    //    | 生成随机数
+    int rnd=rand();
+    rnd=rnd<MIN_RAND?rnd+MIN_RAND:rnd;
+    //    | 生成channel
+    NSString* _s=@"";
+    NSMutableArray* _cookie=[[NSMutableArray alloc] init];
+    [_cookie addObjectsFromArray:cookie];
+    if(channel>10000){
+        _s=[NSString stringWithFormat: @"channel=dj&pid=%d",channel];
+        NSDictionary* dic=[NSDictionary dictionaryWithObjectsAndKeys:
+                           [NSString stringWithFormat:@"%d",channel],
+                           NSHTTPCookieValue,
+                           @"dj_id",NSHTTPCookieName,
+                           @"/",NSHTTPCookiePath,
+                           @".douban.fm",NSHTTPCookieDomain
+                           ,nil];
+        [_cookie addObject:[NSHTTPCookie cookieWithProperties:dic]];
+    }
+    else _s=[NSString stringWithFormat:@"channel=%d",channel];
+    if([type isNotEqualTo:NEW]&&sid!=0)
+        _s=[NSString stringWithFormat:@"%@&sid=%d",_s,sid];
+    if([type isNotEqualTo:NEW])_s=[NSString stringWithFormat:@"%@&h=%d:%@%@",_s,sid,type,h];
+    if([recordType containsObject:type])
+        [h appendString:[NSString stringWithFormat:@"%%7C%d:%@",sid,type]];
     
-        NSHTTPURLResponse* r=nil;
-        NSError* e=nil;
-        NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
-        if(e==NULL)
+    // 构造request
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%x&%@",PLAYLIST_URL_STRING,type,rnd,_s]]];
+    [request setHTTPMethod:@"GET"];
+    [request setHTTPBody:nil];
+    [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
+    [_cookie release];
+    
+    // 发送请求
+    NSHTTPURLResponse* r=nil;
+    NSError* e=nil;
+    NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
+    if(e==NULL)
+    {
+        NSError* je=nil;
+        NSDictionary* list=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
+        if(je==NULL)
         {
-            NSError* je=nil;
-            NSDictionary* list=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
-            if(je==NULL)
+            if([[list valueForKey:@"r"] intValue]==0)
             {
-                if([[list valueForKey:@"r"] intValue]==0)
-                {
-                    NSArray* song=[list valueForKey:@"song"];
-                    if([replacePlaylist containsObject:type] && [song count]>0)[playlist removeAllObjects];
-                    [playlist addObjectsFromArray:[list valueForKey:@"song"]];
-
-                    return YES;
-                }
+                NSArray* song=[list valueForKey:@"song"];
+                if([replacePlaylist containsObject:type] && [song count]>0)[playlist removeAllObjects];
+                [playlist addObjectsFromArray:[list valueForKey:@"song"]];
                 
+                return YES;
             }
+            
         }
+    }
     return NO;
 }
 
@@ -166,33 +162,33 @@
         int retry=0;
         do{
             [self requestPlaylistWithType:t andSid:sid];
-            [NSThread sleepForTimeInterval:5];
         }
         while([playlist count]==0 && (retry++)<MAX_RETRY_TIMES);
         
-        if([playlist count]==0) return nil;
+        if([playlist count]==0){
+            return nil;
+        };
     }
     else [self performSelectorInBackground:@selector(_back_request:) withObject:[
-          NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:sid],@"sid",t,@"type", nil ]];
+                                                                                 NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:sid],@"sid",t,@"type", nil ]];
     NSDictionary* current=[playlist objectAtIndex:0] ;
-    NSLog(@"%@",current);
     [playlist removeObjectAtIndex:0];
     NSDictionary* currentMusic=nil;
     NSString* art=[current valueForKey:@"artist"];
     if(art==nil) art = [current valueForKey:@"dj_name"];
     currentMusic=[NSDictionary dictionaryWithObjectsAndKeys:
-                      [current valueForKey:@"albumtitle"],@"Album",
-                      [current valueForKey:@"album"],@"Store URL",
-                      [current valueForKey:@"public_time"],@"Year",
-                      art, @"Artist" ,
-                      [current valueForKey:@"title"],@"Name",
-                      [current valueForKey:@"url"],@"Location",
-                      [current valueForKey:@"sid"],@"sid",
-                      [[current valueForKey:@"picture"] stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],@"Picture",
-                      [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
-                       [current valueForKey:@"like"],@"Like",
-                       [current valueForKey:@"rating_avg"],@"Album Rating",
-                       nil] ;
+                  [current valueForKey:@"albumtitle"],@"Album",
+                  [current valueForKey:@"album"],@"Store URL",
+                  [current valueForKey:@"public_time"],@"Year",
+                  art, @"Artist" ,
+                  [current valueForKey:@"title"],@"Name",
+                  [current valueForKey:@"url"],@"Location",
+                  [current valueForKey:@"sid"],@"sid",
+                  [[current valueForKey:@"picture"] stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],@"Picture",
+                  [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
+                  [current valueForKey:@"like"],@"Like",
+                  [current valueForKey:@"rating_avg"],@"Album Rating",
+                  nil] ;
     return currentMusic;
 }
 

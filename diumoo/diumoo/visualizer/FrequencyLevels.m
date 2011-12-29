@@ -123,7 +123,6 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
 -(void) desktop_wave_level_changed:(NSNotification *)n
 {
-    NSLog(@"%d",[n.object tag]);
     [self setLevel:[n.object tag]];
 }
 
@@ -230,7 +229,6 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     
     // get the levels from the movie
     OSStatus err = GetMovieAudioFrequencyLevels([mMovie quickTimeMovie], kQTAudioMeter_StereoMix, mFreqResults);
-    //NSLog(@"%@",[mMovie quickTimeMovie]);
     if (!err) 
     {
         // iterate though the frequency level array and though the UI elements getting
@@ -259,7 +257,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     CGPathAddCurveToPoint(path, NULL, 40,*(values+0)/2,60,*(values+0),80,(*(values)+*(values+1))/2);
     int i=1;
     for (; i<numberOfChannels*numberOfBandLevels-1; i++) {
-        //NSLog(@"%f",*(values+i));
+
         CGPathAddCurveToPoint(path, NULL, i*40+40, (*(values+i)+*(values+i-1))/2 , i*40+60, *(values+i), i*40+80,(*(values+i)+*(values+i+1))/2);
     }
     i++;

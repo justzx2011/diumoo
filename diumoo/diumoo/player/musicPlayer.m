@@ -45,9 +45,7 @@
 {
     NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[m valueForKey:@"Picture"]]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:m];
-    NSLog(@"before image relase");
     [image release];
-    NSLog(@"image release");
 }
 
 -(BOOL) startToPlay:(NSDictionary *)music
@@ -58,15 +56,11 @@
     if(player!=nil && [player rate]!=0)
     {
         [self _pause];
-        NSLog(@"before player released");
         [player invalidate];
         [player release];
-        NSLog(@"player released");
     }
     NSError* e=nil;
-    NSLog(@"before movie retain");
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain]; 
-    NSLog(@"after movie retain");
     token=NO;
     
     if(e==NULL) 
@@ -88,14 +82,12 @@
 -(void) play
 {
     [cond lock];
-   // if(![lock tryLock])return;
     if(player != nil&& [player rate]==0) [player play], [self _set_volume:1.0];
     [cond unlock];
 }
 -(void) pause
 {
     [cond lock];
-    //if(![lock tryLock])return;
     [self _pause];
     [cond unlock];
 }
@@ -107,7 +99,6 @@
     int i=0;
     for (; i<=VOLUME_DURATION; i++) {
         [player setVolume:(vo+(v-vo) *(i/VOLUME_DURATION))];
-       // NSLog(@"%f",[player volume]);
         [NSThread sleepForTimeInterval:VOLUME_INTERVAL];
     }
     
@@ -127,11 +118,8 @@
 
 -(void) playing_rate
 {
-    //[cond lock];
-    //if(![lock tryLock])return;
     if(player==nil) return;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
-    //[cond unlock];
 }
 
 

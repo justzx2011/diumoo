@@ -65,6 +65,7 @@
 -(IBAction)buttonAction:(id)sender;
 -(IBAction)showPrefs:(id)sender;
 
+-(BOOL) lightHeart;
 
 -(void) enablesNotification:(NSNotification*)n;
 @end

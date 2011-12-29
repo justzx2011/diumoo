@@ -37,8 +37,6 @@
     keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
 	if([SPMediaKeyTap usesGlobalMediaKeyTap])
 		[keyTap startWatchingMediaKeys];
-	else
-		NSLog(@"Media key monitoring disabled");
     
     
     [[controlCenter sharedCenter] performSelectorInBackground:@selector(startToPlay) withObject:nil ];
@@ -75,7 +73,7 @@
                 break;
             case NX_KEYTYPE_REWIND:
                 if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"RateHotKey"] integerValue]==NSOnState)
-                    [[controlCenter sharedCenter] rate];
+                    if([m lightHeart])[[controlCenter sharedCenter] rate];
                 break;
         }
 

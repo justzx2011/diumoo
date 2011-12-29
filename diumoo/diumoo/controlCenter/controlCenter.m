@@ -102,7 +102,7 @@ controlCenter* sharedCenter;
     if([lock tryLock]!=YES) return NO;
     if( player!=nil && [player isPlaying]!=YES)
         [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"controller.play" object:nil userInfo:current];
+
     else return [lock unlock],NO;
     return [lock unlock], YES;
 }
@@ -112,7 +112,6 @@ controlCenter* sharedCenter;
     if([lock tryLock]!=YES) return NO;
     if(player != nil && [player isPlaying])
     {
-      //  [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.pause" object:nil userInfo:current];
         [player performSelectorOnMainThread:@selector(pause) withObject:nil waitUntilDone:YES];
     }
     else return [lock unlock],NO;
@@ -140,7 +139,6 @@ controlCenter* sharedCenter;
     if(source!=nil && current !=nil && 
         [source rateSongBySid:[[current valueForKey:@"sid"]integerValue]] ) 
         return [lock unlock],YES;
-        //return [[NSNotificationCenter defaultCenter] postNotificationName:@"controller.rate" object:nil userInfo:current],[lock unlock],YES;
     return [lock unlock],NO;
         
 }
@@ -151,7 +149,6 @@ controlCenter* sharedCenter;
     if(source!=nil && current !=nil && 
        [source unrateSongBySid:[[current valueForKey:@"sid"]integerValue]] ) 
         return [lock unlock],YES;
-       // return [[NSNotificationCenter defaultCenter] postNotificationName:@"controller.unrate" object:nil userInfo:current],[lock unlock],YES;
     return [lock unlock],NO;
     
 }
@@ -233,7 +230,6 @@ controlCenter* sharedCenter;
     }
     else
     {
-        NSLog(@"%@",[current valueForKey:@"Store URL"]);
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"http://music.douban.com" stringByAppendingString:[current valueForKey:@"Store URL"]]]];
     }
 }

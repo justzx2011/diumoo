@@ -19,116 +19,116 @@
         [item setImage:[NSImage imageNamed:@"icon.png"]];
         [item setAlternateImage:[ NSImage imageNamed:@"icon-alt.png"]];
         [item setHighlightMode:YES];
-        
+
         mainMenu=[[NSMenu alloc]init] ;
-        
+
         [item setMenu:mainMenu];
-        
+
         controlItem=[[NSMenuItem alloc]init];
         albumItem=[[NSMenuItem alloc]init];
         dv=[[DetailView alloc] init];
 
-        
-        
+
+
         prefsItem=[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ] ;
         exit=[[NSMenuItem alloc]initWithTitle:@"退出" action:nil keyEquivalent:@""];
         aboutItem=[[NSMenuItem alloc]initWithTitle:@"关于" action:nil keyEquivalent:@""] ;
-        
+
         NSRect b_rect=NSMakeRect(0, 0, ICON_WIDTH, ICON_WIDTH); 
-        
+
         play_pause=[[NSButton alloc]initWithFrame:b_rect] ;
         next=[[NSButton alloc]initWithFrame:b_rect] ;
         rate=[[NSButton alloc]initWithFrame:b_rect] ;
         bye=[[NSButton alloc]initWithFrame:b_rect] ;
-        
+
         [play_pause setTag:1];
         [next setTag:2];
         [rate setTag:3];
         [bye setTag:4];
-        
-        
+
+
         [play_pause setTarget:self];
         [play_pause setAction:@selector(buttonAction:)];
-        
+
         [next setTarget:self];
         [next setAction:@selector(buttonAction:)];
-        
+
         [rate setTarget:self];
         [rate setAction:@selector(buttonAction:)];
-        
+
         [bye setTarget:self];
         [bye setAction:@selector(buttonAction:)];
-        
+
         play=[NSImage imageNamed:@"play.png"] ;
         play_alt=[NSImage imageNamed:@"play-alt.png"] ;
-        
+
         pause=[NSImage imageNamed:@"pause.png"] ;
         pause_alt=[NSImage imageNamed:@"pause-alt.png"];
-        
+
         like=[NSImage imageNamed:@"like.png"];
         unlike=[NSImage imageNamed:@"unlike.png"] ;
-        
-        
-        
+
+
+
         [play_pause setImage:play];
         [next setImage:[NSImage imageNamed:@"next.png"]];
         [rate setImage:unlike];
         [bye setImage:[NSImage imageNamed:@"bye.png"]];
-        
+
 
         [play_pause setButtonType:NSMomentaryChangeButton];
         [next setButtonType:NSMomentaryChangeButton];
         [bye setButtonType:NSMomentaryChangeButton];
         [rate setButtonType:NSToggleButton];
-        
+
 
         [play_pause setAlternateImage:play_alt];
         [next setAlternateImage:[NSImage imageNamed:@"next-alt.png"]];
         [bye setAlternateImage:[NSImage imageNamed:@"bye-alt.png"]];
         [rate setAlternateImage: like];
-        
-        
+
+
         [play_pause setBordered:NO];
         [next setBordered:NO];
         [rate setBordered:NO];
         [bye setBordered:NO];
-        
-        
+
+
         controlView=[[NSView alloc] initWithFrame:NSMakeRect(0, 0, 0,ICON_WIDTH+8)] ;
         [controlView displayIfNeeded];
         [controlItem setView:controlView];
-        
+
         [albumItem setView:[dv view]];
-        
+
         [exit setAction:@selector(exitApp:)];
         [exit setTarget:self];
-        
+
         [prefsItem setAction:@selector(showPrefs:)];
         [prefsItem setTarget:self];
-        
+
         [aboutItem setAction:@selector(showPrefs:)];
         [aboutItem setTarget:self];
-        
+
         int i = 0;
-        
+
         [play_pause setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:play_pause]; 
         [next setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:next]; 
         [rate setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:rate];
         [bye setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:bye];
         [controlView setFrameSize:NSMakeSize(i*ICON_WIDTH+40, ICON_WIDTH+8)];
-        
+
         condition=[[NSCondition alloc] init];
-        
+
         controlCenter* c=[controlCenter sharedCenter];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(_reform:) name:@"controller.sourceChanged" object:nil],
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setDetail:) name:@"player.startToPlay" object:nil],
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateChanged:) name:@"player.rateChanged" object:nil],
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enablesNotification:) name:@"source.enables" object:nil],
-        [dv setServiceTarget:c withSelector:@selector(service:)];
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setDetail:) name:@"player.startToPlay" object:nil],
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rateChanged:) name:@"player.rateChanged" object:nil],
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enablesNotification:) name:@"source.enables" object:nil],
+                                    [dv setServiceTarget:c withSelector:@selector(service:)];
         ;
-        
+
     }
-    
+
     return self;
 }
 
@@ -142,32 +142,32 @@
 -(void) reformMenuWithSourceName:(NSString*) name channels:(NSArray*)channels andCans: (NSSet*) cans
 {
     [condition lock];
-    
+
     [mainMenu removeAllItems];
-    
+
     [mainMenu addItem:controlItem];
     [mainMenu addItem:[NSMenuItem separatorItem]];
     [mainMenu addItem:albumItem];
 
     [mainMenu addItem:[NSMenuItem separatorItem]];
-    
+
     if(name!=nil)
         [mainMenu addItemWithTitle:name action:nil keyEquivalent:@""];
-    
+
     if(channels!=nil)
     {
         [self _build_channel_menu:channels with:mainMenu andTabLength:0 ];
     }
-    
+
     [mainMenu addItem:[NSMenuItem separatorItem]];
     [mainMenu addItem:prefsItem];
     [mainMenu addItem:aboutItem];
     [mainMenu addItem:[NSMenuItem separatorItem]];
     [mainMenu addItem:exit];
-    
-    
+
+
     [condition unlock];
-    
+
 }
 
 -(void) _build_channel_menu:(NSArray *)dic with:(NSMenu *)menu andTabLength:(NSInteger) n
@@ -180,13 +180,13 @@
             {
                 [mitem setTag:[[channel valueForKey:@"channel_id"]integerValue]],[mitem setTarget:self],[mitem setAction:@selector(channelAction:)];
                 if([[channel valueForKey:@"default"] boolValue]==YES){
-                    [mitem setState:NSOnState];
-                    current=mitem;
-                    NSMenuItem* m=mitem;
-                    while((m=[m parentItem])!=nil) [m setState:NSMixedState];
+                         [mitem setState:NSOnState];
+                         current=mitem;
+                         NSMenuItem* m=mitem;
+                         while((m=[m parentItem])!=nil) [m setState:NSMixedState];
                 }
             }
-            
+
             if([channel valueForKey:@"sub"]!=nil){
                 NSMenu* submenu=[[NSMenu alloc] init];
                 [self _build_channel_menu:[channel valueForKey:@"sub"] with:submenu andTabLength:0];
@@ -227,9 +227,8 @@
     else image=[NSImage imageNamed:@"album.png"];
     [dv setDetail:n.userInfo withImage:image];
     if([[n.userInfo valueForKey:@"Like"] boolValue])
-        [rate setState:NSOnState];
+                 [rate setState:NSOnState];
     else [rate setState:NSOffState];
-  //  NSLog(@">>>>>>>>>>>>>>>>end");
     [condition unlock];
 }
 
@@ -237,13 +236,12 @@
 
 -(void) backChannelTo:(NSNumber*) c
 {
-        [[controlCenter sharedCenter] changeChannelTo:[c integerValue]];
+    [[controlCenter sharedCenter] changeChannelTo:[c integerValue]];
 }
 
 -(void) enablesNotification:(NSNotification *)n
 {
     [condition lock];
-    NSLog(@"=>>>>>>>>>>>>>>>test: %@",n.userInfo);
     NSSet* enables=nil;
     if((enables=[n.userInfo valueForKey:@"enables"])==nil){ 
         [condition unlock];
@@ -282,26 +280,22 @@
     controlCenter* controller=[controlCenter sharedCenter];
     switch (tag) {
         case 0:
-            if([controller respondsToSelector:@selector(back)]) [controller performSelectorInBackground:@selector(back) withObject:nil];
-            break;
+             [controller performSelectorInBackground:@selector(back) withObject:nil];
+             break;
         case 1:
-            if([controller respondsToSelector:@selector(play_pause)]) [controller performSelectorInBackground:@selector(play_pause) withObject:nil];
+            [controller performSelectorInBackground:@selector(play_pause) withObject:nil];
             break;
         case 2:
-            if([controller respondsToSelector:@selector(skip)]) [controller performSelectorInBackground:@selector(skip) withObject:nil];
-            break;
+             [controller performSelectorInBackground:@selector(skip) withObject:nil];
+             break;
         case 3:
-            if([rate state]==NSOnState)
-                if([controller respondsToSelector:@selector(rate)]) [controller performSelectorInBackground:@selector(rate) withObject:nil];
-            else
-                if([controller respondsToSelector:@selector(unrate)]) [controller performSelectorInBackground:@selector(unrate) withObject:nil];
-            
-            break;
+             if([rate state]==NSOnState)
+                 [controller performSelectorInBackground:@selector(rate) withObject:nil];
+             else
+                 [controller performSelectorInBackground:@selector(unrate) withObject:nil];
+             break;
         case 4:
-            if([controller respondsToSelector:@selector(bye)]) [controller performSelectorInBackground:@selector(bye) withObject:nil];
-            break;
-            
-        default:
+             [controller performSelectorInBackground:@selector(bye) withObject:nil];
             break;
     }
     [condition unlock];
@@ -315,6 +309,11 @@
     else [play_pause setImage:play],[play_pause setAlternateImage:play_alt];
 }
 
+-(BOOL) lightHeart
+{
+    if([rate isEnabled]) return [rate setState: NSOnState],YES;
+    return NO;
+}
 
 -(void)dealloc
 {
