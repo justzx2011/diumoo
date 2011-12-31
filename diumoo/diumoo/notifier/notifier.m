@@ -17,24 +17,42 @@
         // Initialization code here.
         [GrowlApplicationBridge setGrowlDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify:) name:@"player.startToPlay" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyAccount:) name:@"source.account" object:nil];
     }
     
     return self;
 }
 -(NSDictionary*) registrationDictionaryForGrowl{
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            [NSArray arrayWithObjects:@"New Song",@"Rate A Song", nil],
+            [NSArray arrayWithObjects:@"New Song",@"Account", nil],
             GROWL_NOTIFICATIONS_ALL,
-            [NSArray arrayWithObjects:@"New Song",@"Rate A Song", nil],
+            [NSArray arrayWithObjects:@"New Song",@"Account", nil],
             GROWL_NOTIFICATIONS_DEFAULT,
             nil];
 }
+
 
 -(void) notify:(NSNotification*)noti
 {
     [self growlNotification:noti.userInfo withImage:noti.object];
     [self iTunesNotification:noti.userInfo];
     
+}
+
+-(void) notifyAccount:(NSNotification *)noti
+{
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableGrowl"] integerValue]!=NSOnState) return;
+    if(!([GrowlApplicationBridge isGrowlRunning]))return;
+    if(noti.userInfo!=nil){
+        NSDictionary* dic=[noti.userInfo valueForKey:@"play_record"];
+        NSString* s=[NSString stringWithFormat:@"您已经登陆成功！\n您的播放记录为:\n\t听过歌曲:%@首\n\t标记红心:%@首\n\t不再播放:%@首\nNow enjoy yourself!",[dic valueForKey:@"played"],[dic valueForKey:@"liked"],[dic valueForKey:@"banned"]];
+        [GrowlApplicationBridge notifyWithTitle:[noti.userInfo valueForKey:@"name"] description:s notificationName:@"Account" iconData:nil priority:0 isSticky:NO clickContext:nil];
+    }
+    else
+    {
+        [GrowlApplicationBridge notifyWithTitle:@"账号已登出" description:@"您的账号已经退出登陆或登录失败" notificationName:@"Account" iconData:nil priority:0 isSticky:NO clickContext:nil];
+    }
+           
 }
 
 -(void) growlNotification:(NSDictionary*)user_info withImage:(id)img

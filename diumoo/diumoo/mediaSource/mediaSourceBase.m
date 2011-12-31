@@ -33,23 +33,23 @@
 {
     return nil;
 }
--(NSDictionary*) getNewSongBySkip:(NSInteger) sid
+-(NSDictionary*) getNewSongBySkip:(NSString*) sid
 {
     return nil;
 }
--(NSDictionary*) getNewSongWhenEnd: (NSInteger) sid
+-(NSDictionary*) getNewSongWhenEnd: (NSString*) sid
 {
     return nil;
 }
--(NSDictionary*) getNewSongByBye:(NSInteger) sid
+-(NSDictionary*) getNewSongByBye:(NSString*) sid
 {
     return nil;
 }
--(BOOL) rateSongBySid:(NSInteger) sid
+-(BOOL) rateSongBySid:(NSString*) sid
 {
     return NO;
 }
--(BOOL) unrateSongBySid:(NSInteger) sid
+-(BOOL) unrateSongBySid:(NSString*) sid
 {
     return NO;
 }

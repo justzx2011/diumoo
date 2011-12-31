@@ -10,6 +10,8 @@
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B258114A2305E00903039 /* QuartzCore.framework */; };
 		F54951B314A18F3B00068581 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54951B214A18F3B00068581 /* QuickTime.framework */; };
+		F56251F814AD589B006A880C /* account_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = F56251F614AD589B006A880C /* account_ok.png */; };
+		F56251F914AD589B006A880C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = F56251F714AD589B006A880C /* user.png */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
 		F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D26149D950200D5FDA6 /* prefsPanel.xib */; };
 		F5766D34149DA0EC00D5FDA6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D32149DA0EC00D5FDA6 /* MainMenu.xib */; };
@@ -81,6 +83,8 @@
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F53B258114A2305E00903039 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F54951B214A18F3B00068581 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		F56251F614AD589B006A880C /* account_ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account_ok.png; sourceTree = "<group>"; };
+		F56251F714AD589B006A880C /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		F56A840E148CF92800AE6F1E /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56A8412148CF92800AE6F1E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F56A8415148CF92800AE6F1E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -324,6 +328,8 @@
 		F58A8C8B149A48DE004E60AD /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F56251F614AD589B006A880C /* account_ok.png */,
+				F56251F714AD589B006A880C /* user.png */,
 				F5D9C0E914A8BC3E00029663 /* douban.png */,
 				F58C5E90149F089D00DDDF95 /* icon.icns */,
 				F5C38F41149C58AF0082FEE4 /* google.png */,
@@ -492,6 +498,8 @@
 				F58C5E8F149F081200DDDF95 /* album.png in Resources */,
 				F58C5E91149F089D00DDDF95 /* icon.icns in Resources */,
 				F5D9C0EA14A8BC3E00029663 /* douban.png in Resources */,
+				F56251F814AD589B006A880C /* account_ok.png in Resources */,
+				F56251F914AD589B006A880C /* user.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,7 +619,7 @@
 					"\"$(SRCROOT)/../../Growl-1.3.1-SDK/Framework\"",
 					"\"$(SRCROOT)/extern\"",
 				);
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -631,7 +639,7 @@
 					"\"$(SRCROOT)/../../Growl-1.3.1-SDK/Framework\"",
 					"\"$(SRCROOT)/extern\"",
 				);
-				GCC_ENABLE_OBJC_GC = supported;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;

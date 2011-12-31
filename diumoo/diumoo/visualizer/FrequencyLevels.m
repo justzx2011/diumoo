@@ -71,7 +71,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 {
     FrequencyLevels	*levels;
 
-    levels = [[FrequencyLevels alloc] init];
+    levels = [[[FrequencyLevels alloc] init] retain];
     
     [levels setMovie:movie];
     

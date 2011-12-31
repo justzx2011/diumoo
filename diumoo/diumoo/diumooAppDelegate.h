@@ -23,6 +23,7 @@
 
 }
 
+-(void) firstLaunch;
 -(void) applicationWillTerminate:(NSNotification *)notification;
 -(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
 

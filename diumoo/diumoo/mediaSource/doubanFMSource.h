@@ -47,20 +47,22 @@
     NSArray* channelList;
 }
 
+-(NSDictionary*) userinfo;
+
 -(BOOL) authWithUsername:(NSString*) name andPassword:(NSString*) password;
--(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSInteger)sid; 
--(NSDictionary* ) getNewSongByType:(NSString *)t andSid:(NSInteger)sid;
+-(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSString*)sid; 
+-(NSDictionary* ) getNewSongByType:(NSString *)t andSid:(NSString*)sid;
 -(id) _quick_unlock:(id) r;
 -(void) _back_request:(NSDictionary* ) dic;
 
 //Source 接口
 -(NSString*) sourceName;
 -(NSDictionary*) getNewSong;
--(NSDictionary*) getNewSongBySkip:(NSInteger) sid;
--(NSDictionary*) getNewSongWhenEnd: (NSInteger) sid;
--(NSDictionary*) getNewSongByBye:(NSInteger) sid;
--(BOOL) rateSongBySid:(NSInteger) sid;
--(BOOL) unrateSongBySid:(NSInteger) sid;
+-(NSDictionary*) getNewSongBySkip:(NSString*) sid;
+-(NSDictionary*) getNewSongWhenEnd: (NSString*) sid;
+-(NSDictionary*) getNewSongByBye:(NSString*) sid;
+-(BOOL) rateSongBySid:(NSString*) sid;
+-(BOOL) unrateSongBySid:(NSString*) sid;
 -(void) setChannel:(NSInteger) channel;
 -(NSInteger) channel;
 

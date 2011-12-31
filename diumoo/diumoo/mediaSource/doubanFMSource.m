@@ -18,29 +18,29 @@
         srand((int)time(0));
         
         //初始化 request
-        request=[[NSMutableURLRequest alloc]init] ;
+        request=[[[NSMutableURLRequest alloc]init] retain] ;
         [request setTimeoutInterval:TIMEOUT];
         [request setHTTPShouldHandleCookies:NO];
         
         //初始化lock
-        condition=[[NSCondition alloc]init] ;
+        condition=[[[NSCondition alloc]init] retain] ;
         
         //将Cookie设置为空
         cookie=nil;
         
         //初始化两个set
-        replacePlaylist = [[NSSet alloc] initWithObjects:NEW,SKIP,BYE, nil] ;
-        recordType = [[NSSet alloc] initWithObjects:RATE,END,SKIP,BYE, nil] ;
+        replacePlaylist = [[[NSSet alloc] initWithObjects:NEW,SKIP,BYE, nil] retain] ;
+        recordType = [[[NSSet alloc] initWithObjects:RATE,END,SKIP,BYE, nil] retain] ;
         
-        privateEnables=[NSSet setWithObjects:@"play",@"next",@"like",@"bye", nil] ;
-        publicEnables = [NSSet setWithObjects:@"play",@"next", nil] ;
-        publicWithLoggedInEnables = [NSSet setWithObjects:@"play",@"next",@"like", nil] ;
+        privateEnables=[[NSSet setWithObjects:@"play",@"next",@"like",@"bye", nil] retain] ;
+        publicEnables = [[NSSet setWithObjects:@"play",@"next", nil] retain];
+        publicWithLoggedInEnables = [[NSSet setWithObjects:@"play",@"next",@"like", nil] retain];
         
         //初始化playlist
-        playlist=[[NSMutableArray alloc] initWithCapacity:20] ;
+        playlist=[[[NSMutableArray alloc] initWithCapacity:20] retain];
         
         //初始化h
-        h=[[NSMutableString alloc] init] ;
+        h=[[[NSMutableString alloc] init] retain];
         
         loggedIn = NO;
         
@@ -68,30 +68,46 @@
         [request setHTTPMethod:@"POST"];
         [request setURL:AUTH_URL];
         [request setHTTPBody:body];
+        NSArray* array= [[NSArray alloc] init];
+        [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:array]];
+        [array release];
         
         //生成同步请求
         NSHTTPURLResponse* r=nil;
         NSError* e= nil;
         NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
-        
         if(e==NULL){
             NSError* je=nil;
             NSDictionary* obj=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
             if(je==NULL && ([[obj valueForKey:@"r"]intValue]==0)) {
-                [user_info release];
                 user_info=[obj valueForKey:@"user_info"];
-                cookie = [NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]];
+                cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
                 loggedIn=YES;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:(channel==0?privateEnables:publicWithLoggedInEnables) forKey:@"enables"]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"source.account" object:nil userInfo:user_info];
                 [condition unlock];
                 return YES;
             }
         }
     }
+    
+    loggedIn=NO;
+    if(cookie!=nil) [cookie release];
+    cookie=nil;
+    user_info=nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:publicEnables forKey:@"enables"]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"source.account" object:nil userInfo:user_info];
+    
     [condition unlock];
     return NO;
 }
--(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSInteger)sid
+
+-(NSDictionary*) userinfo
+{
+    return user_info;
+}
+
+-(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSString*)sid
 {
     //生成获取列表的参数
     //    | 生成随机数
@@ -100,7 +116,8 @@
     //    | 生成channel
     NSString* _s=@"";
     NSMutableArray* _cookie=[[NSMutableArray alloc] init];
-    [_cookie addObjectsFromArray:cookie];
+    if(cookie!=nil)
+        [_cookie addObjectsFromArray:cookie];
     if(channel>10000){
         _s=[NSString stringWithFormat: @"channel=dj&pid=%d",channel];
         NSDictionary* dic=[NSDictionary dictionaryWithObjectsAndKeys:
@@ -113,11 +130,11 @@
         [_cookie addObject:[NSHTTPCookie cookieWithProperties:dic]];
     }
     else _s=[NSString stringWithFormat:@"channel=%d",channel];
-    if([type isNotEqualTo:NEW]&&sid!=0)
-        _s=[NSString stringWithFormat:@"%@&sid=%d",_s,sid];
-    if([type isNotEqualTo:NEW])_s=[NSString stringWithFormat:@"%@&h=%d:%@%@",_s,sid,type,h];
+    if([type isNotEqualTo:NEW]&& sid!=nil &&[sid isNotEqualTo:@""])
+        _s=[NSString stringWithFormat:@"%@&sid=%@",_s,sid];
+    if([type isNotEqualTo:NEW])_s=[NSString stringWithFormat:@"%@&h=%@:%@%@",_s,sid,type,h];
     if([recordType containsObject:type])
-        [h appendString:[NSString stringWithFormat:@"%%7C%d:%@",sid,type]];
+        [h appendString:[NSString stringWithFormat:@"%%7C%@:%@",sid,type]];
     
     // 构造request
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%x&%@",PLAYLIST_URL_STRING,type,rnd,_s]]];
@@ -125,7 +142,7 @@
     [request setHTTPBody:nil];
     [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
     [_cookie release];
-    
+
     // 发送请求
     NSHTTPURLResponse* r=nil;
     NSError* e=nil;
@@ -147,17 +164,17 @@
             
         }
     }
+    
     return NO;
 }
 
 -(void) _back_request:(NSDictionary* ) dic
 {
-    [self requestPlaylistWithType:[dic valueForKey:@"type"] andSid:[[dic valueForKey:@"sid"] integerValue]];
+    [self requestPlaylistWithType:[dic valueForKey:@"type"] andSid:[dic valueForKey:@"sid"]];
 }
 
--(NSDictionary*) getNewSongByType:(NSString *)t andSid:(NSInteger)sid
+-(NSDictionary*) getNewSongByType:(NSString *)t andSid:(NSString*)sid
 {
-    
     if([playlist count]==0){
         int retry=0;
         do{
@@ -169,14 +186,13 @@
             return nil;
         };
     }
-    else [self performSelectorInBackground:@selector(_back_request:) withObject:[
-                                                                                 NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:sid],@"sid",t,@"type", nil ]];
-    NSDictionary* current=[playlist objectAtIndex:0] ;
+    else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
+    NSDictionary* current=[[playlist objectAtIndex:0] retain] ;
     [playlist removeObjectAtIndex:0];
-    NSDictionary* currentMusic=nil;
+    
     NSString* art=[current valueForKey:@"artist"];
     if(art==nil) art = [current valueForKey:@"dj_name"];
-    currentMusic=[NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary* currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
                   [current valueForKey:@"albumtitle"],@"Album",
                   [current valueForKey:@"album"],@"Store URL",
                   [current valueForKey:@"public_time"],@"Year",
@@ -188,7 +204,8 @@
                   [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
                   [current valueForKey:@"like"],@"Like",
                   [current valueForKey:@"rating_avg"],@"Album Rating",
-                  nil] ;
+                  nil] retain];
+    [current release];
     return currentMusic;
 }
 
@@ -204,24 +221,24 @@
     return [self _quick_unlock:[self getNewSongByType:NEW andSid:0]];
 }
 
--(NSDictionary*) getNewSongBySkip:(NSInteger)sid
+-(NSDictionary*) getNewSongBySkip:(NSString*)sid
 {
     [condition lock];
     return [self _quick_unlock:[self getNewSongByType:SKIP andSid:sid]];
 }
--(NSDictionary*) getNewSongWhenEnd:(NSInteger)sid
+-(NSDictionary*) getNewSongWhenEnd:(NSString*)sid
 {
     [condition lock];
     return [self _quick_unlock:[self getNewSongByType:END andSid:sid]];
 }
 
--(NSDictionary*) getNewSongByBye:(NSInteger)sid
+-(NSDictionary*) getNewSongByBye:(NSString*)sid
 {
     [condition lock];
     return [self _quick_unlock:[self getNewSongByType:BYE andSid:sid]];
 }
 
--(BOOL) rateSongBySid:(NSInteger)sid
+-(BOOL) rateSongBySid:(NSString*)sid
 {
     [condition lock];
     BOOL r=[self requestPlaylistWithType:RATE andSid:sid];
@@ -229,7 +246,7 @@
     return r;
 }
 
--(BOOL) unrateSongBySid:(NSInteger) sid
+-(BOOL) unrateSongBySid:(NSString*) sid
 {
     [condition lock];
     BOOL r=[self requestPlaylistWithType:UNRATE andSid:sid];

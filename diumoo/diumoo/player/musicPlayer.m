@@ -16,11 +16,11 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        cond=[[NSCondition alloc] init] ;
+        cond=[[[NSCondition alloc] init] retain] ;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(load_state:) name:QTMovieLoadStateDidChangeNotification object:nil];
-        level=[[FrequencyLevels alloc] init];
+        level=[[[FrequencyLevels alloc] init] retain];
         token=YES;
     }
     
@@ -43,7 +43,7 @@
 
 -(void) _start_to_play_notification:(NSDictionary *)m
 {
-    NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[m valueForKey:@"Picture"]]];
+    NSImage* image=[[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[m valueForKey:@"Picture"]]] retain];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:m];
     [image release];
 }
@@ -51,7 +51,6 @@
 -(BOOL) startToPlay:(NSDictionary *)music
 {
     [cond lock];
-    //if(![lock tryLock]) return NO;
     [level toggleFreqLevels: NSOffState];
     if(player!=nil && [player rate]!=0)
     {

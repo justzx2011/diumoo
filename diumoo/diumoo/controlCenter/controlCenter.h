@@ -25,6 +25,7 @@
 
 +(controlCenter*) sharedCenter;
 +(BOOL) tryAuth:(NSDictionary*) dic;
++(void) cleanAuth;
 
 -(void) musicEnded;
 

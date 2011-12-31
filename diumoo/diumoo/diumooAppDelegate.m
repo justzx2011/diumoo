@@ -20,15 +20,34 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:[SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,nil]];
 }
 
+-(void) firstLaunch
+{
+    NSUserDefaultsController* c=[NSUserDefaultsController sharedUserDefaultsController];
+    if([[c values] valueForKey:@"IsFirstLaunch"]==nil)
+    {
+        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"ShowDockIcon"];
+        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"EnableGrowl"];
+        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"PlayPauseFastHotKey"];
+        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"RateHotKey"];
+
+        [[c values] setValue:[NSNumber numberWithInt:2] forKey:@"DesktopWaveLevel"];
+        [[c values] setValue:[NSNumber numberWithInt:1] forKey:@"GoogleSearchType"];
+        
+        [[c values] setValue:[NSNumber numberWithBool:NO] forKey:@"IsFirstLaunch"];
+        
+    }
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    g=[[notifier alloc] init];
-    s=[[doubanFMSource alloc] init];
-    p=[[musicPlayer alloc] init];
-    m=[[menu alloc]init];
+    [self firstLaunch];
+    g=[[[notifier alloc] init] retain];
+    s=[[[doubanFMSource alloc] init] retain];
+    p=[[[musicPlayer alloc] init] retain];
+    m=[[[menu alloc]init] retain];
     
-    [preference sharedPreference];
+    //[preference sharedPreference];
      
     [[controlCenter sharedCenter] setPlayer:p];
     [[controlCenter sharedCenter] setSource:s];
@@ -40,6 +59,14 @@
     
     
     [[controlCenter sharedCenter] performSelectorInBackground:@selector(startToPlay) withObject:nil ];
+    
+    
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowDockIcon"] integerValue]!=NSOnState){
+        ProcessSerialNumber psn = { 0, kCurrentProcess };
+        TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+    }
+
+    
     
     
 }

@@ -13,6 +13,8 @@ static preference* shared;
 
 @implementation preference
 
+@synthesize toolbar,mainview,email,pass;
+
 +(id) sharedPreference
 {
     if(shared==nil) shared=[[[preference alloc] init] retain];
@@ -79,6 +81,7 @@ static preference* shared;
 {
     NSString* username=[email stringValue];
     NSString* password=[pass stringValue];
+
     if([username length]==0 || [password length]==0)
     {
         NSRunCriticalAlertPanel(@"输入错误", @"请完整填写用户名和密码",@"取消",nil,nil);
@@ -104,6 +107,18 @@ static preference* shared;
     [[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password"] removeFromKeychain];
     [email setStringValue:@""];
     [pass setStringValue:@""];
+    [controlCenter cleanAuth];
+    NSRunInformationalAlertPanel(@"账户记录已清除", @"已经成功将您的账户信息从系统钥匙串中清除", @"知道了", nil, nil);
+}
+
+-(IBAction)changeProcessType:(id)sender
+{
+    ProcessSerialNumber psn = { 0, kCurrentProcess };
+    if([sender state]==NSOnState)
+    {
+        TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+    }
+    else TransformProcessType(&psn, kProcessTransformToUIElementApplication);
 }
 
 -(void) dealloc

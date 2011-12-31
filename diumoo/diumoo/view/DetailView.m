@@ -7,6 +7,7 @@
 //
 
 #import "DetailView.h"
+#import "preference.h"
 
 @implementation DetailView
 
@@ -15,7 +16,7 @@
     self = [super initWithNibName:@"DetailView.nib" bundle:nil];
     if(self)
     {
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setAccountDetail:) name:@"source.account" object:nil];
     }
     return self;
 }
@@ -31,16 +32,16 @@
     if(image!=nil)img=image;
     else img=[NSImage imageNamed:@"album.png"];
 
-    
-    float scale=250/([image size].width>[image size].height?image.size.width:image.size.height);
+
+    float scale=250.0/([image size].width>[image size].height?image.size.width:image.size.height);
     if(scale<1.0)
     {
         [album_img setFrameSize:NSMakeSize(image.size.width*scale, image.size.height*scale)];
-        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 130)];
+        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 150)];
     }
     else{
         [album_img setFrameSize:[img size]];
-        [[self view]setFrameSize:NSMakeSize(230,[img size].height+130)];
+        [[self view]setFrameSize:NSMakeSize([img size].width+50,[img size].height+150)];
     }
     
     
@@ -69,6 +70,24 @@
     selector=s;
 }
 
+-(void) setAccountDetail:(NSNotification*) n
+{
+    NSDictionary* userinfo=n.userInfo;
+    if(userinfo!=nil){
+        [account setImage:[NSImage imageNamed:@"account_ok.png"]];
+        [account setTitle:[userinfo valueForKey:@"name"]];
+        url=[[userinfo valueForKey:@"url"] retain];
+    }
+    else
+    {
+        [account setImage:[NSImage imageNamed:@"user.png"]];
+        [account setTitle:@"未登录"];
+        [url release];
+        url=nil;
+    }
+    
+}
+
 -(IBAction)serviceCallback:(id)sender
 {
     if([target respondsToSelector:selector]){
@@ -88,6 +107,12 @@
         [target performSelector:selector withObject:s];
     }
         
+}
+
+-(IBAction)showAccount:(id)sender
+{
+    if(url==nil)[preference showPreferenceWithView:ACCOUT_PREFERENCE_ID];
+    else [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
 }
 
 @end

@@ -13,6 +13,7 @@
 -(NSDictionary* )registrationDictionaryForGrowl;
 
 -(void) notify:(NSNotification*)noti;
+-(void) notifyAccount:(NSNotification*)noti;
 
 -(void) growlNotification:(NSDictionary*) userinfo withImage: (id) image;
 -(void) iTunesNotification:(NSDictionary*)noti;

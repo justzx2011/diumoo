@@ -25,13 +25,17 @@ controlCenter* sharedCenter;
     if(source!=nil) return [source authWithUsername:[dic valueForKey:@"username"] andPassword:[dic valueForKey:@"password"]];
     return NO;
 }
++(void) cleanAuth
+{
+    [[[controlCenter sharedCenter] getSource] authWithUsername:@"" andPassword:@""];
+}
 
 - (id)init
 {
     self = [super init];
     if (self) {
         // Initialization code here.
-        lock=[[NSLock alloc]init] ;
+        lock=[[[NSLock alloc]init] retain];
         state=0;
         current=nil;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded) name:@"player.end" object:nil];
@@ -122,13 +126,18 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES) return NO;
     if(source!=nil && current!=nil )
-        if(player!=nil && ([player pause],[current release],(current=[[source getNewSongBySkip:[[current valueForKey:@"sid"]integerValue]] retain]))!=nil)
-            if( [player respondsToSelector:@selector(startToPlay:)])
+    {
+        NSString* sid=[[current valueForKey:@"sid"] retain];
+        [current release];
+        if(player!=nil && ([player pause],(current=[[source getNewSongBySkip:sid ] retain]))!=nil)
             {
+                [sid release];
                 [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
                 [lock unlock];
                 return YES;
             }
+        [sid release];
+    }
     [lock unlock];
     return NO;
 }
@@ -137,7 +146,7 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES)return NO;
     if(source!=nil && current !=nil && 
-        [source rateSongBySid:[[current valueForKey:@"sid"]integerValue]] ) 
+        [source rateSongBySid:[current valueForKey:@"sid"]] ) 
         return [lock unlock],YES;
     return [lock unlock],NO;
         
@@ -147,7 +156,7 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES)return NO;
     if(source!=nil && current !=nil && 
-       [source unrateSongBySid:[[current valueForKey:@"sid"]integerValue]] ) 
+       [source unrateSongBySid:[current valueForKey:@"sid"]] ) 
         return [lock unlock],YES;
     return [lock unlock],NO;
     
@@ -156,7 +165,7 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES)return NO;
     if(source!=nil && current!=nil && player!=nil
-       && ([current release],current=[[source getNewSongByBye:[[current valueForKey:@"sid"] integerValue]] retain] )!=nil)
+       && ([current release],current=[[source getNewSongByBye:[current valueForKey:@"sid"]] retain] )!=nil)
     {
         [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
         [lock unlock];
@@ -189,7 +198,7 @@ controlCenter* sharedCenter;
     if(player!=nil 
        && source!=nil
        && current!=nil
-       && ([current release],current = [[source getNewSongWhenEnd:[[current valueForKey:@"sid"] integerValue]] retain])!=nil)
+       && ([current release],current = [[source getNewSongWhenEnd:[current valueForKey:@"sid"]]  retain])!=nil)
         [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
     [lock unlock];
 }

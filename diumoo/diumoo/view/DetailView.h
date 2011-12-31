@@ -16,12 +16,19 @@
     IBOutlet NSTextField* music;
     IBOutlet NSTextField* year;
     
+    IBOutlet NSButton* account;
+    
+    NSString* url;
+    
     id target;
     SEL selector;
 }
 
 -(void) setDetail:(NSDictionary*) music withImage:(NSImage*) image;
 -(void) setServiceTarget:(id)target withSelector:(SEL) s;
+-(void) setAccountDetail:(NSNotification*)n;
+
+-(IBAction)showAccount:(id)sender;
 
 -(IBAction)serviceCallback:(id)sender;
 

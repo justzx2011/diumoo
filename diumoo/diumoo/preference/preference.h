@@ -23,10 +23,16 @@
     IBOutlet NSSecureTextField* pass;
 }
 
+@property(nonatomic,assign) NSToolbar* toolbar;
+@property(nonatomic,assign) NSTabView* mainview;
+@property(nonatomic,assign) NSTextField* email;
+@property(nonatomic,assign) IBOutlet NSSecureTextField* pass;
+
 +(id) sharedPreference;
 +(void)showPreferenceWithView:(NSInteger) view_id;
 +(NSDictionary*) authPrefsData;
 
+-(IBAction)changeProcessType:(id)sender;
 -(IBAction)selectPreferenceView:(id)sender;
 -(IBAction)desktopWaveLevelChanged:(id)sender;
 -(void) selectPreferenceViewWithID:(NSInteger) view_id;

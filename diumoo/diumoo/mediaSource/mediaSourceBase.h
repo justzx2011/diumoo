@@ -14,11 +14,11 @@
 
 -(NSString*) sourceName;
 -(NSDictionary*) getNewSong;
--(NSDictionary*) getNewSongBySkip:(NSInteger) sid;
--(NSDictionary*) getNewSongWhenEnd: (NSInteger) sid;
--(NSDictionary*) getNewSongByBye:(NSInteger) sid;
--(BOOL) rateSongBySid:(NSInteger) sid;
--(BOOL) unrateSongBySid:(NSInteger) sid;
+-(NSDictionary*) getNewSongBySkip:(NSString*) sid;
+-(NSDictionary*) getNewSongWhenEnd: (NSString*) sid;
+-(NSDictionary*) getNewSongByBye:(NSString*) sid;
+-(BOOL) rateSongBySid:(NSString*) sid;
+-(BOOL) unrateSongBySid:(NSString*) sid;
 -(void) setChannel:(NSInteger) channel;
 -(NSInteger) channel;
 
