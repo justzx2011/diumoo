@@ -15,8 +15,12 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        firstDetail=NO;
+        
         item=[[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain] ;
-        [item setImage:[NSImage imageNamed:@"icon.png"]];
+        icon=[[NSImage imageNamed:@"icon.png"] retain];
+        iconred=[[NSImage imageNamed:@"icon-red.png"] retain];
+        [item setImage:icon];
         [item setAlternateImage:[ NSImage imageNamed:@"icon-alt.png"]];
         [item setHighlightMode:YES];
 
@@ -222,13 +226,20 @@
 -(void) setDetail:(NSNotification *)n
 {
     [condition lock];
+    if(!firstDetail) firstDetail=YES;
     NSImage * image;
     if(n.object!=nil) image=n.object;
     else image=[NSImage imageNamed:@"album.png"];
     [dv setDetail:n.userInfo withImage:image];
     if([[n.userInfo valueForKey:@"Like"] boolValue])
-                 [rate setState:NSOnState];
-    else [rate setState:NSOffState];
+    {
+        [rate setState:NSOnState];
+        [item setImage:iconred];
+    }
+    else {
+        [rate setState:NSOffState];
+        [item setImage:icon];
+    }
     [condition unlock];
 }
 
@@ -261,15 +272,25 @@
 
 -(IBAction)channelAction:(id)sender
 {
+    
     [condition lock];
-    [self performSelectorInBackground:@selector(backChannelTo:) withObject:[NSNumber numberWithInteger:[sender tag]]];
+    if(!firstDetail) {
+        [condition unlock];
+        return;
+    }
     [current setState:NSOffState];
     NSMenuItem* i=current;
     while((i=[i parentItem])!=nil) [i setState:NSOffState];
-    [sender setState:NSOnState];
-    i=sender;
+    
+    if([sender tag]>1000 && [sender submenu]!=nil && (i=[[sender submenu] itemAtIndex:0])!=nil);
+    else i=sender;
+    
+    [i setState:NSOnState];
+    current=i;
+    [self performSelectorInBackground:@selector(backChannelTo:) withObject:[NSNumber numberWithInteger:[i tag]]];
+    
     while((i=[i parentItem])!=nil) [i setState:NSMixedState];
-    current=sender;
+    
     [condition unlock];
 }
 
@@ -280,22 +301,27 @@
     controlCenter* controller=[controlCenter sharedCenter];
     switch (tag) {
         case 0:
-             [controller performSelectorInBackground:@selector(back) withObject:nil];
+             [controller performSelector:@selector(back) withObject:nil];
              break;
         case 1:
-            [controller performSelectorInBackground:@selector(play_pause) withObject:nil];
+            [controller performSelector:@selector(play_pause) withObject:nil];
             break;
         case 2:
-             [controller performSelectorInBackground:@selector(skip) withObject:nil];
+             [controller performSelector:@selector(skip) withObject:nil];
              break;
         case 3:
              if([rate state]==NSOnState)
+             {
                  [controller performSelectorInBackground:@selector(rate) withObject:nil];
-             else
+                 [item setImage:iconred];
+             }
+             else{
                  [controller performSelectorInBackground:@selector(unrate) withObject:nil];
+                 [item setImage:iconred];
+             }
              break;
         case 4:
-             [controller performSelectorInBackground:@selector(bye) withObject:nil];
+             [controller performSelector:@selector(bye) withObject:nil];
             break;
     }
     [condition unlock];
@@ -311,7 +337,12 @@
 
 -(BOOL) lightHeart
 {
-    if([rate isEnabled]) return [rate setState: NSOnState],YES;
+    if([rate isEnabled]) {
+        [rate setState: NSOnState];
+        [item setImage:iconred];
+        return YES;
+        
+    }
     return NO;
 }
 
@@ -336,6 +367,8 @@
     [bye release];
     [albumItem release];
     [dv release];
+    [icon release];
+    [iconred release];
     [condition release];
     [super dealloc];
 }

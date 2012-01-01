@@ -125,8 +125,13 @@ controlCenter* sharedCenter;
 -(BOOL) skip
 {
     if([lock tryLock]!=YES) return NO;
-    if(source!=nil && current!=nil )
+    if(source!=nil )
     {
+        if(current==nil && (current=[[source getNewSong]retain])==nil) 
+        {
+            [lock unlock];
+            return NO;
+        }
         NSString* sid=[[current valueForKey:@"sid"] retain];
         [current release];
         if(player!=nil && ([player pause],(current=[[source getNewSongBySkip:sid ] retain]))!=nil)
@@ -239,7 +244,17 @@ controlCenter* sharedCenter;
     }
     else
     {
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[@"http://music.douban.com" stringByAppendingString:[current valueForKey:@"Store URL"]]]];
+        @try {
+            NSString* str=[current valueForKey:@"Store URL"];
+            if(![str hasPrefix:@"http://"])
+            str=[@"http://music.douban.com" stringByAppendingString:str];
+            
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:str]];
+        }
+        @catch (NSException *exception) {
+            
+        }
+        
     }
 }
 

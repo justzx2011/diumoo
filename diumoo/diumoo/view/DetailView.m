@@ -37,13 +37,16 @@
     if(scale<1.0)
     {
         [album_img setFrameSize:NSMakeSize(image.size.width*scale, image.size.height*scale)];
-        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 150)];
+        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 160)];
     }
     else{
         [album_img setFrameSize:[img size]];
-        [[self view]setFrameSize:NSMakeSize([img size].width+50,[img size].height+150)];
+        float wid=[img size].width+50;
+        [[self view]setFrameSize:NSMakeSize((wid<180?180:wid),[img size].height+160)];
     }
-    
+    [album setFrameSize:NSMakeSize([self view].frame.size.width-50, [album frame].size.height)];
+    [artist setFrameSize:NSMakeSize([self view].frame.size.width-50, [artist frame].size.height)];
+    [music setFrameSize:NSMakeSize([self view].frame.size.width-50, [music frame].size.height)];
     
     
     [album_img setImage:img];
@@ -62,6 +65,30 @@
     if([info valueForKey:@"Name"]!=nil)
         [music setStringValue:[info valueForKey:@"Name"]];
     else [music setStringValue:@"未知歌曲"];
+    
+    
+    @try {
+        float rate=0.0;
+        if((rate=[[info valueForKey:@"Album Rating"] floatValue])>0.0)
+        {
+            
+            int irat=(int)rate;
+            [star setFrameOrigin:NSMakePoint(0, 14.5-33*irat-(irat<rate?16:0))];
+            [rate_text setStringValue:[NSString stringWithFormat:@"%.1f",rate*2]];
+            [star setHidden:NO];
+            [rate_text setHidden:NO];
+        }
+        else {
+            [star setHidden:YES];
+            [rate_text setHidden:YES];
+        }
+    }
+    @catch (NSException *exception) {
+        [star setHidden:YES];
+        [rate_text setHidden:YES];
+    }
+    
+    
 }
 
 -(void) setServiceTarget:(id)t withSelector:(SEL)s

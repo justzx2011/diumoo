@@ -74,6 +74,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     levels = [[[FrequencyLevels alloc] init] retain];
     
     [levels setMovie:movie];
+
     
     return [levels autorelease];
 }
@@ -84,6 +85,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 {
 
     self = [super init];
+
     color=CGColorCreateGenericRGB(0, 0.5, 1.0, 1.0);
 	
     // allocate memory for the QTAudioFrequencyLevels struct and set it up
@@ -129,7 +131,9 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 -(void) setLevel:(NSInteger)level
 {
     if(level==0){
-        if(window==nil) return;
+        if(window==nil) {
+            return;
+        }
         [self toggleFreqLevels:NSOffState];
         [window orderOut:window];
         return;
@@ -158,6 +162,8 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     
     [mContainer release];
     [window release];
+    [condition release];
+    [mTimer retain];
     
     free(mFreqResults);
     free(values);
@@ -173,7 +179,9 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     if ([[mMovie attributeForKey:QTMovieHasAudioAttribute] boolValue]) 
     {
         // do this once per movie to establish metering
+        [condition lock];
         (void)SetMovieAudioFrequencyMeteringNumBands([mMovie quickTimeMovie], kQTAudioMeter_StereoMix, &numberOfBandLevels);
+        [condition unlock];
     }
 }
 
@@ -202,10 +210,11 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 // called when the button is pressed - turns the level meters on/off by setting up a timer
 - (void)toggleFreqLevels:(NSCellStateValue)state
 {
+    [condition lock];
     if (NSOnState == state) 
     {
     	// turning it on, set up a timer and add it to the run loop
-        mTimer = [NSTimer timerWithTimeInterval:1.0/15 target:self selector:@selector(levelTimerMethod:) userInfo:nil repeats:YES];
+        mTimer = [NSTimer timerWithTimeInterval:1.0/15 target:self selector:@selector(levelTimerMethod:) userInfo:nil repeats:YES] ;
         
         [[NSRunLoop currentRunLoop] addTimer:mTimer forMode:(NSString *)kCFRunLoopCommonModes];
 		mContainer.hidden = NO;
@@ -214,10 +223,23 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     else 
     {
         // turning it off, stop the timer and hide the level layers
-        [mTimer invalidate];
-        mContainer.hidden = YES;
-        waveState=NSOffState;
+        @try {
+            if(mTimer!=nil){
+                [mTimer invalidate];
+                mTimer=nil;
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            mContainer.hidden = YES;
+            waveState=NSOffState;
+        }
+        
+        
     }
+    [condition unlock];
 }
 
 
@@ -269,5 +291,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     CGPathRelease(path);
     CGContextRestoreGState(ctx);
 }
+
+
 
 @end

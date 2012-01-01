@@ -19,7 +19,7 @@
 #define TIMEOUT 10
 
 #define MIN_RAND 0x111111
-#define MAX_RETRY_TIMES 5
+#define MAX_RETRY_TIMES 10
 
 #import <Foundation/Foundation.h>
 #import "CJSONDeserializer.h"

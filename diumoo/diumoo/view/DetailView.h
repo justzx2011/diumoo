@@ -15,6 +15,8 @@
     IBOutlet NSTextField* artist;
     IBOutlet NSTextField* music;
     IBOutlet NSTextField* year;
+    IBOutlet NSButton* star;
+    IBOutlet NSTextField * rate_text;
     
     IBOutlet NSButton* account;
     

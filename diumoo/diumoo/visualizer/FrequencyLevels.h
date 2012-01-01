@@ -58,7 +58,7 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
 
 @private
     NSInteger waveState;
-    NSCondition* condition;
+
     Float32* values;
     NSTimer				*mTimer;
     QTAudioFrequencyLevels	*mFreqResults;
@@ -66,6 +66,7 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
     QTMovie				*mMovie; // the movie in its QTKit representation
     NSWindow* window;
     CGColorRef color;
+    NSCondition* condition;
 }
 
 + (FrequencyLevels*)levelsWithMovie:(QTMovie *)movie;

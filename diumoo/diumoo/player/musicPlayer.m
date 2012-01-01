@@ -38,6 +38,10 @@
         [level toggleFreqLevels:NSOnState];
         token=YES;
     }
+    else{
+        [level toggleFreqLevels:NSOffState];
+        token=NO;
+    }
     [cond unlock];
 }
 
@@ -52,9 +56,10 @@
 {
     [cond lock];
     [level toggleFreqLevels: NSOffState];
-    if(player!=nil && [player rate]!=0)
+    if(player!=nil)
     {
         [self _pause];
+        
         [player invalidate];
         [player release];
     }

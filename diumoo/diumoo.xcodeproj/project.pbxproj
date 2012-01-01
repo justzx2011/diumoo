@@ -64,6 +64,8 @@
 		F5DAA05714AB6408004404AA /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA05614AB6408004404AA /* EMKeychainItem.m */; };
 		F5DAA05A14AB6442004404AA /* FrequencyLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA05914AB6442004404AA /* FrequencyLevels.m */; };
 		F5DAA06114AB65CB004404AA /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */; };
+		F5E1B0EC14B07693009D00B1 /* icon-red.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E1B0EB14B07693009D00B1 /* icon-red.png */; };
+		F5E9EF9614B008EE00E0D57B /* all_bigstars.gif in Resources */ = {isa = PBXBuildFile; fileRef = F5E9EF9514B008EE00E0D57B /* all_bigstars.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -167,6 +169,8 @@
 		F5DAA05914AB6442004404AA /* FrequencyLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrequencyLevels.m; path = visualizer/FrequencyLevels.m; sourceTree = "<group>"; };
 		F5DAA05F14AB65CB004404AA /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = mediaKeyTap/SPMediaKeyTap.h; sourceTree = "<group>"; };
 		F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = mediaKeyTap/SPMediaKeyTap.m; sourceTree = "<group>"; };
+		F5E1B0EB14B07693009D00B1 /* icon-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-red.png"; sourceTree = "<group>"; };
+		F5E9EF9514B008EE00E0D57B /* all_bigstars.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = all_bigstars.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +332,8 @@
 		F58A8C8B149A48DE004E60AD /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F5E1B0EB14B07693009D00B1 /* icon-red.png */,
+				F5E9EF9514B008EE00E0D57B /* all_bigstars.gif */,
 				F56251F614AD589B006A880C /* account_ok.png */,
 				F56251F714AD589B006A880C /* user.png */,
 				F5D9C0E914A8BC3E00029663 /* douban.png */,
@@ -500,6 +506,8 @@
 				F5D9C0EA14A8BC3E00029663 /* douban.png in Resources */,
 				F56251F814AD589B006A880C /* account_ok.png in Resources */,
 				F56251F914AD589B006A880C /* user.png in Resources */,
+				F5E9EF9614B008EE00E0D57B /* all_bigstars.gif in Resources */,
+				F5E1B0EC14B07693009D00B1 /* icon-red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

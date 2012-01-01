@@ -32,6 +32,8 @@
     NSImage * pause;
     NSImage * unlike;
     NSImage * like;
+    NSImage * icon;
+    NSImage * iconred;
     
     NSImage * play_alt;
     NSImage * pause_alt;
@@ -47,6 +49,8 @@
     
     NSCondition* condition;
     NSMenuItem* current;
+    
+    BOOL firstDetail;
     
 }
 
