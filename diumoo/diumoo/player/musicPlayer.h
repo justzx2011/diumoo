@@ -21,13 +21,18 @@
     NSCondition* cond;
     FrequencyLevels* level;
     BOOL token;
+    
+	float autoFadeDuration;
+	float autoFadeTargetVolume;
+	float autoFadeStartVolume;
+	NSTimer* autoFadeTimer;
 }
 
 -(void) _start_to_play_notification:(NSDictionary*) m;
 -(BOOL) startToPlay:(NSDictionary*) music;
 
 -(void) _pause;
--(void) _set_volume:(float) v;
+//-(void) _set_volume:(float) v;
 
 -(BOOL) isPlaying;
 
@@ -35,5 +40,8 @@
 -(void) pause;
 -(void) ended;
 -(void) playing_rate;
+- (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target;
+- (void)stopAutoFade;
+- (void)updateAutoFade:(NSTimer*)theTimer;
 
 @end

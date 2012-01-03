@@ -54,6 +54,9 @@
 
 -(BOOL) startToPlay:(NSDictionary *)music
 {
+    if (autoFadeTimer != nil) {
+		[self stopAutoFade];
+	}
     [cond lock];
     [level toggleFreqLevels: NSOffState];
     if(player!=nil)
@@ -79,14 +82,15 @@
 -(void) _pause
 {
     if(player!=nil&&[player rate]!=0){
-        [self _set_volume:0];
-        [player stop];
+        [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:1.0 targetVolume:0.0];
     }
 }
 -(void) play
 {
     [cond lock];
-    if(player != nil&& [player rate]==0) [player play], [self _set_volume:1.0];
+    if(player != nil&& [player rate]==0){
+        [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:0.0 targetVolume:1.0];
+    }
     [cond unlock];
 }
 -(void) pause
@@ -95,7 +99,7 @@
     [self _pause];
     [cond unlock];
 }
-
+/*
 -(void) _set_volume:(float)v
 {
     if(player ==nil) return;
@@ -107,7 +111,7 @@
     }
     
 }
-
+*/
 -(BOOL) isPlaying
 {
     return (player!=nil && [player rate]>0.99);
@@ -126,6 +130,48 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
 }
 
+- (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target {
+	if (autoFadeTimer != nil) {
+		[self stopAutoFade];
+	}
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:target] forKey:@"rate"] ];
+	autoFadeDuration = duration;
+	autoFadeStartVolume = startVolume;
+	autoFadeTargetVolume = target;
+    autoFadeTimer = [[NSTimer timerWithTimeInterval:duration target:self selector:@selector(updateAutoFade:) userInfo:nil repeats:YES]retain];
+    CFRunLoopAddTimer(CFRunLoopGetCurrent(), (CFRunLoopTimerRef)autoFadeTimer, kCFRunLoopCommonModes);
+    if (autoFadeTargetVolume==1) {
+        [player play];
+    }
+	[autoFadeTimer fire];
+}
+
+- (void)stopAutoFade {
+	if (autoFadeTimer != nil) {
+		[autoFadeTimer invalidate];
+		[autoFadeTimer release];
+		autoFadeTimer = nil;
+        if (autoFadeTargetVolume==0) {
+            [player stop];
+        }
+	}
+}
+
+- (void)updateAutoFade:(NSTimer*)theTimer {
+    if (autoFadeTargetVolume==0) {
+        if (player.volume!=0) {
+            [player setVolume:([player volume]-(1/VOLUME_DURATION))];
+        } else {
+            [self stopAutoFade];
+        }
+    }else{
+        if (player.volume!=1) {
+            [player setVolume:([player volume]+(1/VOLUME_DURATION))];
+        } else {
+            [self stopAutoFade];
+        }
+    }
+}
 
 -(void) dealloc
 {
