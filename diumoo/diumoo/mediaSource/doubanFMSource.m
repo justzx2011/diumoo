@@ -62,7 +62,11 @@
     [condition lock];
     if([name isNotEqualTo:@""] && [password isNotEqualTo:@""]){
         //生成表单body
-        NSData* body=[[NSString stringWithFormat:@"alias=%@&form_password=%@&source=radio\n",name,password] dataUsingEncoding:NSUTF8StringEncoding];
+        CFStringRef encodedName=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)name, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
+        CFStringRef encodedPass=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)password, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
+        NSData* body=[[NSString stringWithFormat:@"alias=%@&form_password=%@&source=radio\n",encodedName,encodedPass] dataUsingEncoding:NSUTF8StringEncoding];
+        CFRelease(encodedName);
+        CFRelease(encodedPass);
         
         //初始化request
         [request setHTTPMethod:@"POST"];
