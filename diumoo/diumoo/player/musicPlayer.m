@@ -19,6 +19,7 @@
         cond=[[[NSCondition alloc] init] retain] ;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(stopAutoFade) name:@"playbuttonpressed" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(load_state:) name:QTMovieLoadStateDidChangeNotification object:nil];
         level=[[[FrequencyLevels alloc] init] retain];
         token=YES;
@@ -157,15 +158,15 @@
 	}
 }
 
-- (void)updateAutoFade:(NSTimer*)theTimer {
+- (void)updateAutoFade:(NSTimer*)theTimer{
     if (autoFadeTargetVolume==0) {
-        if (player.volume!=0) {
+        if (player.volume>0) {
             [player setVolume:([player volume]-(1/VOLUME_DURATION))];
         } else {
             [self stopAutoFade];
         }
     }else{
-        if (player.volume!=1) {
+        if (player.volume<=1) {
             [player setVolume:([player volume]+(1/VOLUME_DURATION))];
         } else {
             [self stopAutoFade];

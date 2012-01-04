@@ -103,6 +103,7 @@ controlCenter* sharedCenter;
 
 -(BOOL) play
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playbuttonpressed" object:nil userInfo:nil];
     if([lock tryLock]!=YES) return NO;
     if( player!=nil && [player isPlaying]!=YES)
         [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
