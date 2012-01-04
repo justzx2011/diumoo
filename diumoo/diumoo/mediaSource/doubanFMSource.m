@@ -50,7 +50,7 @@
         else channel=0;
         
         //读取电台频道信息
-        channelList=[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dchannels" ofType:@"plist"]];
+        channelList=[[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dchannels" ofType:@"plist"]] retain];
         channelName=nil;
         
     }

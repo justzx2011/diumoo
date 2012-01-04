@@ -644,7 +644,6 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{174, 16}, {199, 26}}</string>
 												<reference key="NSSuperview" ref="225069543"/>
-												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:179</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSPopUpButtonCell" key="NSCell" id="360831310">
@@ -914,7 +913,6 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{249, 20}, {126, 32}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
-												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:161</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="90920008">
@@ -1174,7 +1172,7 @@
 											<object class="NSTextField" id="430863457">
 												<reference key="NSNextResponder" ref="979154825"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{20, 23}, {214, 18}}</string>
+												<string key="NSFrame">{{20, 23}, {210, 18}}</string>
 												<reference key="NSSuperview" ref="979154825"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="1045191195"/>
@@ -1183,7 +1181,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="312548660">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
-													<string key="NSContents">VERSION: 1.0 Preview Build 0.6</string>
+													<string key="NSContents">VERSION: 1.0 Preview Build 61</string>
 													<reference key="NSSupport" ref="570623038"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="430863457"/>
