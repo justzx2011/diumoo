@@ -617,7 +617,7 @@
 											<object class="NSButton" id="708116866">
 												<reference key="NSNextResponder" ref="225069543"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{176, 58}, {87, 18}}</string>
+												<string key="NSFrame">{{176, 58}, {204, 18}}</string>
 												<reference key="NSSuperview" ref="225069543"/>
 												<reference key="NSNextKeyView" ref="76831986"/>
 												<string key="NSReuseIdentifierKey">_NS:239</string>
@@ -625,7 +625,7 @@
 												<object class="NSButtonCell" key="NSCell" id="111319766">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">0</int>
-													<string key="NSContents">包含唱片集</string>
+													<string key="NSContents">包含豆瓣电台频道和唱片集连接</string>
 													<reference key="NSSupport" ref="133986757"/>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="708116866"/>
@@ -1043,7 +1043,7 @@
 												<string key="NSFrame">{{315, 91}, {188, 39}}</string>
 												<reference key="NSSuperview" ref="979154825"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView"/>
+												<reference key="NSNextKeyView" ref="430863457"/>
 												<string key="NSReuseIdentifierKey">_NS:3936</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="309275261">
@@ -1111,7 +1111,7 @@
 												<string key="NSFrame">{{315, 24}, {168, 17}}</string>
 												<reference key="NSSuperview" ref="979154825"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="430863457"/>
+												<reference key="NSNextKeyView" ref="877719599"/>
 												<string key="NSReuseIdentifierKey">_NS:3936</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="180176255">
@@ -1155,7 +1155,7 @@
 												<string key="NSFrame">{{315, 131}, {43, 17}}</string>
 												<reference key="NSSuperview" ref="979154825"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView"/>
+												<reference key="NSNextKeyView" ref="511073108"/>
 												<string key="NSReuseIdentifierKey">_NS:3936</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="76258345">
@@ -1172,16 +1172,16 @@
 											<object class="NSTextField" id="430863457">
 												<reference key="NSNextResponder" ref="979154825"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{53, 26}, {149, 18}}</string>
+												<string key="NSFrame">{{20, 23}, {210, 18}}</string>
 												<reference key="NSSuperview" ref="979154825"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="877719599"/>
+												<reference key="NSNextKeyView" ref="1045191195"/>
 												<string key="NSReuseIdentifierKey">_NS:3936</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="312548660">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
-													<string key="NSContents">VERSION: 1.0 Preview</string>
+													<string key="NSContents">VERSION: 1.0 Preview Build 61</string>
 													<reference key="NSSupport" ref="570623038"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="430863457"/>
@@ -1339,26 +1339,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.TwitterAlbum</string>
-						<reference key="source" ref="708116866"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="708116866"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">value: values.TwitterAlbum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.TwitterAlbum</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSNoSelectionPlaceholder</string>
-								<integer value="0" key="NS.object.0"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">428</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.ShowDockIcon</string>
 						<reference key="source" ref="651691603"/>
 						<reference key="destination" ref="160939701"/>
@@ -1456,6 +1436,26 @@
 						</object>
 					</object>
 					<int key="connectionID">468</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.TwitterDoubanInfo</string>
+						<reference key="source" ref="708116866"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="708116866"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">value: values.TwitterDoubanInfo</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.TwitterDoubanInfo</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNoSelectionPlaceholder</string>
+								<integer value="0" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">473</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1648,9 +1648,9 @@
 							<reference ref="800228919"/>
 							<reference ref="511073108"/>
 							<reference ref="116111989"/>
-							<reference ref="430863457"/>
 							<reference ref="1045191195"/>
 							<reference ref="877719599"/>
+							<reference ref="430863457"/>
 						</object>
 						<reference key="parent" ref="696303915"/>
 					</object>
@@ -2397,7 +2397,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">472</int>
+			<int key="maxID">473</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
