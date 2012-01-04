@@ -644,6 +644,7 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{174, 16}, {199, 26}}</string>
 												<reference key="NSSuperview" ref="225069543"/>
+												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:179</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSPopUpButtonCell" key="NSCell" id="360831310">
@@ -732,7 +733,7 @@
 											<object class="NSButton" id="651691603">
 												<reference key="NSNextResponder" ref="225069543"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{176, 232}, {108, 18}}</string>
+												<string key="NSFrame">{{176, 232}, {316, 18}}</string>
 												<reference key="NSSuperview" ref="225069543"/>
 												<reference key="NSNextKeyView" ref="1025461064"/>
 												<string key="NSReuseIdentifierKey">_NS:239</string>
@@ -740,7 +741,7 @@
 												<object class="NSButtonCell" key="NSCell" id="989277647">
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
-													<string key="NSContents">显示Dock图标</string>
+													<string key="NSContents">显示Dock图标（隐藏图标将会在下次启动时生效）</string>
 													<reference key="NSSupport" ref="133986757"/>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="651691603"/>
@@ -913,6 +914,7 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{249, 20}, {126, 32}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
+												<reference key="NSNextKeyView" ref="980225553"/>
 												<string key="NSReuseIdentifierKey">_NS:161</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="90920008">
