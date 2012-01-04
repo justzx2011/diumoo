@@ -317,7 +317,7 @@
              }
              else{
                  [controller performSelectorInBackground:@selector(unrate) withObject:nil];
-                 [item setImage:iconred];
+                 [item setImage:icon];
              }
              break;
         case 4:
