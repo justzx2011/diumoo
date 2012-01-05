@@ -201,6 +201,7 @@
     NSString* str=[current valueForKey:@"album"];
     if(![str hasPrefix:@"http://"])
         str=[@"http://music.douban.com" stringByAppendingString:str];
+
     NSDictionary* currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
                   [current valueForKey:@"albumtitle"],@"Album",
                   str,@"Store URL",
@@ -211,9 +212,10 @@
                   [current valueForKey:@"sid"],@"sid",
                   [[current valueForKey:@"picture"] stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],@"Picture",
                   [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
+                  channelName,@"Channel",
                   [current valueForKey:@"like"],@"Like",
                   [current valueForKey:@"rating_avg"],@"Album Rating",
-                  channelName,@"Channel",
+                  
                   nil] retain];
     [current release];
     return currentMusic;
@@ -272,18 +274,19 @@
 -(BOOL) findChannelName:(NSArray*) list ofChannel:(NSInteger) c
 {
     if(list==nil) return NO;
-    
     for (NSDictionary* dic in list) {
         @try {
             id n;
             if((n=[dic valueForKey:@"channel_id"])!=nil && [n integerValue]==c  && [dic valueForKey:@"name"]!=nil){
                 
-                if(channelName !=nil) [channelName release];
+                if(channelName !=nil) {[channelName release];channelName=nil;}
                 
                 channelName=[[NSString stringWithString:[dic valueForKey:@"name"]]retain];
                 return YES;
                 
             }
+            if([self findChannelName:[dic valueForKey:@"channels"] ofChannel:c])
+                return YES;
             if([self findChannelName:[dic valueForKey:@"sub"] ofChannel:c])
                 return YES;
         }
