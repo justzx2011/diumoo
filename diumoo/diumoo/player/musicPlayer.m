@@ -62,6 +62,7 @@
         
         [player invalidate];
         [player release];
+        player=nil;
     }
     NSError* e=nil;
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain]; 
