@@ -87,6 +87,7 @@
 -(void) _pause
 {
     if(player!=nil&&[player rate]!=0){
+        [level toggleFreqLevels:NSOffState];
         [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:1.0 targetVolume:0.0];
     }
 }
@@ -94,6 +95,7 @@
 {
     [cond lock];
     if(player != nil&& [player rate]==0){
+        [level toggleFreqLevels:NSOnState];
         [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:0.0 targetVolume:1.0];
     }
     [cond unlock];
@@ -104,19 +106,23 @@
     [self _pause];
     [cond unlock];
 }
-/*
--(void) _set_volume:(float)v
+
+-(void) pauseWhenExit
 {
+    
     if(player ==nil) return;
+    [cond lock];
+    float v=0.0;
     float vo=[player volume];
     int i=0;
     for (; i<=VOLUME_DURATION; i++) {
         [player setVolume:(vo+(v-vo) *(i/VOLUME_DURATION))];
         [NSThread sleepForTimeInterval:VOLUME_INTERVAL];
     }
+    [player stop];
     
 }
-*/
+
 -(BOOL) isPlaying
 {
     return (player!=nil && [player rate]>0.99);
