@@ -55,16 +55,20 @@
 
 -(BOOL) startToPlay:(NSDictionary *)music
 {
+    
+    if(![NSThread isMainThread]){
+        NSLog(@"Not MainThread");
+        [self lazyPause];
+        [self performSelectorOnMainThread:@selector(startToPlay:) withObject:music waitUntilDone:NO];
+        return YES;
+    }
     if (autoFadeTimer != nil) {
 		[self stopAutoFade];
 	}
     [cond lock];
-    NSLog(@"start to play:%@",music);
-    [level toggleFreqLevels: NSOffState];
+    [level toggleFreqLevels:NSOffState];
     if(player!=nil)
     {
-        [self _pause];
-        
         [player invalidate];
         [player release];
         player=nil;
@@ -78,6 +82,7 @@
     if(e==NULL) 
     {
         [self performSelectorInBackground:@selector(_start_to_play_notification:) withObject:music];
+        [player setVolume:1.0];
         [player autoplay];
     }
     
@@ -107,12 +112,11 @@
     [cond unlock];
 }
 
--(void) pauseWhenExit
+-(void) lazyPause
 {
     
-    if(player ==nil) return;
+    if(player ==nil || [player rate]<0.1) return;
     [cond lock];
-    [level toggleFreqLevels:NSOffState];
     float v=0.0;
     float vo=[player volume];
     int i=0;
@@ -121,7 +125,7 @@
         [NSThread sleepForTimeInterval:VOLUME_INTERVAL];
     }
     [player stop];
-    
+    [cond unlock];
 }
 
 -(BOOL) isPlaying

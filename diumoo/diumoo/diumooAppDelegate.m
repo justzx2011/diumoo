@@ -74,7 +74,7 @@
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
-    [p pauseWhenExit];
+    [p lazyPause];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:nil];
 }
 

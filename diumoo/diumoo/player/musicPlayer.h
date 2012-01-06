@@ -32,7 +32,7 @@
 -(BOOL) startToPlay:(NSDictionary*) music;
 
 -(void) _pause;
--(void) pauseWhenExit;
+-(void) lazyPause;
 
 -(BOOL) isPlaying;
 

@@ -138,7 +138,7 @@ controlCenter* sharedCenter;
         if(player!=nil && ([player pause],(current=[[source getNewSongBySkip:sid ] retain]))!=nil)
             {
                 [sid release];
-                [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+                [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
                 [lock unlock];
                 return YES;
             }
@@ -173,7 +173,8 @@ controlCenter* sharedCenter;
     if(source!=nil && current!=nil && player!=nil
        && ([current release],current=[[source getNewSongByBye:[current valueForKey:@"sid"]] retain] )!=nil)
     {
-        [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+        
+        [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
         [lock unlock];
         return YES;
     }
@@ -190,7 +191,7 @@ controlCenter* sharedCenter;
     if(player!=nil && source!=nil
        && (current=([source setChannel:channel],[source getNewSong]))!=nil)
     {
-        [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+        [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
         [lock unlock];
         return YES;
     }
