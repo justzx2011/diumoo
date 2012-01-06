@@ -50,7 +50,8 @@
         else channel=0;
         
         //读取电台频道信息
-        channelList=[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dchannels" ofType:@"plist"]] ;
+        channelList=[[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"dchannels" ofType:@"plist"]] retain];
+        channelName=nil;
         
     }
     
@@ -196,18 +197,25 @@
     
     NSString* art=[current valueForKey:@"artist"];
     if(art==nil) art = [current valueForKey:@"dj_name"];
+    
+    NSString* str=[current valueForKey:@"album"];
+    if(![str hasPrefix:@"http://"])
+        str=[@"http://music.douban.com" stringByAppendingString:str];
+
     NSDictionary* currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
                   [current valueForKey:@"albumtitle"],@"Album",
-                  [current valueForKey:@"album"],@"Store URL",
+                  str,@"Store URL",
                   [current valueForKey:@"public_time"],@"Year",
                   art, @"Artist" ,
                   [current valueForKey:@"title"],@"Name",
                   [current valueForKey:@"url"],@"Location",
                   [current valueForKey:@"sid"],@"sid",
                   [[current valueForKey:@"picture"] stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],@"Picture",
-                  [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
+                  [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total Time",
+                  channelName,@"Channel",
                   [current valueForKey:@"like"],@"Like",
                   [current valueForKey:@"rating_avg"],@"Album Rating",
+                  
                   nil] retain];
     [current release];
     return currentMusic;
@@ -263,11 +271,44 @@
     return channel;
 }
 
+-(BOOL) findChannelName:(NSArray*) list ofChannel:(NSInteger) c
+{
+    if(list==nil) return NO;
+    for (NSDictionary* dic in list) {
+        @try {
+            id n;
+            if((n=[dic valueForKey:@"channel_id"])!=nil && [n integerValue]==c  && [dic valueForKey:@"name"]!=nil){
+                
+                if(channelName !=nil) {[channelName release];channelName=nil;}
+                
+                channelName=[[NSString stringWithString:[dic valueForKey:@"name"]]retain];
+                return YES;
+                
+            }
+            if([self findChannelName:[dic valueForKey:@"channels"] ofChannel:c])
+                return YES;
+            if([self findChannelName:[dic valueForKey:@"sub"] ofChannel:c])
+                return YES;
+        }
+        @catch (NSException *exception) {
+            continue;
+        }
+        
+    }
+    
+    return  NO;
+}
+
 -(void) setChannel:(NSInteger)c
 {
     NSSet* r=nil;
     [condition lock];
     channel=c;
+    if(![self findChannelName:channelList ofChannel:c])
+    {
+        if(channelName!=nil) [channelName release];
+        channelName=[[NSString stringWithString:@"[>.<]矮油我不认识的兆赫"] retain];
+    }
     if(channel==0 && loggedIn==YES) r=privateEnables;
     else if(loggedIn==YES) r=publicWithLoggedInEnables;
     else r=publicEnables;

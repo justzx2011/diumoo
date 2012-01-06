@@ -19,6 +19,7 @@
         cond=[[[NSCondition alloc] init] retain] ;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(stopAutoFade) name:@"playbuttonpressed" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(load_state:) name:QTMovieLoadStateDidChangeNotification object:nil];
         level=[[[FrequencyLevels alloc] init] retain];
         token=YES;
@@ -54,7 +55,11 @@
 
 -(BOOL) startToPlay:(NSDictionary *)music
 {
+    if (autoFadeTimer != nil) {
+		[self stopAutoFade];
+	}
     [cond lock];
+    NSLog(@"start to play:%@",music);
     [level toggleFreqLevels: NSOffState];
     if(player!=nil)
     {
@@ -62,10 +67,13 @@
         
         [player invalidate];
         [player release];
+        player=nil;
     }
     NSError* e=nil;
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain]; 
     token=NO;
+    
+    
     
     if(e==NULL) 
     {
@@ -79,14 +87,17 @@
 -(void) _pause
 {
     if(player!=nil&&[player rate]!=0){
-        [self _set_volume:0];
-        [player stop];
+        [level toggleFreqLevels:NSOffState];
+        [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:1.0 targetVolume:0.0];
     }
 }
 -(void) play
 {
     [cond lock];
-    if(player != nil&& [player rate]==0) [player play], [self _set_volume:1.0];
+    if(player != nil&& [player rate]==0){
+        [level toggleFreqLevels:NSOnState];
+        [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:0.0 targetVolume:1.0];
+    }
     [cond unlock];
 }
 -(void) pause
@@ -96,15 +107,20 @@
     [cond unlock];
 }
 
--(void) _set_volume:(float)v
+-(void) pauseWhenExit
 {
+    
     if(player ==nil) return;
+    [cond lock];
+    [level toggleFreqLevels:NSOffState];
+    float v=0.0;
     float vo=[player volume];
     int i=0;
     for (; i<=VOLUME_DURATION; i++) {
         [player setVolume:(vo+(v-vo) *(i/VOLUME_DURATION))];
         [NSThread sleepForTimeInterval:VOLUME_INTERVAL];
     }
+    [player stop];
     
 }
 
@@ -126,6 +142,48 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
 }
 
+- (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target {
+	if (autoFadeTimer != nil) {
+		[self stopAutoFade];
+	}
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:target] forKey:@"rate"] ];
+	autoFadeDuration = duration;
+	autoFadeStartVolume = startVolume;
+	autoFadeTargetVolume = target;
+    autoFadeTimer = [[NSTimer timerWithTimeInterval:duration target:self selector:@selector(updateAutoFade:) userInfo:nil repeats:YES]retain];
+    CFRunLoopAddTimer(CFRunLoopGetCurrent(), (CFRunLoopTimerRef)autoFadeTimer, kCFRunLoopCommonModes);
+    if (autoFadeTargetVolume==1) {
+        [player play];
+    }
+	[autoFadeTimer fire];
+}
+
+- (void)stopAutoFade {
+	if (autoFadeTimer != nil) {
+		[autoFadeTimer invalidate];
+		[autoFadeTimer release];
+		autoFadeTimer = nil;
+        if (autoFadeTargetVolume==0) {
+            [player stop];
+        }
+	}
+}
+
+- (void)updateAutoFade:(NSTimer*)theTimer{
+    if (autoFadeTargetVolume==0) {
+        if (player.volume>0) {
+            [player setVolume:([player volume]-(1/VOLUME_DURATION))];
+        } else {
+            [self stopAutoFade];
+        }
+    }else{
+        if (player.volume<=1) {
+            [player setVolume:([player volume]+(1/VOLUME_DURATION))];
+        } else {
+            [self stopAutoFade];
+        }
+    }
+}
 
 -(void) dealloc
 {

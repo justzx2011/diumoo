@@ -103,6 +103,7 @@ controlCenter* sharedCenter;
 
 -(BOOL) play
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playbuttonpressed" object:nil userInfo:nil];
     if([lock tryLock]!=YES) return NO;
     if( player!=nil && [player isPlaying]!=YES)
         [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
@@ -216,7 +217,7 @@ controlCenter* sharedCenter;
     {
         
         NSString* str=[NSString stringWithFormat:@"#nowplaying %@ - %@ ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
-        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"TwitterAlbum"] integerValue]==NSOnState) str=[str stringByAppendingFormat:@" (%@) ",[current valueForKey:@"Album"]];
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"TwitterDoubanInfo"] integerValue]==NSOnState) str=[str stringByAppendingFormat:@" (豆瓣电台-%@ | %@ ) ",[current valueForKey:@"Channel"],[current valueForKey:@"Store URL"]];
         
         NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
         
@@ -254,11 +255,7 @@ controlCenter* sharedCenter;
     else
     {
         @try {
-            NSString* str=[current valueForKey:@"Store URL"];
-            if(![str hasPrefix:@"http://"])
-            str=[@"http://music.douban.com" stringByAppendingString:str];
-            
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:str]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[current valueForKey:@"Store URL"]]];
         }
         @catch (NSException *exception) {
             
