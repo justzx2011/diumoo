@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B258114A2305E00903039 /* QuartzCore.framework */; };
 		F54951B314A18F3B00068581 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54951B214A18F3B00068581 /* QuickTime.framework */; };
@@ -82,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		149FC7E614B6E8DC0028C96B /* last_fm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = last_fm.png; sourceTree = "<group>"; };
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F53B258114A2305E00903039 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F54951B214A18F3B00068581 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
@@ -339,11 +341,12 @@
 				F5D9C0E914A8BC3E00029663 /* douban.png */,
 				F58C5E90149F089D00DDDF95 /* icon.icns */,
 				F5C38F41149C58AF0082FEE4 /* google.png */,
-				F5C38F3F149C58A40082FEE4 /* twitter.png */,
 				F58C5E8E149F081200DDDF95 /* album.png */,
+				F5C38F3F149C58A40082FEE4 /* twitter.png */,
 				F58A8C8D149A48DF004E60AD /* back-alt.png */,
 				F58A8C8E149A48DF004E60AD /* back.png */,
 				F58A8C8F149A48DF004E60AD /* bye-alt.png */,
+				149FC7E614B6E8DC0028C96B /* last_fm.png */,
 				F58A8C90149A48DF004E60AD /* bye.png */,
 				F58A8C91149A48DF004E60AD /* dchannels.plist */,
 				F58A8C92149A48DF004E60AD /* icon-alt.png */,
@@ -508,6 +511,7 @@
 				F56251F914AD589B006A880C /* user.png in Resources */,
 				F5E9EF9614B008EE00E0D57B /* all_bigstars.gif in Resources */,
 				F5E1B0EC14B07693009D00B1 /* icon-red.png in Resources */,
+				149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

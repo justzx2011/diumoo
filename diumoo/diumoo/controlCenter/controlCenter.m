@@ -223,7 +223,7 @@ controlCenter* sharedCenter;
         [pb setData:[str dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
         NSPerformService(@"Tweet", pb);
     }
-    else if([s isEqualToString:@"google"]){
+    else if([s isEqualToString:@"google"]||[s isEqualToString:@"lastfm"]){
         NSString* unencode=nil;
         NSInteger type=[[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"GoogleSearchType"] integerValue];
         switch (type) {
@@ -239,7 +239,16 @@ controlCenter* sharedCenter;
         }
         
         CFStringRef encoded=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://google.com/#q=%@",encoded]]];
+        
+        NSString* site_url;
+        if([s isEqualToString:@"google"]){
+            site_url = @"google.com/#q=";
+        }
+        else if ([s isEqualToString:@"lastfm"]){
+            site_url = @"www.last.fm/search?q=";
+        }
+        
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@", site_url, encoded]]];
         CFRelease(encoded);
     }
     else

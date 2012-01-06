@@ -126,6 +126,9 @@
             case 2:
                 s=@"google";
                 break;
+            case 3:
+                s=@"lastfm";
+                break;
             default:
                 s=@"douban";
                 break;
