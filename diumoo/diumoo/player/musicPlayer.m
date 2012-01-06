@@ -112,6 +112,7 @@
     
     if(player ==nil) return;
     [cond lock];
+    [level toggleFreqLevels:NSOffState];
     float v=0.0;
     float vo=[player volume];
     int i=0;
