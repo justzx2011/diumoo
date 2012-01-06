@@ -44,6 +44,8 @@
     NSSet* publicEnables;
     NSSet* publicWithLoggedInEnables;
     
+    NSString* channelName;
+    
     NSArray* channelList;
 }
 
@@ -64,7 +66,9 @@
 -(BOOL) rateSongBySid:(NSString*) sid;
 -(BOOL) unrateSongBySid:(NSString*) sid;
 -(void) setChannel:(NSInteger) channel;
+
 -(NSInteger) channel;
+-(BOOL) findChannelName:(NSArray*) list ofChannel:(NSInteger) c;
 
 -(NSArray*) channelList;
 

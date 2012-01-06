@@ -29,6 +29,7 @@
         [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"EnableGrowl"];
         [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"PlayPauseFastHotKey"];
         [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"RateHotKey"];
+        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"TwitterDoubanInfo"];
 
         [[c values] setValue:[NSNumber numberWithInt:2] forKey:@"DesktopWaveLevel"];
         [[c values] setValue:[NSNumber numberWithInt:1] forKey:@"GoogleSearchType"];
@@ -61,9 +62,9 @@
     [[controlCenter sharedCenter] performSelectorInBackground:@selector(startToPlay) withObject:nil ];
     
     
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowDockIcon"] integerValue]!=NSOnState){
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowDockIcon"] integerValue]==NSOnState){
         ProcessSerialNumber psn = { 0, kCurrentProcess };
-        TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+        TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     }
 
     

@@ -73,7 +73,7 @@
         {
             
             int irat=(int)rate;
-            [star setFrameOrigin:NSMakePoint(0, 14.5-33*irat-(irat<rate?16:0))];
+            [star setFrameOrigin:NSMakePoint(0, 15-33*irat-(irat<rate?16:0))];
             [rate_text setStringValue:[NSString stringWithFormat:@"%.1f",rate*2]];
             [star setHidden:NO];
             [rate_text setHidden:NO];

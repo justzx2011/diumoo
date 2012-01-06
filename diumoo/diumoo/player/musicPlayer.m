@@ -55,6 +55,7 @@
 -(BOOL) startToPlay:(NSDictionary *)music
 {
     [cond lock];
+    NSLog(@"start to play:%@",music);
     [level toggleFreqLevels: NSOffState];
     if(player!=nil)
     {
@@ -67,6 +68,8 @@
     NSError* e=nil;
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain]; 
     token=NO;
+    
+    
     
     if(e==NULL) 
     {
