@@ -118,7 +118,6 @@ static preference* shared;
     {
         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     }
-    else TransformProcessType(&psn, kProcessTransformToUIElementApplication);
 }
 
 -(void) dealloc

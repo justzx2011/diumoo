@@ -62,9 +62,9 @@
     [[controlCenter sharedCenter] performSelectorInBackground:@selector(startToPlay) withObject:nil ];
     
     
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowDockIcon"] integerValue]!=NSOnState){
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowDockIcon"] integerValue]==NSOnState){
         ProcessSerialNumber psn = { 0, kCurrentProcess };
-        TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+        TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     }
 
     
