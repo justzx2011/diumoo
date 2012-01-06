@@ -211,7 +211,7 @@
                   [current valueForKey:@"url"],@"Location",
                   [current valueForKey:@"sid"],@"sid",
                   [[current valueForKey:@"picture"] stringByReplacingOccurrencesOfString:@"mpic" withString:@"lpic"],@"Picture",
-                  [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total time",
+                  [NSNumber numberWithInt:[[current valueForKey:@"length"]intValue]*1000 ],@"Total Time",
                   channelName,@"Channel",
                   [current valueForKey:@"like"],@"Like",
                   [current valueForKey:@"rating_avg"],@"Album Rating",
