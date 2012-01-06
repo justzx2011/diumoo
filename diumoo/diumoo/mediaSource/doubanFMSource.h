@@ -16,7 +16,7 @@
 
 #define AUTH_URL [NSURL URLWithString:@"http://douban.fm/j/login"]
 #define PLAYLIST_URL_STRING @"http://douban.fm/j/mine/playlist"
-#define TIMEOUT 10
+#define TIMEOUT 10.0
 
 #define MIN_RAND 0x111111
 #define MAX_RETRY_TIMES 10

@@ -45,8 +45,8 @@
     if(!([GrowlApplicationBridge isGrowlRunning]))return;
     if(noti.userInfo!=nil){
         NSDictionary* dic=[noti.userInfo valueForKey:@"play_record"];
-        NSString* s=[NSString stringWithFormat:@"您已经登陆成功！\n您的播放记录为:\n\t听过歌曲:%@首\n\t标记红心:%@首\n\t不再播放:%@首\nNow enjoy yourself!",[dic valueForKey:@"played"],[dic valueForKey:@"liked"],[dic valueForKey:@"banned"]];
-        [GrowlApplicationBridge notifyWithTitle:[noti.userInfo valueForKey:@"name"] description:s notificationName:@"Account" iconData:nil priority:0 isSticky:NO clickContext:nil];
+        NSString* s=[NSString stringWithFormat:@"Hello %@ !\n\n您的播放记录为:\n\t听过歌曲:%@首\n\t标记红心:%@首\n\t不再播放:%@首\nNow enjoy yourself!",[noti.userInfo valueForKey:@"name"],[dic valueForKey:@"played"],[dic valueForKey:@"liked"],[dic valueForKey:@"banned"]];
+        [GrowlApplicationBridge notifyWithTitle:@"登陆成功" description:s notificationName:@"Account" iconData:noti.object priority:0 isSticky:NO clickContext:nil];
     }
     else
     {

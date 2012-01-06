@@ -42,11 +42,9 @@
     else{
         [album_img setFrameSize:[img size]];
         float wid=[img size].width+50;
-        [[self view]setFrameSize:NSMakeSize((wid<180?180:wid),[img size].height+160)];
+        [[self view]setFrameSize:NSMakeSize((wid<200?200:wid),[img size].height+160)];
     }
-    [album setFrameSize:NSMakeSize([self view].frame.size.width-50, [album frame].size.height)];
-    [artist setFrameSize:NSMakeSize([self view].frame.size.width-50, [artist frame].size.height)];
-    [music setFrameSize:NSMakeSize([self view].frame.size.width-50, [music frame].size.height)];
+    
     
     
     [album_img setImage:img];
@@ -97,11 +95,26 @@
     selector=s;
 }
 
+
 -(void) setAccountDetail:(NSNotification*) n
 {
     NSDictionary* userinfo=n.userInfo;
     if(userinfo!=nil){
-        [account setImage:[NSImage imageNamed:@"account_ok.png"]];
+        
+        @try {
+            if(n.object!=nil){
+                NSImage* iconImage=[[[NSImage alloc] initWithData:n.object] retain];
+                if(![iconImage isValid]) @throw [NSException exceptionWithName:@"Image Invalid" reason:@"Image Invalide" userInfo:nil];
+                [account setImage:iconImage];
+                [iconImage release];
+            }
+            else [account setImage:[NSImage imageNamed:@"account_ok.png"]];
+        }
+        @catch (NSException *exception) {
+            [account setImage:[NSImage imageNamed:@"account_ok.png"]];
+        }
+        
+        
         [account setTitle:[userinfo valueForKey:@"name"]];
         url=[[userinfo valueForKey:@"url"] retain];
     }
