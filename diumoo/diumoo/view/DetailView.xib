@@ -156,7 +156,7 @@
 							<reference key="NSSupport" ref="336638652"/>
 							<string key="NSCellIdentifier">_NS:3196</string>
 							<reference key="NSControlView" ref="454848344"/>
-							<int key="NSButtonFlags">-2042871553</int>
+							<int key="NSButtonFlags">-935575297</int>
 							<int key="NSButtonFlags2">160</int>
 							<object class="NSCustomResource" key="NSNormalImage">
 								<string key="NSClassName">NSImage</string>
@@ -232,7 +232,7 @@
 					<object class="NSButton" id="560849992">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 367}, {24, 22}}</string>
+						<string key="NSFrame">{{20, 367}, {22, 22}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="285813124"/>
@@ -292,7 +292,6 @@
 						<string key="NSFrame">{{17, 14}, {256, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:3936</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="938940158">

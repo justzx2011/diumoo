@@ -89,7 +89,6 @@
                 cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
                 loggedIn=YES;
                 
-                NSLog(@"%@",user_info);
                 [request setHTTPMethod:@"GET"];
                 [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://img3.douban.com/icon/ul%@.jpg",[user_info valueForKey:@"id"]]]];
                 [request setHTTPBody:nil];
@@ -203,7 +202,7 @@
     if([playlist count]==0){
         int retry=0;
         do{
-            [self requestPlaylistWithType:t andSid:sid];
+            [self requestPlaylistWithType:NEW andSid:sid];
         }
         while([playlist count]==0 && (retry++)<MAX_RETRY_TIMES);
         

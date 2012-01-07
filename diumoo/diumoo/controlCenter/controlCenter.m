@@ -87,12 +87,14 @@ controlCenter* sharedCenter;
 
 -(BOOL) startToPlay
 {
+    if(![lock tryLock]) return NO;
     [source setChannel:0];
     [controlCenter tryAuth:[preference authPrefsData]];
     current=[[source getNewSong] retain];
     if(current!=nil )
-        return  [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO],YES;
-    return NO;
+          [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+    [lock unlock];
+    return YES;
 }
 
 -(BOOL) play_pause

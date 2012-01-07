@@ -42,7 +42,7 @@
     else{
         [album_img setFrameSize:[img size]];
         float wid=[img size].width+50;
-        [[self view]setFrameSize:NSMakeSize((wid<200?200:wid),[img size].height+160)];
+        [[self view]setFrameSize:NSMakeSize((wid<225.0?225.0:wid),[img size].height+160)];
     }
     
     
@@ -71,7 +71,7 @@
         {
             
             int irat=(int)rate;
-            [star setFrameOrigin:NSMakePoint(0, 15-33*irat-(irat<rate?16:0))];
+            [star setFrameOrigin:NSMakePoint(0, 16-30*irat-(irat<rate?15:0))];
             [rate_text setStringValue:[NSString stringWithFormat:@"%.1f",rate*2]];
             [star setHidden:NO];
             [rate_text setHidden:NO];

@@ -57,7 +57,7 @@
 {
     
     if(![NSThread isMainThread]){
-        NSLog(@"Not MainThread");
+
         [self lazyPause];
         [self performSelectorOnMainThread:@selector(startToPlay:) withObject:music waitUntilDone:NO];
         return YES;

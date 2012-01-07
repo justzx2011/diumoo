@@ -11,6 +11,8 @@
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B258114A2305E00903039 /* QuartzCore.framework */; };
 		F54951B314A18F3B00068581 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54951B214A18F3B00068581 /* QuickTime.framework */; };
+		F556B41A14B86088003CA192 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F556B41914B86088003CA192 /* Sparkle.framework */; };
+		F556B41C14B860B8003CA192 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F556B41914B86088003CA192 /* Sparkle.framework */; };
 		F56251F814AD589B006A880C /* account_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = F56251F614AD589B006A880C /* account_ok.png */; };
 		F56251F914AD589B006A880C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = F56251F714AD589B006A880C /* user.png */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
@@ -77,6 +79,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */,
+				F556B41C14B860B8003CA192 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +90,7 @@
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F53B258114A2305E00903039 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F54951B214A18F3B00068581 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		F556B41914B86088003CA192 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		F56251F614AD589B006A880C /* account_ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = account_ok.png; sourceTree = "<group>"; };
 		F56251F714AD589B006A880C /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		F56A840E148CF92800AE6F1E /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +191,7 @@
 				F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */,
 				F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */,
 				F5C6C1FE149A28DF0045B3EE /* Growl.framework in Frameworks */,
+				F556B41A14B86088003CA192 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +229,7 @@
 		F56A8411148CF92800AE6F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F556B41914B86088003CA192 /* Sparkle.framework */,
 				F57EBD3614AB50D800484ED1 /* Security.framework */,
 				F57EBD3114AB3F2100484ED1 /* Carbon.framework */,
 				F53B258114A2305E00903039 /* QuartzCore.framework */,
