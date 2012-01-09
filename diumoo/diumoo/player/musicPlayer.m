@@ -17,7 +17,6 @@
     if (self) {
         // Initialization code here.
         cond=[[[NSCondition alloc] init] retain] ;
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(ended) name:QTMovieDidEndNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(stopAutoFade) name:@"playbuttonpressed" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(load_state:) name:QTMovieLoadStateDidChangeNotification object:nil];
@@ -35,7 +34,7 @@
     if(token) {[cond unlock];return;}
     if([[n.object attributeForKey: QTMovieLoadStateAttribute] intValue]>=QTMovieLoadStatePlayable)
     {
-        [level setMovie:n.object];
+        [level setMovie:player];
         [level toggleFreqLevels:NSOnState];
         token=YES;
     }
@@ -55,7 +54,7 @@
 
 -(BOOL) startToPlay:(NSDictionary *)music
 {
-    
+    NSLog(@"start to play");
     if(![NSThread isMainThread]){
 
         [self lazyPause];
@@ -114,9 +113,12 @@
 
 -(void) lazyPause
 {
-    
-    if(player ==nil || [player rate]<0.1) return;
     [cond lock];
+    if(player ==nil || [player rate]<0.1){
+        [cond unlock];
+        return;
+    }
+    
     float v=0.0;
     float vo=[player volume];
     int i=0;
@@ -137,6 +139,7 @@
 
 -(void) ended
 {
+    NSLog(@"ended");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.end" object:nil userInfo:nil];
 }
 
@@ -144,6 +147,8 @@
 {
     if(player==nil) return;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
+    NSLog(@"%lld",[player duration].timeValue);
+    if([player rate]<0.1 &&([player duration].timeValue - [player currentTime].timeValue)<100) [self ended];
 }
 
 - (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target {

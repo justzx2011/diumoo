@@ -36,6 +36,7 @@
 {
     [self growlNotification:noti.userInfo withImage:noti.object];
     [self iTunesNotification:noti.userInfo];
+    [self dockNotification:noti.userInfo withImage:noti.object];
     
 }
 
@@ -76,6 +77,17 @@
     [dic setValue:@"Playing" forKey:@"Player State"];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
     [dic release];
+}
+-(void) dockNotification:(NSDictionary*)noti withImage:(id)img
+{
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowAlbumOnDock"]integerValue ]==NSOnState)
+    {
+        float rate=[[noti valueForKey:@"Album Rating"] floatValue];
+        [[NSApp dockTile] setBadgeLabel:[NSString stringWithFormat:@"♥ %.1f",rate*2]];
+        [[NSApp dockTile] setShowsApplicationBadge:YES];
+        [NSApp setApplicationIconImage:img];
+        [[NSApp dockTile] display];
+    }
 }
 
 

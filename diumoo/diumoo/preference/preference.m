@@ -43,6 +43,8 @@ static preference* shared;
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    
+    
 }
 
 -(IBAction) selectPreferenceView:(id)sender
@@ -68,6 +70,7 @@ static preference* shared;
 
         [pass setStringValue:(password!=nil?password:@"")];
     }
+    [version setTitle:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     [mainview selectTabViewItemAtIndex:[idi tag]];
     [toolbar setSelectedItemIdentifier:idi.itemIdentifier];
 }
@@ -117,6 +120,37 @@ static preference* shared;
     if([sender state]==NSOnState)
     {
         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+    }
+}
+-(IBAction)updateApp:(id)sender{
+    [[SUUpdater sharedUpdater] checkForUpdates:sender];
+}
+
+-(IBAction) openLink:(id)sender
+{
+    switch ([sender tag]) {
+        case 0:
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:ant.sz@xdlinux.info"]];
+            break;
+        case 1:
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/"]];
+            break;
+        case 2:
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://me.alipay.com/antsz"]];
+            break;
+        case 3:
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/sponsor/"]];
+            break;
+        default:
+            break;
+    }
+}
+-(IBAction)dockAlbum:(id)sender
+{
+    if([sender state]!=NSOnState){
+        [NSApp setApplicationIconImage:nil];
+        [[NSApp dockTile] setShowsApplicationBadge:NO];
+        [[NSApp dockTile] display];
     }
 }
 

@@ -18,7 +18,7 @@
 #define PLAYLIST_URL_STRING @"http://douban.fm/j/mine/playlist"
 #define TIMEOUT 10.0
 
-#define MIN_RAND 0x111111
+#define MASK 0xFFFFFF
 #define MAX_RETRY_TIMES 10
 
 #import <Foundation/Foundation.h>

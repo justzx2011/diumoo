@@ -63,6 +63,8 @@
 		F5C6C206149A28DF0045B3EE /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1F8149A28DF0045B3EE /* CJSONDeserializer.m */; };
 		F5C6C207149A28DF0045B3EE /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1FA149A28DF0045B3EE /* CJSONScanner.m */; };
 		F5C6C208149A28DF0045B3EE /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C6C1FC149A28DF0045B3EE /* CJSONSerializer.m */; };
+		F5C9955514BB0E03005F8AF3 /* fanfou.png in Resources */ = {isa = PBXBuildFile; fileRef = F5C9955414BB0E03005F8AF3 /* fanfou.png */; };
+		F5D9B01E14BA93960095B7A4 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = F5D9B01D14BA93960095B7A4 /* dsa_pub.pem */; };
 		F5D9C0EA14A8BC3E00029663 /* douban.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D9C0E914A8BC3E00029663 /* douban.png */; };
 		F5DAA05714AB6408004404AA /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA05614AB6408004404AA /* EMKeychainItem.m */; };
 		F5DAA05A14AB6442004404AA /* FrequencyLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA05914AB6442004404AA /* FrequencyLevels.m */; };
@@ -168,6 +170,8 @@
 		F5C6C1FB149A28DF0045B3EE /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
 		F5C6C1FC149A28DF0045B3EE /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
 		F5C6C1FD149A28DF0045B3EE /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		F5C9955414BB0E03005F8AF3 /* fanfou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fanfou.png; sourceTree = "<group>"; };
+		F5D9B01D14BA93960095B7A4 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		F5D9C0E914A8BC3E00029663 /* douban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = douban.png; sourceTree = "<group>"; };
 		F5DAA05514AB6408004404AA /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMKeychainItem.h; path = preference/EMKeychainItem.h; sourceTree = "<group>"; };
 		F5DAA05614AB6408004404AA /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMKeychainItem.m; path = preference/EMKeychainItem.m; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 		F58A8C8B149A48DE004E60AD /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F5C9955414BB0E03005F8AF3 /* fanfou.png */,
+				F5D9B01D14BA93960095B7A4 /* dsa_pub.pem */,
 				F5E1B0EB14B07693009D00B1 /* icon-red.png */,
 				F5E9EF9514B008EE00E0D57B /* all_bigstars.gif */,
 				F56251F614AD589B006A880C /* account_ok.png */,
@@ -518,6 +524,8 @@
 				F5E9EF9614B008EE00E0D57B /* all_bigstars.gif in Resources */,
 				F5E1B0EC14B07693009D00B1 /* icon-red.png in Resources */,
 				149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */,
+				F5D9B01E14BA93960095B7A4 /* dsa_pub.pem in Resources */,
+				F5C9955514BB0E03005F8AF3 /* fanfou.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

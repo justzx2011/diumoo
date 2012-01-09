@@ -142,6 +142,9 @@
             case 3:
                 s=@"lastfm";
                 break;
+            case 4:
+                s=@"fanfou";
+                break;
             default:
                 s=@"douban";
                 break;

@@ -31,6 +31,8 @@
         [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"RateHotKey"];
         [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"TwitterDoubanInfo"];
 
+        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"ShowAlbumOnDock"];
+        
         [[c values] setValue:[NSNumber numberWithInt:2] forKey:@"DesktopWaveLevel"];
         [[c values] setValue:[NSNumber numberWithInt:1] forKey:@"GoogleSearchType"];
         

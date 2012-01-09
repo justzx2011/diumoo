@@ -17,5 +17,6 @@
 
 -(void) growlNotification:(NSDictionary*) userinfo withImage: (id) image;
 -(void) iTunesNotification:(NSDictionary*)noti;
+-(void) dockNotification:(NSDictionary*)noti withImage:(id)img;
 
 @end

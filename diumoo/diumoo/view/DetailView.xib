@@ -111,13 +111,42 @@
 						<string key="NSReuseIdentifierKey">_NS:499</string>
 						<string key="NSClassName">NSView</string>
 					</object>
+					<object class="NSButton" id="166041259">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{123, 366}, {24, 25}}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="454848344"/>
+						<string key="NSReuseIdentifierKey">_NS:1491</string>
+						<int key="NSTag">4</int>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="372115640">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">134217728</int>
+							<string key="NSContents"/>
+							<reference key="NSSupport" ref="336638652"/>
+							<string key="NSCellIdentifier">_NS:1491</string>
+							<reference key="NSControlView" ref="166041259"/>
+							<int key="NSButtonFlags">-2041822977</int>
+							<int key="NSButtonFlags2">163</int>
+							<object class="NSCustomResource" key="NSNormalImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">fanfou</string>
+							</object>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">400</int>
+							<int key="NSPeriodicInterval">75</int>
+						</object>
+					</object>
 					<object class="NSButton" id="129890682">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{97, 366}, {24, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="454848344"/>
+						<reference key="NSNextKeyView" ref="166041259"/>
 						<string key="NSReuseIdentifierKey">_NS:1491</string>
 						<int key="NSTag">3</int>
 						<bool key="NSEnabled">YES</bool>
@@ -143,15 +172,15 @@
 					<object class="NSButton" id="454848344">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">267</int>
-						<string key="NSFrame">{{171, 366}, {99, 24}}</string>
+						<string key="NSFrame">{{195, 366}, {75, 24}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="621860275"/>
 						<string key="NSReuseIdentifierKey">_NS:3196</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="845424277">
-							<int key="NSCellFlags">-2080244224</int>
-							<int key="NSCellFlags2">134250496</int>
+							<int key="NSCellFlags">-2080244160</int>
+							<int key="NSCellFlags2">134252544</int>
 							<string key="NSContents">未登录</string>
 							<reference key="NSSupport" ref="336638652"/>
 							<string key="NSCellIdentifier">_NS:3196</string>
@@ -335,7 +364,7 @@
 					<object class="NSTextField" id="588429977">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{17, 66}, {256, 20}}</string>
+						<string key="NSFrame">{{17, 66}, {286, 20}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="256070778"/>
@@ -496,6 +525,14 @@
 					</object>
 					<int key="connectionID">48</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">serviceCallback:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="166041259"/>
+					</object>
+					<int key="connectionID">56</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -537,8 +574,9 @@
 							<reference ref="722388319"/>
 							<reference ref="129890682"/>
 							<reference ref="285813124"/>
-							<reference ref="560849992"/>
 							<reference ref="454848344"/>
+							<reference ref="166041259"/>
+							<reference ref="560849992"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -698,6 +736,19 @@
 						<reference key="object" ref="69808446"/>
 						<reference key="parent" ref="129890682"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">54</int>
+						<reference key="object" ref="166041259"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="372115640"/>
+						</array>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">55</int>
+						<reference key="object" ref="372115640"/>
+						<reference key="parent" ref="166041259"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -726,6 +777,9 @@
 				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<dictionary class="NSMutableDictionary" key="54.IBAttributePlaceholdersKey"/>
+				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="55.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -735,7 +789,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">53</int>
+			<int key="maxID">56</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -815,6 +869,7 @@
 			<string key="NSUser">{32, 32}</string>
 			<string key="all_bigstars">{75, 165}</string>
 			<string key="douban">{32, 32}</string>
+			<string key="fanfou">{32, 32}</string>
 			<string key="google">{32, 32}</string>
 			<string key="last_fm">{32, 32}</string>
 			<string key="twitter">{32, 32}</string>

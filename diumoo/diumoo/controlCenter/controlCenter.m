@@ -203,7 +203,9 @@ controlCenter* sharedCenter;
 
 -(void) musicEnded
 {
+    NSLog(@"Music Ended before lock");
     if([lock tryLock]!=YES) return;
+    NSLog(@"Music Ended");
     if(player!=nil 
        && source!=nil
        && current!=nil
@@ -254,6 +256,18 @@ controlCenter* sharedCenter;
         
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@", site_url, encoded]]];
         CFRelease(encoded);
+    }
+    else if([s isEqualToString:@"fanfou"])
+    {
+        NSString* u_name=[NSString stringWithFormat:@"%@ (%@)",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
+        CFStringRef name=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)u_name, NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
+        CFStringRef url=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[current valueForKey:@"Store URL"], NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
+        CFStringRef detail=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[NSString stringWithFormat:@"(正在收听:豆瓣电台-%@)",[current valueForKey:@"Channel"]], NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
+        [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fanfou.com/sharer?u=%@&d=%@&t=%@",url,detail,name]]];
+        CFRelease(name);
+        CFRelease(url);
+        CFRelease(detail);
+    
     }
     else
     {

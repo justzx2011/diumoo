@@ -135,8 +135,7 @@
 {
     //生成获取列表的参数
     //    | 生成随机数
-    int rnd=rand();
-    rnd=rnd<MIN_RAND?rnd+MIN_RAND:rnd;
+    long long int rnd=rand();
     //    | 生成channel
     NSString* _s=@"";
     NSMutableArray* _cookie=[[NSMutableArray alloc] init];
@@ -161,7 +160,8 @@
         [h appendString:[NSString stringWithFormat:@"%%7C%@:%@",sid,type]];
     
     // 构造request
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%x&%@",PLAYLIST_URL_STRING,type,rnd,_s]]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%llx&%@",PLAYLIST_URL_STRING,type,rnd,_s]]];
+    NSLog(@"%@",[request URL]);
     [request setHTTPMethod:@"GET"];
     [request setHTTPBody:nil];
     [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
@@ -180,9 +180,12 @@
             if([[list valueForKey:@"r"] intValue]==0)
             {
                 NSArray* song=[list valueForKey:@"song"];
-                if([replacePlaylist containsObject:type] && [song count]>0)[playlist removeAllObjects];
-                [playlist addObjectsFromArray:[list valueForKey:@"song"]];
-                
+                if([replacePlaylist containsObject:type] && [song count]>0){
+                    NSLog(@"Remove Objects with count %d",[song count]);
+                    [playlist removeAllObjects];
+                }
+                [playlist addObjectsFromArray:song];
+                NSLog(@"after add %d",[playlist count]);
                 return YES;
             }
             
@@ -199,10 +202,13 @@
 
 -(NSDictionary*) getNewSongByType:(NSString *)t andSid:(NSString*)sid
 {
+    NSLog(@"Get New Song By Type %@",t);
+    NSLog(@"Playlist count : %d",[playlist count]);
     if([playlist count]==0){
         int retry=0;
         do{
-            [self requestPlaylistWithType:NEW andSid:sid];
+            NSLog(@"Get New Playlist");
+            [self requestPlaylistWithType:NEW andSid:@""];
         }
         while([playlist count]==0 && (retry++)<MAX_RETRY_TIMES);
         

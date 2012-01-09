@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Sparkle/sparkle.h>
 #import "EMKeychainItem.h"
 
 #define GENERAL_PREFERENCE_ID 0
@@ -21,6 +22,8 @@
     IBOutlet NSTabView* mainview;
     IBOutlet NSTextField* email;
     IBOutlet NSSecureTextField* pass;
+    
+    IBOutlet NSButton* version;
 }
 
 @property(nonatomic,assign) NSToolbar* toolbar;
@@ -38,5 +41,10 @@
 -(void) selectPreferenceViewWithID:(NSInteger) view_id;
 -(IBAction)clearPassword:(id)sender;
 -(IBAction)updatePassword:(id)sender;
+-(IBAction)updateApp:(id)sender;
+-(IBAction)dockAlbum:(id)sender;
+
+
+-(IBAction)openLink:(id)sender;
 
 @end
