@@ -4,14 +4,6 @@
 <array>
 	<dict>
 		<key>name</key>
-		<string>私人兆赫</string>
-		<key>channel_id</key>
-		<integer>0</integer>
-		<key>default</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>公共兆赫</string>
 		<key>sub</key>
 		<array>

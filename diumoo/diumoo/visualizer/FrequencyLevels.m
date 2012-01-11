@@ -159,6 +159,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 - (void)dealloc
 {
     // cleanup
+    [self toggleFreqLevels:NSOffState];
     
     [mContainer release];
     [window release];
@@ -176,13 +177,15 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
 - (void)invalidate
 {
+    [condition lock];
     if ([[mMovie attributeForKey:QTMovieHasAudioAttribute] boolValue]) 
     {
         // do this once per movie to establish metering
-        [condition lock];
+        
         (void)SetMovieAudioFrequencyMeteringNumBands([mMovie quickTimeMovie], kQTAudioMeter_StereoMix, &numberOfBandLevels);
-        [condition unlock];
+        
     }
+    [condition unlock];
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -214,6 +217,11 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     if (NSOnState == state) 
     {
     	// turning it on, set up a timer and add it to the run loop
+        if(mTimer!=nil){
+            [mTimer invalidate];
+            mTimer=nil;
+        }
+        
         mTimer = [NSTimer timerWithTimeInterval:1.0/15 target:self selector:@selector(levelTimerMethod:) userInfo:nil repeats:YES] ;
         
         [[NSRunLoop currentRunLoop] addTimer:mTimer forMode:(NSString *)kCFRunLoopCommonModes];

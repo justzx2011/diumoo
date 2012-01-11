@@ -39,6 +39,7 @@
 -(void) play;
 -(void) pause;
 -(void) ended;
+-(void) endedWithError;
 -(void) playing_rate;
 - (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target;
 - (void)stopAutoFade;

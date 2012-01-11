@@ -149,7 +149,7 @@ static preference* shared;
 {
     if([sender state]!=NSOnState){
         [NSApp setApplicationIconImage:nil];
-        [[NSApp dockTile] setShowsApplicationBadge:NO];
+        [[NSApp dockTile] setBadgeLabel:@""];
         [[NSApp dockTile] display];
     }
 }

@@ -85,17 +85,6 @@ controlCenter* sharedCenter;
     return source;
 }
 
--(BOOL) startToPlay
-{
-    if(![lock tryLock]) return NO;
-    [source setChannel:0];
-    [controlCenter tryAuth:[preference authPrefsData]];
-    current=[[source getNewSong] retain];
-    if(current!=nil )
-          [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
-    [lock unlock];
-    return YES;
-}
 
 -(BOOL) play_pause
 {
@@ -190,9 +179,12 @@ controlCenter* sharedCenter;
     [self pause];
     if([lock tryLock]!=YES)
         return NO;
+    [current release];
+    current=nil;
     if(player!=nil && source!=nil
        && (current=([source setChannel:channel],[source getNewSong]))!=nil)
     {
+        [current retain];
         [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
         [lock unlock];
         return YES;
@@ -201,11 +193,21 @@ controlCenter* sharedCenter;
     return [lock unlock],NO;
 }
 
--(void) musicEnded
+-(void) musicEnded:(NSNotification*)n
 {
-    NSLog(@"Music Ended before lock");
+    if(n.object!=nil)
+    {
+        if(player!=nil 
+           && source!=nil
+           && current!=nil
+           && ([current release],current = [[source getNewSong]  retain])!=nil)
+            [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+        else
+        {
+            NSRunCriticalAlertPanel(@"连接失败", @"试图从豆瓣电台获取音乐失败！播放将停止，请检查您的网络，您可以尝试点击下一首歌重试。", @"知道了",nil,nil);
+        }
+    }
     if([lock tryLock]!=YES) return;
-    NSLog(@"Music Ended");
     if(player!=nil 
        && source!=nil
        && current!=nil

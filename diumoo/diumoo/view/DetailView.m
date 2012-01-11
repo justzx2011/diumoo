@@ -42,7 +42,7 @@
     else{
         [album_img setFrameSize:[img size]];
         float wid=[img size].width+50;
-        [[self view]setFrameSize:NSMakeSize((wid<225.0?225.0:wid),[img size].height+160)];
+        [[self view]setFrameSize:NSMakeSize((wid<250.0?250.0:wid),[img size].height+160)];
     }
     
     
@@ -85,7 +85,7 @@
         [star setHidden:YES];
         [rate_text setHidden:YES];
     }
-    
+    [[self view] display];
     
 }
 

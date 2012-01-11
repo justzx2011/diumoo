@@ -171,8 +171,8 @@
 					</object>
 					<object class="NSButton" id="454848344">
 						<reference key="NSNextResponder" ref="1005"/>
-						<int key="NSvFlags">267</int>
-						<string key="NSFrame">{{195, 366}, {75, 24}}</string>
+						<int key="NSvFlags">266</int>
+						<string key="NSFrame">{{161, 366}, {134, 24}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="621860275"/>
@@ -180,7 +180,7 @@
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="845424277">
 							<int key="NSCellFlags">-2080244160</int>
-							<int key="NSCellFlags2">134252544</int>
+							<int key="NSCellFlags2">34816</int>
 							<string key="NSContents">未登录</string>
 							<reference key="NSSupport" ref="336638652"/>
 							<string key="NSCellIdentifier">_NS:3196</string>

@@ -19,31 +19,12 @@
         cond=[[[NSCondition alloc] init] retain] ;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playing_rate) name:QTMovieRateDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(stopAutoFade) name:@"playbuttonpressed" object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(load_state:) name:QTMovieLoadStateDidChangeNotification object:nil];
         level=[[[FrequencyLevels alloc] init] retain];
-        token=YES;
     }
     
     return self;
 }
 
--(void) load_state:(NSNotification*)n
-{
-    [cond lock];
-    //if(![lock tryLock])return;
-    if(token) {[cond unlock];return;}
-    if([[n.object attributeForKey: QTMovieLoadStateAttribute] intValue]>=QTMovieLoadStatePlayable)
-    {
-        [level setMovie:player];
-        [level toggleFreqLevels:NSOnState];
-        token=YES;
-    }
-    else{
-        [level toggleFreqLevels:NSOffState];
-        token=NO;
-    }
-    [cond unlock];
-}
 
 -(void) _start_to_play_notification:(NSDictionary *)m
 {
@@ -54,7 +35,6 @@
 
 -(BOOL) startToPlay:(NSDictionary *)music
 {
-    NSLog(@"start to play");
     if(![NSThread isMainThread]){
 
         [self lazyPause];
@@ -74,9 +54,6 @@
     }
     NSError* e=nil;
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&e] retain]; 
-    token=NO;
-    
-    
     
     if(e==NULL) 
     {
@@ -84,6 +61,7 @@
         [player setVolume:1.0];
         [player autoplay];
     }
+    else [self endedWithError];
     
     [cond unlock];
     return (e==NULL);
@@ -91,7 +69,6 @@
 -(void) _pause
 {
     if(player!=nil&&[player rate]!=0){
-        [level toggleFreqLevels:NSOffState];
         [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:1.0 targetVolume:0.0];
     }
 }
@@ -99,7 +76,6 @@
 {
     [cond lock];
     if(player != nil&& [player rate]==0){
-        [level toggleFreqLevels:NSOnState];
         [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:0.0 targetVolume:1.0];
     }
     [cond unlock];
@@ -139,16 +115,30 @@
 
 -(void) ended
 {
-    NSLog(@"ended");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.end" object:nil userInfo:nil];
+}
+-(void) endedWithError
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.end" object:self userInfo:nil];
 }
 
 -(void) playing_rate
 {
     if(player==nil) return;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
-    NSLog(@"%lld",[player duration].timeValue);
-    if([player rate]<0.1 &&([player duration].timeValue - [player currentTime].timeValue)<100) [self ended];
+    NSLog(@"Playing %lld/%lld",[player currentTime].timeValue,[player duration].timeValue);
+    
+    if([player rate]>0.9)
+    {
+        [level toggleFreqLevels:NSOffState];
+        [level setMovie:player];
+        [level toggleFreqLevels:NSOnState];
+    }
+    else{
+        [level toggleFreqLevels:NSOffState];
+        [level setMovie:nil];
+        if(([player duration].timeValue - [player currentTime].timeValue)<100) [self ended];
+    }
 }
 
 - (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target {
@@ -198,6 +188,7 @@
 {
     [cond release];
     [player release];
+    [level release];
     [super dealloc];
 }
 @end

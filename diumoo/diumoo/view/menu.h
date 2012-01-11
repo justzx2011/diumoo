@@ -43,6 +43,12 @@
     DetailView* dv;
     
     
+    NSMenuItem* heartChannel;
+    NSMenuItem* privateChannel;
+    
+    NSMenuItem* defaultChannel;
+    NSMenuItem* lastChannel;
+    
     NSMenuItem * prefsItem;
     NSMenuItem * aboutItem;
     NSMenuItem * exit;
@@ -66,8 +72,11 @@
 -(IBAction)exitApp:(id)sender;
 -(void) backChannelTo:(NSNumber*) c;
 -(IBAction)channelAction:(id)sender;
+-(void)_channel_action:(id)sender;
 -(IBAction)buttonAction:(id)sender;
 -(IBAction)showPrefs:(id)sender;
+
+-(void) fireToPlayTheDefaultChannel;
 
 -(BOOL) lightHeart;
 

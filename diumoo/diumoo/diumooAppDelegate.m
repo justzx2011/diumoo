@@ -38,6 +38,8 @@
         
         [[c values] setValue:[NSNumber numberWithBool:NO] forKey:@"IsFirstLaunch"];
         
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:1] forKey:@"PlayedChannel"];
+        
     }
 }
 
@@ -60,16 +62,12 @@
 	if([SPMediaKeyTap usesGlobalMediaKeyTap])
 		[keyTap startWatchingMediaKeys];
     
-    
-    [[controlCenter sharedCenter] performSelectorInBackground:@selector(startToPlay) withObject:nil ];
-    
-    
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowDockIcon"] integerValue]==NSOnState){
         ProcessSerialNumber psn = { 0, kCurrentProcess };
         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     }
-
     
+    [m performSelectorInBackground:@selector(fireToPlayTheDefaultChannel) withObject:nil];
     
     
 }
@@ -77,7 +75,7 @@
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
     [p lazyPause];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:[NSDictionary dictionaryWithObject:@"paused" forKey:@"Player State"]];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:[NSDictionary dictionaryWithObject:@"Paused" forKey:@"Player State"]];
 }
 
 -(IBAction)showPreference:(id)sender

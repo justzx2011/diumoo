@@ -32,9 +32,9 @@
         replacePlaylist = [[[NSSet alloc] initWithObjects:NEW,SKIP,BYE, nil] retain] ;
         recordType = [[[NSSet alloc] initWithObjects:RATE,END,SKIP,BYE, nil] retain] ;
         
-        privateEnables=[[NSSet setWithObjects:@"play",@"next",@"like",@"bye", nil] retain] ;
+        privateEnables=[[NSSet setWithObjects:@"play",@"next",@"like",@"bye",@"private", nil] retain] ;
         publicEnables = [[NSSet setWithObjects:@"play",@"next", nil] retain];
-        publicWithLoggedInEnables = [[NSSet setWithObjects:@"play",@"next",@"like", nil] retain];
+        publicWithLoggedInEnables = [[NSSet setWithObjects:@"play",@"next",@"like",@"private", nil] retain];
         
         //初始化playlist
         playlist=[[[NSMutableArray alloc] initWithCapacity:20] retain];
@@ -135,7 +135,12 @@
 {
     //生成获取列表的参数
     //    | 生成随机数
-    long long int rnd=rand();
+    int rnd1=rand()&0xfffff;
+    int rnd2=rand()&0xfffff;
+    char rnds[11]={0};
+    sprintf(rnds, "%5x%5x",rnd1,rnd2);
+    for(int i=0;i<10;i++) if(rnds[i]==' ') rnds[i]='0';
+    
     //    | 生成channel
     NSString* _s=@"";
     NSMutableArray* _cookie=[[NSMutableArray alloc] init];
@@ -155,13 +160,12 @@
     else _s=[NSString stringWithFormat:@"channel=%d",channel];
     if([type isNotEqualTo:NEW]&& sid!=nil &&[sid isNotEqualTo:@""])
         _s=[NSString stringWithFormat:@"%@&sid=%@",_s,sid];
-    if([type isNotEqualTo:NEW])_s=[NSString stringWithFormat:@"%@&h=%@:%@%@",_s,sid,type,h];
+    if([type isNotEqualTo:NEW] )_s=[NSString stringWithFormat:@"%@&h=%@:%@%@",_s,sid,type,h];
     if([recordType containsObject:type])
         [h appendString:[NSString stringWithFormat:@"%%7C%@:%@",sid,type]];
     
     // 构造request
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%llx&%@",PLAYLIST_URL_STRING,type,rnd,_s]]];
-    NSLog(@"%@",[request URL]);
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%s&%@",PLAYLIST_URL_STRING,type,rnds,_s]]];
     [request setHTTPMethod:@"GET"];
     [request setHTTPBody:nil];
     [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
@@ -181,11 +185,9 @@
             {
                 NSArray* song=[list valueForKey:@"song"];
                 if([replacePlaylist containsObject:type] && [song count]>0){
-                    NSLog(@"Remove Objects with count %d",[song count]);
                     [playlist removeAllObjects];
                 }
                 [playlist addObjectsFromArray:song];
-                NSLog(@"after add %d",[playlist count]);
                 return YES;
             }
             
@@ -202,16 +204,12 @@
 
 -(NSDictionary*) getNewSongByType:(NSString *)t andSid:(NSString*)sid
 {
-    NSLog(@"Get New Song By Type %@",t);
-    NSLog(@"Playlist count : %d",[playlist count]);
     if([playlist count]==0){
+        [self requestPlaylistWithType:t andSid:sid];
         int retry=0;
-        do{
-            NSLog(@"Get New Playlist");
+        while([playlist count]==0 && (retry++)<MAX_RETRY_TIMES){
             [self requestPlaylistWithType:NEW andSid:@""];
         }
-        while([playlist count]==0 && (retry++)<MAX_RETRY_TIMES);
-        
         if([playlist count]==0){
             return nil;
         };
@@ -334,7 +332,7 @@
         if(channelName!=nil) [channelName release];
         channelName=[[NSString stringWithString:@"[>.<]矮油我不认识的兆赫"] retain];
     }
-    if(channel==0 && loggedIn==YES) r=privateEnables;
+    if(channel<=0 && loggedIn==YES) r=privateEnables;
     else if(loggedIn==YES) r=publicWithLoggedInEnables;
     else r=publicEnables;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:r forKey:@"enables"]];

@@ -31,7 +31,26 @@
         controlItem=[[NSMenuItem alloc]init];
         albumItem=[[NSMenuItem alloc]init];
         dv=[[DetailView alloc] init];
-
+        
+        //红心电台和私人电台
+        heartChannel=[[NSMenuItem alloc] initWithTitle:@"红心兆赫" action:nil keyEquivalent:@""];
+        privateChannel=[[NSMenuItem alloc] initWithTitle:@"私人兆赫" action:nil keyEquivalent:@""];
+        
+        [heartChannel setTag:-3];
+        [privateChannel setTag:0];
+        
+        [heartChannel setTarget:self];
+        [privateChannel setTarget:self];
+        
+        [heartChannel setIndentationLevel:1];
+        [privateChannel setIndentationLevel:1];
+        
+        [heartChannel setOnStateImage:[NSImage imageNamed:@"redheart.png"]];
+        [heartChannel setOffStateImage:[NSImage imageNamed:@"greyheart.png"]];
+        
+        
+        defaultChannel=nil;
+        lastChannel=nil;
 
 
         prefsItem=[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ];
@@ -103,6 +122,8 @@
         [controlItem setView:controlView];
 
         [albumItem setView:[dv view]];
+        
+        
 
         [exit setAction:@selector(exitApp:)];
         [exit setTarget:self];
@@ -160,7 +181,10 @@
 
     if(channels!=nil)
     {
-        [self _build_channel_menu:channels with:mainMenu andTabLength:0 ];
+        [mainMenu addItem:heartChannel];
+        [mainMenu addItem:privateChannel];
+        
+        [self _build_channel_menu:channels with:mainMenu andTabLength:1 ];
     }
 
     [mainMenu addItem:[NSMenuItem separatorItem]];
@@ -176,19 +200,17 @@
 
 -(void) _build_channel_menu:(NSArray *)dic with:(NSMenu *)menu andTabLength:(NSInteger) n
 {
+    NSInteger dc=[[[NSUserDefaults standardUserDefaults] valueForKey:@"PlayedChannel"] integerValue];
     for (NSDictionary* channel in dic) {
         if([channel valueForKey:@"name"]){
             NSMenuItem* mitem=[[NSMenuItem alloc] initWithTitle:[channel valueForKey:@"name"] action:nil keyEquivalent:@""];
             [mitem setIndentationLevel:n];
             if([channel valueForKey:@"channel_id"]!=nil) 
             {
-                [mitem setTag:[[channel valueForKey:@"channel_id"]integerValue]],[mitem setTarget:self],[mitem setAction:@selector(channelAction:)];
-                if([[channel valueForKey:@"default"] boolValue]==YES){
-                         [mitem setState:NSOnState];
-                         current=mitem;
-                         NSMenuItem* m=mitem;
-                         while((m=[m parentItem])!=nil) [m setState:NSMixedState];
-                }
+                NSInteger channel_id=[[channel valueForKey:@"channel_id"]integerValue];
+                [mitem setTag:channel_id],[mitem setTarget:self],[mitem setAction:@selector(channelAction:)];
+                if(channel_id==dc) lastChannel=mitem;
+                if(channel_id==1) defaultChannel=mitem;
             }
 
             if([channel valueForKey:@"sub"]!=nil){
@@ -203,7 +225,7 @@
             [menu addItem:[NSMenuItem separatorItem]];
             NSMenuItem* sitem=[[NSMenuItem alloc] initWithTitle:[channel valueForKey:@"cate"] action:nil keyEquivalent:@""];
             [menu addItem:sitem];
-            [self _build_channel_menu:[channel valueForKey:@"channels"] with:menu andTabLength:(n+1)];
+            [self _build_channel_menu:[channel valueForKey:@"channels"] with:menu andTabLength:(1)];
             [sitem autorelease];
         }
     }
@@ -219,6 +241,29 @@
 {
     NSDictionary* userinfo = n.userInfo;
     [self reformMenuWithSourceName:[userinfo valueForKey:@"sourceName"] channels:[userinfo valueForKey:@"channels"]  andCans:[userinfo valueForKey:@"cans"]];
+}
+
+-(void) fireToPlayTheDefaultChannel
+{
+    [controlCenter  tryAuth:[preference authPrefsData]];
+    NSInteger channal=[[[NSUserDefaults standardUserDefaults] valueForKey:@"PlayedChannel"] integerValue];
+
+    if([heartChannel action]!=nil && [privateChannel action]!=nil && channal<=0)
+    {
+        switch (channal) {
+            case -3:
+                [self _channel_action:heartChannel];
+                break;
+            default:
+                [self _channel_action:privateChannel];
+                break;
+        }
+    }
+    else
+    {
+        if(lastChannel!=nil) [self _channel_action:lastChannel];
+        else [self _channel_action:defaultChannel];
+    }
 }
 
 
@@ -267,19 +312,27 @@
     else [rate setEnabled:NO];
     if([enables containsObject:@"bye"]) [bye setEnabled:YES];
     else [bye setEnabled:NO];
+    if([enables containsObject:@"private"]){
+        [heartChannel setAction:@selector(channelAction:)];
+        [privateChannel setAction:@selector(channelAction:)];
+    }
+    else
+    {
+        if([heartChannel state]==NSOnState || [privateChannel state]==NSOnState)
+        {
+            [self _channel_action:defaultChannel];
+        }
+        [heartChannel setAction:nil];
+        [privateChannel setAction:nil];
+    }
     [condition unlock];
 }
 
--(IBAction)channelAction:(id)sender
+-(void) _channel_action:(id)sender
 {
-    
-    [condition lock];
-    if(!firstDetail) {
-        [condition unlock];
-        return;
-    }
     [current setState:NSOffState];
     NSMenuItem* i=current;
+    if(current!=nil)
     while((i=[i parentItem])!=nil) [i setState:NSOffState];
     
     if([sender tag]>1000 && [sender submenu]!=nil && (i=[[sender submenu] itemAtIndex:0])!=nil);
@@ -290,6 +343,20 @@
     [self performSelectorInBackground:@selector(backChannelTo:) withObject:[NSNumber numberWithInteger:[i tag]]];
     
     while((i=[i parentItem])!=nil) [i setState:NSMixedState];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:[sender tag]] forKey:@"PlayedChannel"];
+}
+
+
+-(IBAction)channelAction:(id)sender
+{
+    
+    [condition lock];
+    if(!firstDetail) {
+        [condition unlock];
+        return;
+    }
+    [self _channel_action:sender];
     
     [condition unlock];
 }
@@ -350,6 +417,8 @@
 {
     [item release];
     [mainMenu release];
+    [heartChannel release];
+    [privateChannel release];
     [aboutItem release];
     [exit release];
     [prefsItem release];

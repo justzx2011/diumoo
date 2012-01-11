@@ -27,7 +27,7 @@
 +(BOOL) tryAuth:(NSDictionary*) dic;
 +(void) cleanAuth;
 
--(void) musicEnded;
+-(void) musicEnded:(NSNotification*)n;
 
 -(BOOL) setPlayer:(musicPlayer*) player;
 -(BOOL) setSource:(mediaSourceBase*) source;
@@ -35,7 +35,6 @@
 -(mediaSourceBase*) getSource;
 
 
--(BOOL) startToPlay;
 -(BOOL) play_pause;
 -(BOOL) play;
 -(BOOL) pause;
