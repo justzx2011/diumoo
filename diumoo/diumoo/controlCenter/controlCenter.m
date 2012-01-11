@@ -38,7 +38,7 @@ controlCenter* sharedCenter;
         lock=[[[NSLock alloc]init] retain];
         state=0;
         current=nil;
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded) name:@"player.end" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded:) name:@"player.end" object:nil];
         }
     
     return self;
