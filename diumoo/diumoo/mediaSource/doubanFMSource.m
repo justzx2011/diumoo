@@ -296,6 +296,18 @@
 
 -(BOOL) findChannelName:(NSArray*) list ofChannel:(NSInteger) c
 {
+    if(c==0){
+        if(channelName){[channelName release];channelName=nil;}
+        channelName=[@"私人兆赫" retain];
+        return YES;
+    }
+    else if(c==-3)
+    {
+        if(channelName){[channelName release];channelName=nil;}
+        channelName=[@"红心兆赫" retain];
+        return YES;
+
+    }
     if(list==nil) return NO;
     for (NSDictionary* dic in list) {
         @try {
