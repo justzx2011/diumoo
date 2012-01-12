@@ -30,7 +30,6 @@
         [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"PlayPauseFastHotKey"];
         [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"RateHotKey"];
         [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"TwitterDoubanInfo"];
-
         [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"ShowAlbumOnDock"];
         
         [[controller values] setValue:[NSNumber numberWithInt:2] forKey:@"DesktopWaveLevel"];

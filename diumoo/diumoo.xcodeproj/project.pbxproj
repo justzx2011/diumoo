@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
+		3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F058EFA14BF1D630047B2BE /* prefsPanel.xib */; };
 		F50F5A9014BDBF6F00587035 /* redheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A8F14BDBF6F00587035 /* redheart.png */; };
 		F50F5A9314BDBFC800587035 /* greyheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A9214BDBFC800587035 /* greyheart.png */; };
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
@@ -18,7 +19,6 @@
 		F56251F814AD589B006A880C /* account_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = F56251F614AD589B006A880C /* account_ok.png */; };
 		F56251F914AD589B006A880C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = F56251F714AD589B006A880C /* user.png */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
-		F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D26149D950200D5FDA6 /* prefsPanel.xib */; };
 		F5766D34149DA0EC00D5FDA6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D32149DA0EC00D5FDA6 /* MainMenu.xib */; };
 		F5766D3C149DB16500D5FDA6 /* preference.m in Sources */ = {isa = PBXBuildFile; fileRef = F5766D3B149DB16500D5FDA6 /* preference.m */; };
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
@@ -90,6 +90,8 @@
 
 /* Begin PBXFileReference section */
 		149FC7E614B6E8DC0028C96B /* last_fm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = last_fm.png; sourceTree = "<group>"; };
+		3F058EF914BF1D630047B2BE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
+		3F058EFB14BF1D6E0047B2BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
 		F50F5A8F14BDBF6F00587035 /* redheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redheart.png; sourceTree = "<group>"; };
 		F50F5A9214BDBFC800587035 /* greyheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyheart.png; sourceTree = "<group>"; };
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
@@ -107,7 +109,6 @@
 		F5766D35149DA12E00D5FDA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
 		F5766D3A149DB16500D5FDA6 /* preference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = preference.h; path = preference/preference.h; sourceTree = "<group>"; };
 		F5766D3B149DB16500D5FDA6 /* preference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = preference.m; path = preference/preference.m; sourceTree = "<group>"; };
-		F5766D3D149DB4AA00D5FDA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		F57EBD2D14AB1E5B00484ED1 /* diumooApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diumooApp.h; sourceTree = "<group>"; };
 		F57EBD2E14AB1E5B00484ED1 /* diumooApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = diumooApp.m; sourceTree = "<group>"; };
 		F57EBD3114AB3F2100484ED1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -262,7 +263,7 @@
 			children = (
 				F5DAA05514AB6408004404AA /* EMKeychainItem.h */,
 				F5DAA05614AB6408004404AA /* EMKeychainItem.m */,
-				F5766D26149D950200D5FDA6 /* prefsPanel.xib */,
+				3F058EFA14BF1D630047B2BE /* prefsPanel.xib */,
 				F5766D3A149DB16500D5FDA6 /* preference.h */,
 				F5766D3B149DB16500D5FDA6 /* preference.m */,
 			);
@@ -515,7 +516,7 @@
 				F58A8CAB149A48DF004E60AD /* unlike.png in Resources */,
 				F5C38F40149C58A40082FEE4 /* twitter.png in Resources */,
 				F5C38F42149C58AF0082FEE4 /* google.png in Resources */,
-				F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */,
+				3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */,
 				F5766D34149DA0EC00D5FDA6 /* MainMenu.xib in Resources */,
 				F58C5E8F149F081200DDDF95 /* album.png in Resources */,
 				F58C5E91149F089D00DDDF95 /* icon.icns in Resources */,
@@ -568,10 +569,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F5766D26149D950200D5FDA6 /* prefsPanel.xib */ = {
+		3F058EFA14BF1D630047B2BE /* prefsPanel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F5766D3D149DB4AA00D5FDA6 /* en */,
+				3F058EF914BF1D630047B2BE /* en */,
+				3F058EFB14BF1D6E0047B2BE /* zh-Hans */,
 			);
 			name = prefsPanel.xib;
 			path = ..;
