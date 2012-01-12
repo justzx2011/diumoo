@@ -21,7 +21,7 @@ controlCenter* sharedCenter;
 }
 +(BOOL) tryAuth:(NSDictionary*) dic
 {
-    mediaSourceBase* source=[[controlCenter sharedCenter] getSource];
+    doubanFMSource* source=[[controlCenter sharedCenter] getSource];
     if(source!=nil) return [source authWithUsername:[dic valueForKey:@"username"] andPassword:[dic valueForKey:@"password"]];
     return NO;
 }

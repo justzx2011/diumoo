@@ -15,10 +15,10 @@
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
     //NSWindow *window;
-    musicPlayer* p;
-    doubanFMSource* s;
-    notifier* g;
-    menu* m;
+    musicPlayer* player;
+    doubanFMSource* source;
+    notifier* growlnotify;
+    menu* dmmenu;
     SPMediaKeyTap *keyTap;
 
 }

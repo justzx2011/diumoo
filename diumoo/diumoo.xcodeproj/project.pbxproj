@@ -29,7 +29,6 @@
 		F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */; };
 		F58A8C77149A2EB3004E60AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C62149A2EB3004E60AD /* main.m */; };
 		F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C65149A2EB3004E60AD /* doubanFMSource.m */; };
-		F58A8C79149A2EB3004E60AD /* mediaSourceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C67149A2EB3004E60AD /* mediaSourceBase.m */; };
 		F58A8C7A149A2EB3004E60AD /* notifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6A149A2EB3004E60AD /* notifier.m */; };
 		F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6D149A2EB3004E60AD /* musicPlayer.m */; };
 		F58A8C7D149A2EB3004E60AD /* menu.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C73149A2EB3004E60AD /* menu.m */; };
@@ -122,8 +121,6 @@
 		F58A8C62149A2EB3004E60AD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F58A8C64149A2EB3004E60AD /* doubanFMSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = doubanFMSource.h; sourceTree = "<group>"; };
 		F58A8C65149A2EB3004E60AD /* doubanFMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doubanFMSource.m; sourceTree = "<group>"; };
-		F58A8C66149A2EB3004E60AD /* mediaSourceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mediaSourceBase.h; sourceTree = "<group>"; };
-		F58A8C67149A2EB3004E60AD /* mediaSourceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mediaSourceBase.m; sourceTree = "<group>"; };
 		F58A8C69149A2EB3004E60AD /* notifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notifier.h; sourceTree = "<group>"; };
 		F58A8C6A149A2EB3004E60AD /* notifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = notifier.m; sourceTree = "<group>"; };
 		F58A8C6C149A2EB3004E60AD /* musicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = musicPlayer.h; sourceTree = "<group>"; };
@@ -309,8 +306,6 @@
 			children = (
 				F58A8C64149A2EB3004E60AD /* doubanFMSource.h */,
 				F58A8C65149A2EB3004E60AD /* doubanFMSource.m */,
-				F58A8C66149A2EB3004E60AD /* mediaSourceBase.h */,
-				F58A8C67149A2EB3004E60AD /* mediaSourceBase.m */,
 			);
 			path = mediaSource;
 			sourceTree = "<group>";
@@ -558,7 +553,6 @@
 				F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */,
 				F58A8C77149A2EB3004E60AD /* main.m in Sources */,
 				F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */,
-				F58A8C79149A2EB3004E60AD /* mediaSourceBase.m in Sources */,
 				F58A8C7A149A2EB3004E60AD /* notifier.m in Sources */,
 				F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */,
 				F58A8C7D149A2EB3004E60AD /* menu.m in Sources */,

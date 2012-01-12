@@ -23,9 +23,8 @@
 
 #import <Foundation/Foundation.h>
 #import "CJSONDeserializer.h"
-#import "mediaSourceBase.h"
 
-@interface doubanFMSource : mediaSourceBase{
+@interface doubanFMSource : NSObject{
     NSMutableURLRequest* request;
     NSMutableArray* playlist;
     NSMutableString* h;

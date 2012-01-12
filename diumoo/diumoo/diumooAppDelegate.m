@@ -22,21 +22,21 @@
 
 -(void) firstLaunch
 {
-    NSUserDefaultsController* c=[NSUserDefaultsController sharedUserDefaultsController];
-    if([[c values] valueForKey:@"IsFirstLaunch"]==nil)
+    NSUserDefaultsController* controller=[NSUserDefaultsController sharedUserDefaultsController];
+    if([[controller values] valueForKey:@"IsFirstLaunch"]==nil)
     {
-        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"ShowDockIcon"];
-        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"EnableGrowl"];
-        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"PlayPauseFastHotKey"];
-        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"RateHotKey"];
-        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"TwitterDoubanInfo"];
+        [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"ShowDockIcon"];
+        [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"EnableGrowl"];
+        [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"PlayPauseFastHotKey"];
+        [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"RateHotKey"];
+        [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"TwitterDoubanInfo"];
 
-        [[c values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"ShowAlbumOnDock"];
+        [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"ShowAlbumOnDock"];
         
-        [[c values] setValue:[NSNumber numberWithInt:2] forKey:@"DesktopWaveLevel"];
-        [[c values] setValue:[NSNumber numberWithInt:1] forKey:@"GoogleSearchType"];
+        [[controller values] setValue:[NSNumber numberWithInt:2] forKey:@"DesktopWaveLevel"];
+        [[controller values] setValue:[NSNumber numberWithInt:1] forKey:@"GoogleSearchType"];
         
-        [[c values] setValue:[NSNumber numberWithBool:NO] forKey:@"IsFirstLaunch"];
+        [[controller values] setValue:[NSNumber numberWithBool:NO] forKey:@"IsFirstLaunch"];
         
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:1] forKey:@"PlayedChannel"];
         
@@ -47,15 +47,15 @@
 {
     // Insert code here to initialize your application
     [self firstLaunch];
-    g=[[[notifier alloc] init] retain];
-    s=[[[doubanFMSource alloc] init] retain];
-    p=[[[musicPlayer alloc] init] retain];
-    m=[[[menu alloc]init] retain];
+    growlnotify=[[[notifier alloc] init] retain];
+    source=[[[doubanFMSource alloc] init] retain];
+    player=[[[musicPlayer alloc] init] retain];
+    dmmenu=[[[menu alloc]init] retain];
     
     //[preference sharedPreference];
      
-    [[controlCenter sharedCenter] setPlayer:p];
-    [[controlCenter sharedCenter] setSource:s];
+    [[controlCenter sharedCenter] setPlayer:player];
+    [[controlCenter sharedCenter] setSource:source];
     
     
     keyTap = [[SPMediaKeyTap alloc] initWithDelegate:self];
@@ -67,14 +67,14 @@
         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     }
     
-    [m performSelectorInBackground:@selector(fireToPlayTheDefaultChannel) withObject:nil];
+    [dmmenu performSelectorInBackground:@selector(fireToPlayTheDefaultChannel) withObject:nil];
     
     
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
-    [p lazyPause];
+    [player lazyPause];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:[NSDictionary dictionaryWithObject:@"Paused" forKey:@"Player State"]];
 }
 
@@ -101,7 +101,7 @@
                 break;
             case NX_KEYTYPE_REWIND:
                 if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"RateHotKey"] integerValue]==NSOnState)
-                    if([m lightHeart])[[controlCenter sharedCenter] rate];
+                    if([dmmenu lightHeart])[[controlCenter sharedCenter] rate];
                 break;
         }
 
@@ -110,10 +110,10 @@
 
 -(void) dealloc
 {
-    [g release];
-    [s release];
-    [p release];
-    [m release];
+    [growlnotify release];
+    [source release];
+    [player release];
+    [dmmenu release];
     [keyTap release];
     [super dealloc];
 }
