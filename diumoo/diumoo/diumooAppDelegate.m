@@ -47,10 +47,18 @@
 {
     // Insert code here to initialize your application
     [self firstLaunch];
-    growlnotify=[[[notifier alloc] init] retain];
-    source=[[[doubanFMSource alloc] init] retain];
-    player=[[[musicPlayer alloc] init] retain];
-    dmmenu=[[[menu alloc]init] retain];
+    growlnotify=[[notifier alloc] init];
+    source=[[doubanFMSource alloc] init];
+    player=[[musicPlayer alloc] init];
+    dmmenu=[[menu alloc]init];
+    
+    //NSLog([NSString stringWithFormat:@"GrowlNotify retain count: %i",[growlnotify retainCount]]);
+    //NSLog([NSString stringWithFormat:@"Source retain count: %i",[source retainCount]]);
+    //NSLog([NSString stringWithFormat:@"Player retain count: %i",[musicPlayer retainCount]]);
+    //NSLog([NSString stringWithFormat:@"dmmenu retain count: %i",[dmmenu retainCount]]);
+    
+
+
     
     //[preference sharedPreference];
      
@@ -110,6 +118,7 @@
 
 -(void) dealloc
 {
+    
     [growlnotify release];
     [source release];
     [player release];
