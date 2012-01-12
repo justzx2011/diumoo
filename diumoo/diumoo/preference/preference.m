@@ -136,10 +136,10 @@ static preference* shared;
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/"]];
             break;
         case 2:
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://me.alipay.com/antsz"]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/donate/"]];
             break;
         case 3:
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/sponsor/"]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/sponsors/"]];
             break;
         default:
             break;

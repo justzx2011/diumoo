@@ -85,8 +85,6 @@
         [star setHidden:YES];
         [rate_text setHidden:YES];
     }
-    [[self view] display];
-    
 }
 
 -(void) setServiceTarget:(id)t withSelector:(SEL)s
