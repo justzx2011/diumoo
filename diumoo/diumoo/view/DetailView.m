@@ -27,12 +27,12 @@
 }
 
 -(void) setDetail:(NSDictionary*) info withImage:(NSImage*) image
-{
+{    dispatch_async(dispatch_get_main_queue(), ^{
     NSImage* img;
     if(image!=nil)img=image;
     else img=[NSImage imageNamed:@"album.png"];
-
-
+    
+    
     float scale=250.0/([image size].width>[image size].height?image.size.width:image.size.height);
     if(scale<1.0)
     {
@@ -85,6 +85,7 @@
         [star setHidden:YES];
         [rate_text setHidden:YES];
     }
+}); 
 }
 
 -(void) setServiceTarget:(id)t withSelector:(SEL)s

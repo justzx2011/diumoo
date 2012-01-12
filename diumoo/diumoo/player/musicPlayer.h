@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <QTKit/QTKit.h>
 #import "FrequencyLevels.h"
+#include <dispatch/dispatch.h>
 
 #define VOLUME_DURATION 10.0
 #define VOLUME_INTERVAL 0.1

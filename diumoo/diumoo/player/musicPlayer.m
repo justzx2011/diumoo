@@ -57,9 +57,13 @@
     
     if(e==NULL) 
     {
-        [player setVolume:1.0];
-        [player autoplay];
-        [self performSelectorInBackground:@selector(_start_to_play_notification:) withObject:music];
+        dispatch_queue_t gQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(gQueue, ^{
+            [player setVolume:1.0];
+            [player autoplay];
+            [self _start_to_play_notification:music];
+        });
+        //[self performSelectorOnMainThread:@selector(_start_to_play_notification:) withObject:music waitUntilDone:NO];
     }
     else [self endedWithError];
     
