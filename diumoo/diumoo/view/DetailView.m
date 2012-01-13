@@ -26,8 +26,9 @@
     [album_img setImage:[NSImage imageNamed:@"album.png"]];
 }
 
--(void) setDetail:(NSDictionary*) info withImage:(NSImage*) image
-{    dispatch_async(dispatch_get_main_queue(), ^{
+-(void) setDetailReal:(NSDictionary*)dict{
+    NSDictionary *info = [dict objectForKey:@"info"];
+    NSImage *image = [dict objectForKey:@"image"];
     NSImage* img;
     if(image!=nil)img=image;
     else img=[NSImage imageNamed:@"album.png"];
@@ -85,7 +86,13 @@
         [star setHidden:YES];
         [rate_text setHidden:YES];
     }
-}); 
+
+}
+
+-(void) setDetail:(NSDictionary*) info withImage:(NSImage*) image
+{
+    NSDictionary *dict=[NSDictionary dictionaryWithObjectsAndKeys:info,@"info",image,@"image", nil];
+    [self performSelectorOnMainThread:@selector(setDetailReal:) withObject:dict waitUntilDone:NO];
 }
 
 -(void) setServiceTarget:(id)t withSelector:(SEL)s
