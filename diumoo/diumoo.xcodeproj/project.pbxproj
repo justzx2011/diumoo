@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
+		3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F058EFA14BF1D630047B2BE /* prefsPanel.xib */; };
+		3FECED3A14BFECEF00F26097 /* Sina.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FECED3914BFECEF00F26097 /* Sina.png */; };
 		F50F5A9014BDBF6F00587035 /* redheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A8F14BDBF6F00587035 /* redheart.png */; };
 		F50F5A9314BDBFC800587035 /* greyheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A9214BDBFC800587035 /* greyheart.png */; };
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
@@ -18,7 +20,6 @@
 		F56251F814AD589B006A880C /* account_ok.png in Resources */ = {isa = PBXBuildFile; fileRef = F56251F614AD589B006A880C /* account_ok.png */; };
 		F56251F914AD589B006A880C /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = F56251F714AD589B006A880C /* user.png */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
-		F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D26149D950200D5FDA6 /* prefsPanel.xib */; };
 		F5766D34149DA0EC00D5FDA6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5766D32149DA0EC00D5FDA6 /* MainMenu.xib */; };
 		F5766D3C149DB16500D5FDA6 /* preference.m in Sources */ = {isa = PBXBuildFile; fileRef = F5766D3B149DB16500D5FDA6 /* preference.m */; };
 		F577CE78149A2AD400DDB91F /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5C6C1E4149A28DF0045B3EE /* Growl.framework */; };
@@ -29,7 +30,6 @@
 		F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */; };
 		F58A8C77149A2EB3004E60AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C62149A2EB3004E60AD /* main.m */; };
 		F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C65149A2EB3004E60AD /* doubanFMSource.m */; };
-		F58A8C79149A2EB3004E60AD /* mediaSourceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C67149A2EB3004E60AD /* mediaSourceBase.m */; };
 		F58A8C7A149A2EB3004E60AD /* notifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6A149A2EB3004E60AD /* notifier.m */; };
 		F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6D149A2EB3004E60AD /* musicPlayer.m */; };
 		F58A8C7D149A2EB3004E60AD /* menu.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C73149A2EB3004E60AD /* menu.m */; };
@@ -91,6 +91,9 @@
 
 /* Begin PBXFileReference section */
 		149FC7E614B6E8DC0028C96B /* last_fm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = last_fm.png; sourceTree = "<group>"; };
+		3F058EF914BF1D630047B2BE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
+		3F058EFB14BF1D6E0047B2BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
+		3FECED3914BFECEF00F26097 /* Sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sina.png; sourceTree = "<group>"; };
 		F50F5A8F14BDBF6F00587035 /* redheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redheart.png; sourceTree = "<group>"; };
 		F50F5A9214BDBFC800587035 /* greyheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyheart.png; sourceTree = "<group>"; };
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
@@ -108,7 +111,6 @@
 		F5766D35149DA12E00D5FDA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.xib"; sourceTree = "<group>"; };
 		F5766D3A149DB16500D5FDA6 /* preference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = preference.h; path = preference/preference.h; sourceTree = "<group>"; };
 		F5766D3B149DB16500D5FDA6 /* preference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = preference.m; path = preference/preference.m; sourceTree = "<group>"; };
-		F5766D3D149DB4AA00D5FDA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		F57EBD2D14AB1E5B00484ED1 /* diumooApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diumooApp.h; sourceTree = "<group>"; };
 		F57EBD2E14AB1E5B00484ED1 /* diumooApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = diumooApp.m; sourceTree = "<group>"; };
 		F57EBD3114AB3F2100484ED1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -122,8 +124,6 @@
 		F58A8C62149A2EB3004E60AD /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F58A8C64149A2EB3004E60AD /* doubanFMSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = doubanFMSource.h; sourceTree = "<group>"; };
 		F58A8C65149A2EB3004E60AD /* doubanFMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doubanFMSource.m; sourceTree = "<group>"; };
-		F58A8C66149A2EB3004E60AD /* mediaSourceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mediaSourceBase.h; sourceTree = "<group>"; };
-		F58A8C67149A2EB3004E60AD /* mediaSourceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mediaSourceBase.m; sourceTree = "<group>"; };
 		F58A8C69149A2EB3004E60AD /* notifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notifier.h; sourceTree = "<group>"; };
 		F58A8C6A149A2EB3004E60AD /* notifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = notifier.m; sourceTree = "<group>"; };
 		F58A8C6C149A2EB3004E60AD /* musicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = musicPlayer.h; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 			children = (
 				F5DAA05514AB6408004404AA /* EMKeychainItem.h */,
 				F5DAA05614AB6408004404AA /* EMKeychainItem.m */,
-				F5766D26149D950200D5FDA6 /* prefsPanel.xib */,
+				3F058EFA14BF1D630047B2BE /* prefsPanel.xib */,
 				F5766D3A149DB16500D5FDA6 /* preference.h */,
 				F5766D3B149DB16500D5FDA6 /* preference.m */,
 			);
@@ -309,8 +309,6 @@
 			children = (
 				F58A8C64149A2EB3004E60AD /* doubanFMSource.h */,
 				F58A8C65149A2EB3004E60AD /* doubanFMSource.m */,
-				F58A8C66149A2EB3004E60AD /* mediaSourceBase.h */,
-				F58A8C67149A2EB3004E60AD /* mediaSourceBase.m */,
 			);
 			path = mediaSource;
 			sourceTree = "<group>";
@@ -369,6 +367,7 @@
 				F58A8C91149A48DF004E60AD /* dchannels.plist */,
 				F58A8C92149A48DF004E60AD /* icon-alt.png */,
 				F58A8C93149A48DF004E60AD /* icon.png */,
+				3FECED3914BFECEF00F26097 /* Sina.png */,
 				F58A8C94149A48DF004E60AD /* like.png */,
 				F58A8C95149A48DF004E60AD /* next-alt.png */,
 				F58A8C96149A48DF004E60AD /* next.png */,
@@ -520,7 +519,7 @@
 				F58A8CAB149A48DF004E60AD /* unlike.png in Resources */,
 				F5C38F40149C58A40082FEE4 /* twitter.png in Resources */,
 				F5C38F42149C58AF0082FEE4 /* google.png in Resources */,
-				F5766D28149D950200D5FDA6 /* prefsPanel.xib in Resources */,
+				3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */,
 				F5766D34149DA0EC00D5FDA6 /* MainMenu.xib in Resources */,
 				F58C5E8F149F081200DDDF95 /* album.png in Resources */,
 				F58C5E91149F089D00DDDF95 /* icon.icns in Resources */,
@@ -534,6 +533,7 @@
 				F5C9955514BB0E03005F8AF3 /* fanfou.png in Resources */,
 				F50F5A9014BDBF6F00587035 /* redheart.png in Resources */,
 				F50F5A9314BDBFC800587035 /* greyheart.png in Resources */,
+				3FECED3A14BFECEF00F26097 /* Sina.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,7 +558,6 @@
 				F58A8C76149A2EB3004E60AD /* diumooAppDelegate.m in Sources */,
 				F58A8C77149A2EB3004E60AD /* main.m in Sources */,
 				F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */,
-				F58A8C79149A2EB3004E60AD /* mediaSourceBase.m in Sources */,
 				F58A8C7A149A2EB3004E60AD /* notifier.m in Sources */,
 				F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */,
 				F58A8C7D149A2EB3004E60AD /* menu.m in Sources */,
@@ -574,10 +573,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F5766D26149D950200D5FDA6 /* prefsPanel.xib */ = {
+		3F058EFA14BF1D630047B2BE /* prefsPanel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F5766D3D149DB4AA00D5FDA6 /* en */,
+				3F058EF914BF1D630047B2BE /* en */,
+				3F058EFB14BF1D6E0047B2BE /* zh-Hans */,
 			);
 			name = prefsPanel.xib;
 			path = ..;
@@ -647,6 +647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -669,6 +670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

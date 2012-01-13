@@ -144,6 +144,9 @@
             case 4:
                 s=@"fanfou";
                 break;
+            case 5:
+                s=@"Sina";
+                break;
             default:
                 s=@"douban";
                 break;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "mediaSourceBase.h"
+#import "doubanFMSource.h"
 #import "musicPlayer.h"
 
 #define PLAYER_STATE_READY (1)
@@ -16,7 +16,7 @@
 @interface controlCenter : NSObject
 {
     musicPlayer* player;
-    mediaSourceBase* source;
+    doubanFMSource* source;
     NSDictionary* current;
     NSLock* lock;
     
@@ -30,9 +30,9 @@
 -(void) musicEnded:(NSNotification*)n;
 
 -(BOOL) setPlayer:(musicPlayer*) player;
--(BOOL) setSource:(mediaSourceBase*) source;
+-(BOOL) setSource:(doubanFMSource*) source;
 -(id) getPlayer;
--(mediaSourceBase*) getSource;
+-(doubanFMSource*) getSource;
 
 
 -(BOOL) play_pause;
