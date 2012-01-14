@@ -58,7 +58,7 @@ controlCenter* sharedCenter;
     {
         [player pause];
         [player release];
-        player=nil; //already release, why set nil?
+        player=nil;
         NSLog(@"player retain count = %i",[player retainCount]);
         if(state & PLAYER_STATE_READY) state-=PLAYER_STATE_READY;
     }
