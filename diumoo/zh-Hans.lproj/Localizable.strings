@@ -37,4 +37,4 @@
 "VERIFY_FAIL"="认证失败";
 "VERIFY_FAIL_DETAIL"="账户认证失败，请检查您提供的账号是否正确";
 "ACCOUNT_CLEAR"="账户记录已清除";
-"ACCOUNT_CLEAR_DETAIL"="已经成功将您的账户信息从系统钥匙串中清除"
+"ACCOUNT_CLEAR_DETAIL"="已经成功将您的账户信息从系统钥匙串中清除";

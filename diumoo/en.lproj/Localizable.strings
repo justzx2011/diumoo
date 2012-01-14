@@ -38,4 +38,4 @@
 "VERIFY_FAIL"="Verification Failed";
 "VERIFY_FAIL_DETAIL"="Account verify failed, please check the information you provide";
 "ACCOUNT_CLEAR"="Account Clear";
-"ACCOUNT_CLEAR_DETAIL"="Successfully removed your account information from Keychain"
+"ACCOUNT_CLEAR_DETAIL"="Successfully removed your account information from Keychain";
