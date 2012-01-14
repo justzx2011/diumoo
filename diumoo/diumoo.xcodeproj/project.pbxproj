@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
 		3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F058EFA14BF1D630047B2BE /* prefsPanel.xib */; };
+		3FB7E35E14C141F50039CBFD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7E36014C141F50039CBFD /* Localizable.strings */; };
 		3FECED3A14BFECEF00F26097 /* Sina.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FECED3914BFECEF00F26097 /* Sina.png */; };
 		F50F5A9014BDBF6F00587035 /* redheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A8F14BDBF6F00587035 /* redheart.png */; };
 		F50F5A9314BDBFC800587035 /* greyheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A9214BDBFC800587035 /* greyheart.png */; };
@@ -93,6 +94,8 @@
 		149FC7E614B6E8DC0028C96B /* last_fm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = last_fm.png; sourceTree = "<group>"; };
 		3F058EF914BF1D630047B2BE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		3F058EFB14BF1D6E0047B2BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
+		3FB7E35F14C141F50039CBFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3FB7E36114C141FB0039CBFD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3FECED3914BFECEF00F26097 /* Sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sina.png; sourceTree = "<group>"; };
 		F50F5A8F14BDBF6F00587035 /* redheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redheart.png; sourceTree = "<group>"; };
 		F50F5A9214BDBFC800587035 /* greyheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyheart.png; sourceTree = "<group>"; };
@@ -218,6 +221,7 @@
 		F56A8403148CF92800AE6F1E = {
 			isa = PBXGroup;
 			children = (
+				3FB7E36014C141F50039CBFD /* Localizable.strings */,
 				F58A8C8B149A48DE004E60AD /* resources */,
 				F58A8C5A149A2EB3004E60AD /* diumoo */,
 				F5C6C1E3149A28DF0045B3EE /* extern */,
@@ -534,6 +538,7 @@
 				F50F5A9014BDBF6F00587035 /* redheart.png in Resources */,
 				F50F5A9314BDBFC800587035 /* greyheart.png in Resources */,
 				3FECED3A14BFECEF00F26097 /* Sina.png in Resources */,
+				3FB7E35E14C141F50039CBFD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +586,15 @@
 			);
 			name = prefsPanel.xib;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		3FB7E36014C141F50039CBFD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FB7E35F14C141F50039CBFD /* en */,
+				3FB7E36114C141FB0039CBFD /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		F5766D32149DA0EC00D5FDA6 /* MainMenu.xib */ = {

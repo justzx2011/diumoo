@@ -16,15 +16,18 @@ controlCenter* sharedCenter;
 +(controlCenter*) sharedCenter
 {
     if(sharedCenter==nil)
-        sharedCenter= [[[controlCenter alloc] init] retain];
+        sharedCenter= [[controlCenter alloc] init];
    return sharedCenter;
 }
+
 +(BOOL) tryAuth:(NSDictionary*) dic
 {
     doubanFMSource* source=[[controlCenter sharedCenter] getSource];
-    if(source!=nil) return [source authWithUsername:[dic valueForKey:@"username"] andPassword:[dic valueForKey:@"password"]];
+    if(source!=nil) 
+        return [source authWithUsername:[dic valueForKey:@"username"] andPassword:[dic valueForKey:@"password"]];
     return NO;
 }
+
 +(void) cleanAuth
 {
     [[[controlCenter sharedCenter] getSource] authWithUsername:@"" andPassword:@""];
@@ -35,7 +38,7 @@ controlCenter* sharedCenter;
     self = [super init];
     if (self) {
         // Initialization code here.
-        lock=[[[NSLock alloc]init] retain];
+        lock=[[NSLock alloc]init];
         state=0;
         current=nil;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded:) name:@"player.end" object:nil];
@@ -47,11 +50,16 @@ controlCenter* sharedCenter;
 -(BOOL) setPlayer:(id) p
 {
     if([lock tryLock]!=YES) return NO;
-    if(p!=nil)
-        player=[p retain],state=state|PLAYER_STATE_READY;
+    if(p!=nil){
+        player=p;//Need retain?
+        state=state|PLAYER_STATE_READY;
+    }
     else
     {
-        [player pause],[player release],player=nil;
+        [player pause];
+        [player release];
+        player=nil; //already release, why set nil?
+        NSLog(@"player retain count = %i",[player retainCount]);
         if(state & PLAYER_STATE_READY) state-=PLAYER_STATE_READY;
     }
     [lock unlock];
@@ -62,14 +70,18 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES) return NO;
     if(s!=nil){
-        source=[s retain];
+        source=s;//again need retian?
         state=state|SOURCE_STATE_READY;
+        
         [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.sourceChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[s performSelector:@selector(channelList)] ,@"channels",[s performSelector:@selector(sourceName)],@"sourceName" ,nil]];
     }
     else
     {
-        [player pause],[source release],source=nil;
-        if(state & SOURCE_STATE_READY) state-=SOURCE_STATE_READY;
+        [player pause];
+        [source release];
+        source=nil;
+        if(state & SOURCE_STATE_READY) 
+            state-=SOURCE_STATE_READY;
     }
     [lock unlock];
     return YES;
@@ -85,7 +97,6 @@ controlCenter* sharedCenter;
     return source;
 }
 
-
 -(BOOL) play_pause
 {
     return ([self play] ==YES || [self pause] == YES);
@@ -95,7 +106,9 @@ controlCenter* sharedCenter;
 -(BOOL) play
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playbuttonpressed" object:nil userInfo:nil];
-    if([lock tryLock]!=YES) return NO;
+    if([lock tryLock]!=YES) 
+        return NO;
+    
     if( player!=nil && [player isPlaying]!=YES)
         [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
 
@@ -105,7 +118,9 @@ controlCenter* sharedCenter;
 
 -(BOOL) pause
 {
-    if([lock tryLock]!=YES) return NO;
+    if([lock tryLock]!=YES) 
+        return NO;
+    
     if(player != nil && [player isPlaying])
     {
         [player performSelectorOnMainThread:@selector(pause) withObject:nil waitUntilDone:YES];
@@ -119,13 +134,14 @@ controlCenter* sharedCenter;
     if([lock tryLock]!=YES) return NO;
     if(source!=nil )
     {
-        if(current==nil && (current=[[source getNewSong]retain])==nil) 
+        if(current==nil && (current=[source getNewSong])==nil) //if retain here, the retain count will be 2
         {
             [lock unlock];
             return NO;
         }
-        NSString* sid=[[current valueForKey:@"sid"] retain];
-        [current release];
+        
+        NSString* sid=[current valueForKey:@"sid"];
+        [current release];//remove the previous retian, so current can be release here.
         if(player!=nil && ([player pause],(current=[[source getNewSongBySkip:sid ] retain]))!=nil)
             {
                 [sid release];
@@ -141,7 +157,8 @@ controlCenter* sharedCenter;
 
 -(BOOL) rate
 {
-    if([lock tryLock]!=YES)return NO;
+    if([lock tryLock]!=YES)
+        return NO;
     if(source!=nil && current !=nil && 
         [source rateSongBySid:[current valueForKey:@"sid"]] ) 
         return [lock unlock],YES;
@@ -151,7 +168,8 @@ controlCenter* sharedCenter;
 
 -(BOOL) unrate
 {
-    if([lock tryLock]!=YES)return NO;
+    if([lock tryLock]!=YES)
+        return NO;
     if(source!=nil && current !=nil && 
        [source unrateSongBySid:[current valueForKey:@"sid"]] ) 
         return [lock unlock],YES;
@@ -160,7 +178,8 @@ controlCenter* sharedCenter;
 }
 -(BOOL) bye
 {
-    if([lock tryLock]!=YES)return NO;
+    if([lock tryLock]!=YES)
+        return NO;
     if(source!=nil && current!=nil && player!=nil
        && ([current release],current=[[source getNewSongByBye:[current valueForKey:@"sid"]] retain] )!=nil)
     {
@@ -181,15 +200,13 @@ controlCenter* sharedCenter;
         return NO;
     [current release];
     current=nil;
-    if(player!=nil && source!=nil
-       && (current=([source setChannel:channel],[source getNewSong]))!=nil)
+    if(player!=nil && source!=nil && (current=([source setChannel:channel],[source getNewSong]))!=nil)
     {
         [current retain];
         [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
         [lock unlock];
         return YES;
     }
-        
     return [lock unlock],NO;
 }
 
@@ -197,14 +214,11 @@ controlCenter* sharedCenter;
 {
     if(n.object!=nil)
     {
-        if(player!=nil 
-           && source!=nil
-           && current!=nil
-           && ([current release],current = [[source getNewSong]  retain])!=nil)
+        if(player!=nil && source!=nil && current!=nil && ([current release],current = [[source getNewSong]  retain])!=nil)
             [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
         else
         {
-            NSRunCriticalAlertPanel(@"连接失败", @"试图从豆瓣电台获取音乐失败！播放将停止，请检查您的网络，您可以尝试点击下一首歌重试。", @"知道了",nil,nil);
+            NSRunCriticalAlertPanel(NSLocalizedString(@"CON_FAIL", nil), NSLocalizedString(@"RETRY_FAIL", nil), NSLocalizedString(@"KNOWN", nil),nil,nil);
         }
     }
     if([lock tryLock]!=YES) return;

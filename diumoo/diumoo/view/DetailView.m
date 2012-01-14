@@ -37,12 +37,12 @@
     if(scale<1.0)
     {
         [album_img setFrameSize:NSMakeSize(image.size.width*scale, image.size.height*scale)];
-        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 160)];
+        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 195)];
     }
     else{
         [album_img setFrameSize:[img size]];
         float wid=[img size].width+50;
-        [[self view]setFrameSize:NSMakeSize((wid<250.0?250.0:wid),[img size].height+160)];
+        [[self view]setFrameSize:NSMakeSize((wid<250.0?250.0:wid),[img size].height+195)];
     }
     
     
@@ -50,7 +50,7 @@
     [album_img setImage:img];
     if([info valueForKey:@"Artist"]!=nil)
         [artist setStringValue:[info valueForKey:@"Artist"]];
-    else [artist setStringValue:@"未知艺术家"];
+    else [artist setStringValue:NSLocalizedString(@"UNKNOWN_ARTIST", nil)];
     
     
     if([info valueForKey:@"Year"]!=nil) [year setStringValue:[NSString stringWithFormat:@"%@",[info valueForKey:@"Year"]]];
@@ -58,11 +58,11 @@
     
     if([info valueForKey:@"Album"]!=nil)
         [album setStringValue:[info valueForKey:@"Album"]];
-    else [album setStringValue:@"未知唱片集"];
+    else [album setStringValue:NSLocalizedString(@"UNKNOWN_ALBUM", nil)];
     
     if([info valueForKey:@"Name"]!=nil)
         [music setStringValue:[info valueForKey:@"Name"]];
-    else [music setStringValue:@"未知歌曲"];
+    else [music setStringValue:NSLocalizedString(@"UNKNOWN_NAME",nil)];
     
     
     @try {
@@ -85,7 +85,6 @@
         [star setHidden:YES];
         [rate_text setHidden:YES];
     }
-    [[self view] display];
     
 }
 

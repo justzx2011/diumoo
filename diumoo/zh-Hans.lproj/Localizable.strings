@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  diumoo
+
+  Created by AnakinGWY on 1/14/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+//notification
+"PLAY_RECORD"="欢迎 %@ !\n\n您的播放记录为:\n\t听过歌曲:%@首\n\t标记红心:%@首\n\t不再播放:%@首\n享受音乐吧！";
+"CON_FAIL"= "连接失败";
+"RETRY_FAIL"="试图从豆瓣电台获取音乐失败！播放将停止，请检查您的网络，您可以尝试点击下一首歌重试。";
+
+//常规
+"KNOWN"= "知道了";
+"PREF"="偏好设置";
+"QUIT"="退出";
+"ABOUT"="关于";
+"CANCEL"="取消";
+
+//频道和音乐
+"PERSONAL_CHAN"="私人兆赫";
+"RED_CHAN"="红心兆赫";
+"UNKNOWN_CHAN"="[>.<]矮油我不认识的兆赫";
+"DOUBAN_FM"="豆瓣电台";
+"UNKNOWN_ARTIST"="未知艺术家";
+"UNKNOWN_ALBUM"="未知唱片集";
+"UNKNOWN_NAME"="未知歌曲";
+
+//账号
+"LOGIN_SUCCESS"="登陆成功！";
+"LOGOUT"="您的账号已登出！";
+"ACCOUNT_LOG_OUT"="您的账号已经退出登陆或登录失败";
+"IN_ERROR"="输入错误";
+"PLS_FILL"="请完整填写用户名和密码";
+"VERIFY_SUCCESS"="成功验证了您的账户，您现在可以记录您的播放偏好了！";
+"VERIFY_FAIL"="认证失败";
+"VERIFY_FAIL_DETAIL"="账户认证失败，请检查您提供的账号是否正确";
+"ACCOUNT_CLEAR"="账户记录已清除";
+"ACCOUNT_CLEAR_DETAIL"="已经成功将您的账户信息从系统钥匙串中清除"

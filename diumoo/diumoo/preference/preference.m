@@ -87,7 +87,7 @@ static preference* shared;
 
     if([username length]==0 || [password length]==0)
     {
-        NSRunCriticalAlertPanel(@"输入错误", @"请完整填写用户名和密码",@"取消",nil,nil);
+        NSRunCriticalAlertPanel(NSLocalizedString(@"IN_ERROR", nil),NSLocalizedString(@"PLS_FILL", nil),NSLocalizedString(@"CANCEL", nil),nil,nil);
     }
     
    else if([controlCenter tryAuth:[NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password", nil]])
@@ -95,11 +95,11 @@ static preference* shared;
         [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username" password:username];
         [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password" password:password];
 
-        NSRunInformationalAlertPanel(@"登陆成功！", @"成功验证了您的账户，您现在可以记录您的播放偏好了！",@"知道了", nil, nil);
+        NSRunInformationalAlertPanel(NSLocalizedString(@"LOGIN_SUCCESS", nil), NSLocalizedString(@"VERIFY_SUCCESS", nil) , NSLocalizedString(@"KNOWN", nil) , nil, nil);
     }
     else
     {
-        NSRunCriticalAlertPanel(@"认证失败", @"账户认证失败，请检查您提供的账号是否正确", @"取消", nil, nil);
+        NSRunCriticalAlertPanel(NSLocalizedString(@"VERIFY_FAIL", nil), NSLocalizedString(@"VERIFY_FAIL_DETAIL", nil) ,NSLocalizedString(@"CANCEL", nil), nil, nil);
     }
     
 }
@@ -111,7 +111,7 @@ static preference* shared;
     [email setStringValue:@""];
     [pass setStringValue:@""];
     [controlCenter cleanAuth];
-    NSRunInformationalAlertPanel(@"账户记录已清除", @"已经成功将您的账户信息从系统钥匙串中清除", @"知道了", nil, nil);
+    NSRunInformationalAlertPanel(NSLocalizedString(@"ACCOUNT_CLEAR", nil), NSLocalizedString(@"ACCOUNT_CLEAR_DETAIL", nil), NSLocalizedString(@"KNOWN",nil) , nil, nil);
 }
 
 -(IBAction)changeProcessType:(id)sender
@@ -136,10 +136,10 @@ static preference* shared;
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/"]];
             break;
         case 2:
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://me.alipay.com/antsz"]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/donate/"]];
             break;
         case 3:
-            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/sponsor/"]];
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/sponsors/"]];
             break;
         default:
             break;

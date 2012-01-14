@@ -46,12 +46,13 @@
     if(!([GrowlApplicationBridge isGrowlRunning]))return;
     if(noti.userInfo!=nil){
         NSDictionary* dic=[noti.userInfo valueForKey:@"play_record"];
-        NSString* s=[NSString stringWithFormat:@"Hello %@ !\n\n您的播放记录为:\n\t听过歌曲:%@首\n\t标记红心:%@首\n\t不再播放:%@首\nNow enjoy yourself!",[noti.userInfo valueForKey:@"name"],[dic valueForKey:@"played"],[dic valueForKey:@"liked"],[dic valueForKey:@"banned"]];
-        [GrowlApplicationBridge notifyWithTitle:@"登陆成功" description:s notificationName:@"Account" iconData:noti.object priority:0 isSticky:NO clickContext:nil];
+        NSString* s=[NSString stringWithFormat:NSLocalizedString(@"PLAY_RECORD",nil),[noti.userInfo valueForKey:@"name"],[dic valueForKey:@"played"],[dic valueForKey:@"liked"],[dic valueForKey:@"banned"]];
+        
+        [GrowlApplicationBridge notifyWithTitle:NSLocalizedString(@"LOGIN_SUCCESS", nil) description:s notificationName:@"Account" iconData:noti.object priority:0 isSticky:NO clickContext:nil];
     }
     else
     {
-        [GrowlApplicationBridge notifyWithTitle:@"账号已登出" description:@"您的账号已经退出登陆或登录失败" notificationName:@"Account" iconData:nil priority:0 isSticky:NO clickContext:nil];
+        [GrowlApplicationBridge notifyWithTitle:NSLocalizedString(@"LOGOUT", nil) description:NSLocalizedString(@"ACCOUNT_LOG_OUT", nil) notificationName:@"Account" iconData:nil priority:0 isSticky:NO clickContext:nil];
     }
            
 }

@@ -298,13 +298,13 @@
 {
     if(c==0){
         if(channelName){[channelName release];channelName=nil;}
-        channelName=[@"私人兆赫" retain];
+        channelName=[NSLocalizedString(@"PERSONAL_CHAN", nil) retain];
         return YES;
     }
     else if(c==-3)
     {
         if(channelName){[channelName release];channelName=nil;}
-        channelName=[@"红心兆赫" retain];
+        channelName=[NSLocalizedString(@"RED_CHAN", nil) retain];
         return YES;
 
     }
@@ -342,7 +342,7 @@
     if(![self findChannelName:channelList ofChannel:c])
     {
         if(channelName!=nil) [channelName release];
-        channelName=[[NSString stringWithString:@"[>.<]矮油我不认识的兆赫"] retain];
+        channelName=[[NSString stringWithString:NSLocalizedString(@"UNKNOWN_CHAN", nil)] retain];
     }
     if(channel<=0 && loggedIn==YES) r=privateEnables;
     else if(loggedIn==YES) r=publicWithLoggedInEnables;
@@ -360,7 +360,7 @@
 
 -(NSString*) sourceName
 {
-    return @"豆瓣电台";
+    return NSLocalizedString(@"DOUBAN_FM", nil);
 }
 
 -(void) dealloc

@@ -33,8 +33,8 @@
         dv=[[DetailView alloc] init];
         
         //红心电台和私人电台
-        heartChannel=[[NSMenuItem alloc] initWithTitle:@"红心兆赫" action:nil keyEquivalent:@""];
-        privateChannel=[[NSMenuItem alloc] initWithTitle:@"私人兆赫" action:nil keyEquivalent:@""];
+        heartChannel=[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RED_CHAN", nil) action:nil keyEquivalent:@""];
+        privateChannel=[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"PERSONAL_CHAN", nil) action:nil keyEquivalent:@""];
         
         [heartChannel setTag:-3];
         [privateChannel setTag:0];
@@ -53,9 +53,9 @@
         lastChannel=nil;
 
 
-        prefsItem=[[NSMenuItem alloc]initWithTitle:@"偏好设置" action:nil keyEquivalent:@"" ];
-        exit=[[NSMenuItem alloc]initWithTitle:@"退出" action:nil keyEquivalent:@""];
-        aboutItem=[[NSMenuItem alloc]initWithTitle:@"关于" action:nil keyEquivalent:@""] ;
+        prefsItem=[[NSMenuItem alloc]initWithTitle:NSLocalizedString(@"PREF", nil) action:nil keyEquivalent:@"" ];
+        exit=[[NSMenuItem alloc]initWithTitle:NSLocalizedString(@"QUIT", nil) action:nil keyEquivalent:@""];
+        aboutItem=[[NSMenuItem alloc]initWithTitle:NSLocalizedString(@"ABOUT", nil) action:nil keyEquivalent:@""] ;
 
         NSRect b_rect=NSMakeRect(0, 0, ICON_WIDTH, ICON_WIDTH); 
 

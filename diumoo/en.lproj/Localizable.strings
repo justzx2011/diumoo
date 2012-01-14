@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  diumoo
+
+  Created by AnakinGWY on 1/14/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+//notification
+"LOGIN_SUCCESS"="Login Success!";
+"PLAY_RECORD"="Hello %@ !\n\nYour Record:\n\tListened:%@ Song(s)\n\tRed Heart:%@ Song(s)\n\tTrashed: %@ Song(s)\nNow enjoy yourself!";
+"LOGOUT"="Logged Out!";
+"ACCOUNT_LOG_OUT"="Your account has logged out or log in failed";
+"CON_FAIL"="Connection failed";
+"RETRY_FAIL"="fail to fetch music from Douban radio! Muisc will stop, please check your Internet connection, and try skip.";
+
+//General
+"KNOWN"="OK";
+"PREF"="Preferences";
+"QUIT"="Quit";
+"ABOUT"="About";
+"CANCEL"="Cancel";
+
+
+//Channel & Music
+"PERSONAL_CHAN"="Personal Channel";
+"RED_CHAN"="Redheart Channel";
+"UNKNOWN_CHAN"="[>.<]Sorry, I don't know this channel";
+"DOUBAN_FM"="Douban Radio";
+"UNKNOWN_ARTIST"="Unknown Artist";
+"UNKNOWN_ALBUM"="Unknown Album";
+"UNKNOWN_NAME"="Unknown Name";
+
+//Preferences
+"IN_ERROR"="Input Error";
+"PLS_FILL"="Please fulfill the account name and password";
+"VERIFY_SUCCESS"="Account verified, you can play your own preference now!";
+"VERIFY_FAIL"="Verification Failed";
+"VERIFY_FAIL_DETAIL"="Account verify failed, please check the information you provide";
+"ACCOUNT_CLEAR"="Account Clear";
+"ACCOUNT_CLEAR_DETAIL"="Successfully removed your account information from Keychain"

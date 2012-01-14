@@ -16,7 +16,9 @@
 
 +(void) initialize
 {
-    if([self class] != [diumooAppDelegate class]) return;
+    if([self class] != [diumooAppDelegate class]) 
+        return;
+    
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:[SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers], kMediaKeyUsingBundleIdentifiersDefaultsKey,nil]];
 }
 
@@ -55,9 +57,6 @@
     //NSLog([NSString stringWithFormat:@"Source retain count: %i",[source retainCount]]);
     //NSLog([NSString stringWithFormat:@"Player retain count: %i",[musicPlayer retainCount]]);
     //NSLog([NSString stringWithFormat:@"dmmenu retain count: %i",[dmmenu retainCount]]);
-    
-
-
     
     //[preference sharedPreference];
      
