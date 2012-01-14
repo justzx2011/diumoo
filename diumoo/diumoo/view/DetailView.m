@@ -154,6 +154,9 @@
             case 5:
                 s=@"Sina";
                 break;
+            case 6:
+                s=@"Facebook";
+                break;
             default:
                 s=@"douban";
                 break;
