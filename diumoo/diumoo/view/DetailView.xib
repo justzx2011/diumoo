@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">11D42</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.32</string>
-		<string key="IBDocument.HIToolboxVersion">568.00</string>
+		<string key="IBDocument.SystemVersion">11C74</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1617</string>
+		<string key="IBDocument.AppKitVersion">1138.23</string>
+		<string key="IBDocument.HIToolboxVersion">567.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1938</string>
+			<string key="NS.object.0">1617</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSCustomView</string>
@@ -21,10 +21,7 @@
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 		</array>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
+		<dictionary class="NSMutableDictionary" key="IBDocument.Metadata"/>
 		<array class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<object class="NSCustomObject" id="1001">
 				<string key="NSClassName">DetailView</string>
@@ -204,7 +201,7 @@
 					<object class="NSButton" id="454848344">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{20, 379}, {218, 24}}</string>
+						<string key="NSFrame">{{20, 379}, {280, 24}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="621860275"/>
@@ -293,7 +290,7 @@
 					<object class="NSButton" id="560849992">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 409}, {22, 22}}</string>
+						<string key="NSFrame">{{20, 408}, {22, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="285813124"/>
@@ -306,8 +303,8 @@
 							<reference key="NSSupport" ref="336638652"/>
 							<string key="NSCellIdentifier">_NS:1491</string>
 							<reference key="NSControlView" ref="560849992"/>
-							<int key="NSButtonFlags">-2031337217</int>
-							<int key="NSButtonFlags2">134</int>
+							<int key="NSButtonFlags">-2040250113</int>
+							<int key="NSButtonFlags2">163</int>
 							<object class="NSCustomResource" key="NSNormalImage">
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">douban</string>
@@ -606,7 +603,6 @@
 						<reference key="object" ref="1005"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="285813124"/>
-							<reference ref="560849992"/>
 							<reference ref="722388319"/>
 							<reference ref="129890682"/>
 							<reference ref="166041259"/>
@@ -618,6 +614,7 @@
 							<reference ref="255540477"/>
 							<reference ref="255733113"/>
 							<reference ref="621860275"/>
+							<reference ref="560849992"/>
 							<reference ref="454848344"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -929,7 +926,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NSUser">{32, 32}</string>
-			<string key="Sina">{90, 90}</string>
+			<string key="Sina">{32, 32}</string>
 			<string key="all_bigstars">{75, 165}</string>
 			<string key="douban">{32, 32}</string>
 			<string key="fanfou">{32, 32}</string>
