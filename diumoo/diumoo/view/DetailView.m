@@ -34,16 +34,15 @@
     else img=[NSImage imageNamed:@"album.png"];
     
     
-    float scale=250.0f/([image size].width>[image size].height?image.size.width:image.size.height);
+    float scale=250.0/([image size].width>[image size].height?image.size.width:image.size.height);
     if(scale<1.0)
     {
         [album_img setFrameSize:NSMakeSize(image.size.width*scale, image.size.height*scale)];
-        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 195)];
+        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 180)];
     }
     else{
         [album_img setFrameSize:[img size]];
-        float wid=[img size].width+50;
-        [[self view]setFrameSize:NSMakeSize((wid<250.0f?250.0f:wid),[img size].height+195)];
+        [[self view]setFrameSize:NSMakeSize(300,[img size].height+180)];
     }
     
     
@@ -67,7 +66,7 @@
     
     
     @try {
-        float rate=0.0f;
+        float rate=0.0;
         if((rate=[[info valueForKey:@"Album Rating"] floatValue])>0.0)
         {
             
@@ -110,7 +109,7 @@
         @try {
             if(n.object!=nil){
                 NSImage* iconImage=[[[NSImage alloc] initWithData:n.object] retain];
-                if(![iconImage isValid]) @throw [NSException exceptionWithName:@"Image Invalid" reason:@"Image Invalide" userInfo:nil];
+                if(![iconImage isValid]) @throw [NSException exceptionWithName:@"Image Invalid" reason:@"Image Invalid" userInfo:nil];
                 [account setImage:iconImage];
                 [iconImage release];
             }
@@ -121,13 +120,15 @@
         }
         
         
-        [account setTitle:[userinfo valueForKey:@"name"]];
+        [account_name setStringValue:[userinfo valueForKey:@"name"]];
+        [account_name setTextColor:[NSColor blueColor]];
         url=[[userinfo valueForKey:@"url"] retain];
     }
     else
     {
-        [account setImage:[NSImage imageNamed:@"user.png"]];
-        [account setTitle:@"未登录"];
+        [account setImage:[NSImage imageNamed:@"login.png"]];
+        [account_name setStringValue:@"未登录"];
+        [account_name setTextColor:[NSColor blackColor]];
         [url release];
         url=nil;
     }

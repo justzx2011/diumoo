@@ -275,7 +275,7 @@ controlCenter* sharedCenter;
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@", site_url, encoded]]];
         CFRelease(encoded);
     }
-    else if([s isEqualToString:@"fanfou"] || [s isEqualToString:@"Sina"])
+    else if([s isEqualToString:@"fanfou"] || [s isEqualToString:@"Sina"] || [s isEqualToString:@"Facebook"] )
     {
         NSString* u_name=[NSString stringWithFormat:@"%@ (%@) ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
         CFStringRef name=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)u_name, NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
@@ -285,26 +285,17 @@ controlCenter* sharedCenter;
             [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fanfou.com/sharer?u=%@&d=%@&t=%@",url,detail,name]]];
         }
         else if ([s isEqualToString:@"Sina"]){
-            [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://v.t.sina.com.cn/share/share.php?title=%@%@",name,url]]];
+            [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://v.t.sina.com.cn/share/share.php?title=%@%@%@",name,detail,url]]];
         }
-        else 
+        else if([s isEqualToString:@"Facebook"])
         {
-            
+            [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/sharer.php?u=%@&t=%@",url,name]]];
         }
         
         CFRelease(name);
         CFRelease(url);
         CFRelease(detail);
     
-    }
-    else if ([s isEqualToString:@"Facebook"])
-    {
-        NSString* u_name=[NSString stringWithFormat:@"Now Playing: %@ - %@) ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
-        CFStringRef name=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)u_name, NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
-        CFStringRef url=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[current valueForKey:@"Store URL"], NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
-        [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/sharer.php?u=%@&t=%@",url,name]]];
-        CFRelease(name);
-        CFRelease(url);
     }
         else
         {
