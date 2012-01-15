@@ -19,6 +19,7 @@
     IBOutlet NSTextField * rate_text;
     
     IBOutlet NSButton* account;
+    IBOutlet NSTextField* account_name;
     
     NSString* url;
     
