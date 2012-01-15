@@ -33,5 +33,10 @@
     [super sendEvent:event];
 }
 
+-(void) showHelp:(id)sender
+{
+    [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/qa/"]];
+}
+
 
 @end
