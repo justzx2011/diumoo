@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
 		3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F058EFA14BF1D630047B2BE /* prefsPanel.xib */; };
+		3F64587014C1D8FB00F7E464 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F64586F14C1D8FB00F7E464 /* facebook.png */; };
 		3FB7E35E14C141F50039CBFD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7E36014C141F50039CBFD /* Localizable.strings */; };
 		3FECED3A14BFECEF00F26097 /* Sina.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FECED3914BFECEF00F26097 /* Sina.png */; };
 		F50F5A9014BDBF6F00587035 /* redheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A8F14BDBF6F00587035 /* redheart.png */; };
@@ -94,6 +95,7 @@
 		149FC7E614B6E8DC0028C96B /* last_fm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = last_fm.png; sourceTree = "<group>"; };
 		3F058EF914BF1D630047B2BE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		3F058EFB14BF1D6E0047B2BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
+		3F64586F14C1D8FB00F7E464 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		3FB7E35F14C141F50039CBFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FB7E36114C141FB0039CBFD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3FECED3914BFECEF00F26097 /* Sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sina.png; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 		F58A8C8B149A48DE004E60AD /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				3F64586F14C1D8FB00F7E464 /* facebook.png */,
 				F50F5A8F14BDBF6F00587035 /* redheart.png */,
 				F50F5A9214BDBFC800587035 /* greyheart.png */,
 				F5C9955414BB0E03005F8AF3 /* fanfou.png */,
@@ -539,6 +542,7 @@
 				F50F5A9314BDBFC800587035 /* greyheart.png in Resources */,
 				3FECED3A14BFECEF00F26097 /* Sina.png in Resources */,
 				3FB7E35E14C141F50039CBFD /* Localizable.strings in Resources */,
+				3F64587014C1D8FB00F7E464 /* facebook.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +671,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../Growl-1.3.1-SDK/Framework\"",
 					"\"$(SRCROOT)/extern\"",
+					/Users/anakinmac/Desktop,
 				);
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -690,6 +695,7 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../Growl-1.3.1-SDK/Framework\"",
 					"\"$(SRCROOT)/extern\"",
+					/Users/anakinmac/Desktop,
 				);
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
