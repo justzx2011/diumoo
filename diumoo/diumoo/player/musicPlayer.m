@@ -57,8 +57,9 @@
     
     if(e==NULL) 
     {
-        [player setVolume:1.0];
+        
         [player autoplay];
+        [player setVolume:1.0];
         [self performSelectorInBackground:@selector(_start_to_play_notification:) withObject:music];
 
     }

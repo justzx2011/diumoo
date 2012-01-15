@@ -113,10 +113,10 @@
                 [account setImage:iconImage];
                 [iconImage release];
             }
-            else [account setImage:[NSImage imageNamed:@"account_ok.png"]];
+            else [account setImage:[NSImage imageNamed:@"account_ok.jpg"]];
         }
         @catch (NSException *exception) {
-            [account setImage:[NSImage imageNamed:@"account_ok.png"]];
+            [account setImage:[NSImage imageNamed:@"account_ok.jpg"]];
         }
         
         
