@@ -57,7 +57,7 @@
     
     if(e==NULL) 
     {
-        [player setVolume:1.0];
+        [player setVolume:1.0f];
         [player autoplay];
         [self performSelectorInBackground:@selector(_start_to_play_notification:) withObject:music];
 
@@ -70,14 +70,14 @@
 -(void) _pause
 {
     if(player!=nil&&[player rate]!=0){
-        [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:1.0 targetVolume:0.0];
+        [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:1.0f targetVolume:0.0f];
     }
 }
 -(void) play
 {
     [cond lock];
     if(player != nil&& [player rate]==0){
-        [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:0.0 targetVolume:1.0];
+        [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:0.0f targetVolume:1.0f];
     }
     [cond unlock];
 }
@@ -96,7 +96,7 @@
         return;
     }
     
-    float v=0.0;
+    float v=0.0f;
     float vo=[player volume];
     int i=0;
     for (; i<=VOLUME_DURATION; i++) {

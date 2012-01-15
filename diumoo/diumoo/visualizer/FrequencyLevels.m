@@ -86,7 +86,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
     self = [super init];
 
-    color=CGColorCreateGenericRGB(0, 0.5, 1.0, 1.0);
+    color=CGColorCreateGenericRGB(0.0f, 0.5f, 1.0f, 1.0f);
 	
     // allocate memory for the QTAudioFrequencyLevels struct and set it up
     // depending on the number of channels and frequency bands you want    
@@ -112,7 +112,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     window =[[[NSWindow alloc] initWithContentRect:NSMakeRect([NSScreen mainScreen].frame.size.width/2-700, 0, 1400, 100) styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO] retain];
     [window setHasShadow:NO];
     [window setOpaque:NO];
-    [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.0 alpha:0.0]];
+    [window setBackgroundColor:[NSColor colorWithDeviceWhite:0.0f alpha:0.0f]];
     [[window contentView] setWantsLayer:YES];
     [[[window contentView] layer] insertSublayer:mContainer atIndex:0];
     [self setLevel:[[[[NSUserDefaultsController sharedUserDefaultsController]values]valueForKey:@"DesktopWaveLevel"]integerValue]];

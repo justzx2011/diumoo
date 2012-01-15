@@ -42,6 +42,7 @@
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:1] forKey:@"PlayedChannel"];
         
     }
+   
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -74,7 +75,6 @@
     }
     
     [dmmenu performSelectorInBackground:@selector(fireToPlayTheDefaultChannel) withObject:nil];
-    
     
 }
 

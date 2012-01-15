@@ -34,7 +34,7 @@
     else img=[NSImage imageNamed:@"album.png"];
     
     
-    float scale=250.0/([image size].width>[image size].height?image.size.width:image.size.height);
+    float scale=250.0f/([image size].width>[image size].height?image.size.width:image.size.height);
     if(scale<1.0)
     {
         [album_img setFrameSize:NSMakeSize(image.size.width*scale, image.size.height*scale)];
@@ -43,7 +43,7 @@
     else{
         [album_img setFrameSize:[img size]];
         float wid=[img size].width+50;
-        [[self view]setFrameSize:NSMakeSize((wid<250.0?250.0:wid),[img size].height+195)];
+        [[self view]setFrameSize:NSMakeSize((wid<250.0f?250.0f:wid),[img size].height+195)];
     }
     
     
@@ -67,7 +67,7 @@
     
     
     @try {
-        float rate=0.0;
+        float rate=0.0f;
         if((rate=[[info valueForKey:@"Album Rating"] floatValue])>0.0)
         {
             

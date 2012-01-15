@@ -483,7 +483,7 @@
 		F56A8405148CF92800AE6F1E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0420;
 			};
 			buildConfigurationList = F56A8408148CF92800AE6F1E /* Build configuration list for PBXProject "diumoo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -623,13 +623,13 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -650,7 +650,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -676,7 +676,7 @@
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -700,7 +700,7 @@
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
