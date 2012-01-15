@@ -66,13 +66,20 @@ static id kNSNO = NULL;
 
 + (void)initialize
     {
-    static dispatch_once_t sOnceToken = 0;
-    dispatch_once(&sOnceToken, ^{
-        kNSYES = [NSNumber numberWithBool:YES];
-        kNSNO = [NSNumber numberWithBool:NO];
-        });
-    }
+    NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
 
+    if (kNSYES == NULL)
+        {
+        kNSYES = [NSNumber numberWithBool:YES];
+        }
+        
+    if (kNSNO == NULL)
+        {
+        kNSNO = [NSNumber numberWithBool:NO];
+        }
+
+    [thePool release];
+    }
 
 - (id)init
     {

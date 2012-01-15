@@ -29,8 +29,17 @@
 
 #import <Foundation/Foundation.h>
 
+enum {
+    kJSONSerializationOptions_EncodeSlashes = 0x01,
+};
+typedef NSUInteger EJSONSerializationOptions;
+
+
 @interface CJSONSerializer : NSObject {
+    EJSONSerializationOptions options;
 }
+
+@property (readwrite, nonatomic, assign) EJSONSerializationOptions options;
 
 + (CJSONSerializer *)serializer;
 

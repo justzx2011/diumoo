@@ -37,12 +37,14 @@ static NSData *kTrue = NULL;
 
 @implementation CJSONSerializer
 
+@synthesize options;
+
 + (void)initialize
     {
-    NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
-
     if (self == [CJSONSerializer class])
         {
+        NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+
         if (kNULL == NULL)
             kNULL = [[NSData alloc] initWithBytesNoCopy:(void *)"null" length:4 freeWhenDone:NO];
         if (kFalse == NULL)
@@ -50,7 +52,7 @@ static NSData *kTrue = NULL;
         if (kTrue == NULL)
             kTrue = [[NSData alloc] initWithBytesNoCopy:(void *)"true" length:4 freeWhenDone:NO];
 
-        [thePool drain];
+        [thePool release];
         }
     }
 
@@ -227,8 +229,15 @@ static NSData *kTrue = NULL;
                 break;
             case '/':
                 {
-                *OUT++ = '\\';
-                *OUT++ = '/';
+                if (self.options & kJSONSerializationOptions_EncodeSlashes)
+                    {
+                    *OUT++ = '\\';
+                    *OUT++ = '/';
+                    }
+                else
+                    {
+                    *OUT++ = *IN;
+                    }
                 }
                 break;
             case '\b':
