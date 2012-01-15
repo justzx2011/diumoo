@@ -72,10 +72,16 @@
 
 -(void) iTunesNotification:(NSDictionary*)noti
 {
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableiTunes"] integerValue]!=NSOnState) return;
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableiTunes"] integerValue]!=NSOnState) 
+        return;
     NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
     [dic setValuesForKeysWithDictionary:noti];
     [dic setValue:@"Playing" forKey:@"Player State"];
+    [dic removeObjectForKey:@"Location"];
+    /*for(NSString *key in dic)//快速枚举
+	{
+		NSLog(@"%@",[dic objectForKey:key]);
+	}*/
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
     [dic release];
 }
