@@ -89,15 +89,14 @@
                 cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
                 loggedIn=YES;
                 
-                [request setHTTPMethod:@"GET"];
-                [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://img3.douban.com/icon/ul%@.jpg",[user_info valueForKey:@"id"]]]];
-                [request setHTTPBody:nil];
-                [request setTimeoutInterval:2.0];
-                
                 r=nil;
                 e=nil;
                 
-                NSData* icondata=[NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
+               
+                NSURLRequest* icon1=[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://img3.douban.com/icon/u%@.jpg",[user_info valueForKey:@"id"]]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2.0];
+                
+                NSData* icondata=[NSURLConnection sendSynchronousRequest:icon1 returningResponse:&r error:&e];
+                
                 if(e==NULL && r.statusCode==200 ){
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:icondata userInfo:[NSDictionary dictionaryWithObject:(channel==0?privateEnables:publicWithLoggedInEnables) forKey:@"enables"]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.account" object:icondata userInfo:user_info];
