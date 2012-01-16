@@ -134,13 +134,13 @@
         [aboutItem setAction:@selector(showPrefs:)];
         [aboutItem setTarget:self];
 
-        int i = 0;
+        //int i = 0;
 
-        [play_pause setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:play_pause]; 
-        [next setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:next]; 
-        [rate setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:rate];
-        [bye setFrameOrigin:NSMakePoint((i++)*ICON_WIDTH+20, 4)],[controlView addSubview:bye];
-        [controlView setFrameSize:NSMakeSize(i*ICON_WIDTH+40, ICON_WIDTH+8)];
+        [play_pause setFrameOrigin:NSMakePoint(0*ICON_WIDTH+20, 4)],[controlView addSubview:play_pause]; 
+        [next setFrameOrigin:NSMakePoint(1*ICON_WIDTH+20, 4)],[controlView addSubview:next]; 
+        [rate setFrameOrigin:NSMakePoint(2*ICON_WIDTH+20, 4)],[controlView addSubview:rate];
+        [bye setFrameOrigin:NSMakePoint(3*ICON_WIDTH+20, 4)],[controlView addSubview:bye];
+        [controlView setFrameSize:NSMakeSize(4*ICON_WIDTH+40, ICON_WIDTH+8)];
 
         condition=[[NSCondition alloc] init];
 

@@ -141,10 +141,12 @@ controlCenter* sharedCenter;
         }
         
         NSString* sid=[current valueForKey:@"sid"];
+        [sid retain];
         [current release];//remove the previous retian, so current can be release here.
-        if(player!=nil && ([player pause],(current=[[source getNewSongBySkip:sid ] retain]))!=nil)
+        if(player!=nil && ([player pause],(current=[source getNewSongBySkip:sid]))!=nil)
             {
-                [sid release];
+                [current retain];
+                [sid release]; 
                 [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
                 [lock unlock];
                 return YES;

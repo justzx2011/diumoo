@@ -214,17 +214,20 @@
         };
     }
     else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
-    NSDictionary* current=[[playlist objectAtIndex:0] retain] ;
+    
+    NSDictionary* current=[[playlist objectAtIndex:0]retain];
     [playlist removeObjectAtIndex:0];
+
     
     NSString* art=[current valueForKey:@"artist"];
-    if(art==nil) art = [current valueForKey:@"dj_name"];
+    if(art==nil) 
+        art = [current valueForKey:@"dj_name"];
     
     NSString* str=[current valueForKey:@"album"];
     if(![str hasPrefix:@"http://"])
         str=[@"http://music.douban.com" stringByAppendingString:str];
 
-    NSDictionary* currentMusic=[[NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary* currentMusic=[NSDictionary dictionaryWithObjectsAndKeys:
                   [current valueForKey:@"albumtitle"],@"Album",
                   str,@"Store URL",
                   [current valueForKey:@"public_time"],@"Year",
@@ -238,9 +241,9 @@
                   [current valueForKey:@"like"],@"Like",
                   [current valueForKey:@"rating_avg"],@"Album Rating",
                   
-                  nil] retain];
+                  nil];
     [current release];
-    return currentMusic;
+    return currentMusic;    
 }
 
 -(id) _quick_unlock:(id)r
