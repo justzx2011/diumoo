@@ -58,7 +58,8 @@ static UInt32 numberOfBandLevels    = 32;       // increase this number for more
 static UInt32 numberOfChannels       = 1;       // for StereoMix - If using DeviceMix, you need to get the channel count of the device.
 
 @interface FrequencyLevels (internal)
-    - (void)levelTimerMethod:(NSTimer*)theTimer;
+
+- (void)levelTimerMethod:(NSTimer*)theTimer;
 -(void) setLevel:(NSInteger)level;
 -(void) desktop_wave_level_changed:(NSNotification*)n;
 @end

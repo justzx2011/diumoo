@@ -111,9 +111,8 @@ controlCenter* sharedCenter;
     
     if( player!=nil && [player isPlaying]!=YES)
         [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
-
     else return [lock unlock],NO;
-    return [lock unlock], YES;
+    return [lock unlock], YES; 
 }
 
 -(BOOL) pause
@@ -126,6 +125,7 @@ controlCenter* sharedCenter;
         [player performSelectorOnMainThread:@selector(pause) withObject:nil waitUntilDone:YES];
     }
     else return [lock unlock],NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.paused" object:nil userInfo:nil];  
     return [lock unlock],YES;
 }
 

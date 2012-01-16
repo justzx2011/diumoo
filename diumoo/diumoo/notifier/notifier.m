@@ -18,6 +18,7 @@
         [GrowlApplicationBridge setGrowlDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify:) name:@"player.startToPlay" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyAccount:) name:@"source.account" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PauseNoti) name:@"player.paused" object:nil];
     }
     
     return self;
@@ -85,6 +86,7 @@
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
     [dic release];
 }
+  
 -(void) dockNotification:(NSDictionary*)noti withImage:(id)img
 {
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowAlbumOnDock"]integerValue ]==NSOnState)
@@ -96,5 +98,14 @@
     }
 }
 
+-(void) PauseNoti
+{
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableiTunes"] integerValue]!=NSOnState) 
+        return;
+    NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
+    [dic setValue:@"Paused" forKey:@"Player State"];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
+    [dic release];
+}
 
 @end

@@ -81,7 +81,7 @@
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
     [player lazyPause];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:[NSDictionary dictionaryWithObject:@"Paused" forKey:@"Player State"]];
+    //[[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:[NSDictionary dictionaryWithObject:@"Paused" forKey:@"Player State"]];
 }
 
 -(IBAction)showPreference:(id)sender
