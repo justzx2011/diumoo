@@ -115,7 +115,8 @@
     }
     
     loggedIn=NO;
-    if(cookie!=nil) [cookie release];
+    if(cookie!=nil) 
+        [cookie release];
     cookie=nil;
     user_info=nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:publicEnables forKey:@"enables"]];

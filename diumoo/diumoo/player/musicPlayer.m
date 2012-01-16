@@ -76,6 +76,9 @@
 }
 -(void) play
 {
+    #ifdef DEBUG
+        NSLog(@"musicPlayer play called");
+    #endif
     [cond lock];
     if(player != nil&& [player rate]==0){
         [self startAutoFadeDuration:VOLUME_INTERVAL startVolume:0.0f targetVolume:1.0f];
@@ -126,9 +129,14 @@
 
 -(void) playing_rate
 {
-    if(player==nil) return;
+    if(player==nil) 
+        return;
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:[player rate]] forKey:@"rate"] ];
-    NSLog(@"Playing %lld/%lld",[player currentTime].timeValue,[player duration].timeValue);
+    
+    #ifdef DEBUG
+        NSLog(@"Playing %lld/%lld",[player currentTime].timeValue,[player duration].timeValue);
+    #endif
     
     if([player rate]>0.9)
     {

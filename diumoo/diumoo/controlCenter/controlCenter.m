@@ -16,7 +16,7 @@ controlCenter* sharedCenter;
 +(controlCenter*) sharedCenter
 {
     if(sharedCenter==nil)
-        sharedCenter= [[controlCenter alloc] init];
+        sharedCenter=[[controlCenter alloc] init];
    return sharedCenter;
 }
 
@@ -37,12 +37,13 @@ controlCenter* sharedCenter;
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        
         lock=[[NSLock alloc]init];
         state=0;
         current=nil;
         player=nil;
         source=nil;
+        
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded:) name:@"player.end" object:nil];
         }
     
@@ -51,7 +52,9 @@ controlCenter* sharedCenter;
 
 -(BOOL) setPlayer:(id) p
 {
-    if([lock tryLock]!=YES) return NO;
+    if([lock tryLock]!=YES) 
+        return NO;
+    
     if(p!=nil){
         player=p;
         state=state|PLAYER_STATE_READY;
@@ -69,7 +72,9 @@ controlCenter* sharedCenter;
 
 -(BOOL) setSource:(id)s
 {
-    if([lock tryLock]!=YES) return NO;
+    if([lock tryLock]!=YES) 
+        return NO;
+    
     if(s!=nil){
         source=s;
         state=state|SOURCE_STATE_READY;
@@ -106,18 +111,31 @@ controlCenter* sharedCenter;
 
 -(BOOL) play
 {
+    #ifdef DEBUG
+        NSLog(@"controlCenter play called");
+    #endif
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"playbuttonpressed" object:nil userInfo:nil];
+    
     if([lock tryLock]!=YES) 
         return NO;
     
-    if( player!=nil && [player isPlaying]!=YES)
+    if(player!=nil && [player isPlaying]!=YES)
         [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
-    else return [lock unlock],NO;
-    return [lock unlock], YES; 
+    else 
+    {
+        [lock unlock];
+        return NO;
+    }
+    [lock unlock];
+    return YES; 
 }
 
 -(BOOL) pause
 {
+    #ifdef DEBUG
+        NSLog(@"controlCenter pause called");
+    #endif
     if([lock tryLock]!=YES) 
         return NO;
     
@@ -132,6 +150,10 @@ controlCenter* sharedCenter;
 
 -(BOOL) skip
 {
+    #ifdef DEBUG
+        NSLog(@"controlCenter skip called");
+    #endif
+    
     if([lock tryLock]!=YES) return NO;
     if(source!=nil )
     {
@@ -183,10 +205,9 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES)
         return NO;
-    if(source!=nil && current!=nil && player!=nil
-       && ([current release],current=[[source getNewSongByBye:[current valueForKey:@"sid"]] retain] )!=nil)
+    if(source!=nil && current!=nil && player!=nil && (current=[source getNewSongByBye:[current valueForKey:@"sid"]])!=nil)
     {
-        
+        [current retain];
         [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
         [lock unlock];
         return YES;
@@ -198,6 +219,9 @@ controlCenter* sharedCenter;
 
 -(BOOL) changeChannelTo:(NSInteger)channel
 {
+    #ifdef DEBUG
+        NSLog(@"controlCenter changeChannelTo called");
+    #endif
     [self pause];
     if([lock tryLock]!=YES)
         return NO;
@@ -228,10 +252,7 @@ controlCenter* sharedCenter;
         }
     }
     if([lock tryLock]!=YES) return;
-    if(player!=nil 
-       && source!=nil
-       && current!=nil
-       && (current = [[source getNewSongWhenEnd:[current valueForKey:@"sid"]]  retain])!=nil)
+    if(player!=nil && source!=nil && current!=nil && (current =[[source getNewSongWhenEnd:[current valueForKey:@"sid"]]retain])!=nil)
         [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
     [lock unlock];
 }

@@ -29,8 +29,8 @@
 
 -(void) musicEnded:(NSNotification*)n;
 
--(BOOL) setPlayer:(musicPlayer*) player;
--(BOOL) setSource:(doubanFMSource*) source;
+-(BOOL) setPlayer:(musicPlayer*) p;
+-(BOOL) setSource:(doubanFMSource*) s;
 -(id) getPlayer;
 -(doubanFMSource*) getSource;
 

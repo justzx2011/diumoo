@@ -233,6 +233,7 @@
 
 -(IBAction) exitApp:sender
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.paused" object:nil userInfo:nil];  
     [[NSApplication sharedApplication] terminate:nil];
 }
 
