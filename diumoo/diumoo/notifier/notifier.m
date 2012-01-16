@@ -18,7 +18,8 @@
         [GrowlApplicationBridge setGrowlDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notify:) name:@"player.startToPlay" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyAccount:) name:@"source.account" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PauseNoti) name:@"player.paused" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PauseResumeNoti:) name:@"player.paused" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PauseResumeNoti:) name:@"player.resume" object:nil];
     }
     
     return self;
@@ -103,7 +104,7 @@
     }
 }
 
--(void) PauseNoti
+-(void) PauseResumeNoti:(NSNotification*)n
 {
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableiTunes"] integerValue]!=NSOnState) 
         return;
@@ -111,11 +112,19 @@
     #ifdef DEBUG
         NSLog(@"iTunes Paused Notification Send!\n");
     #endif
-    
-    NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
-    [dic setValue:@"Paused" forKey:@"Player State"];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
-    [dic release];
+    if(n.userInfo){
+        NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
+        [dic addEntriesFromDictionary:n.userInfo];
+        [dic setValue:@"Playing" forKey:@"Player State"];
+        [dic removeObjectForKey:@"Location"];
+        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
+    }
+    else{
+        NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
+        [dic setValue:@"Paused" forKey:@"Player State"];
+        [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
+        [dic release];
+    }
 }
 
 @end

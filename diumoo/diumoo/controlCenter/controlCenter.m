@@ -120,8 +120,10 @@ controlCenter* sharedCenter;
     if([lock tryLock]!=YES) 
         return NO;
     
-    if(player!=nil && [player isPlaying]!=YES)
+    if(player!=nil && [player isPlaying]!=YES){
         [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"player.resume" object:nil userInfo:current];
+    }
     else 
     {
         [lock unlock];

@@ -17,7 +17,7 @@
 
 -(void) growlNotification:(NSDictionary*) userinfo withImage: (id) image;
 -(void) iTunesNotification:(NSDictionary*)noti;
--(void) PauseNoti;
+-(void) PauseResumeNoti:(NSNotification*) n;
 -(void) dockNotification:(NSDictionary*)noti withImage:(id)img;
 
 @end
