@@ -41,6 +41,8 @@ controlCenter* sharedCenter;
         lock=[[NSLock alloc]init];
         state=0;
         current=nil;
+        player=nil;
+        source=nil;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded:) name:@"player.end" object:nil];
         }
     
@@ -51,7 +53,7 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES) return NO;
     if(p!=nil){
-        player=p;//Need retain?
+        player=p;
         state=state|PLAYER_STATE_READY;
     }
     else
@@ -59,7 +61,6 @@ controlCenter* sharedCenter;
         [player pause];
         [player release];
         player=nil;
-        NSLog(@"player retain count = %i",[player retainCount]);
         if(state & PLAYER_STATE_READY) state-=PLAYER_STATE_READY;
     }
     [lock unlock];
@@ -70,7 +71,7 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES) return NO;
     if(s!=nil){
-        source=s;//again need retian?
+        source=s;
         state=state|SOURCE_STATE_READY;
         
         [[NSNotificationCenter defaultCenter]postNotificationName:@"controller.sourceChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[s performSelector:@selector(channelList)] ,@"channels",[s performSelector:@selector(sourceName)],@"sourceName" ,nil]];
@@ -134,7 +135,7 @@ controlCenter* sharedCenter;
     if([lock tryLock]!=YES) return NO;
     if(source!=nil )
     {
-        if(current==nil && (current=[source getNewSong])==nil) //if retain here, the retain count will be 2
+        if(current==nil && (current=[source getNewSong])==nil)
         {
             [lock unlock];
             return NO;
@@ -142,7 +143,7 @@ controlCenter* sharedCenter;
         
         NSString* sid=[current valueForKey:@"sid"];
         [sid retain];
-        [current release];//remove the previous retian, so current can be release here.
+        [current release];
         if(player!=nil && ([player pause],(current=[source getNewSongBySkip:sid]))!=nil)
             {
                 [current retain];
@@ -216,8 +217,11 @@ controlCenter* sharedCenter;
 {
     if(n.object!=nil)
     {
-        if(player!=nil && source!=nil && current!=nil && ([current release],current = [[source getNewSong]  retain])!=nil)
+        if(player!=nil && source!=nil && current!=nil && (current = [[source getNewSong]  retain])!=nil)
+        {
             [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+            NSLog(@"New Song!");
+        }
         else
         {
             NSRunCriticalAlertPanel(NSLocalizedString(@"CON_FAIL", nil), NSLocalizedString(@"RETRY_FAIL", nil), NSLocalizedString(@"KNOWN", nil),nil,nil);
@@ -227,7 +231,7 @@ controlCenter* sharedCenter;
     if(player!=nil 
        && source!=nil
        && current!=nil
-       && ([current release],current = [[source getNewSongWhenEnd:[current valueForKey:@"sid"]]  retain])!=nil)
+       && (current = [[source getNewSongWhenEnd:[current valueForKey:@"sid"]]  retain])!=nil)
         [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
     [lock unlock];
 }
