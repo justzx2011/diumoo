@@ -108,23 +108,24 @@
 {
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableiTunes"] integerValue]!=NSOnState) 
         return;
-    
-    #ifdef DEBUG
-        NSLog(@"iTunes Paused Notification Send!\n");
-    #endif
+    NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
     if(n.userInfo){
-        NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
+        #ifdef DEBUG
+        NSLog(@"iTunes Resume Notification Send!\n");
+        #endif
         [dic addEntriesFromDictionary:n.userInfo];
         [dic setValue:@"Playing" forKey:@"Player State"];
         [dic removeObjectForKey:@"Location"];
         [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
     }
     else{
-        NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
+        #ifdef DEBUG
+        NSLog(@"iTunes Paused Notification Send!\n");
+        #endif
         [dic setValue:@"Paused" forKey:@"Player State"];
         [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
-        [dic release];
     }
+    [dic release];
 }
 
 @end
