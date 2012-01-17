@@ -29,11 +29,17 @@
     NSMutableArray* playlist;
     NSMutableString* h;
     NSArray* cookie;
+    
     NSInteger channel;
+    NSString* channelName;
+    NSArray* channelList;
+    
     //NSDictionary* nextMusic;
     NSDictionary* user_info;
+    
     //一个线程锁
     NSCondition* condition;
+    
     //类别
     NSSet* replacePlaylist;
     NSSet* recordType;
@@ -43,9 +49,7 @@
     NSSet* publicEnables;
     NSSet* publicWithLoggedInEnables;
     
-    NSString* channelName;
     
-    NSArray* channelList;
 }
 
 -(NSDictionary*) userinfo;

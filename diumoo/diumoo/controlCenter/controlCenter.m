@@ -8,29 +8,46 @@
 
 #import "controlCenter.h"
 #import "preference.h"
+#import "controlCenter.h"
 
 controlCenter* sharedCenter;
 
 @implementation controlCenter
 
+
+-(void) dealloc
+{
+    [self pause];
+    [current release];
+    [source release];
+    [lock release];
+    [sharedCenter release];
+    [super dealloc];
+}
+
+
 +(controlCenter*) sharedCenter
 {
     if(sharedCenter==nil)
+    {
         sharedCenter=[[controlCenter alloc] init];
+    }
    return sharedCenter;
 }
 
-+(BOOL) tryAuth:(NSDictionary*) dic
++(BOOL) tryAuth:(NSDictionary*) userinfo
 {
     doubanFMSource* source=[[controlCenter sharedCenter] getSource];
     if(source!=nil) 
-        return [source authWithUsername:[dic valueForKey:@"username"] andPassword:[dic valueForKey:@"password"]];
+    {
+        return [source authWithUsername:[userinfo valueForKey:@"username"] andPassword:[userinfo valueForKey:@"password"]];
+    }
     return NO;
 }
 
 +(void) cleanAuth
 {
-    [[[controlCenter sharedCenter] getSource] authWithUsername:@"" andPassword:@""];
+    [[sharedCenter getSource] authWithUsername:@"" andPassword:@""];
 }
 
 - (id)init
@@ -62,9 +79,10 @@ controlCenter* sharedCenter;
     else
     {
         [player pause];
-        [player release];
+        //[player release];
         player=nil;
-        if(state & PLAYER_STATE_READY) state-=PLAYER_STATE_READY;
+        if(state & PLAYER_STATE_READY) 
+            state-=PLAYER_STATE_READY;
     }
     [lock unlock];
     return YES;
@@ -84,7 +102,7 @@ controlCenter* sharedCenter;
     else
     {
         [player pause];
-        [source release];
+        //[source release];
         source=nil;
         if(state & SOURCE_STATE_READY) 
             state-=SOURCE_STATE_READY;
@@ -93,12 +111,12 @@ controlCenter* sharedCenter;
     return YES;
 }
 
--(id) getPlayer
+-(musicPlayer*) getPlayer
 {
     return player;
 }
 
--(id) getSource
+-(doubanFMSource*) getSource
 {
     return source;
 }
@@ -336,16 +354,6 @@ controlCenter* sharedCenter;
         }
         
     }
-}
-
-
-
--(void) dealloc
-{
-    [self pause];
-    [current release];
-    [lock release];
-    [super dealloc];
 }
 
 @end

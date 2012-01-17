@@ -14,7 +14,8 @@
 #import "SPMediaKeyTap.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
-    //NSWindow *window;
+
+    NSUserDefaultsController* controller;
     musicPlayer* player;
     doubanFMSource* source;
     notifier* growlnotify;

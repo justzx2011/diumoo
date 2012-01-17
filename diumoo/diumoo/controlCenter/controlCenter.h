@@ -18,20 +18,21 @@
     musicPlayer* player;
     doubanFMSource* source;
     NSDictionary* current;
+    
     NSLock* lock;
     
     NSInteger state;
+    
 }
 
 +(controlCenter*) sharedCenter;
-+(BOOL) tryAuth:(NSDictionary*) dic;
++(BOOL) tryAuth:(NSDictionary*) userinfo;
 +(void) cleanAuth;
 
 -(void) musicEnded:(NSNotification*)n;
-
 -(BOOL) setPlayer:(musicPlayer*) p;
 -(BOOL) setSource:(doubanFMSource*) s;
--(id) getPlayer;
+-(musicPlayer*) getPlayer;
 -(doubanFMSource*) getSource;
 
 

@@ -11,8 +11,11 @@
 
 int main(int argc, char *argv[])
 {
+    NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
     [diumooApp sharedApplication];
     [NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
     [NSApp run];
+    [pool drain];
+    [pool release];
     return 0;
 }
