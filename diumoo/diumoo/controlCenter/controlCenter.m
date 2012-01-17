@@ -133,8 +133,6 @@ controlCenter* sharedCenter;
         NSLog(@"controlCenter play called");
     #endif
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playbuttonpressed" object:nil userInfo:nil];
-    
     if([lock tryLock]!=YES) 
         return NO;
     
@@ -147,6 +145,7 @@ controlCenter* sharedCenter;
         [lock unlock];
         return NO;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playbuttonpressed" object:nil userInfo:nil];
     [lock unlock];
     return YES; 
 }
@@ -164,6 +163,7 @@ controlCenter* sharedCenter;
         [player performSelectorOnMainThread:@selector(pause) withObject:nil waitUntilDone:YES];
     }
     else return [lock unlock],NO;
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.paused" object:nil userInfo:nil];  
     return [lock unlock],YES;
 }
@@ -204,10 +204,13 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES)
         return NO;
-    if(source!=nil && current !=nil && 
-        [source rateSongBySid:[current valueForKey:@"sid"]] ) 
-        return [lock unlock],YES;
-    return [lock unlock],NO;
+    if(source!=nil && current !=nil && [source rateSongBySid:[current valueForKey:@"sid"]] ) 
+    {
+        [lock unlock];
+        return YES;
+    }
+    [lock unlock];
+    return NO;
         
 }
 
@@ -215,16 +218,21 @@ controlCenter* sharedCenter;
 {
     if([lock tryLock]!=YES)
         return NO;
-    if(source!=nil && current !=nil && 
-       [source unrateSongBySid:[current valueForKey:@"sid"]] ) 
-        return [lock unlock],YES;
-    return [lock unlock],NO;
+    
+    if(source!=nil && current !=nil && [source unrateSongBySid:[current valueForKey:@"sid"]] ) 
+    {
+        [lock unlock];
+        return YES;
+    }
+    [lock unlock];
+    return NO;
     
 }
 -(BOOL) bye
 {
     if([lock tryLock]!=YES)
         return NO;
+    
     if(source!=nil && current!=nil && player!=nil && (current=[source getNewSongByBye:[current valueForKey:@"sid"]])!=nil)
     {
         [current retain];
@@ -232,8 +240,9 @@ controlCenter* sharedCenter;
         [lock unlock];
         return YES;
     }
-        
-    return [lock unlock],NO;
+    
+    [lock unlock];    
+    return NO;
        
 }
 
@@ -242,11 +251,17 @@ controlCenter* sharedCenter;
     #ifdef DEBUG
         NSLog(@"controlCenter changeChannelTo called");
     #endif
+    
     [self pause];
+    
     if([lock tryLock]!=YES)
         return NO;
-    [current release];
+    
+    //[current release]; //Maybe over-released
+    //NSLog(@"current retain count= %i",[current retainCount]);
+
     current=nil;
+    
     if(player!=nil && source!=nil && (current=([source setChannel:channel],[source getNewSong]))!=nil)
     {
         [current retain];
@@ -271,9 +286,12 @@ controlCenter* sharedCenter;
             NSRunCriticalAlertPanel(NSLocalizedString(@"CON_FAIL", nil), NSLocalizedString(@"RETRY_FAIL", nil), NSLocalizedString(@"KNOWN", nil),nil,nil);
         }
     }
-    if([lock tryLock]!=YES) return;
+    if([lock tryLock]!=YES) 
+        return;
+    
     if(player!=nil && source!=nil && current!=nil && (current =[[source getNewSongWhenEnd:[current valueForKey:@"sid"]]retain])!=nil)
         [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+    
     [lock unlock];
 }
 
@@ -286,18 +304,22 @@ controlCenter* sharedCenter;
     if([s isEqualToString:@"twitter"])
     {
         
-        NSString* str=[NSString stringWithFormat:@"#nowplaying %@ - %@ ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
-        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"TwitterDoubanInfo"] integerValue]==NSOnState) str=[str stringByAppendingFormat:@" (豆瓣电台-%@ | %@ ) ",[current valueForKey:@"Channel"],[current valueForKey:@"Store URL"]];
+        NSString* info=[NSString stringWithFormat:@"#nowplaying %@ - %@ ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"TwitterDoubanInfo"] integerValue]==NSOnState) info=[info stringByAppendingFormat:@" (豆瓣电台-%@ | %@ ) ",[current valueForKey:@"Channel"],[current valueForKey:@"Store URL"]];
         
         NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
         
-        [pb setData:[str dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
+        [pb setData:[info dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
         NSPerformService(@"Tweet", pb);
+        
+        [info release];
     }
-    else if([s isEqualToString:@"google"]||[s isEqualToString:@"lastfm"]){
+    else if([s isEqualToString:@"google"]||[s isEqualToString:@"lastfm"])
+    {
         NSString* unencode=nil;
         NSInteger type=[[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"GoogleSearchType"] integerValue];
-        switch (type) {
+        switch (type) 
+        {
             case 1:
                 unencode=[NSString stringWithFormat:@"%@+%@",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
                 break;
@@ -312,27 +334,30 @@ controlCenter* sharedCenter;
         CFStringRef encoded=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)unencode, NULL, (CFStringRef)@"!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
         
         NSString* site_url;
-        if([s isEqualToString:@"google"]){
+        if([s isEqualToString:@"google"])
+        {
             site_url = @"google.com/#q=";
         }
-        else if ([s isEqualToString:@"lastfm"]){
-            site_url = @"www.last.fm/search?q=";
-        }
+        else if ([s isEqualToString:@"lastfm"])
+            {
+                site_url = @"www.last.fm/search?q=";
+            }
         
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@", site_url, encoded]]];
         CFRelease(encoded);
+        
     }
     else if([s isEqualToString:@"fanfou"] || [s isEqualToString:@"Sina"] || [s isEqualToString:@"Facebook"] )
     {
-        NSString* u_name=[NSString stringWithFormat:@"%@ (%@) ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
+        NSString* u_name=[NSString stringWithFormat:@"%@ - %@， ",[current valueForKey:@"Name"],[current valueForKey:@"Artist"]];
         CFStringRef name=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)u_name, NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
         CFStringRef url=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[current valueForKey:@"Store URL"], NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
-        CFStringRef detail=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[NSString stringWithFormat:@"(正在收听:豆瓣电台-%@)",[current valueForKey:@"Channel"]], NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
+        CFStringRef detail=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[NSString stringWithFormat:@"正在收听:豆瓣电台-%@，",[current valueForKey:@"Channel"]], NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
         if ([s isEqualToString:@"fanfou"]) {
             [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://fanfou.com/sharer?u=%@&d=%@&t=%@",url,detail,name]]];
         }
         else if ([s isEqualToString:@"Sina"]){
-            [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://v.t.sina.com.cn/share/share.php?title=%@%@%@",name,detail,url]]];
+            [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://v.t.sina.com.cn/share/share.php?title=%@%@%@",detail,name,url]]];
         }
         else if([s isEqualToString:@"Facebook"])
         {
@@ -342,7 +367,7 @@ controlCenter* sharedCenter;
         CFRelease(name);
         CFRelease(url);
         CFRelease(detail);
-    
+        
     }
         else
         {
