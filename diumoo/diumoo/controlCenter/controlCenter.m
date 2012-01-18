@@ -138,6 +138,7 @@ controlCenter* sharedCenter;
     #ifdef DEBUG
         NSLog(@"controlCenter pause called");
     #endif
+    
     if([lock tryLock]!=YES) 
         return NO;
     
@@ -224,6 +225,7 @@ controlCenter* sharedCenter;
     #ifdef DEBUG
         NSLog(@"controlCenter changeChannelTo called");
     #endif
+    
     [self pause];
     if([lock tryLock]!=YES)
         return NO;
@@ -246,7 +248,10 @@ controlCenter* sharedCenter;
         if(player!=nil && source!=nil && current!=nil && (current = [[source getNewSong]  retain])!=nil)
         {
             [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
+            
+            #ifdef DEBUG
             NSLog(@"New Song!");
+            #endif   
         }
         else
         {

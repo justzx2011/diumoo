@@ -157,37 +157,45 @@ static preference* shared;
 
 -(IBAction)getCaptchaImage:(id)sender
 {
-    dispatch_queue_t queue = dispatch_queue_create("douban.Captcha",NULL);
-
+    dispatch_queue_t captchaqueue = dispatch_queue_create("diumoo.captcha", NULL);
+    dispatch_queue_t high = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,NULL);
+    dispatch_set_target_queue(captchaqueue, high);
+    
     [captcha_button setEnabled:NO];
     [indicator setHidden:NO];
+    [indicator startAnimation:self];
     if(captcha_code){[captcha_code release];captcha_code=nil;}
     
-    dispatch_sync(queue,^{
-        NSImage* checkcode_image=nil;
-        NSError* e=nil;
+    dispatch_async(captchaqueue, ^{
+    NSImage* checkcode_image=nil;
+    NSError* e=nil;
     NSString* code=[NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] encoding:NSASCIIStringEncoding error:&e];
+        
     if(e==NULL){
         captcha_code=[[code stringByReplacingOccurrencesOfString:@"\"" withString:@""] retain];
         checkcode_image=[[NSImage alloc]initWithContentsOfURL:[NSURL URLWithString:[@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code]]];
     }
-    if(e!=NULL|| checkcode_image==nil )
-    {
-        NSRunCriticalAlertPanel(@"获取验证码失败", @"试图从豆瓣获取验证码失败", @"知道了", nil, nil);
-        [indicator setHidden:YES];
-        [captcha_button setImage:nil];
-        [captcha_button setTitle:@"点击获取验证码"];
-        [captcha_button setEnabled:YES];
-    }
-    else{
-        [captcha_button setTitle:@""];
-        [captcha_button setImage:checkcode_image];
-        [indicator setHidden:YES];
-        [captcha_button setEnabled:YES];
-    }
-});
-    
-
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if(e!=NULL|| checkcode_image==nil )
+            {
+                NSRunCriticalAlertPanel(@"获取验证码失败", @"试图从豆瓣获取验证码失败", @"知道了", nil, nil);
+                [indicator setHidden:YES];
+                [captcha_button setImage:nil];
+                [captcha_button setTitle:@"点击获取验证码"];
+                [captcha_button setEnabled:YES];
+            }
+            else{
+                [captcha_button setTitle:@""];
+                [captcha_button setImage:checkcode_image];
+                [indicator setHidden:YES];
+                [captcha_button setEnabled:YES];
+            }
+            
+        });
+            [checkcode_image release];
+    });
+    dispatch_release(captchaqueue);
+    dispatch_release(high);
 }
 
 -(void) dealloc

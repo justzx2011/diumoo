@@ -59,7 +59,11 @@
 {
     
     [condition lock];
-    NSLog(@"%@",[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:AUTH_URL]);
+    
+#ifdef DEBUG
+NSLog(@"%@",[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:AUTH_URL]);
+#endif
+    
     NSString* name=nil,*password=nil,*captcha=nil,*captcha_code=nil;
     if(dic!=nil){
         name=[dic valueForKey:@"username"];
@@ -103,7 +107,9 @@
                 if(je==NULL ) {
                     if([[obj valueForKey:@"r"]intValue]==0){
                         user_info=[obj valueForKey:@"user_info"];
-                        NSLog(@"user_info:%@",user_info);
+#ifdef DEBUG
+NSLog(@"user_info:%@",user_info);
+#endif
                         if(user_info){
                             [[NSUserDefaults standardUserDefaults] setValue:user_info forKey:@"user_info"];
                             NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] ;

@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Sparkle/sparkle.h>
+#import <dispatch/dispatch.h>
 #import "EMKeychainItem.h"
 
 #define GENERAL_PREFERENCE_ID 0
