@@ -68,14 +68,14 @@
         password=[dic valueForKey:@"password"];
         captcha=[dic valueForKey:@"captcha"];
         captcha_code=[dic valueForKey:@"captcha_code"];
-        NSLog(@"%@",captcha_code);
     }
     if(name && password && captcha && captcha_code && [name length]>0 && [captcha length]>0){
         //生成表单body
         CFStringRef encodedName=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)name, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
         CFStringRef encodedPass=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)password, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
         CFStringRef encodedCaptcha=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)captcha, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
-        NSData* body=[[NSString stringWithFormat:@"alias=%@&form_password=%@&source=radio%captcha_solution=%@&captcha_id=%@\n",encodedName,encodedPass,encodedCaptcha,captcha_code] dataUsingEncoding:NSUTF8StringEncoding];
+        NSLog(@"%@",[NSString stringWithFormat:@"source=radio&alias=%@&form_password=%@&captcha_solution=%@&captcha_id=%@",encodedName,encodedPass,encodedCaptcha,captcha_code]);
+        NSData* body=[[NSString stringWithFormat:@"source=radio&alias=%@&form_password=%@&captcha_solution=%@&captcha_id=%@",encodedName,encodedPass,encodedCaptcha,captcha_code] dataUsingEncoding:NSUTF8StringEncoding];
         CFRelease(encodedName);
         CFRelease(encodedPass);
         CFRelease(encodedCaptcha);
@@ -95,6 +95,7 @@
         if(e==NULL){
             NSError* je=nil;
             NSDictionary* obj=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
+            NSLog(@">>%@",[obj valueForKey:@"err_msg"]);
             if(je==NULL && ([[obj valueForKey:@"r"]intValue]==0)) {
                 user_info=[obj valueForKey:@"user_info"];
                 cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
