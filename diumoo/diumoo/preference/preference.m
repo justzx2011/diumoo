@@ -157,11 +157,15 @@ static preference* shared;
 
 -(IBAction)getCaptchaImage:(id)sender
 {
+    dispatch_queue_t queue = dispatch_queue_create("douban.Captcha",NULL);
+
     [captcha_button setEnabled:NO];
     [indicator setHidden:NO];
     if(captcha_code){[captcha_code release];captcha_code=nil;}
-    NSImage* checkcode_image=nil;
-    NSError* e=nil;
+    
+    dispatch_sync(queue,^{
+        NSImage* checkcode_image=nil;
+        NSError* e=nil;
     NSString* code=[NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] encoding:NSASCIIStringEncoding error:&e];
     if(e==NULL){
         captcha_code=[[code stringByReplacingOccurrencesOfString:@"\"" withString:@""] retain];
@@ -181,6 +185,7 @@ static preference* shared;
         [indicator setHidden:YES];
         [captcha_button setEnabled:YES];
     }
+});
     
 
 }

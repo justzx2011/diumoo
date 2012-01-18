@@ -308,6 +308,7 @@
 							<string key="NSFrameSize">{520, 318}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="173574132"/>
 							<string key="NSReuseIdentifierKey">_NS:461</string>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -875,7 +876,7 @@
 												<string key="NSFrame">{{197, 137}, {172, 22}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="713247723"/>
+												<reference key="NSNextKeyView" ref="659032171"/>
 												<string key="NSReuseIdentifierKey">_NS:2943</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSSecureTextFieldCell" key="NSCell" id="954459455">
@@ -941,9 +942,10 @@
 											<object class="NSButton" id="236255027">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{249, 45}, {126, 32}}</string>
+												<string key="NSFrame">{{249, 24}, {126, 32}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:161</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="90920008">
@@ -964,7 +966,7 @@
 											<object class="NSButton" id="713247723">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{177, 45}, {75, 32}}</string>
+												<string key="NSFrame">{{177, 24}, {75, 32}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="236255027"/>
@@ -988,7 +990,7 @@
 											<object class="NSTextField" id="659032171">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{133, 98}, {56, 17}}</string>
+												<string key="NSFrame">{{129, 110}, {66, 17}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="252484877"/>
@@ -997,7 +999,7 @@
 												<object class="NSTextFieldCell" key="NSCell" id="387598890">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
-													<string key="NSContents">验证码：</string>
+													<string key="NSContents">Captcha:</string>
 													<reference key="NSSupport" ref="133986757"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="659032171"/>
@@ -1008,7 +1010,7 @@
 											<object class="NSTextField" id="252484877">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{194, 93}, {60, 22}}</string>
+												<string key="NSFrame">{{197, 107}, {60, 22}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="695175085"/>
@@ -1029,15 +1031,16 @@
 											<object class="NSButton" id="695175085">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{262, 93}, {103, 39}}</string>
+												<string key="NSFrame">{{196, 60}, {106, 39}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView" ref="153663295"/>
 												<string key="NSReuseIdentifierKey">_NS:1491</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="99968906">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
-													<string key="NSContents">点击获取验证码</string>
+													<string key="NSContents">Click for Captcha</string>
 													<object class="NSFont" key="NSSupport">
 														<string key="NSName">STHeitiSC-Light</string>
 														<double key="NSSize">11</double>
@@ -1057,9 +1060,10 @@
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">-2147482356</int>
 												<object class="NSPSMatrix" key="NSDrawMatrix"/>
-												<string key="NSFrame">{{374, 113}, {16, 16}}</string>
+												<string key="NSFrame">{{308, 71}, {16, 16}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView" ref="713247723"/>
 												<string key="NSReuseIdentifierKey">_NS:3954</string>
 												<int key="NSpiFlags">20746</int>
 												<double key="NSMaxValue">100</double>
@@ -1872,12 +1876,12 @@
 							<reference ref="865413130"/>
 							<reference ref="576289318"/>
 							<reference ref="598890418"/>
-							<reference ref="659032171"/>
-							<reference ref="252484877"/>
-							<reference ref="695175085"/>
-							<reference ref="153663295"/>
 							<reference ref="236255027"/>
 							<reference ref="713247723"/>
+							<reference ref="252484877"/>
+							<reference ref="659032171"/>
+							<reference ref="695175085"/>
+							<reference ref="153663295"/>
 						</object>
 						<reference key="parent" ref="1012242649"/>
 					</object>
