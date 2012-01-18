@@ -111,6 +111,8 @@
                             //cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
                             loggedIn=YES;
                         }
+                        else loggedIn=NO;
+                        
                     }
                     
                 }
@@ -161,6 +163,7 @@
         [cookie release];
     cookie=nil;
     user_info=nil;
+    loggedIn=NO;
     [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"user_info"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:publicEnables forKey:@"enables"]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.account" object:nil userInfo:user_info];
