@@ -62,20 +62,23 @@
 {
     
     [condition lock];
-    NSString* name=@"",*password=@"",*captcha=@"",*captcha_code=@"";
+    NSString* name=nil,*password=nil,*captcha=nil,*captcha_code=nil;
     if(dic!=nil){
         name=[dic valueForKey:@"username"];
         password=[dic valueForKey:@"password"];
         captcha=[dic valueForKey:@"captcha"];
         captcha_code=[dic valueForKey:@"captcha_code"];
     }
-    if(name && password && captcha && captcha_code && [name length]>0 && [captcha length]>0){
+    if(name && password && [name length]>0 && [password length]>0){
         //生成表单body
+        if(!captcha_code && !captcha){
+            captcha_code=@"";
+            captcha=@"";
+        }
         CFStringRef encodedName=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)name, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
         CFStringRef encodedPass=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)password, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
         CFStringRef encodedCaptcha=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)captcha, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
-        NSLog(@"%@",[NSString stringWithFormat:@"source=radio&alias=%@&form_password=%@&captcha_solution=%@&captcha_id=%@",encodedName,encodedPass,encodedCaptcha,captcha_code]);
-        NSData* body=[[NSString stringWithFormat:@"source=radio&alias=%@&form_password=%@&captcha_solution=%@&captcha_id=%@",encodedName,encodedPass,encodedCaptcha,captcha_code] dataUsingEncoding:NSUTF8StringEncoding];
+        NSData* body=[[NSString stringWithFormat:@"remember=on&source=radio&alias=%@&form_password=%@&captcha_solution=%@&captcha_id=%@",encodedName,encodedPass,encodedCaptcha,captcha_code] dataUsingEncoding:NSUTF8StringEncoding];
         CFRelease(encodedName);
         CFRelease(encodedPass);
         CFRelease(encodedCaptcha);
@@ -84,26 +87,38 @@
         [request setHTTPMethod:@"POST"];
         [request setURL:AUTH_URL];
         [request setHTTPBody:body];
-        NSArray* array= [[NSArray alloc] init];
-        [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:array]];
-        [array release];
+        if([captcha_code length]>0){
+            NSArray* array= [[NSArray alloc] init];
+            [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:array]];
+            [array release];
+        }
         
         //生成同步请求
         NSHTTPURLResponse* r=nil;
         NSError* e= nil;
         NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
+        loggedIn=NO;
         if(e==NULL){
             NSError* je=nil;
             NSDictionary* obj=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
             NSLog(@">>%@",[obj valueForKey:@"err_msg"]);
             if(je==NULL && ([[obj valueForKey:@"r"]intValue]==0)) {
                 user_info=[obj valueForKey:@"user_info"];
+                if(user_info){
+                    [[NSUserDefaults standardUserDefaults] setValue:user_info forKey:@"user_info"];
+                    loggedIn=YES;
+                }
+            }
+            else if(r.statusCode==200)
+            {
+                user_info=[[NSUserDefaults standardUserDefaults] valueForKey:@"user_info"];
+                if(user_info) loggedIn=YES;
+            }
                 cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
-                loggedIn=YES;
                 
                 r=nil;
                 e=nil;
-                
+            if(loggedIn){
                
                 NSURLRequest* icon1=[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://img3.douban.com/icon/u%@.jpg",[user_info valueForKey:@"id"]]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2.0];
                 
@@ -123,14 +138,16 @@
                 [condition unlock];
                 return YES;
             }
+            
         }
     }
     
-    loggedIn=NO;
+    
     if(cookie!=nil) 
         [cookie release];
     cookie=nil;
     user_info=nil;
+    [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"user_info"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:publicEnables forKey:@"enables"]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"source.account" object:nil userInfo:user_info];
     
