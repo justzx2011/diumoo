@@ -47,8 +47,8 @@
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableGrowl"] integerValue]!=NSOnState) return;
     if(!([GrowlApplicationBridge isGrowlRunning]))return;
     if(noti.userInfo!=nil){
-        NSDictionary* dic=[noti.userInfo valueForKey:@"play_record"];
-        NSString* s=[NSString stringWithFormat:NSLocalizedString(@"PLAY_RECORD",nil),[noti.userInfo valueForKey:@"name"],[dic valueForKey:@"played"],[dic valueForKey:@"liked"],[dic valueForKey:@"banned"]];
+      //  NSDictionary* dic=[noti.userInfo valueForKey:@"play_record"];
+        NSString* s=[NSString stringWithFormat:NSLocalizedString(@"PLAY_RECORD",nil),[noti.userInfo valueForKey:@"name"]];
         
         [GrowlApplicationBridge notifyWithTitle:NSLocalizedString(@"LOGIN_SUCCESS", nil) description:s notificationName:@"Account" iconData:noti.object priority:0 isSticky:NO clickContext:nil];
     }
