@@ -20,7 +20,7 @@
         //初始化 request
         request=[[[NSMutableURLRequest alloc]init] retain] ;
         [request setTimeoutInterval:TIMEOUT];
-        [request setHTTPShouldHandleCookies:NO];
+        [request setHTTPShouldHandleCookies:YES];
         
         //初始化lock
         condition=[[[NSCondition alloc]init] retain] ;
@@ -102,19 +102,25 @@
             NSError* je=nil;
             NSDictionary* obj=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
             NSLog(@">>%@",[obj valueForKey:@"err_msg"]);
-            if(je==NULL && ([[obj valueForKey:@"r"]intValue]==0)) {
-                user_info=[obj valueForKey:@"user_info"];
-                if(user_info){
-                    [[NSUserDefaults standardUserDefaults] setValue:user_info forKey:@"user_info"];
-                    loggedIn=YES;
+            if(je==NULL ) {
+                if([[obj valueForKey:@"r"]intValue]==0){
+                    user_info=[obj valueForKey:@"user_info"];
+                    if(user_info){
+                        [[NSUserDefaults standardUserDefaults] setValue:user_info forKey:@"user_info"];
+                        cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
+                        
+                        loggedIn=YES;
+                    }
                 }
+               
             }
             else if(r.statusCode==200)
             {
                 user_info=[[NSUserDefaults standardUserDefaults] valueForKey:@"user_info"];
                 if(user_info) loggedIn=YES;
             }
-                cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
+            
+                
                 
                 r=nil;
                 e=nil;
@@ -172,19 +178,19 @@
     
     //    | 生成channel
     NSString* _s=@"";
-    NSMutableArray* _cookie=[[NSMutableArray alloc] init];
-    if(cookie!=nil)
-        [_cookie addObjectsFromArray:cookie];
+  //  NSMutableArray* _cookie=[[NSMutableArray alloc] init];
+ //   if(cookie!=nil)
+ //       [_cookie addObjectsFromArray:cookie];
     if(channel>10000){
         _s=[NSString stringWithFormat: @"channel=dj&pid=%d",channel];
-        NSDictionary* dic=[NSDictionary dictionaryWithObjectsAndKeys:
-                           [NSString stringWithFormat:@"%d",channel],
-                           NSHTTPCookieValue,
-                           @"dj_id",NSHTTPCookieName,
-                           @"/",NSHTTPCookiePath,
-                           @".douban.fm",NSHTTPCookieDomain
-                           ,nil];
-        [_cookie addObject:[NSHTTPCookie cookieWithProperties:dic]];
+     //   NSDictionary* dic=[NSDictionary dictionaryWithObjectsAndKeys:
+  //                         [NSString stringWithFormat:@"%d",channel],
+  //                         NSHTTPCookieValue,
+  //                         @"dj_id",NSHTTPCookieName,
+  //                         @"/",NSHTTPCookiePath,
+  //                         @".douban.fm",NSHTTPCookieDomain
+  //                         ,nil];
+  //      [_cookie addObject:[NSHTTPCookie cookieWithProperties:dic]];
     }
     else _s=[NSString stringWithFormat:@"channel=%d",channel];
     if([type isNotEqualTo:NEW]&& sid!=nil &&[sid isNotEqualTo:@""])
@@ -197,8 +203,8 @@
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%s&%@",PLAYLIST_URL_STRING,type,rnds,_s]]];
     [request setHTTPMethod:@"GET"];
     [request setHTTPBody:nil];
-    [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
-    [_cookie release];
+    //[request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
+    //[_cookie release];
 
     // 发送请求
     NSHTTPURLResponse* r=nil;
@@ -210,6 +216,7 @@
         NSDictionary* list=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
         if(je==NULL)
         {
+            NSLog(@"%@",list);
             if([[list valueForKey:@"r"] intValue]==0)
             {
                 NSArray* song=[list valueForKey:@"song"];
