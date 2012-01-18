@@ -85,14 +85,13 @@ static preference* shared;
 {
     NSString* username=[email stringValue];
     NSString* password=[pass stringValue];
-    NSString* captcha=[captcha_button stringValue];
-
-    if([username length]==0 || [password length]==0 || [captcha length]==0 || (captcha_code=nil))
+    NSString* captcha=[captcha_input stringValue];
+    if([username length]==0 || [password length]==0 || [captcha length]==0 || (captcha_code==nil))
     {
         NSRunCriticalAlertPanel(NSLocalizedString(@"IN_ERROR", nil),NSLocalizedString(@"PLS_FILL", nil),NSLocalizedString(@"CANCEL", nil),nil,nil);
     }
     
-   else if([controlCenter tryAuth:[NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",captcha,@"captcha",captcha_code,@"capcha_code", nil]])
+   else if([controlCenter tryAuth:[NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",captcha,@"captcha",captcha_code,@"captcha_code", nil]])
     {
         [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username" password:username];
         [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password" password:password];
@@ -160,7 +159,7 @@ static preference* shared;
 {
     [captcha_button setEnabled:NO];
     [indicator setHidden:NO];
-    if(captcha_code){captcha_code=nil;captcha_code=nil;}
+    if(captcha_code){[captcha_code release];captcha_code=nil;}
     NSImage* checkcode_image=nil;
     NSError* e=nil;
     NSString* code=[NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] encoding:NSASCIIStringEncoding error:&e];
