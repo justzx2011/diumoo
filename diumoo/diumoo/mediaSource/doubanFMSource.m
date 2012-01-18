@@ -25,9 +25,6 @@
         //初始化lock
         condition=[[NSCondition alloc]init];
         
-        //将Cookie设置为空
-        cookie=nil;
-        
         //初始化两个set
         replacePlaylist = [[[NSSet alloc] initWithObjects:NEW,SKIP,BYE, nil] retain] ;
         recordType = [[[NSSet alloc] initWithObjects:RATE,END,SKIP,BYE, nil] retain] ;
@@ -62,6 +59,7 @@
 {
     
     [condition lock];
+    NSLog(@"%@",[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:AUTH_URL]);
     NSString* name=nil,*password=nil,*captcha=nil,*captcha_code=nil;
     if(dic!=nil){
         name=[dic valueForKey:@"username"];
@@ -108,7 +106,8 @@
                         NSLog(@"user_info:%@",user_info);
                         if(user_info){
                             [[NSUserDefaults standardUserDefaults] setValue:user_info forKey:@"user_info"];
-                            //cookie = [[NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] retain];
+                            NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] ;
+                            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies forURL:[r URL] mainDocumentURL:nil];
                             loggedIn=YES;
                         }
                         else loggedIn=NO;
@@ -150,18 +149,9 @@
             }
         }
     }
-    NSHTTPURLResponse* r=nil;
-    NSError* e= nil;
-    [request setHTTPShouldHandleCookies:YES];
-    [request  setURL:[NSURL URLWithString:@"http://douban.fm/partner/logout?source=radio"]];
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
-    if(e==NULL)
-    {
-        NSLog(@"logout");
+    for (NSHTTPCookie* cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:AUTH_URL]) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
     }
-    if(cookie!=nil) 
-        [cookie release];
-    cookie=nil;
     user_info=nil;
     loggedIn=NO;
     [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"user_info"];
@@ -416,7 +406,6 @@
 -(void) dealloc
 {
     [channelList release];
-    [cookie release];
     [replacePlaylist release];
     [recordType release];
     [privateEnables release];

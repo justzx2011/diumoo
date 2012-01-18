@@ -28,7 +28,6 @@
     NSMutableURLRequest* request;
     NSMutableArray* playlist;
     NSMutableString* h;
-    NSArray* cookie;
     
     NSInteger channel;
     NSString* channelName;
