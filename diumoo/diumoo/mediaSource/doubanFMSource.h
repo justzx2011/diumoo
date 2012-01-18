@@ -54,7 +54,7 @@
 
 -(NSDictionary*) userinfo;
 
--(BOOL) authWithUsername:(NSString*) name andPassword:(NSString*) password;
+-(BOOL) authWithDictionary:(NSDictionary*) dic;
 -(BOOL) requestPlaylistWithType:(NSString*)type andSid:(NSString*)sid; 
 -(NSDictionary* ) getNewSongByType:(NSString *)t andSid:(NSString*)sid;
 -(id) _quick_unlock:(id) r;
