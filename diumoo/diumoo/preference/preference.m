@@ -36,6 +36,7 @@ static preference* shared;
 {
     self=[super initWithWindowNibName:@"prefsPanel"];
     if(self){
+        captcha_code=nil;
     }
     return self;
 }
@@ -84,13 +85,14 @@ static preference* shared;
 {
     NSString* username=[email stringValue];
     NSString* password=[pass stringValue];
+    NSString* captcha=[captcha_button stringValue];
 
-    if([username length]==0 || [password length]==0)
+    if([username length]==0 || [password length]==0 || [captcha length]==0 || (captcha_code=nil))
     {
         NSRunCriticalAlertPanel(NSLocalizedString(@"IN_ERROR", nil),NSLocalizedString(@"PLS_FILL", nil),NSLocalizedString(@"CANCEL", nil),nil,nil);
     }
     
-   else if([controlCenter tryAuth:[NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password", nil]])
+   else if([controlCenter tryAuth:[NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password",captcha,@"captcha",captcha_code,@"capcha_code", nil]])
     {
         [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username" password:username];
         [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password" password:password];
@@ -152,6 +154,36 @@ static preference* shared;
         [[NSApp dockTile] setBadgeLabel:@""];
         [[NSApp dockTile] display];
     }
+}
+
+-(IBAction)getCaptchaImage:(id)sender
+{
+    [captcha_button setEnabled:NO];
+    [indicator setHidden:NO];
+    if(captcha_code){captcha_code=nil;captcha_code=nil;}
+    NSImage* checkcode_image=nil;
+    NSError* e=nil;
+    NSString* code=[NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://douban.fm/j/new_captcha"] encoding:NSASCIIStringEncoding error:&e];
+    if(e==NULL){
+        captcha_code=[[code stringByReplacingOccurrencesOfString:@"\"" withString:@""] retain];
+        checkcode_image=[[NSImage alloc]initWithContentsOfURL:[NSURL URLWithString:[@"http://douban.fm/misc/captcha?size=m&id=" stringByAppendingString:captcha_code]]];
+    }
+    if(e!=NULL|| checkcode_image==nil )
+    {
+        NSRunCriticalAlertPanel(@"获取验证码失败", @"试图从豆瓣获取验证码失败", @"知道了", nil, nil);
+        [indicator setHidden:YES];
+        [captcha_button setImage:nil];
+        [captcha_button setTitle:@"点击获取验证码"];
+        [captcha_button setEnabled:YES];
+    }
+    else{
+        [captcha_button setTitle:@""];
+        [captcha_button setImage:checkcode_image];
+        [indicator setHidden:YES];
+        [captcha_button setEnabled:YES];
+    }
+    
+
 }
 
 -(void) dealloc

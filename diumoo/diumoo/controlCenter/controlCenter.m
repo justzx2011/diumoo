@@ -24,13 +24,13 @@ controlCenter* sharedCenter;
 {
     doubanFMSource* source=[[controlCenter sharedCenter] getSource];
     if(source!=nil) 
-        return [source authWithUsername:[dic valueForKey:@"username"] andPassword:[dic valueForKey:@"password"]];
+        return [source authWithDictionary:dic];
     return NO;
 }
 
 +(void) cleanAuth
 {
-    [[[controlCenter sharedCenter] getSource] authWithUsername:@"" andPassword:@""];
+    [[[controlCenter sharedCenter] getSource] authWithDictionary:nil];
 }
 
 - (id)init

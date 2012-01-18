@@ -22,8 +22,13 @@
     IBOutlet NSTabView* mainview;
     IBOutlet NSTextField* email;
     IBOutlet NSSecureTextField* pass;
+    IBOutlet NSTextField* captcha_input;
+    IBOutlet NSButton* captcha_button;
     
     IBOutlet NSButton* version;
+    IBOutlet NSProgressIndicator* indicator;
+    
+    NSString* captcha_code;
 }
 
 @property(nonatomic,assign) NSToolbar* toolbar;
@@ -43,6 +48,8 @@
 -(IBAction)updatePassword:(id)sender;
 -(IBAction)updateApp:(id)sender;
 -(IBAction)dockAlbum:(id)sender;
+
+-(IBAction)getCaptchaImage:(id)sender;
 
 
 -(IBAction)openLink:(id)sender;

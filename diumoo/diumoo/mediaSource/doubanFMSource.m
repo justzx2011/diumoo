@@ -58,16 +58,27 @@
     return self;
 }
 
--(BOOL) authWithUsername:(NSString*) name andPassword:(NSString*) password
+-(BOOL) authWithDictionary:(NSDictionary *)dic
 {
+    
     [condition lock];
-    if([name isNotEqualTo:@""] && [password isNotEqualTo:@""]){
+    NSString* name=@"",*password=@"",*captcha=@"",*captcha_code=@"";
+    if(dic!=nil){
+        name=[dic valueForKey:@"username"];
+        password=[dic valueForKey:@"password"];
+        captcha=[dic valueForKey:@"captcha"];
+        captcha_code=[dic valueForKey:@"captcha_code"];
+        NSLog(@"%@",captcha_code);
+    }
+    if(name && password && captcha && captcha_code && [name length]>0 && [captcha length]>0){
         //生成表单body
         CFStringRef encodedName=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)name, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
         CFStringRef encodedPass=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)password, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
-        NSData* body=[[NSString stringWithFormat:@"alias=%@&form_password=%@&source=radio\n",encodedName,encodedPass] dataUsingEncoding:NSUTF8StringEncoding];
+        CFStringRef encodedCaptcha=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)captcha, NULL, (CFStringRef)@"+!*'();:&=$,/?%#[]|", kCFStringEncodingUTF8);
+        NSData* body=[[NSString stringWithFormat:@"alias=%@&form_password=%@&source=radio%captcha_solution=%@&captcha_id=%@\n",encodedName,encodedPass,encodedCaptcha,captcha_code] dataUsingEncoding:NSUTF8StringEncoding];
         CFRelease(encodedName);
         CFRelease(encodedPass);
+        CFRelease(encodedCaptcha);
         
         //初始化request
         [request setHTTPMethod:@"POST"];
