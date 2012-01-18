@@ -33,8 +33,8 @@
         dv=[[DetailView alloc] init];
         
         //红心电台和私人电台
-        heartChannel=[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RED_CHAN", nil) action:nil keyEquivalent:@""];
-        privateChannel=[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"PERSONAL_CHAN", nil) action:nil keyEquivalent:@""];
+        heartChannel=[[NSMenuItem alloc] initWithTitle:@"红心兆赫" action:nil keyEquivalent:@""];
+        privateChannel=[[NSMenuItem alloc] initWithTitle:@"私人兆赫" action:nil keyEquivalent:@""];
         
         [heartChannel setTag:-3];
         [privateChannel setTag:0];

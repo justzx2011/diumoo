@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">11C74</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1617</string>
-		<string key="IBDocument.AppKitVersion">1138.23</string>
-		<string key="IBDocument.HIToolboxVersion">567.00</string>
+		<int key="IBDocument.SystemTarget">1060</int>
+		<string key="IBDocument.SystemVersion">11D42</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1617</string>
+			<string key="NS.object.0">1938</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -39,11 +39,8 @@
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<object class="NSArray" key="dict.sortedKeys" id="0">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-			</object>
-			<reference key="dict.values" ref="0"/>
+			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
+			<integer value="1" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -295,7 +292,9 @@
 						<reference ref="343543799"/>
 						<reference ref="118775339"/>
 					</object>
-					<reference key="NSToolbarIBSelectableItems" ref="0"/>
+					<object class="NSArray" key="NSToolbarIBSelectableItems" id="0">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+					</object>
 				</object>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="1006">
@@ -990,7 +989,7 @@
 											<object class="NSTextField" id="900856179">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{136, 94}, {56, 17}}</string>
+												<string key="NSFrame">{{136, 112}, {56, 17}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="644963898"/>
@@ -1010,7 +1009,7 @@
 											<object class="NSTextField" id="644963898">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{197, 89}, {60, 22}}</string>
+												<string key="NSFrame">{{197, 107}, {60, 22}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="936913789"/>
@@ -1031,7 +1030,7 @@
 											<object class="NSButton" id="936913789">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{265, 89}, {103, 39}}</string>
+												<string key="NSFrame">{{197, 65}, {103, 39}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="713247723"/>
@@ -1060,7 +1059,7 @@
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">-2147482356</int>
 												<object class="NSPSMatrix" key="NSDrawMatrix"/>
-												<string key="NSFrame">{{377, 109}, {16, 16}}</string>
+												<string key="NSFrame">{{314, 77}, {16, 16}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<string key="NSReuseIdentifierKey">_NS:3954</string>
@@ -1384,7 +1383,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="980225553"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -1444,22 +1443,6 @@
 					<int key="connectionID">298</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: values.DesktopWaveLevel</string>
-						<reference key="source" ref="934620984"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="934620984"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">selectedTag: values.DesktopWaveLevel</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">values.DesktopWaveLevel</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">379</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">desktopWaveLevelChanged:</string>
 						<reference key="source" ref="1001"/>
@@ -1508,148 +1491,12 @@
 					<int key="connectionID">421</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.ShowDockIcon</string>
-						<reference key="source" ref="651691603"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="651691603"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">value: values.ShowDockIcon</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.ShowDockIcon</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">451</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.EnableGrowl</string>
-						<reference key="source" ref="195122937"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="195122937"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">value: values.EnableGrowl</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.EnableGrowl</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">455</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.EnableiTunes</string>
-						<reference key="source" ref="772924395"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="772924395"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">value: values.EnableiTunes</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.EnableiTunes</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">459</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.PlayPauseFastHotKey</string>
-						<reference key="source" ref="725552600"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="725552600"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">value: values.PlayPauseFastHotKey</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.PlayPauseFastHotKey</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">463</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.RateHotKey</string>
-						<reference key="source" ref="195026212"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="195026212"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">value: values.RateHotKey</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.RateHotKey</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">467</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: values.GoogleSearchType</string>
-						<reference key="source" ref="244548066"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="244548066"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">selectedTag: values.GoogleSearchType</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">values.GoogleSearchType</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSAllowsEditingMultipleValuesSelection</string>
-								<boolean value="NO" key="NS.object.0"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">468</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.TwitterDoubanInfo</string>
-						<reference key="source" ref="708116866"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="708116866"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">value: values.TwitterDoubanInfo</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.TwitterDoubanInfo</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSNoSelectionPlaceholder</string>
-								<integer value="0" key="NS.object.0"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">473</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">updateApp:</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="660394743"/>
 					</object>
 					<int key="connectionID">488</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.ShowAlbumOnDock</string>
-						<reference key="source" ref="649294407"/>
-						<reference key="destination" ref="160939701"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="649294407"/>
-							<reference key="NSDestination" ref="160939701"/>
-							<string key="NSLabel">value: values.ShowAlbumOnDock</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.ShowAlbumOnDock</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">500</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -1730,6 +1577,158 @@
 						<reference key="destination" ref="936913789"/>
 					</object>
 					<int key="connectionID">533</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.EnableGrowl</string>
+						<reference key="source" ref="195122937"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="195122937"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">value: values.EnableGrowl</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.EnableGrowl</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">455</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.EnableiTunes</string>
+						<reference key="source" ref="772924395"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="772924395"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">value: values.EnableiTunes</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.EnableiTunes</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">459</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.PlayPauseFastHotKey</string>
+						<reference key="source" ref="725552600"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="725552600"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">value: values.PlayPauseFastHotKey</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.PlayPauseFastHotKey</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">463</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.RateHotKey</string>
+						<reference key="source" ref="195026212"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="195026212"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">value: values.RateHotKey</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.RateHotKey</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">467</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedTag: values.DesktopWaveLevel</string>
+						<reference key="source" ref="934620984"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="934620984"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">selectedTag: values.DesktopWaveLevel</string>
+							<string key="NSBinding">selectedTag</string>
+							<string key="NSKeyPath">values.DesktopWaveLevel</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">379</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.TwitterDoubanInfo</string>
+						<reference key="source" ref="708116866"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="708116866"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">value: values.TwitterDoubanInfo</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.TwitterDoubanInfo</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNoSelectionPlaceholder</string>
+								<integer value="0" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">473</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedTag: values.GoogleSearchType</string>
+						<reference key="source" ref="244548066"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="244548066"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">selectedTag: values.GoogleSearchType</string>
+							<string key="NSBinding">selectedTag</string>
+							<string key="NSKeyPath">values.GoogleSearchType</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSAllowsEditingMultipleValuesSelection</string>
+								<boolean value="NO" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">468</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ShowDockIcon</string>
+						<reference key="source" ref="651691603"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="651691603"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">value: values.ShowDockIcon</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ShowDockIcon</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">451</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ShowAlbumOnDock</string>
+						<reference key="source" ref="649294407"/>
+						<reference key="destination" ref="160939701"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="649294407"/>
+							<reference key="NSDestination" ref="160939701"/>
+							<string key="NSLabel">value: values.ShowAlbumOnDock</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ShowAlbumOnDock</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">500</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1876,10 +1875,10 @@
 							<reference ref="598890418"/>
 							<reference ref="236255027"/>
 							<reference ref="713247723"/>
-							<reference ref="71968554"/>
-							<reference ref="936913789"/>
 							<reference ref="900856179"/>
 							<reference ref="644963898"/>
+							<reference ref="936913789"/>
+							<reference ref="71968554"/>
 						</object>
 						<reference key="parent" ref="1012242649"/>
 					</object>
@@ -2965,6 +2964,10 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<real value="1060" key="NS.object.0"/>
+		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
 			<integer value="3000" key="NS.object.0"/>
@@ -2991,8 +2994,8 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{32, 32}</string>
-				<string>{9, 8}</string>
-				<string>{7, 2}</string>
+				<string>{11, 11}</string>
+				<string>{10, 3}</string>
 				<string>{32, 32}</string>
 				<string>{21, 16}</string>
 				<string>{10, 12}</string>

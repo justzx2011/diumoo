@@ -23,8 +23,6 @@
 
 
 //Channel & Music
-"PERSONAL_CHAN"="Personal Channel";
-"RED_CHAN"="Redheart Channel";
 "UNKNOWN_CHAN"="[>.<]Sorry, I don't know this channel";
 "DOUBAN_FM"="Douban Radio";
 "UNKNOWN_ARTIST"="Unknown Artist";

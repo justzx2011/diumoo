@@ -18,12 +18,12 @@
         srand((int)time(0));
         
         //初始化 request
-        request=[[[NSMutableURLRequest alloc]init] retain] ;
+        request=[[NSMutableURLRequest alloc]init];
         [request setTimeoutInterval:TIMEOUT];
         [request setHTTPShouldHandleCookies:YES];
         
         //初始化lock
-        condition=[[[NSCondition alloc]init] retain] ;
+        condition=[[NSCondition alloc]init];
         
         //将Cookie设置为空
         cookie=nil;
@@ -337,13 +337,13 @@
 {
     if(c==0){
         if(channelName){[channelName release];channelName=nil;}
-        channelName=[NSLocalizedString(@"PERSONAL_CHAN", nil) retain];
+        channelName=[@"私人兆赫" retain];
         return YES;
     }
     else if(c==-3)
     {
         if(channelName){[channelName release];channelName=nil;}
-        channelName=[NSLocalizedString(@"RED_CHAN", nil) retain];
+        channelName=[@"红心兆赫" retain];
         return YES;
 
     }
