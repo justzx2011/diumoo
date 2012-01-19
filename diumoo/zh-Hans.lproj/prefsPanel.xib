@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">11D42</string>
+		<string key="IBDocument.SystemVersion">11C74</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.32</string>
-		<string key="IBDocument.HIToolboxVersion">568.00</string>
+		<string key="IBDocument.AppKitVersion">1138.23</string>
+		<string key="IBDocument.HIToolboxVersion">567.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">1938</string>
@@ -843,7 +843,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">邮箱：</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="632553683"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -863,7 +863,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">密码：</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="98757390"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -932,7 +932,7 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">272629760</int>
 													<string key="NSContents">登陆豆瓣以激活歌曲加心、记录等功能，您的密码将会被保存在系统钥匙串当中。</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3596</string>
 													<reference key="NSControlView" ref="598890418"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -951,7 +951,7 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents">登陆</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:161</string>
 													<reference key="NSControlView" ref="236255027"/>
 													<int key="NSButtonFlags">-2038284033</int>
@@ -975,7 +975,7 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents">退出登陆</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:161</string>
 													<reference key="NSControlView" ref="713247723"/>
 													<int key="NSButtonFlags">-2038284033</int>
@@ -999,7 +999,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">验证码：</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="900856179"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -1041,8 +1041,8 @@
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents">点击获取验证码</string>
 													<object class="NSFont" key="NSSupport">
-														<string key="NSName">STHeitiSC-Light</string>
-														<double key="NSSize">11</double>
+														<string key="NSName">LucidaGrande</string>
+														<double key="NSSize">12</double>
 														<int key="NSfFlags">16</int>
 													</object>
 													<string key="NSCellIdentifier">_NS:1491</string>
@@ -2994,8 +2994,8 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{32, 32}</string>
-				<string>{11, 11}</string>
-				<string>{10, 3}</string>
+				<string>{9, 8}</string>
+				<string>{7, 2}</string>
 				<string>{32, 32}</string>
 				<string>{21, 16}</string>
 				<string>{10, 12}</string>

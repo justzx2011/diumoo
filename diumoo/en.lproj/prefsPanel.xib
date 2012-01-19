@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">11D42</string>
+		<string key="IBDocument.SystemVersion">11C74</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.32</string>
-		<string key="IBDocument.HIToolboxVersion">568.00</string>
+		<string key="IBDocument.AppKitVersion">1138.23</string>
+		<string key="IBDocument.HIToolboxVersion">567.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">1938</string>
@@ -331,10 +331,10 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">71304192</int>
 													<string key="NSContents">Notification</string>
-													<object class="NSFont" key="NSSupport" id="133986757">
-														<string key="NSName">STHeitiSC-Light</string>
+													<object class="NSFont" key="NSSupport" id="509702367">
+														<string key="NSName">LucidaGrande</string>
 														<double key="NSSize">13</double>
-														<int key="NSfFlags">16</int>
+														<int key="NSfFlags">1044</int>
 													</object>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="1025461064"/>
@@ -370,7 +370,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">71304192</int>
 													<string key="NSContents">DesktopWave</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="289876028"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -389,7 +389,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">71304192</int>
 													<string key="NSContents">Keyboard Shortcuts</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="948600939"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -408,7 +408,7 @@
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents">Enable Growl Notification</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="195122937"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -429,7 +429,7 @@
 											<object class="NSButton" id="772924395">
 												<reference key="NSNextResponder" ref="225069543"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{175, 199}, {321, 18}}</string>
+												<string key="NSFrame">{{175, 199}, {327, 18}}</string>
 												<reference key="NSSuperview" ref="225069543"/>
 												<reference key="NSNextKeyView" ref="289876028"/>
 												<string key="NSReuseIdentifierKey">_NS:239</string>
@@ -438,7 +438,11 @@
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents">Simulate iTunes Broadcast (Update iChat Status)</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<object class="NSFont" key="NSSupport" id="56037952">
+														<string key="NSName">LucidaGrande</string>
+														<double key="NSSize">13</double>
+														<int key="NSfFlags">16</int>
+													</object>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="772924395"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -463,7 +467,7 @@
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents">Use  ► and ►►  to Play and Skip Songs</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="725552600"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -488,7 +492,7 @@
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents">Use ◄◄  to Mark Favourite</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="195026212"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -512,11 +516,7 @@
 												<object class="NSPopUpButtonCell" key="NSCell" id="275660542">
 													<int key="NSCellFlags">-2076049856</int>
 													<int key="NSCellFlags2">2048</int>
-													<object class="NSFont" key="NSSupport" id="509702367">
-														<string key="NSName">LucidaGrande</string>
-														<double key="NSSize">13</double>
-														<int key="NSfFlags">1044</int>
-													</object>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:179</string>
 													<reference key="NSControlView" ref="934620984"/>
 													<int key="NSButtonFlags">109199615</int>
@@ -626,7 +626,7 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents">Include Douban Radio Channel and Album Link</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="708116866"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -644,6 +644,7 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{174, 31}, {199, 26}}</string>
 												<reference key="NSSuperview" ref="225069543"/>
+												<reference key="NSNextKeyView" ref="980225553"/>
 												<string key="NSReuseIdentifierKey">_NS:179</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSPopUpButtonCell" key="NSCell" id="360831310">
@@ -722,7 +723,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">71304192</int>
 													<string key="NSContents">Dock  Icon</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="257571875"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -741,7 +742,7 @@
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents">Show Dock Icon (Need Restart)</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="651691603"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -766,7 +767,7 @@
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents">Show Album Art on Dock Icon</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:239</string>
 													<reference key="NSControlView" ref="649294407"/>
 													<int key="NSButtonFlags">1211912703</int>
@@ -843,7 +844,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">E-mail:</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="632553683"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -863,7 +864,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">Passwords:</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="98757390"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -922,7 +923,7 @@
 											<object class="NSTextField" id="598890418">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{149, 192}, {223, 68}}</string>
+												<string key="NSFrame">{{148, 191}, {234, 70}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="632553683"/>
@@ -932,7 +933,7 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">4194304</int>
 													<string key="NSContents">Login Douban will enbale red heart songs and recods. Your passwords will be stored in System  Keychain.</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3596</string>
 													<reference key="NSControlView" ref="598890418"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -945,14 +946,14 @@
 												<string key="NSFrame">{{249, 24}, {126, 32}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView"/>
+												<reference key="NSNextKeyView" ref="980225553"/>
 												<string key="NSReuseIdentifierKey">_NS:161</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="90920008">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents">Login</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:161</string>
 													<reference key="NSControlView" ref="236255027"/>
 													<int key="NSButtonFlags">-2038284033</int>
@@ -976,7 +977,7 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents">Clear</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:161</string>
 													<reference key="NSControlView" ref="713247723"/>
 													<int key="NSButtonFlags">-2038284033</int>
@@ -990,7 +991,7 @@
 											<object class="NSTextField" id="659032171">
 												<reference key="NSNextResponder" ref="173574132"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{129, 110}, {66, 17}}</string>
+												<string key="NSFrame">{{136, 110}, {63, 17}}</string>
 												<reference key="NSSuperview" ref="173574132"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="252484877"/>
@@ -1000,7 +1001,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">Captcha:</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="659032171"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -1041,8 +1042,8 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents">Click for Captcha</string>
-													<object class="NSFont" key="NSSupport">
-														<string key="NSName">STHeitiSC-Light</string>
+													<object class="NSFont" key="NSSupport" id="368788118">
+														<string key="NSName">LucidaGrande</string>
 														<double key="NSSize">11</double>
 														<int key="NSfFlags">16</int>
 													</object>
@@ -1163,11 +1164,7 @@
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">Copyright © 2012 ant_sz </string>
-													<object class="NSFont" key="NSSupport" id="368788118">
-														<string key="NSName">LucidaGrande</string>
-														<double key="NSSize">11</double>
-														<int key="NSfFlags">16</int>
-													</object>
+													<reference key="NSSupport" ref="368788118"/>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="1045191195"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -1179,6 +1176,7 @@
 												<int key="NSvFlags">292</int>
 												<string key="NSFrame">{{282, 8}, {117, 17}}</string>
 												<reference key="NSSuperview" ref="979154825"/>
+												<reference key="NSNextKeyView" ref="980225553"/>
 												<string key="NSReuseIdentifierKey">_NS:3936</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="1000062785">
@@ -1204,7 +1202,7 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">272629760</int>
 													<string key="NSContents">Developing with: @Khao_T @seansay</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<reference key="NSSupport" ref="509702367"/>
 													<string key="NSCellIdentifier">_NS:3596</string>
 													<reference key="NSControlView" ref="296457241"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -1269,11 +1267,7 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents">ant.sz@gmail.com</string>
-													<object class="NSFont" key="NSSupport">
-														<string key="NSName">LucidaGrande</string>
-														<double key="NSSize">13</double>
-														<int key="NSfFlags">16</int>
-													</object>
+													<reference key="NSSupport" ref="56037952"/>
 													<string key="NSCellIdentifier">_NS:1491</string>
 													<reference key="NSControlView" ref="996978736"/>
 													<int key="NSButtonFlags">-2035531521</int>
@@ -1301,7 +1295,11 @@
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
 													<string key="NSContents">官方主页</string>
-													<reference key="NSSupport" ref="133986757"/>
+													<object class="NSFont" key="NSSupport" id="133986757">
+														<string key="NSName">STHeitiSC-Light</string>
+														<double key="NSSize">13</double>
+														<int key="NSfFlags">16</int>
+													</object>
 													<string key="NSCellIdentifier">_NS:1491</string>
 													<reference key="NSControlView" ref="536551163"/>
 													<int key="NSButtonFlags">-2035531521</int>
@@ -1386,7 +1384,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="980225553"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {2560, 1418}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -1879,9 +1877,9 @@
 							<reference ref="236255027"/>
 							<reference ref="713247723"/>
 							<reference ref="252484877"/>
-							<reference ref="659032171"/>
 							<reference ref="695175085"/>
 							<reference ref="153663295"/>
+							<reference ref="659032171"/>
 						</object>
 						<reference key="parent" ref="1012242649"/>
 					</object>
@@ -2997,8 +2995,8 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{32, 32}</string>
-				<string>{11, 11}</string>
-				<string>{10, 3}</string>
+				<string>{9, 8}</string>
+				<string>{7, 2}</string>
 				<string>{32, 32}</string>
 				<string>{21, 16}</string>
 				<string>{10, 12}</string>
