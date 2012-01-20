@@ -279,7 +279,12 @@ controlCenter* sharedCenter;
         NSPasteboard* pb=[NSPasteboard pasteboardWithUniqueName];
         
         [pb setData:[str dataUsingEncoding:NSUTF8StringEncoding] forType:NSStringPboardType];
-        NSPerformService(@"Tweet", pb);
+        if(NSPerformService(@"Tweet", pb))
+            return;
+        // if the user don't have the service
+        CFStringRef encoded=CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)str, NULL, (CFStringRef)@"+!*'();:@&=$,/?%#[]", kCFStringEncodingUTF8);
+        [[NSWorkspace sharedWorkspace]openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://twitter.com/home?status=%@", encoded]]];
+        CFRelease(encoded);
     }
     else if([s isEqualToString:@"google"]||[s isEqualToString:@"lastfm"]){
         NSString* unencode=nil;
