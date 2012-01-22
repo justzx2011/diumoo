@@ -16,6 +16,5 @@ int main(int argc, char *argv[])
     [NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
     [NSApp run];
     [pool drain];
-    [pool release];
     return 0;
 }

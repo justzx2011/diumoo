@@ -42,14 +42,10 @@
         [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"RateHotKey"];
         [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"TwitterDoubanInfo"];
         [[controller values] setValue:[NSNumber numberWithInteger:NSOnState] forKey:@"ShowAlbumOnDock"];
-        
         [[controller values] setValue:[NSNumber numberWithInt:2] forKey:@"DesktopWaveLevel"];
         [[controller values] setValue:[NSNumber numberWithInt:1] forKey:@"GoogleSearchType"];
-        
         [[controller values] setValue:[NSNumber numberWithBool:NO] forKey:@"IsFirstLaunch"];
-        
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:1] forKey:@"PlayedChannel"];
-        
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:1] forKey:@"PlayedChannel"];        
     }
    
 }
@@ -59,7 +55,7 @@
     [self firstLaunch];
     growlnotify=[[notifier alloc] init];
     source=[[doubanFMSource alloc] init];
-    player=[[musicPlayer alloc] init];
+    player=[[diumooPlayer alloc] init];
     dmmenu=[[menu alloc]init];
     
      
@@ -71,7 +67,8 @@
 	if([SPMediaKeyTap usesGlobalMediaKeyTap])
 		[keyTap startWatchingMediaKeys];
     
-    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowDockIcon"] integerValue]==NSOnState){
+    if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowDockIcon"] integerValue]==NSOnState)
+    {
         ProcessSerialNumber psn = { 0, kCurrentProcess };
         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     }
@@ -86,7 +83,8 @@
 
 -(IBAction)showPreference:(id)sender
 {
-    if([sender tag]==3) [preference showPreferenceWithView:INFO_PREFERENCE_ID];
+    if([sender tag]==3) 
+        [preference showPreferenceWithView:INFO_PREFERENCE_ID];
     else [preference showPreferenceWithView:GENERAL_PREFERENCE_ID];
 }
 

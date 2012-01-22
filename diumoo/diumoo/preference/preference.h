@@ -25,6 +25,8 @@
     IBOutlet NSSecureTextField* pass;
     IBOutlet NSTextField* captcha_input;
     IBOutlet NSButton* captcha_button;
+    IBOutlet NSButton* login;
+    IBOutlet NSButton* logout;
     
     IBOutlet NSButton* version;
     IBOutlet NSProgressIndicator* indicator;

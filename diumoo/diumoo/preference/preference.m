@@ -15,27 +15,30 @@ static preference* shared;
 
 @synthesize toolbar,mainview,email,pass;
 
-+(id) sharedPreference
++ (id)sharedPreference
 {
-    if(shared==nil) shared=[[[preference alloc] init] retain];
+    if(shared==nil) 
+        shared=[[preference alloc] init];
     return shared;
 }
 
-+(void) showPreferenceWithView:(NSInteger)view_id
++ (void)showPreferenceWithView:(NSInteger) view_id
 {
     [[preference sharedPreference] selectPreferenceViewWithID:view_id];
 }
 
 +(NSDictionary*) authPrefsData
 {
-    NSString* username=[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username"].password;
-    NSString* password=[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password"].password;
+    NSString* username=[[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username"] username];
+    NSString* password=[[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username"] password];
     return [NSDictionary dictionaryWithObjectsAndKeys:username,@"username",password,@"password", nil];
 }
+
 -(id)init
 {
     self=[super initWithWindowNibName:@"prefsPanel"];
-    if(self){
+    if(self)
+    {
         captcha_code=nil;
     }
     return self;
@@ -44,8 +47,6 @@ static preference* shared;
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
-    
 }
 
 -(IBAction) selectPreferenceView:(id)sender
@@ -58,9 +59,13 @@ static preference* shared;
     [self showWindow:self];
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     NSToolbarItem* idi=nil;
+    
     for (NSToolbarItem* item in [toolbar items])
     {
-        if([item tag]==view_id) {idi=item;break;}
+        if([item tag]==view_id) 
+            {
+                idi=item;break;
+            }
         else if([item tag]==0) idi=item;
     }
     if(view_id==ACCOUT_PREFERENCE_ID)
@@ -68,7 +73,6 @@ static preference* shared;
         NSString* username=[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username"].password;
         NSString* password=[EMGenericKeychainItem genericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password"].password;
         [email setStringValue:(username!=nil?username:@"")];
-
         [pass setStringValue:(password!=nil?password:@"")];
     }
     [version setTitle:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
@@ -95,7 +99,11 @@ static preference* shared;
     {
         [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-username" password:username];
         [EMGenericKeychainItem addGenericKeychainItemForService:@"diumoo-music-service" withUsername:@"diumoo-password" password:password];
-
+        [email setEditable:NO];
+        [pass setEditable:NO];
+        [captcha_input setEditable:NO];
+        [captcha_button setHidden:YES];
+        [login setHidden:YES];
         NSRunInformationalAlertPanel(NSLocalizedString(@"LOGIN_SUCCESS", nil), NSLocalizedString(@"VERIFY_SUCCESS", nil) , NSLocalizedString(@"KNOWN", nil) , nil, nil);
     }
     else

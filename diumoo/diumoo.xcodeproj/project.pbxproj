@@ -10,6 +10,7 @@
 		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
 		3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F058EFA14BF1D630047B2BE /* prefsPanel.xib */; };
 		3F64587014C1D8FB00F7E464 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F64586F14C1D8FB00F7E464 /* facebook.png */; };
+		3FB022D814CBED9800216867 /* diumooPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB022D714CBED9800216867 /* diumooPlayer.m */; };
 		3FB7E35E14C141F50039CBFD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FB7E36014C141F50039CBFD /* Localizable.strings */; };
 		3FECED3A14BFECEF00F26097 /* Sina.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FECED3914BFECEF00F26097 /* Sina.png */; };
 		F50F5A9014BDBF6F00587035 /* redheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A8F14BDBF6F00587035 /* redheart.png */; };
@@ -32,7 +33,6 @@
 		F58A8C77149A2EB3004E60AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C62149A2EB3004E60AD /* main.m */; };
 		F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C65149A2EB3004E60AD /* doubanFMSource.m */; };
 		F58A8C7A149A2EB3004E60AD /* notifier.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6A149A2EB3004E60AD /* notifier.m */; };
-		F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C6D149A2EB3004E60AD /* musicPlayer.m */; };
 		F58A8C7D149A2EB3004E60AD /* menu.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C73149A2EB3004E60AD /* menu.m */; };
 		F58A8C89149A3CDA004E60AD /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58A8C87149A3CDA004E60AD /* DetailView.m */; };
 		F58A8C8A149A3CDA004E60AD /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58A8C88149A3CDA004E60AD /* DetailView.xib */; };
@@ -96,6 +96,8 @@
 		3F058EF914BF1D630047B2BE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		3F058EFB14BF1D6E0047B2BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
 		3F64586F14C1D8FB00F7E464 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		3FB022D614CBED9800216867 /* diumooPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diumooPlayer.h; sourceTree = "<group>"; };
+		3FB022D714CBED9800216867 /* diumooPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = diumooPlayer.m; sourceTree = "<group>"; };
 		3FB7E35F14C141F50039CBFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FB7E36114C141FB0039CBFD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3FECED3914BFECEF00F26097 /* Sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sina.png; sourceTree = "<group>"; };
@@ -130,8 +132,6 @@
 		F58A8C65149A2EB3004E60AD /* doubanFMSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doubanFMSource.m; sourceTree = "<group>"; };
 		F58A8C69149A2EB3004E60AD /* notifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notifier.h; sourceTree = "<group>"; };
 		F58A8C6A149A2EB3004E60AD /* notifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = notifier.m; sourceTree = "<group>"; };
-		F58A8C6C149A2EB3004E60AD /* musicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = musicPlayer.h; sourceTree = "<group>"; };
-		F58A8C6D149A2EB3004E60AD /* musicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = musicPlayer.m; sourceTree = "<group>"; };
 		F58A8C72149A2EB3004E60AD /* menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
 		F58A8C73149A2EB3004E60AD /* menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menu.m; sourceTree = "<group>"; };
 		F58A8C86149A3CDA004E60AD /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
@@ -211,6 +211,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F4D59F014C9783B00B6909F /* DiumooCore */ = {
+			isa = PBXGroup;
+			children = (
+				F58A8C6B149A2EB3004E60AD /* player */,
+				F58A8C68149A2EB3004E60AD /* notifier */,
+				F58A8C63149A2EB3004E60AD /* mediaSource */,
+				F58A8C5B149A2EB3004E60AD /* controlCenter */,
+			);
+			name = DiumooCore;
+			sourceTree = "<group>";
+		};
+		3F4D59F114C9786200B6909F /* DiumooUI */ = {
+			isa = PBXGroup;
+			children = (
+				F58A8C71149A2EB3004E60AD /* view */,
+				F5766D1B149D93EF00D5FDA6 /* preferencePanel */,
+			);
+			name = DiumooUI;
+			sourceTree = "<group>";
+		};
 		F53B258314A2326200903039 /* visualizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +238,7 @@
 				F5DAA05914AB6442004404AA /* FrequencyLevels.m */,
 			);
 			name = visualizer;
+			path = ../diumoo;
 			sourceTree = "<group>";
 		};
 		F56A8403148CF92800AE6F1E = {
@@ -281,6 +302,8 @@
 		F58A8C5A149A2EB3004E60AD /* diumoo */ = {
 			isa = PBXGroup;
 			children = (
+				3F4D59F114C9786200B6909F /* DiumooUI */,
+				3F4D59F014C9783B00B6909F /* DiumooCore */,
 				F5766D32149DA0EC00D5FDA6 /* MainMenu.xib */,
 				F57EBD2D14AB1E5B00484ED1 /* diumooApp.h */,
 				F57EBD2E14AB1E5B00484ED1 /* diumooApp.m */,
@@ -289,14 +312,6 @@
 				F58A8C60149A2EB3004E60AD /* diumooAppDelegate.h */,
 				F58A8C61149A2EB3004E60AD /* diumooAppDelegate.m */,
 				F58A8C62149A2EB3004E60AD /* main.m */,
-				F5DAA05B14AB6454004404AA /* mediaKeyTap */,
-				F53B258314A2326200903039 /* visualizer */,
-				F58A8C5B149A2EB3004E60AD /* controlCenter */,
-				F58A8C63149A2EB3004E60AD /* mediaSource */,
-				F58A8C68149A2EB3004E60AD /* notifier */,
-				F58A8C6B149A2EB3004E60AD /* player */,
-				F58A8C71149A2EB3004E60AD /* view */,
-				F5766D1B149D93EF00D5FDA6 /* preferencePanel */,
 			);
 			path = diumoo;
 			sourceTree = "<group>";
@@ -331,8 +346,8 @@
 		F58A8C6B149A2EB3004E60AD /* player */ = {
 			isa = PBXGroup;
 			children = (
-				F58A8C6C149A2EB3004E60AD /* musicPlayer.h */,
-				F58A8C6D149A2EB3004E60AD /* musicPlayer.m */,
+				3FB022D614CBED9800216867 /* diumooPlayer.h */,
+				3FB022D714CBED9800216867 /* diumooPlayer.m */,
 			);
 			path = player;
 			sourceTree = "<group>";
@@ -390,6 +405,8 @@
 		F5C6C1E3149A28DF0045B3EE /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				F5DAA05B14AB6454004404AA /* mediaKeyTap */,
+				F53B258314A2326200903039 /* visualizer */,
 				F5C6C1E5149A28DF0045B3EE /* TouchJSON */,
 			);
 			path = extern;
@@ -454,6 +471,7 @@
 				F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */,
 			);
 			name = mediaKeyTap;
+			path = ../diumoo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -467,6 +485,7 @@
 				F56A840B148CF92800AE6F1E /* Frameworks */,
 				F56A840C148CF92800AE6F1E /* Resources */,
 				F5E5E6761492770600804996 /* CopyFiles */,
+				3FB022D914CBFB7300216867 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -548,6 +567,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3FB022D914CBFB7300216867 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH`\nversion=`expr $version + 1`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $version\" $PRODUCT_SETTINGS_PATH\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $version\" $PRODUCT_SETTINGS_PATH";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F56A840A148CF92800AE6F1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -568,7 +603,6 @@
 				F58A8C77149A2EB3004E60AD /* main.m in Sources */,
 				F58A8C78149A2EB3004E60AD /* doubanFMSource.m in Sources */,
 				F58A8C7A149A2EB3004E60AD /* notifier.m in Sources */,
-				F58A8C7B149A2EB3004E60AD /* musicPlayer.m in Sources */,
 				F58A8C7D149A2EB3004E60AD /* menu.m in Sources */,
 				F58A8C89149A3CDA004E60AD /* DetailView.m in Sources */,
 				F5766D3C149DB16500D5FDA6 /* preference.m in Sources */,
@@ -576,6 +610,7 @@
 				F5DAA05714AB6408004404AA /* EMKeychainItem.m in Sources */,
 				F5DAA05A14AB6442004404AA /* FrequencyLevels.m in Sources */,
 				F5DAA06114AB65CB004404AA /* SPMediaKeyTap.m in Sources */,
+				3FB022D814CBED9800216867 /* diumooPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

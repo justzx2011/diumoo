@@ -13,6 +13,7 @@ controlCenter* sharedCenter;
 
 @implementation controlCenter
 
+
 +(controlCenter*) sharedCenter
 {
     if(sharedCenter==nil)
@@ -39,10 +40,7 @@ controlCenter* sharedCenter;
     if (self) {
         
         lock=[[NSLock alloc]init];
-        state=0;
-        current=nil;
-        player=nil;
-        source=nil;
+        state = 0;
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(musicEnded:) name:@"player.end" object:nil];
         }
@@ -121,7 +119,7 @@ controlCenter* sharedCenter;
         return NO;
     
     if(player!=nil && [player isPlaying]!=YES){
-        [player performSelectorOnMainThread:@selector(play) withObject:nil waitUntilDone:NO];
+        [player performSelectorOnMainThread:@selector(resume) withObject:nil waitUntilDone:NO];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"player.resume" object:nil userInfo:current];
     }
     else 

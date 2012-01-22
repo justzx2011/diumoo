@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "doubanFMSource.h"
-#import "musicPlayer.h"
+#import "diumooPlayer.h"
 #import "notifier.h"
 #import "menu.h"
 #import "SPMediaKeyTap.h"
@@ -16,7 +16,7 @@
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
 
     NSUserDefaultsController* controller;
-    musicPlayer* player;
+    diumooPlayer* player;
     doubanFMSource* source;
     notifier* growlnotify;
     menu* dmmenu;

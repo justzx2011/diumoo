@@ -1,9 +1,11 @@
 //
-//  musicPlayer.h
-//  diumoo
+//  diumooPlayer.h
+//  diumoo -- A full function Douban Radio Client
 //
 //  Created by Shanzi on 11-12-8.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
+//  Modified by Anakin~Mac(Macidea) on 12-1-22
+//
+//  Copyright 2011-2012 Macidea.Team. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,34 +17,34 @@
 
 
 
-@interface musicPlayer : NSObject
+@interface diumooPlayer : NSObject
 {
     QTMovie* player;
-    NSCondition* cond;
+    NSCondition* condition;
     FrequencyLevels* level;
-    BOOL token;
-    
+        
 	float autoFadeDuration;
 	float autoFadeTargetVolume;
 	float autoFadeStartVolume;
 	NSTimer* autoFadeTimer;
 }
 
--(void) _start_to_play_notification:(NSDictionary*) m;
+//playing functions
 -(BOOL) startToPlay:(NSDictionary*) music;
-
--(void) _pause;
+-(void) pause;
 -(void) lazyPause;
+-(void) resume;
+//end of playing functions
 
 -(BOOL) isPlaying;
-
--(void) play;
--(void) pause;
 -(void) ended;
 -(void) endedWithError;
 -(void) playing_rate;
+
+//functions that implement Fade in and out
 - (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target;
 - (void)stopAutoFade;
 - (void)updateAutoFade:(NSTimer*)theTimer;
+//end of functions that implement Fade in and out
 
 @end

@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "doubanFMSource.h"
-#import "musicPlayer.h"
+#import "diumooPlayer.h"
 
 #define PLAYER_STATE_READY (1)
 #define SOURCE_STATE_READY (1<<1)
 
 @interface controlCenter : NSObject
 {
-    musicPlayer* player;
+    diumooPlayer* player;
     doubanFMSource* source;
     NSDictionary* current;
     
@@ -30,9 +30,9 @@
 +(void) cleanAuth;
 
 -(void) musicEnded:(NSNotification*)n;
--(BOOL) setPlayer:(musicPlayer*) p;
+-(BOOL) setPlayer:(diumooPlayer*) p;
 -(BOOL) setSource:(doubanFMSource*) s;
--(musicPlayer*) getPlayer;
+-(diumooPlayer*) getPlayer;
 -(doubanFMSource*) getSource;
 
 
