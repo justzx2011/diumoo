@@ -75,7 +75,12 @@ static preference* shared;
         [email setStringValue:(username!=nil?username:@"")];
         [pass setStringValue:(password!=nil?password:@"")];
     }
-    [version setTitle:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+    
+    NSString *versionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *versionNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    
+    [version setTitle:[versionString stringByAppendingString:versionNumber]];
+    
     [mainview selectTabViewItemAtIndex:[idi tag]];
     [toolbar setSelectedItemIdentifier:idi.itemIdentifier];
 }
@@ -131,7 +136,8 @@ static preference* shared;
         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
     }
 }
--(IBAction)updateApp:(id)sender{
+-(IBAction)updateApp:(id)sender
+{
     [[SUUpdater sharedUpdater] checkForUpdates:sender];
 }
 
