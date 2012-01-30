@@ -37,3 +37,12 @@
 "VERIFY_FAIL_DETAIL"="Account verify failed, please check the information you provide";
 "ACCOUNT_CLEAR"="Account Clear";
 "ACCOUNT_CLEAR_DETAIL"="Successfully removed your account information from Keychain";
+
+//musicSource
+"CHANNEL_FILE_NAME"="dchannels-en";
+
+//view/menu
+"RED_HEART_MHZ"="Red Heart MHz";
+"PRIVATE_MHZ"="Private MHz";
+
+
