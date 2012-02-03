@@ -167,8 +167,9 @@ controlCenter* sharedCenter;
         NSString* sid=[current valueForKey:@"sid"];
         [sid retain];
         [current release];
-        if(player!=nil && ([player pause],(current=[source getNewSongBySkip:sid]))!=nil)
+        if(player!=nil && (current=[source getNewSongBySkip:sid])!=nil)
             {
+                [player pause];
                 [current retain];
                 [sid release]; 
                 [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
