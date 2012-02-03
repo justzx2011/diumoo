@@ -68,8 +68,12 @@
     
     [condition lock];
     [level toggleFreqLevels:NSOffState];
+    if(player){
+        [player invalidate];
+        [player release];
+        player=nil;
+    }
     
-    player=nil;
     NSError* error = nil;
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&error] retain]; 
     
