@@ -31,6 +31,7 @@
                                                   object:nil];
         
         //---------------------------------@ register notification observer -------------------------
+        level=[[FrequencyLevels alloc] init];
     }
     
     return self;
@@ -232,9 +233,10 @@
     }
     else
     {
+        
         [level toggleFreqLevels:NSOffState];
         [level setMovie:nil];
-        if(([player duration].timeValue - [player currentTime].timeValue)<100) 
+        if(([player duration].timeValue>1000)&&([player duration].timeValue - [player currentTime].timeValue)<100) 
             [self ended];
     }
 }

@@ -242,6 +242,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
             
         }
         @finally {
+            
             mContainer.hidden = YES;
             waveState=NSOffState;
         }
