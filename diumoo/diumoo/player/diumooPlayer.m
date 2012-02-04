@@ -82,13 +82,12 @@
     {
         
         [player autoplay];
-        [player setVolume:0.0f];
+        [player setVolume:1.0f];
         
         NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
         [image release];
         
-        [self startAutoFadeDuration:0.5f startVolume:0.0f targetVolume:1.0f];
     }
     else [self endedWithError];
     
@@ -236,7 +235,8 @@
         
         [level toggleFreqLevels:NSOffState];
         [level setMovie:nil];
-        if(([player duration].timeValue>1000)&&([player duration].timeValue - [player currentTime].timeValue)<100) 
+        
+        if(([player duration].timeValue - [player currentTime].timeValue)<100) 
             [self ended];
     }
 }

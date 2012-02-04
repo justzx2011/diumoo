@@ -104,7 +104,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     // load image for the level indicator layers
 
     // create the layers
-    mContainer = [[CALayer layer] retain];
+    mContainer = [[CALayer layer]retain];
     [mContainer setFrame:CGRectMake (0, 0, 1400,100)];
     [mContainer setDelegate:self];
     
@@ -214,6 +214,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 // called when the button is pressed - turns the level meters on/off by setting up a timer
 - (void)toggleFreqLevels:(NSCellStateValue)state
 {
+    if([[[[NSUserDefaultsController sharedUserDefaultsController]values]valueForKey:@"DesktopWaveLevel"]integerValue]){
     [condition lock];
     if (NSOnState == state) 
     {
@@ -250,6 +251,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
         
     }
     [condition unlock];
+    }
 }
 
 
