@@ -58,10 +58,14 @@
     if(![notificationLock tryLock]) return;
     bool issnail=[[music valueForKey:@"issnail"] boolValue];
     NSImage* image=nil;
-    if(issnail) image=[NSImage imageNamed:@"songofsnail.png"];
-    else image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
+    if(issnail) 
+        image=[NSImage imageNamed:@"songofsnail.png"];
+    else 
+    {
+        image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
+        [image autorelease];       
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
-    [image release];
     if(!issnail){
         [player autoplay];
         [current_music release];
