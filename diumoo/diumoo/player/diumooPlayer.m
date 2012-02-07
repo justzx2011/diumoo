@@ -18,11 +18,16 @@
 {
     self = [super init];
     if (self) {
+        count=0;
         //--------------------------------- register notification observer --------------------------
         
         [[NSNotificationCenter defaultCenter]addObserver:self 
                                                 selector:@selector(playing_rate) 
                                                     name:QTMovieRateDidChangeNotification 
+                                                  object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self 
+                                                selector:@selector(loadStateChange:) 
+                                                    name:QTMovieLoadStateDidChangeNotification 
                                                   object:nil];
         
         [[NSNotificationCenter defaultCenter]addObserver:self 
@@ -31,15 +36,62 @@
                                                   object:nil];
         
         //---------------------------------@ register notification observer -------------------------
+        condition=[[NSCondition alloc] init];
+        notificationLock=[[NSLock alloc] init];
+        
         level=[[FrequencyLevels alloc] init];
+        //init song of snail
+        songofsnail=[[NSDictionary dictionaryWithObjectsAndKeys:
+                     @"Song of Snail",@"Album",
+                     [NSNumber numberWithBool:YES],@"issnail",
+                     NSLocalizedString(@"Whoops",nil),@"Artist",
+                     NSLocalizedString(@"NET_WORK_SLOW",nil),@"Name",nil
+                     ] retain];
+        
     }
     
     return self;
 }
 
+-(void) postMusicNotificationInBackground:(NSDictionary *)music
+{
+    if(![notificationLock tryLock]) return;
+    bool issnail=[[music valueForKey:@"issnail"] boolValue];
+    NSImage* image=nil;
+    if(issnail) image=[NSImage imageNamed:@"songofsnail.png"];
+    else image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
+    [image release];
+    if(!issnail){
+        [player autoplay];
+        [current_music release];
+         current_music=nil;
+    }
+    [notificationLock unlock];
+}
+
+-(void)loadStateChange:(NSNotification *)n
+{
+    if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0){
+        if((++count)>4){
+            [self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:songofsnail];
+        }
+        else{[self endedWithError];}
+        return;
+    }
+
+    if(current_music){
+        count=0;
+        [self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:current_music];
+    }
+}
+
 -(void) dealloc
 {
+    if(current_music)[current_music release];
+    
     [condition release];
+    [songofsnail release];
     [player release];
     [level release];
     [super dealloc];
@@ -77,17 +129,17 @@
     
     NSError* error = nil;
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&error] retain]; 
-    
+    NSLog(@"before error check");
     if(error==NULL) 
     {
         
-        [player autoplay];
+        //[player autoplay];
+        //NSLog(@"autoplay");
         [player setVolume:1.0f];
         
-        NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
-        [image release];
-        
+        if(current_music){[current_music release];current_music=nil;}
+        current_music=[music retain];
+
     }
     else [self endedWithError];
     

@@ -74,10 +74,15 @@
     }
     
     [dmmenu performSelectorInBackground:@selector(fireToPlayTheDefaultChannel) withObject:nil];
+    
+    [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification
 {
+    [[NSApp dockTile] setBadgeLabel:@""];
+    [NSApp setApplicationIconImage:nil];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:[NSDictionary dictionaryWithObject:@"Paused" forKey:@"Player State"]];
     [player lazyPause];
 }
 
@@ -100,10 +105,12 @@
                     [[controlCenter sharedCenter] play_pause];
                 break;
             case NX_KEYTYPE_FAST:
-                if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"PlayPauseFastHotKey"] integerValue]==NSOnState)
+                if(([event modifierFlags] & NSShiftKeyMask) && [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ByeHotKey"]) [[controlCenter sharedCenter] bye];
+                else if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"PlayPauseFastHotKey"] integerValue]==NSOnState)
                     [[controlCenter sharedCenter] skip];
                 break;
             case NX_KEYTYPE_REWIND:
+                
                 if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"RateHotKey"] integerValue]==NSOnState)
                     if([dmmenu lightHeart])[[controlCenter sharedCenter] rate];
                 break;

@@ -16,17 +16,23 @@
 #define VOLUME_INTERVAL 0.1f
 
 
-
 @interface diumooPlayer : NSObject
 {
     QTMovie* player;
     NSCondition* condition;
+    
+    NSLock* notificationLock;
+    
     FrequencyLevels* level;
         
 	float autoFadeDuration;
 	float autoFadeTargetVolume;
 	float autoFadeStartVolume;
 	NSTimer* autoFadeTimer;
+    NSInteger count;
+    NSDictionary* current_music;
+    
+    NSDictionary* songofsnail;
 }
 
 //playing functions
@@ -40,6 +46,8 @@
 -(void) ended;
 -(void) endedWithError;
 -(void) playing_rate;
+-(void) loadStateChange:(NSNotification*) n;
+-(void) postMusicNotificationInBackground:(NSDictionary*)music;
 
 //functions that implement Fade in and out
 - (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target;

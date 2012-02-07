@@ -45,4 +45,9 @@
 "RED_HEART_MHZ"="Red Heart MHz";
 "PRIVATE_MHZ"="Private MHz";
 
+//Player
+"Whoops"="Whoops, too slow!!";
+"NET_WORK_SLOW"="Your net connection is too slow....";
+
+
 

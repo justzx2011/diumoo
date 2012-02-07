@@ -43,3 +43,7 @@
 //view/menu
 "RED_HEART_MHZ"="红心兆赫";
 "PRIVATE_MHZ"="私人兆赫";
+
+//Player
+"Whoops"="矮油，好慢！！";
+"NET_WORK_SLOW"="看到这个了？貌似你的网太慢了...";

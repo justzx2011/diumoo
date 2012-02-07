@@ -224,7 +224,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
             mTimer=nil;
         }
         
-        mTimer = [NSTimer timerWithTimeInterval:1.0/15 target:self selector:@selector(levelTimerMethod:) userInfo:nil repeats:YES] ;
+        mTimer = [NSTimer timerWithTimeInterval:1.0/12 target:self selector:@selector(levelTimerMethod:) userInfo:nil repeats:YES] ;
         
         [[NSRunLoop currentRunLoop] addTimer:mTimer forMode:(NSString *)kCFRunLoopCommonModes];
 		mContainer.hidden = NO;
@@ -284,25 +284,51 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 {
     CGContextSaveGState(ctx);
     CGContextSetFillColorWithColor(ctx, color);
+ 
+    CGContextBeginPath(ctx);
     CGContextMoveToPoint(ctx, 0, 0);
-    CGMutablePathRef path=CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 0, 0);
-    CGPathAddCurveToPoint(path, NULL, 0, 0,20,0,40,*(values+0)/2);
-    CGPathAddCurveToPoint(path, NULL, 40,*(values+0)/2,60,*(values+0),80,(*(values)+*(values+1))/2);
+    //CGMutablePathRef path=CGPathCreateMutable();
+    //CGPathMoveToPoint(path, NULL, 0, 0);
+    CGContextAddCurveToPoint(ctx, 0, 0,20,0,40,*(values+0)/2);
+    CGContextAddCurveToPoint(ctx, 40,*(values+0)/2,60,*(values+0),80,(*(values)+*(values+1))/2);
     int i=1;
     for (; i<numberOfChannels*numberOfBandLevels-1; i++) {
-
-        CGPathAddCurveToPoint(path, NULL, i*40+40, (*(values+i)+*(values+i-1))/2 , i*40+60, *(values+i), i*40+80,(*(values+i)+*(values+i+1))/2);
+        
+        CGContextAddCurveToPoint(ctx, i*40+40, (*(values+i)+*(values+i-1))/2 , i*40+60, *(values+i), i*40+80,(*(values+i)+*(values+i+1))/2);
     }
     i++;
-    CGPathAddCurveToPoint(path, NULL, i*40+40, (*(values+i)+*(values+i-1))/2, i*40+60, *(values+i), i*40+80, *(values+i)/2);
-    CGPathAddCurveToPoint(path, NULL, i*40+80, *(values+i)/2, i*40+100, 0, i*40+120, 0);
-    CGPathCloseSubpath(path);
-    CGContextAddPath(ctx, path);
+    CGContextAddCurveToPoint(ctx, i*40+40, (*(values+i)+*(values+i-1))/2, i*40+60, *(values+i), i*40+80, *(values+i)/2);
+    CGContextAddCurveToPoint(ctx, i*40+80, *(values+i)/2, i*40+100, 0, i*40+120, 0);
+    CGContextClosePath(ctx);
+    //CGContextAddPath(ctx, path);
     CGContextFillPath(ctx);
-    CGPathRelease(path);
+    //CGPathRelease(path);
     CGContextRestoreGState(ctx);
 }
+
+//-(void) drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
+//{
+//    CGContextSaveGState(ctx);
+//    CGContextSetFillColorWithColor(ctx, color);
+//    CGContextMoveToPoint(ctx, 0, 0);
+//    CGMutablePathRef path=CGPathCreateMutable();
+//    CGPathMoveToPoint(path, NULL, 0, 0);
+//    CGPathAddCurveToPoint(path, NULL, 0, 0,20,0,40,*(values+0)/2);
+//    CGPathAddCurveToPoint(path, NULL, 40,*(values+0)/2,60,*(values+0),80,(*(values)+*(values+1))/2);
+//    int i=1;
+//    for (; i<numberOfChannels*numberOfBandLevels-1; i++) {
+//
+//        CGPathAddCurveToPoint(path, NULL, i*40+40, (*(values+i)+*(values+i-1))/2 , i*40+60, *(values+i), i*40+80,(*(values+i)+*(values+i+1))/2);
+//    }
+//    i++;
+//    CGPathAddCurveToPoint(path, NULL, i*40+40, (*(values+i)+*(values+i-1))/2, i*40+60, *(values+i), i*40+80, *(values+i)/2);
+//    CGPathAddCurveToPoint(path, NULL, i*40+80, *(values+i)/2, i*40+100, 0, i*40+120, 0);
+//    CGPathCloseSubpath(path);
+//    CGContextAddPath(ctx, path);
+//    CGContextFillPath(ctx);
+//    CGPathRelease(path);
+//    CGContextRestoreGState(ctx);
+//}
 
 
 
