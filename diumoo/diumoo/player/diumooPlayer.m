@@ -68,6 +68,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
     if(!issnail){
         [player autoplay];
+        [player setVolume:1.0f];
         [current_music release];
          current_music=nil;
     }
@@ -139,7 +140,6 @@
         
         //[player autoplay];
         //NSLog(@"autoplay");
-        [player setVolume:1.0f];
         
         if(current_music){[current_music release];current_music=nil;}
         current_music=[music retain];

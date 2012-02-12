@@ -225,8 +225,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
         }
         
         mTimer = [NSTimer timerWithTimeInterval:1.0/12 target:self selector:@selector(levelTimerMethod:) userInfo:nil repeats:YES] ;
-        
-        [[NSRunLoop currentRunLoop] addTimer:mTimer forMode:(NSString *)kCFRunLoopCommonModes];
+        [[NSRunLoop mainRunLoop] addTimer:mTimer forMode:(NSString *)kCFRunLoopCommonModes];
 		mContainer.hidden = NO;
         waveState=NSOnState;
     } 

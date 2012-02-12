@@ -158,7 +158,8 @@ static preference* shared;
         case 3:
             [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://diumoo.xiuxiu.de/sponsors/"]];
             break;
-        default:
+        case 4:
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://weibo.com/u/2717070362"]];
             break;
     }
 }
