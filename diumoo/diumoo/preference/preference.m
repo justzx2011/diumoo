@@ -79,8 +79,6 @@ static preference* shared;
     NSString *versionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSString *versionNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
     
-    NSLog(@"versionString = %@, versionNumber = %@",@"",versionNumber);
-    
     [version setTitle:[[versionString stringByAppendingString:@"."] stringByAppendingString:versionNumber]];
     
     [mainview selectTabViewItemAtIndex:[idi tag]];

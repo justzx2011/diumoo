@@ -218,6 +218,7 @@
                 [mitem setSubmenu:submenu];
             }
             [menu addItem:mitem];
+            [mitem release];
         }
         else if([channel valueForKey:@"cate"])
         {

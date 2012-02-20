@@ -141,12 +141,12 @@ NSLog(@"user_info:%@",user_info);
                         NSLog(@"Error!");
                     }
                     
-                    
-                    
                     //--------------------------------------------------------------------
                     
                     user_info=[[NSUserDefaults standardUserDefaults] valueForKey:@"user_info"];
                     if(user_info) loggedIn=YES;
+                    
+                    [parser release];
                 }
                 
                 
