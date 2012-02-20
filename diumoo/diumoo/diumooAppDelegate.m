@@ -75,7 +75,14 @@
     
     [dmmenu performSelectorInBackground:@selector(fireToPlayTheDefaultChannel) withObject:nil];
     
+    
+    [[SUUpdater sharedUpdater] setDelegate:self];
     [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
+}
+
+-(void) updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)update
+{
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 -(void) applicationWillTerminate:(NSNotification *)notification

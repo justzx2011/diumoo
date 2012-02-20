@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CJSONDeserializer.h"
+#import "HTMLParser.h"
 
 @interface doubanFMSource : NSObject{
     NSMutableURLRequest* request;

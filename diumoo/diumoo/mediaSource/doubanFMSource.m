@@ -123,6 +123,28 @@ NSLog(@"user_info:%@",user_info);
                 }
                 else if(r.statusCode==200)
                 {
+                    //----------------------解析html以获取用户信息----------------------------
+                    
+                    NSError* err=nil;
+                    
+                    HTMLParser* parser=[[HTMLParser alloc]initWithData:data error:&err];
+                    if(err==NULL){
+                        HTMLNode* bodynode=[parser body];
+                        HTMLNode* total=[[bodynode findChildOfClass:@"stat-total"] findChildTag:@"i"];
+                        HTMLNode* liked=[[bodynode findChildOfClass:@"stat-liked"] findChildTag:@"i"];
+                        HTMLNode* banned=[[bodynode findChildOfClass:@"stat-banned"] findChildTag:@"i"];
+                        if(total && liked && banned){
+                            NSLog(@"total:%@,liked:%@,banned:%@",[total contents],[liked contents],[banned contents]);
+                        }
+                    }
+                    else{
+                        NSLog(@"Error!");
+                    }
+                    
+                    
+                    
+                    //--------------------------------------------------------------------
+                    
                     user_info=[[NSUserDefaults standardUserDefaults] valueForKey:@"user_info"];
                     if(user_info) loggedIn=YES;
                 }

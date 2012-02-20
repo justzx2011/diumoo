@@ -68,7 +68,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
     if(!issnail){
         [player autoplay];
-        [player setVolume:1.0f];
         [current_music release];
          current_music=nil;
     }
@@ -80,6 +79,7 @@
     if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0){
         if((++count)>4){
             [self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:songofsnail];
+            //[NSThread sleepForTimeInterval:0.2];
         }
         else{[self endedWithError];}
         return;
@@ -280,20 +280,24 @@
         NSLog(@"Playing %lld/%lld",[player currentTime].timeValue,[player duration].timeValue);
     #endif
     
-    if([player rate]>0.9)
+    if([player rate]>0.95f)
     {
         [level toggleFreqLevels:NSOffState];
         [level setMovie:player];
         [level toggleFreqLevels:NSOnState];
+        if ([player currentTime].timeValue<1000 && autoFadeTimer==nil) {
+            [player setVolume:1.0f];
+        }
     }
+    
     else
     {
-        
         [level toggleFreqLevels:NSOffState];
         [level setMovie:nil];
         
         if(([player duration].timeValue - [player currentTime].timeValue)<100) 
             [self ended];
+        else if([player rate]>0.01f) [player setRate:1.0f];
     }
 }
 

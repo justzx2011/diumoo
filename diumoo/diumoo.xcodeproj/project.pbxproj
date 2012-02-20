@@ -52,6 +52,9 @@
 		F58A8CAB149A48DF004E60AD /* unlike.png in Resources */ = {isa = PBXBuildFile; fileRef = F58A8C9B149A48DF004E60AD /* unlike.png */; };
 		F58C5E8F149F081200DDDF95 /* album.png in Resources */ = {isa = PBXBuildFile; fileRef = F58C5E8E149F081200DDDF95 /* album.png */; };
 		F58C5E91149F089D00DDDF95 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F58C5E90149F089D00DDDF95 /* icon.icns */; };
+		F5A8957514F267EB00DD4727 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A8957214F267EB00DD4727 /* HTMLNode.m */; };
+		F5A8957614F267EB00DD4727 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A8957414F267EB00DD4727 /* HTMLParser.m */; };
+		F5A8957A14F268A700DD4727 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A8957914F268A700DD4727 /* libxml2.dylib */; };
 		F5ACE4AA14D6B23F00C629E8 /* dchannels-en.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5ACE4A814D6B23F00C629E8 /* dchannels-en.plist */; };
 		F5ACE4AB14D6B23F00C629E8 /* dchannels-zh.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5ACE4A914D6B23F00C629E8 /* dchannels-zh.plist */; };
 		F5C38F40149C58A40082FEE4 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = F5C38F3F149C58A40082FEE4 /* twitter.png */; };
@@ -155,6 +158,11 @@
 		F58A8C9B149A48DF004E60AD /* unlike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlike.png; sourceTree = "<group>"; };
 		F58C5E8E149F081200DDDF95 /* album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album.png; sourceTree = "<group>"; };
 		F58C5E90149F089D00DDDF95 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		F5A8957114F267EB00DD4727 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLNode.h; path = diumoo/HTMLParser/HTMLNode.h; sourceTree = "<group>"; };
+		F5A8957214F267EB00DD4727 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLNode.m; path = diumoo/HTMLParser/HTMLNode.m; sourceTree = "<group>"; };
+		F5A8957314F267EB00DD4727 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLParser.h; path = diumoo/HTMLParser/HTMLParser.h; sourceTree = "<group>"; };
+		F5A8957414F267EB00DD4727 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLParser.m; path = diumoo/HTMLParser/HTMLParser.m; sourceTree = "<group>"; };
+		F5A8957914F268A700DD4727 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F5ACE4A814D6B23F00C629E8 /* dchannels-en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dchannels-en.plist"; sourceTree = "<group>"; };
 		F5ACE4A914D6B23F00C629E8 /* dchannels-zh.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dchannels-zh.plist"; sourceTree = "<group>"; };
 		F5C38F3F149C58A40082FEE4 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
@@ -201,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5A8957A14F268A700DD4727 /* libxml2.dylib in Frameworks */,
 				F57EBD3714AB50D800484ED1 /* Security.framework in Frameworks */,
 				F57EBD3214AB3F2200484ED1 /* Carbon.framework in Frameworks */,
 				F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */,
@@ -248,6 +257,7 @@
 		F56A8403148CF92800AE6F1E = {
 			isa = PBXGroup;
 			children = (
+				F5A8957914F268A700DD4727 /* libxml2.dylib */,
 				3FB7E36014C141F50039CBFD /* Localizable.strings */,
 				F58A8C8B149A48DE004E60AD /* resources */,
 				F58A8C5A149A2EB3004E60AD /* diumoo */,
@@ -408,9 +418,22 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		F5A8957814F267F700DD4727 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				F5A8957114F267EB00DD4727 /* HTMLNode.h */,
+				F5A8957214F267EB00DD4727 /* HTMLNode.m */,
+				F5A8957314F267EB00DD4727 /* HTMLParser.h */,
+				F5A8957414F267EB00DD4727 /* HTMLParser.m */,
+			);
+			name = HTML;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		F5C6C1E3149A28DF0045B3EE /* extern */ = {
 			isa = PBXGroup;
 			children = (
+				F5A8957814F267F700DD4727 /* HTML */,
 				F5DAA05B14AB6454004404AA /* mediaKeyTap */,
 				F53B258314A2326200903039 /* visualizer */,
 				F5C6C1E5149A28DF0045B3EE /* TouchJSON */,
@@ -619,6 +642,8 @@
 				F5DAA05A14AB6442004404AA /* FrequencyLevels.m in Sources */,
 				F5DAA06114AB65CB004404AA /* SPMediaKeyTap.m in Sources */,
 				3FB022D814CBED9800216867 /* diumooPlayer.m in Sources */,
+				F5A8957514F267EB00DD4727 /* HTMLNode.m in Sources */,
+				F5A8957614F267EB00DD4727 /* HTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,11 +697,12 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx10.6;
@@ -693,11 +719,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_OBJC_GC = required;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.6;
