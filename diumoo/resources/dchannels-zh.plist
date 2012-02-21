@@ -160,12 +160,6 @@
 						<key>name</key>
 						<string>豆瓣音乐人</string>
 					</dict>
-					<dict>
-						<key>channel_id</key>
-						<integer>60</integer>
-						<key>name</key>
-						<string>阿比鹿</string>
-					</dict>
 				</array>
 			</dict>
 			<dict>
@@ -193,15 +187,15 @@
 					</dict>
 					<dict>
 						<key>channel_id</key>
-						<integer>65</integer>
-						<key>name</key>
-						<string>54th Grammy</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
 						<integer>64</integer>
 						<key>name</key>
 						<string>情人节</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<integer>63</integer>
+						<key>name</key>
+						<string>凤飞飞</string>
 					</dict>
 				</array>
 			</dict>
@@ -238,6 +232,12 @@
 				<string>浅谈轻唱</string>
 				<key>sub</key>
 				<array>
+					<dict>
+						<key>channel_id</key>
+						<string>10116</string>
+						<key>name</key>
+						<string>vol.28 不會說話的愛情</string>
+					</dict>
 					<dict>
 						<key>channel_id</key>
 						<string>10489</string>
@@ -292,15 +292,9 @@
 						<key>name</key>
 						<string>vol.19 十年 安妮寶貝</string>
 					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10299</string>
-						<key>name</key>
-						<string>秋天該很好你若尚在場</string>
-					</dict>
 				</array>
 				<key>timestamp</key>
-				<string>1325661768.0</string>
+				<string>1329181032.0</string>
 				<key>update</key>
 				<integer>0</integer>
 			</dict>
@@ -375,7 +369,7 @@
 				<key>timestamp</key>
 				<string>1329055187.0</string>
 				<key>update</key>
-				<integer>1</integer>
+				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>channel_id</key>
@@ -427,6 +421,12 @@
 				<string>子寒Ann</string>
 				<key>sub</key>
 				<array>
+					<dict>
+						<key>channel_id</key>
+						<string>10540</string>
+						<key>name</key>
+						<string>海上传奇</string>
+					</dict>
 					<dict>
 						<key>channel_id</key>
 						<string>10538</string>
@@ -483,7 +483,7 @@
 					</dict>
 				</array>
 				<key>timestamp</key>
-				<string>1328860152.0</string>
+				<string>1329126473.0</string>
 				<key>update</key>
 				<integer>0</integer>
 			</dict>
@@ -642,6 +642,24 @@
 				<array>
 					<dict>
 						<key>channel_id</key>
+						<string>10334</string>
+						<key>name</key>
+						<string>暗夜妖娆金属女声</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10414</string>
+						<key>name</key>
+						<string>凯尔特之异教弥撒</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10305</string>
+						<key>name</key>
+						<string>新世纪金属乐形态</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
 						<string>10499</string>
 						<key>name</key>
 						<string>哥德堡极夜之回响</string>
@@ -660,12 +678,6 @@
 					</dict>
 					<dict>
 						<key>channel_id</key>
-						<string>10481</string>
-						<key>name</key>
-						<string>屹立于死亡之前沿</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
 						<string>10258</string>
 						<key>name</key>
 						<string>新古典金属乐势力</string>
@@ -675,18 +687,6 @@
 						<string>10463</string>
 						<key>name</key>
 						<string>死亡碾碎虚无灵魂</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10205</string>
-						<key>name</key>
-						<string>哥德堡寒地之回响</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10206</string>
-						<key>name</key>
-						<string>葬式血腥之绞肉机</string>
 					</dict>
 					<dict>
 						<key>channel_id</key>
@@ -702,9 +702,9 @@
 					</dict>
 				</array>
 				<key>timestamp</key>
-				<string>1328931102.0</string>
+				<string>1329458718.0</string>
 				<key>update</key>
-				<integer>1</integer>
+				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>channel_id</key>
@@ -776,79 +776,6 @@
 				</array>
 				<key>timestamp</key>
 				<string>1322014846.0</string>
-				<key>update</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>channel_id</key>
-				<string>112177</string>
-				<key>name</key>
-				<string>掌柜阿峻</string>
-				<key>sub</key>
-				<array>
-					<dict>
-						<key>channel_id</key>
-						<string>10536</string>
-						<key>name</key>
-						<string>Radio Gaga #020 COHEN</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10535</string>
-						<key>name</key>
-						<string>103客栈 | 潘越云</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10467</string>
-						<key>name</key>
-						<string>103客栈 | 陈珊妮</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10307</string>
-						<key>name</key>
-						<string>103客栈 | 方大同</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10419</string>
-						<key>name</key>
-						<string>103客栈 | 卢凯彤</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10338</string>
-						<key>name</key>
-						<string>103客栈 | 黄耀明</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10454</string>
-						<key>name</key>
-						<string>103客栈 | 徐小凤</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10171</string>
-						<key>name</key>
-						<string>103客栈 | 罗大佑</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10472</string>
-						<key>name</key>
-						<string>103客栈 | MC HotDog</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10491</string>
-						<key>name</key>
-						<string>103客栈 | 曹格</string>
-					</dict>
-				</array>
-				<key>timestamp</key>
-				<string>1328696463.0</string>
 				<key>update</key>
 				<integer>0</integer>
 			</dict>
@@ -927,6 +854,79 @@
 			</dict>
 			<dict>
 				<key>channel_id</key>
+				<string>112177</string>
+				<key>name</key>
+				<string>掌柜阿峻</string>
+				<key>sub</key>
+				<array>
+					<dict>
+						<key>channel_id</key>
+						<string>10536</string>
+						<key>name</key>
+						<string>Radio Gaga #020 COHEN</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10535</string>
+						<key>name</key>
+						<string>103客栈 | 潘越云</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10467</string>
+						<key>name</key>
+						<string>103客栈 | 陈珊妮</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10307</string>
+						<key>name</key>
+						<string>103客栈 | 方大同</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10419</string>
+						<key>name</key>
+						<string>103客栈 | 卢凯彤</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10338</string>
+						<key>name</key>
+						<string>103客栈 | 黄耀明</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10454</string>
+						<key>name</key>
+						<string>103客栈 | 徐小凤</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10171</string>
+						<key>name</key>
+						<string>103客栈 | 罗大佑</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10472</string>
+						<key>name</key>
+						<string>103客栈 | MC HotDog</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10491</string>
+						<key>name</key>
+						<string>103客栈 | 曹格</string>
+					</dict>
+				</array>
+				<key>timestamp</key>
+				<string>1328696463.0</string>
+				<key>update</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>channel_id</key>
 				<string>113914</string>
 				<key>name</key>
 				<string>苏比</string>
@@ -988,6 +988,49 @@
 			</dict>
 			<dict>
 				<key>channel_id</key>
+				<string>123048</string>
+				<key>name</key>
+				<string>宅电波</string>
+				<key>sub</key>
+				<array>
+					<dict>
+						<key>channel_id</key>
+						<string>10542</string>
+						<key>name</key>
+						<string>可曾记得爱</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10375</string>
+						<key>name</key>
+						<string>我们都曾高喊SHORYUKEN!</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10378</string>
+						<key>name</key>
+						<string>重返寂静岭</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10292</string>
+						<key>name</key>
+						<string>我们也曾被称为'次世代'</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10274</string>
+						<key>name</key>
+						<string>Gundam U.C</string>
+					</dict>
+				</array>
+				<key>timestamp</key>
+				<string>1329186348.0</string>
+				<key>update</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>channel_id</key>
 				<string>111880</string>
 				<key>name</key>
 				<string>三角龙</string>
@@ -1020,43 +1063,6 @@
 				</array>
 				<key>timestamp</key>
 				<string>1316656959.0</string>
-				<key>update</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>channel_id</key>
-				<string>123048</string>
-				<key>name</key>
-				<string>宅电波</string>
-				<key>sub</key>
-				<array>
-					<dict>
-						<key>channel_id</key>
-						<string>10375</string>
-						<key>name</key>
-						<string>我们都曾高喊SHORYUKEN!</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10378</string>
-						<key>name</key>
-						<string>重返寂静岭</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10292</string>
-						<key>name</key>
-						<string>我们也曾被称为&apos;次世代&apos;</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10274</string>
-						<key>name</key>
-						<string>Gundam U.C</string>
-					</dict>
-				</array>
-				<key>timestamp</key>
-				<string>1319623145.0</string>
 				<key>update</key>
 				<integer>0</integer>
 			</dict>
@@ -1169,12 +1175,6 @@
 						<string>10390</string>
 						<key>name</key>
 						<string>离岸-北欧特辑</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10389</string>
-						<key>name</key>
-						<string>单曲循环</string>
 					</dict>
 					<dict>
 						<key>channel_id</key>
@@ -1357,54 +1357,11 @@
 						<key>channel_id</key>
 						<string>10361</string>
 						<key>name</key>
-						<string>77&apos;13分钟的爵士说唱</string>
+						<string>77'13分钟的爵士说唱</string>
 					</dict>
 				</array>
 				<key>timestamp</key>
 				<string>1322014827.0</string>
-				<key>update</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>channel_id</key>
-				<string>121069</string>
-				<key>name</key>
-				<string>666</string>
-				<key>sub</key>
-				<array>
-					<dict>
-						<key>channel_id</key>
-						<string>10458</string>
-						<key>name</key>
-						<string>流麦第五波</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10456</string>
-						<key>name</key>
-						<string>流麦第四波</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10441</string>
-						<key>name</key>
-						<string>流麦第三波</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10440</string>
-						<key>name</key>
-						<string>流麦第二波</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10434</string>
-						<key>name</key>
-						<string>流麦第一波</string>
-					</dict>
-				</array>
-				<key>timestamp</key>
-				<string>1321876995.0</string>
 				<key>update</key>
 				<integer>0</integer>
 			</dict>
@@ -1541,7 +1498,7 @@
 						<key>channel_id</key>
 						<string>10295</string>
 						<key>name</key>
-						<string>11: We&apos;veOnlyJustBegun</string>
+						<string>11: We'veOnlyJustBegun</string>
 					</dict>
 					<dict>
 						<key>channel_id</key>
@@ -1577,11 +1534,73 @@
 						<key>channel_id</key>
 						<string>10074</string>
 						<key>name</key>
-						<string>05: Old Folks Let&apos;s go</string>
+						<string>05: Old Folks Let's go</string>
 					</dict>
 				</array>
 				<key>timestamp</key>
 				<string>1326880878.0</string>
+				<key>update</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>channel_id</key>
+				<string>116351</string>
+				<key>name</key>
+				<string>Rêveur Ailé</string>
+				<key>sub</key>
+				<array>
+					<dict>
+						<key>channel_id</key>
+						<string>10340</string>
+						<key>name</key>
+						<string>Alchimie du verbe</string>
+					</dict>
+				</array>
+				<key>timestamp</key>
+				<string>1317480913.0</string>
+				<key>update</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>channel_id</key>
+				<string>121069</string>
+				<key>name</key>
+				<string>666</string>
+				<key>sub</key>
+				<array>
+					<dict>
+						<key>channel_id</key>
+						<string>10458</string>
+						<key>name</key>
+						<string>流麦第五波</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10456</string>
+						<key>name</key>
+						<string>流麦第四波</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10441</string>
+						<key>name</key>
+						<string>流麦第三波</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10440</string>
+						<key>name</key>
+						<string>流麦第二波</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10434</string>
+						<key>name</key>
+						<string>流麦第一波</string>
+					</dict>
+				</array>
+				<key>timestamp</key>
+				<string>1321876995.0</string>
 				<key>update</key>
 				<integer>0</integer>
 			</dict>
@@ -1636,51 +1655,32 @@
 			</dict>
 			<dict>
 				<key>channel_id</key>
-				<string>116351</string>
+				<string>118962</string>
 				<key>name</key>
-				<string>Rêveur Ailé</string>
+				<string>CT-808</string>
 				<key>sub</key>
 				<array>
 					<dict>
 						<key>channel_id</key>
-						<string>10340</string>
+						<string>10111</string>
 						<key>name</key>
-						<string>Alchimie du verbe</string>
+						<string>Free! Jazz is Free!</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10091</string>
+						<key>name</key>
+						<string>后朋克的异化</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10093</string>
+						<key>name</key>
+						<string>2011混音带 第一辑</string>
 					</dict>
 				</array>
 				<key>timestamp</key>
-				<string>1317480913.0</string>
-				<key>update</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>channel_id</key>
-				<string>117447</string>
-				<key>name</key>
-				<string>SICK RADIO</string>
-				<key>sub</key>
-				<array>
-					<dict>
-						<key>channel_id</key>
-						<string>10473</string>
-						<key>name</key>
-						<string>SICK</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10351</string>
-						<key>name</key>
-						<string>演</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10328</string>
-						<key>name</key>
-						<string>sick</string>
-					</dict>
-				</array>
-				<key>timestamp</key>
-				<string>1323311571.0</string>
+				<string>1308483701.0</string>
 				<key>update</key>
 				<integer>0</integer>
 			</dict>
@@ -1753,6 +1753,37 @@
 			</dict>
 			<dict>
 				<key>channel_id</key>
+				<string>117447</string>
+				<key>name</key>
+				<string>SICK RADIO</string>
+				<key>sub</key>
+				<array>
+					<dict>
+						<key>channel_id</key>
+						<string>10473</string>
+						<key>name</key>
+						<string>SICK</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10351</string>
+						<key>name</key>
+						<string>演</string>
+					</dict>
+					<dict>
+						<key>channel_id</key>
+						<string>10328</string>
+						<key>name</key>
+						<string>sick</string>
+					</dict>
+				</array>
+				<key>timestamp</key>
+				<string>1323311571.0</string>
+				<key>update</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>channel_id</key>
 				<string>121379</string>
 				<key>name</key>
 				<string>电音中国</string>
@@ -1802,42 +1833,17 @@
 			</dict>
 			<dict>
 				<key>channel_id</key>
-				<string>118962</string>
-				<key>name</key>
-				<string>CT-808</string>
-				<key>sub</key>
-				<array>
-					<dict>
-						<key>channel_id</key>
-						<string>10111</string>
-						<key>name</key>
-						<string>Free! Jazz is Free!</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10091</string>
-						<key>name</key>
-						<string>后朋克的异化</string>
-					</dict>
-					<dict>
-						<key>channel_id</key>
-						<string>10093</string>
-						<key>name</key>
-						<string>2011混音带 第一辑</string>
-					</dict>
-				</array>
-				<key>timestamp</key>
-				<string>1308483701.0</string>
-				<key>update</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>channel_id</key>
 				<string>113380</string>
 				<key>name</key>
 				<string>搁料广播</string>
 				<key>sub</key>
 				<array>
+					<dict>
+						<key>channel_id</key>
+						<string>10534</string>
+						<key>name</key>
+						<string>2012搁料瞎倒歇</string>
+					</dict>
 					<dict>
 						<key>channel_id</key>
 						<string>10395</string>
@@ -1858,7 +1864,7 @@
 					</dict>
 				</array>
 				<key>timestamp</key>
-				<string>1326341716.0</string>
+				<string>1329127365.0</string>
 				<key>update</key>
 				<integer>0</integer>
 			</dict>

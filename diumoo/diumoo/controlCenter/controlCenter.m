@@ -237,6 +237,12 @@ controlCenter* sharedCenter;
         [lock unlock];
         return YES;
     }
+    else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PlayedChannel"];
+        [NSApp activateIgnoringOtherApps:YES];
+        NSRunAlertPanel(NSLocalizedString(@"ERROR", nil), NSLocalizedString(@"GET_NEW_SONG_FAILED", nil), NSLocalizedString(@"KNOWN", nil), nil, nil);
+        //[[NSApplication sharedApplication] terminate:nil];
+    }
     return [lock unlock],NO;
 }
 

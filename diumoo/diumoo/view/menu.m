@@ -293,7 +293,8 @@
 
 -(void) backChannelTo:(NSNumber*) c
 {
-    [[controlCenter sharedCenter] changeChannelTo:[c integerValue]];
+    if(![[controlCenter sharedCenter] changeChannelTo:[c integerValue]])
+        firstDetail=YES;
 }
 
 -(void) enablesNotification:(NSNotification *)n

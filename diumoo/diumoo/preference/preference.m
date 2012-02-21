@@ -173,7 +173,7 @@ static preference* shared;
 -(IBAction)getCaptchaImage:(id)sender
 {
     dispatch_queue_t captchaqueue = dispatch_queue_create("diumoo.captcha", NULL);
-    dispatch_queue_t high = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,NULL);
+    dispatch_queue_t high = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0);
     dispatch_set_target_queue(captchaqueue, high);
     
     [captcha_button setEnabled:NO];

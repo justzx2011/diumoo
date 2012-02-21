@@ -67,7 +67,6 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
     if(!issnail){
-        [player autoplay];
         [current_music release];
          current_music=nil;
     }
@@ -85,7 +84,7 @@
         return;
     }
 
-    if(current_music){
+    if(current_music ){
         count=0;
         [self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:current_music];
     }
@@ -138,7 +137,8 @@
     if(error==NULL) 
     {
         
-        //[player autoplay];
+        [player autoplay];
+        [player setVolume:1.0];
         //NSLog(@"autoplay");
         
         if(current_music){[current_music release];current_music=nil;}
@@ -285,9 +285,6 @@
         [level toggleFreqLevels:NSOffState];
         [level setMovie:player];
         [level toggleFreqLevels:NSOnState];
-        if ([player currentTime].timeValue<1000 && autoFadeTimer==nil) {
-            [player setVolume:1.0f];
-        }
     }
     
     else
@@ -297,7 +294,7 @@
         
         if(([player duration].timeValue - [player currentTime].timeValue)<100) 
             [self ended];
-        else if([player rate]>0.01f) [player setRate:1.0f];
+        if([player rate]>0.01f) [player setRate:1.0f];
     }
 }
 

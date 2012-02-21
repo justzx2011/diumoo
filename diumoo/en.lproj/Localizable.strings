@@ -8,7 +8,7 @@
 
 //notification
 "LOGIN_SUCCESS"="Login Success!";
-"PLAY_RECORD"="Hello %@ !\nYou have logged in sucsess.Now enjoy yourself!";
+"PLAY_RECORD"="Hello %@ !\nYou have logged in sucsess.\n-------------------\nPlayed:%@ songs\nRed Heart:%@ songs\nBanned:%@ songs\n-------------------\nNow enjoy the music!";
 "LOGOUT"="Logged Out!";
 "ACCOUNT_LOG_OUT"="Your account has logged out or log in failed";
 "CON_FAIL"="Connection failed";
@@ -20,6 +20,7 @@
 "QUIT"="Quit";
 "ABOUT"="About";
 "CANCEL"="Cancel";
+"ERROR"="Error";
 
 
 //Channel & Music
@@ -28,6 +29,7 @@
 "UNKNOWN_ARTIST"="Unknown Artist";
 "UNKNOWN_ALBUM"="Unknown Album";
 "UNKNOWN_NAME"="Unknown Name";
+"GET_NEW_SONG_FAILED"="An error occurs when try to fetch a new song. Something is wrong with the internet connections or the channel you are listening to is not valid anymore. \n\nChange to other channel or relaunch diummo";
 
 //Preferences
 "IN_ERROR"="Input Error";

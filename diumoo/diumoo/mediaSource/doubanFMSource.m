@@ -102,6 +102,7 @@ NSLog(@"%@",[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:AUTH_UR
             NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
             loggedIn=NO;
             if(e==NULL){
+                NSLog(@"r.status=%d",r.statusCode);
                 NSError* je=nil;
                 NSDictionary* obj=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
                 if(je==NULL ) {
@@ -111,13 +112,12 @@ NSLog(@"%@",[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:AUTH_UR
 NSLog(@"user_info:%@",user_info);
 #endif
                         if(user_info){
-                            [[NSUserDefaults standardUserDefaults] setValue:user_info forKey:@"user_info"];
+                            //[[NSUserDefaults standardUserDefaults] setValue:user_info forKey:@"user_info"];
                             NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[r allHeaderFields] forURL:[r URL]] ;
                             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies forURL:[r URL] mainDocumentURL:nil];
                             loggedIn=YES;
                         }
                         else loggedIn=NO;
-                        
                     }
                     
                 }
@@ -126,25 +126,44 @@ NSLog(@"user_info:%@",user_info);
                     //----------------------解析html以获取用户信息----------------------------
                     
                     NSError* err=nil;
-                    
+
                     HTMLParser* parser=[[HTMLParser alloc]initWithData:data error:&err];
                     if(err==NULL){
                         HTMLNode* bodynode=[parser body];
                         HTMLNode* total=[[bodynode findChildOfClass:@"stat-total"] findChildTag:@"i"];
                         HTMLNode* liked=[[bodynode findChildOfClass:@"stat-liked"] findChildTag:@"i"];
                         HTMLNode* banned=[[bodynode findChildOfClass:@"stat-banned"] findChildTag:@"i"];
-                        if(total && liked && banned){
-                            NSLog(@"total:%@,liked:%@,banned:%@",[total contents],[liked contents],[banned contents]);
+                        HTMLNode* user=[[bodynode findChildOfClass:@"login-usr"] findChildTag:@"a"];
+                        if(total && liked && banned && user){
+                            NSString* userlink=[user getAttributeNamed:@"href"];
+                            HTMLParser* imgParser=[[HTMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:userlink] error:&err];
+
+                            if(err==NULL){
+
+                                HTMLNode* userfacenode=[[imgParser body] findChildOfClass:@"userface"];
+                                if(userfacenode){
+                                    user_info=[NSDictionary dictionaryWithObjectsAndKeys:[user contents],@"name",
+                                              [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [total contents],@"played",
+                                               [liked contents],@"liked",
+                                               [banned contents],@"banned",nil],@"play_record",
+                                              userlink,@"url",
+                                              [userfacenode getAttributeNamed:@"src"],@"userface",
+                                              nil];
+                                    loggedIn=YES;
+                                }
+                            }
+                            [imgParser release];
                         }
                     }
                     else{
-                        NSLog(@"Error!");
+                        NSLog(@"Login Error!");
                     }
                     
                     //--------------------------------------------------------------------
                     
-                    user_info=[[NSUserDefaults standardUserDefaults] valueForKey:@"user_info"];
-                    if(user_info) loggedIn=YES;
+                   // user_info=[[NSUserDefaults standardUserDefaults] valueForKey:@"user_info"];
+                    //if(user_info) loggedIn=YES;
                     
                     [parser release];
                 }
@@ -155,14 +174,16 @@ NSLog(@"user_info:%@",user_info);
                 e=nil;
                 if(loggedIn){
                     
-                    NSURLRequest* icon1=[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://img3.douban.com/icon/u%@.jpg",[user_info valueForKey:@"id"]]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2.0];
+                    NSURLRequest* icon1=nil;
+                    if([user_info valueForKey:@"userface"])
+                        icon1=[NSURLRequest requestWithURL:[NSURL URLWithString:[user_info valueForKey:@"userface"]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2.0];
+                    else icon1=[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://img3.douban.com/icon/u%@.jpg",[user_info valueForKey:@"id"]]] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:2.0];
                     
                     NSData* icondata=[NSURLConnection sendSynchronousRequest:icon1 returningResponse:&r error:&e];
                     
-                    if(e==NULL && r.statusCode==200 ){
+                    if(e==NULL){
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:icondata userInfo:[NSDictionary dictionaryWithObject:(channel==0?privateEnables:publicWithLoggedInEnables) forKey:@"enables"]];
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"source.account" object:icondata userInfo:user_info];
-                        
                     }
                     else{
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"source.enables" object:nil userInfo:[NSDictionary dictionaryWithObject:(channel==0?privateEnables:publicWithLoggedInEnables) forKey:@"enables"]];
