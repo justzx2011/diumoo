@@ -37,65 +37,54 @@
         
         //---------------------------------@ register notification observer -------------------------
         condition=[[NSCondition alloc] init];
-        notificationLock=[[NSLock alloc] init];
+       // notificationLock=[[NSLock alloc] init];
         
         level=[[FrequencyLevels alloc] init];
         //init song of snail
-        songofsnail=[[NSDictionary dictionaryWithObjectsAndKeys:
-                     @"Song of Snail",@"Album",
-                     [NSNumber numberWithBool:YES],@"issnail",
-                     NSLocalizedString(@"Whoops",nil),@"Artist",
-                     NSLocalizedString(@"NET_WORK_SLOW",nil),@"Name",nil
-                     ] retain];
-        
     }
     
     return self;
 }
 
--(void) postMusicNotificationInBackground:(NSDictionary *)music
-{
-    if(![notificationLock tryLock]) return;
-    bool issnail=[[music valueForKey:@"issnail"] boolValue];
-    NSImage* image=nil;
-    if(issnail) 
-        image=[NSImage imageNamed:@"songofsnail.png"];
-    else 
-    {
-        image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
-        [image autorelease];       
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
-    if(!issnail){
-        [current_music release];
-         current_music=nil;
-    }
-    [notificationLock unlock];
-}
+//-(void) postMusicNotificationInBackground:(NSDictionary *)music
+//{
+//    if(![notificationLock tryLock]) return;
+//    bool issnail=[[music valueForKey:@"issnail"] boolValue];
+//    NSImage* image=nil;
+//    if(issnail) 
+//        image=[NSImage imageNamed:@"songofsnail.png"];
+//    else 
+//    {
+//        image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
+//        [image autorelease];       
+//    }
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
+//    if(!issnail){
+//        [current_music release];
+//         current_music=nil;
+//    }
+//    [notificationLock unlock];
+//}
 
 -(void)loadStateChange:(NSNotification *)n
 {
     if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0){
-        if((++count)>4){
-            [self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:songofsnail];
+        if((++count)>5){
+            //[self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:songofsnail];
             //[NSThread sleepForTimeInterval:0.2];
+            NSRunCriticalAlertPanel(NSLocalizedString(@"ERORR", nil), NSLocalizedString(@"GET_NEW_SONG_FAILED", nil), NSLocalizedString(@"KNOWN", nil), nil, nil);
         }
         else{[self endedWithError];}
         return;
     }
-
-    if(current_music ){
-        count=0;
-        [self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:current_music];
-    }
+ // [self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:current_music];
+    else count=0;
 }
 
 -(void) dealloc
 {
-    if(current_music)[current_music release];
     
     [condition release];
-    [songofsnail release];
     [player release];
     [level release];
     [super dealloc];
@@ -133,17 +122,18 @@
     
     NSError* error = nil;
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&error] retain]; 
-    NSLog(@"before error check");
+
     if(error==NULL) 
     {
         
+        
+        //NSLog(@"autoplay");
+        NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
+        
         [player autoplay];
         [player setVolume:1.0];
-        //NSLog(@"autoplay");
-        
-        if(current_music){[current_music release];current_music=nil;}
-        current_music=[music retain];
-
     }
     else [self endedWithError];
     

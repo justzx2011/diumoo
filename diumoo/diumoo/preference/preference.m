@@ -164,7 +164,8 @@ static preference* shared;
 -(IBAction)dockAlbum:(id)sender
 {
     if([sender state]!=NSOnState){
-        [NSApp setApplicationIconImage:nil];
+        if([sender tag]==0)
+            [NSApp setApplicationIconImage:nil];
         [[NSApp dockTile] setBadgeLabel:@""];
         [[NSApp dockTile] display];
     }

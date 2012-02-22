@@ -100,7 +100,9 @@
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowAlbumOnDock"]integerValue ]==NSOnState)
     {
         float rate=[[noti valueForKey:@"Album Rating"] floatValue];
-        [[NSApp dockTile] setBadgeLabel:[NSString stringWithFormat:@"%.1f",rate*2]];
+        if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ShowAlbumRateOnDock"] integerValue]==NSOnState)
+            [[NSApp dockTile] setBadgeLabel:[NSString stringWithFormat:@"%.1f",rate*2]];
+        else [[NSApp dockTile]setBadgeLabel:@""];
         [NSApp setApplicationIconImage:img];
         [[NSApp dockTile] display];
     }
