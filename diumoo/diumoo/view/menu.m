@@ -25,6 +25,7 @@
         [item setHighlightMode:YES];
 
         mainMenu=[[[NSMenu alloc]init] retain] ;
+        [mainMenu setFont:[NSFont fontWithName:@"HiraginoSansGB-W3" size:13]];
 
         [item setMenu:mainMenu];
 
@@ -34,6 +35,7 @@
         
         //红心电台和私人电台
         heartChannel=[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"RED_HEART_MHZ",nil) action:nil keyEquivalent:@""];
+    
         privateChannel=[[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"PRIVATE_MHZ",nil) action:nil keyEquivalent:@""];
         
         [heartChannel setTag:-3];

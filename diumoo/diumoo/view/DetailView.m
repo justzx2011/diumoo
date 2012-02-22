@@ -35,14 +35,15 @@
     
     
     float scale=250.0f/([image size].width>[image size].height?image.size.width:image.size.height);
+
     if(scale<1.0)
     {
         [album_img setFrameSize:NSMakeSize(image.size.width*scale, image.size.height*scale)];
-        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 180)];
+        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 190)];
     }
     else{
         [album_img setFrameSize:[img size]];
-        [[self view]setFrameSize:NSMakeSize(300,[img size].height+180)];
+        [[self view]setFrameSize:NSMakeSize(300,[img size].height+190)];
     }
     
     
