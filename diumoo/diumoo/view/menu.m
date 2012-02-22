@@ -25,7 +25,7 @@
         [item setHighlightMode:YES];
 
         mainMenu=[[[NSMenu alloc]init] retain] ;
-        [mainMenu setFont:[NSFont fontWithName:@"HiraginoSansGB-W3" size:13]];
+        //[mainMenu setFont:[NSFont fontWithName:@"HiraginoSansGB-W3" size:13]];
 
         [item setMenu:mainMenu];
 
@@ -214,10 +214,12 @@
                 if(channel_id==1) defaultChannel=mitem;
             }
 
-            if([channel valueForKey:@"sub"]!=nil){
+            if([channel valueForKey:@"sub"]!=nil)
+            {
                 NSMenu* submenu=[[NSMenu alloc] init];
                 [self _build_channel_menu:[channel valueForKey:@"sub"] with:submenu andTabLength:0];
                 [mitem setSubmenu:submenu];
+                [submenu release];
             }
             [menu addItem:mitem];
             [mitem release];

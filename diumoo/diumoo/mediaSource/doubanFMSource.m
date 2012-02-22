@@ -102,7 +102,6 @@ NSLog(@"%@",[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:AUTH_UR
             NSData* data=[NSURLConnection sendSynchronousRequest:request returningResponse:&r error:&e];
             loggedIn=NO;
             if(e==NULL){
-                NSLog(@"r.status=%d",r.statusCode);
                 NSError* je=nil;
                 NSDictionary* obj=[[CJSONDeserializer deserializer] deserializeAsDictionary:data error:&je];
                 if(je==NULL ) {

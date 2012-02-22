@@ -102,7 +102,6 @@
     {
         [self lazyPause];
         [self performSelectorOnMainThread:@selector(startToPlay:) withObject:music waitUntilDone:NO];
-        NSLog(@"stat to play");
         return YES;
     }
     
@@ -126,25 +125,22 @@
     if(error==NULL) 
     {
         
-        
-        //NSLog(@"autoplay");
         NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
         
         [player autoplay];
         [player setVolume:1.0];
+        [image release];
     }
     else [self endedWithError];
     
-    NSLog(@"stat to play");
     [condition unlock];
     return (error==NULL);
 }
 
 -(void) pause
 {
-    NSLog(@"player pause called");
     [condition lock];
     if(player!=nil&&[player rate]!=0)
     {
@@ -155,7 +151,6 @@
 
 -(void) resume
 {
-    NSLog(@"musicPlayer resume called");
     [condition lock];
     if(player != nil&& [player rate]==0)
     {
@@ -172,9 +167,7 @@
         [condition unlock];
         return;
     }
-    
-    NSLog(@"player lazyPause");
-    
+        
     float v=0.0f;
     float vo=[player volume];
     int i=0;
@@ -192,9 +185,6 @@
 
 - (void)startAutoFadeDuration:(float)duration startVolume:(float)startVolume targetVolume:(float)target 
 {
-    
-    NSLog(@"startAutoFade");
-    
 	if (autoFadeTimer != nil) {
 		[self stopAutoFade];
 	}
