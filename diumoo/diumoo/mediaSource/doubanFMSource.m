@@ -313,6 +313,7 @@ NSLog(@"user_info:%@",user_info);
     if(![str hasPrefix:@"http://"])
         str=[@"http://music.douban.com" stringByAppendingString:str];
 
+
     NSDictionary* currentMusic=[NSDictionary dictionaryWithObjectsAndKeys:
                   [current valueForKey:@"albumtitle"],@"Album",
                   str,@"Store URL",

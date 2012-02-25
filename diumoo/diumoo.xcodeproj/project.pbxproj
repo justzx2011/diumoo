@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
+		1767198414F8988500F33979 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1767198014F8988500F33979 /* NSObject+SPInvocationGrabbing.m */; };
 		3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F058EFA14BF1D630047B2BE /* prefsPanel.xib */; };
 		3F64587014C1D8FB00F7E464 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F64586F14C1D8FB00F7E464 /* facebook.png */; };
 		3FB022D814CBED9800216867 /* diumooPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB022D714CBED9800216867 /* diumooPlayer.m */; };
@@ -98,6 +99,8 @@
 
 /* Begin PBXFileReference section */
 		149FC7E614B6E8DC0028C96B /* last_fm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = last_fm.png; sourceTree = "<group>"; };
+		1767197F14F8988500F33979 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		1767198014F8988500F33979 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
 		3F058EF914BF1D630047B2BE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		3F058EFB14BF1D6E0047B2BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
 		3F64586F14C1D8FB00F7E464 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
@@ -224,6 +227,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1767197B14F8988500F33979 /* SPInvocationGrabbing */ = {
+			isa = PBXGroup;
+			children = (
+				1767197F14F8988500F33979 /* NSObject+SPInvocationGrabbing.h */,
+				1767198014F8988500F33979 /* NSObject+SPInvocationGrabbing.m */,
+			);
+			name = SPInvocationGrabbing;
+			path = mediaKeyTap/SPInvocationGrabbing;
+			sourceTree = "<group>";
+		};
 		3F4D59F014C9783B00B6909F /* DiumooCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +509,7 @@
 		F5DAA05B14AB6454004404AA /* mediaKeyTap */ = {
 			isa = PBXGroup;
 			children = (
+				1767197B14F8988500F33979 /* SPInvocationGrabbing */,
 				F5DAA05F14AB65CB004404AA /* SPMediaKeyTap.h */,
 				F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */,
 			);
@@ -644,6 +658,7 @@
 				3FB022D814CBED9800216867 /* diumooPlayer.m in Sources */,
 				F5A8957514F267EB00DD4727 /* HTMLNode.m in Sources */,
 				F5A8957614F267EB00DD4727 /* HTMLParser.m in Sources */,
+				1767198414F8988500F33979 /* NSObject+SPInvocationGrabbing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
