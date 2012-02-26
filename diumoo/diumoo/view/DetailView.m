@@ -39,11 +39,11 @@
     if(scale<1.0)
     {
         [album_img setFrameSize:NSMakeSize(image.size.width*scale, image.size.height*scale)];
-        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 190)];
+        [[self view] setFrameSize:NSMakeSize(300, [album_img frame].size.height + 175)];
     }
     else{
         [album_img setFrameSize:[img size]];
-        [[self view]setFrameSize:NSMakeSize(300,[img size].height+190)];
+        [[self view]setFrameSize:NSMakeSize(300,[img size].height+175)];
     }
     
     

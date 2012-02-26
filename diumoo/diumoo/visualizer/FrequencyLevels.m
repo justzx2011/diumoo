@@ -193,13 +193,14 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
 - (void)setMovie:(QTMovie *)inMovie
 {
-    mMovie = inMovie;
-    if (mMovie)
-    {
-        [self invalidate];
-        
-        [mContainer setNeedsDisplay];
-    }
+        mMovie = inMovie;
+        if (mMovie)
+        {
+            [self invalidate];
+            
+            [mContainer setNeedsDisplay];
+        }
+    
 }
 
 //--------------------------------------------------------------------------------------------------

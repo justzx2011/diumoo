@@ -68,11 +68,13 @@
 
 -(void)loadStateChange:(NSNotification *)n
 {
+    NSLog(@"STATE: %@",[player attributeForKey:QTMovieLoadStateAttribute] );
     if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0){
+        NSLog(@"LoadError");
         if((++count)>5){
             //[self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:songofsnail];
             //[NSThread sleepForTimeInterval:0.2];
-            NSRunCriticalAlertPanel(NSLocalizedString(@"ERORR", nil), NSLocalizedString(@"GET_NEW_SONG_FAILED", nil), NSLocalizedString(@"KNOWN", nil), nil, nil);
+           // NSRunCriticalAlertPanel(NSLocalizedString(@"ERORR", nil), NSLocalizedString(@"GET_NEW_SONG_FAILED", nil), NSLocalizedString(@"KNOWN", nil), nil, nil);
         }
         else{[self endedWithError];}
         return;
@@ -98,18 +100,21 @@
 -(BOOL) startToPlay:(NSDictionary *)music
 {
     //--------------------------make sure player is on the main thread-------------------------------
+    
+    
+    
     if(![NSThread isMainThread])
     {
         [self lazyPause];
-        [self performSelectorOnMainThread:@selector(startToPlay:) withObject:music waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(startToPlay:) withObject:music waitUntilDone:YES];
         return YES;
     }
-    
     
     if (autoFadeTimer != nil) 
     {
 		[self stopAutoFade];
 	}
+    
     
     [condition lock];
     [level toggleFreqLevels:NSOffState];
@@ -125,12 +130,13 @@
     if(error==NULL) 
     {
         
+        [player autoplay];
+        [player setVolume:1.0];
+        
         NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
         
-        [player autoplay];
-        [player setVolume:1.0];
         [image release];
     }
     else [self endedWithError];
@@ -152,7 +158,7 @@
 -(void) resume
 {
     [condition lock];
-    if(player != nil&& [player rate]==0)
+    if(player != nil)
     {
         [player play];
         [self startAutoFadeDuration:0.5f startVolume:0.0f targetVolume:1.0f];
@@ -188,6 +194,7 @@
 	if (autoFadeTimer != nil) {
 		[self stopAutoFade];
 	}
+    if(target<0.1f && [player rate]<0.1f) return;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:target] forKey:@"rate"] ];
 	autoFadeDuration = duration;
 	autoFadeStartVolume = startVolume;
