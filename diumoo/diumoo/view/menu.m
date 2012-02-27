@@ -372,6 +372,9 @@
     [condition lock];
     NSInteger tag=[sender tag];
     controlCenter* controller=[controlCenter sharedCenter];
+#if DEBUG
+    NSLog(@"button action = %d",[sender tag]);
+#endif
     switch (tag) {
         case 0:
              [controller performSelector:@selector(back) withObject:nil];

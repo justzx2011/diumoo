@@ -34,7 +34,6 @@
     NSString* channelName;
     NSArray* channelList;
     
-    //NSDictionary* nextMusic;
     NSDictionary* user_info;
     
     //一个线程锁

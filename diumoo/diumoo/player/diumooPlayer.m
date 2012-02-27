@@ -37,49 +37,26 @@
         
         //---------------------------------@ register notification observer -------------------------
         condition=[[NSCondition alloc] init];
-       // notificationLock=[[NSLock alloc] init];
         
         level=[[FrequencyLevels alloc] init];
-        //init song of snail
     }
     
     return self;
 }
 
-//-(void) postMusicNotificationInBackground:(NSDictionary *)music
-//{
-//    if(![notificationLock tryLock]) return;
-//    bool issnail=[[music valueForKey:@"issnail"] boolValue];
-//    NSImage* image=nil;
-//    if(issnail) 
-//        image=[NSImage imageNamed:@"songofsnail.png"];
-//    else 
-//    {
-//        image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
-//        [image autorelease];       
-//    }
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"player.startToPlay" object:image userInfo:music];
-//    if(!issnail){
-//        [current_music release];
-//         current_music=nil;
-//    }
-//    [notificationLock unlock];
-//}
-
 -(void)loadStateChange:(NSNotification *)n
 {
     NSLog(@"STATE: %@",[player attributeForKey:QTMovieLoadStateAttribute] );
-    if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0){
+    if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0)
+    {
         NSLog(@"LoadError");
-        if((++count)>5){
-            //[self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:songofsnail];
-            //[NSThread sleepForTimeInterval:0.2];
-           // NSRunCriticalAlertPanel(NSLocalizedString(@"ERORR", nil), NSLocalizedString(@"GET_NEW_SONG_FAILED", nil), NSLocalizedString(@"KNOWN", nil), nil, nil);
+        if((++count)>5)
+        {
+            
         }
         else{[self endedWithError];}
         return;
     }
- // [self performSelectorInBackground:@selector(postMusicNotificationInBackground:) withObject:current_music];
     else count=0;
 }
 
@@ -100,8 +77,6 @@
 -(BOOL) startToPlay:(NSDictionary *)music
 {
     //--------------------------make sure player is on the main thread-------------------------------
-    
-    
     
     if(![NSThread isMainThread])
     {
@@ -222,7 +197,6 @@
         if (player.volume>0) 
         {
             [player setVolume:([player volume]-(1/VOLUME_DURATION))];
-            //NSLog(@"Volume(>0) = %lf",[player volume]);
         } 
         else [self stopAutoFade];
     }
@@ -231,7 +205,6 @@
         if (autoFadeTargetVolume == 1 && [player volume] < 1) 
         {
             [player setVolume:([player volume]+(1/VOLUME_DURATION))];
-            //NSLog(@"Volume(<1) = %lf",[player volume]);
         } else 
         {
             [self stopAutoFade];

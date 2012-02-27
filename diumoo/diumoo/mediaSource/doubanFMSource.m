@@ -161,9 +161,6 @@ NSLog(@"user_info:%@",user_info);
                     
                     //--------------------------------------------------------------------
                     
-                   // user_info=[[NSUserDefaults standardUserDefaults] valueForKey:@"user_info"];
-                    //if(user_info) loggedIn=YES;
-                    
                     [parser release];
                 }
                 
@@ -227,19 +224,9 @@ NSLog(@"user_info:%@",user_info);
     
     //    | 生成channel
     NSString* _s=@"";
-  //  NSMutableArray* _cookie=[[NSMutableArray alloc] init];
- //   if(cookie!=nil)
- //       [_cookie addObjectsFromArray:cookie];
-    if(channel>10000){
+    if(channel>10000)
+    {
         _s=[NSString stringWithFormat: @"channel=dj&pid=%d",channel];
-     //   NSDictionary* dic=[NSDictionary dictionaryWithObjectsAndKeys:
-  //                         [NSString stringWithFormat:@"%d",channel],
-  //                         NSHTTPCookieValue,
-  //                         @"dj_id",NSHTTPCookieName,
-  //                         @"/",NSHTTPCookiePath,
-  //                         @".douban.fm",NSHTTPCookieDomain
-  //                         ,nil];
-  //      [_cookie addObject:[NSHTTPCookie cookieWithProperties:dic]];
     }
     else _s=[NSString stringWithFormat:@"channel=%d",channel];
     if([type isNotEqualTo:NEW]&& sid!=nil &&[sid isNotEqualTo:@""])
@@ -253,9 +240,7 @@ NSLog(@"user_info:%@",user_info);
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%s&%@",PLAYLIST_URL_STRING,type,rnds,_s]]];
     [request setHTTPMethod:@"GET"];
     [request setHTTPBody:nil];
-    //[request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:_cookie]];
-    //[_cookie release];
-
+    
     // 发送请求
     NSHTTPURLResponse* r=nil;
     NSError* e=nil;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
 		1767198414F8988500F33979 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1767198014F8988500F33979 /* NSObject+SPInvocationGrabbing.m */; };
+		17D2627F14FB520B00C351FB /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2627C14FB51BE00C351FB /* libxml2.2.7.3.dylib */; };
 		3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F058EFA14BF1D630047B2BE /* prefsPanel.xib */; };
 		3F64587014C1D8FB00F7E464 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F64586F14C1D8FB00F7E464 /* facebook.png */; };
 		3FB022D814CBED9800216867 /* diumooPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB022D714CBED9800216867 /* diumooPlayer.m */; };
@@ -55,7 +56,6 @@
 		F58C5E91149F089D00DDDF95 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F58C5E90149F089D00DDDF95 /* icon.icns */; };
 		F5A8957514F267EB00DD4727 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A8957214F267EB00DD4727 /* HTMLNode.m */; };
 		F5A8957614F267EB00DD4727 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A8957414F267EB00DD4727 /* HTMLParser.m */; };
-		F5A8957A14F268A700DD4727 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A8957914F268A700DD4727 /* libxml2.dylib */; };
 		F5ACE4AA14D6B23F00C629E8 /* dchannels-en.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5ACE4A814D6B23F00C629E8 /* dchannels-en.plist */; };
 		F5ACE4AB14D6B23F00C629E8 /* dchannels-zh.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5ACE4A914D6B23F00C629E8 /* dchannels-zh.plist */; };
 		F5C38F40149C58A40082FEE4 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = F5C38F3F149C58A40082FEE4 /* twitter.png */; };
@@ -101,6 +101,7 @@
 		149FC7E614B6E8DC0028C96B /* last_fm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = last_fm.png; sourceTree = "<group>"; };
 		1767197F14F8988500F33979 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		1767198014F8988500F33979 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		17D2627C14FB51BE00C351FB /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 		3F058EF914BF1D630047B2BE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		3F058EFB14BF1D6E0047B2BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
 		3F64586F14C1D8FB00F7E464 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
@@ -165,7 +166,6 @@
 		F5A8957214F267EB00DD4727 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLNode.m; path = diumoo/HTMLParser/HTMLNode.m; sourceTree = "<group>"; };
 		F5A8957314F267EB00DD4727 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLParser.h; path = diumoo/HTMLParser/HTMLParser.h; sourceTree = "<group>"; };
 		F5A8957414F267EB00DD4727 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLParser.m; path = diumoo/HTMLParser/HTMLParser.m; sourceTree = "<group>"; };
-		F5A8957914F268A700DD4727 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		F5ACE4A814D6B23F00C629E8 /* dchannels-en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dchannels-en.plist"; sourceTree = "<group>"; };
 		F5ACE4A914D6B23F00C629E8 /* dchannels-zh.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dchannels-zh.plist"; sourceTree = "<group>"; };
 		F5C38F3F149C58A40082FEE4 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5A8957A14F268A700DD4727 /* libxml2.dylib in Frameworks */,
+				17D2627F14FB520B00C351FB /* libxml2.2.7.3.dylib in Frameworks */,
 				F57EBD3714AB50D800484ED1 /* Security.framework in Frameworks */,
 				F57EBD3214AB3F2200484ED1 /* Carbon.framework in Frameworks */,
 				F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */,
@@ -270,7 +270,7 @@
 		F56A8403148CF92800AE6F1E = {
 			isa = PBXGroup;
 			children = (
-				F5A8957914F268A700DD4727 /* libxml2.dylib */,
+				17D2627C14FB51BE00C351FB /* libxml2.2.7.3.dylib */,
 				3FB7E36014C141F50039CBFD /* Localizable.strings */,
 				F58A8C8B149A48DE004E60AD /* resources */,
 				F58A8C5A149A2EB3004E60AD /* diumoo */,
@@ -762,6 +762,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/include/libxml2/**";
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -786,6 +787,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "diumoo/diumoo-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/usr/include/libxml2/**";
 				INFOPLIST_FILE = "diumoo/diumoo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
