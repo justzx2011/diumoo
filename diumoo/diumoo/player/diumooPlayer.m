@@ -100,6 +100,7 @@
     }
     
     NSError* error = nil;
+    NSLog(@"music = %@",music);
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&error] retain]; 
 
     if(error==NULL) 
@@ -114,7 +115,13 @@
         
         [image release];
     }
-    else [self endedWithError];
+    else 
+    {
+        [player invalidate];
+        [player release];
+        player = nil;
+        [self endedWithError];
+    }
     
     NSLog(@"player error = %@",error);
     
@@ -182,7 +189,8 @@
 }
 
 - (void)stopAutoFade {
-	if (autoFadeTimer != nil) {
+	if (autoFadeTimer != nil) 
+    {
 		[autoFadeTimer invalidate];
 		[autoFadeTimer release];
 		autoFadeTimer = nil;

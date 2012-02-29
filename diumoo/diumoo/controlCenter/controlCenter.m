@@ -171,10 +171,6 @@ controlCenter* sharedCenter;
             {
                 [player pause];
                 [current retain];
-                
-                
-                 NSLog(@"print current = %@",current);
-                
                 [sid release]; 
                 [player performSelectorInBackground:@selector(startToPlay:) withObject:current];
                 [lock unlock];
