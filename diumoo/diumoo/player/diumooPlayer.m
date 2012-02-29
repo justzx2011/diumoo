@@ -46,7 +46,7 @@
 
 -(void)loadStateChange:(NSNotification *)n
 {
-    NSLog(@"STATE: %@",[player attributeForKey:QTMovieLoadStateAttribute] );
+    NSLog(@"STATE: %@",[player attributeForKey:QTMovieLoadStateAttribute]);
     if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0)
     {
         NSLog(@"LoadError");
@@ -115,6 +115,8 @@
         [image release];
     }
     else [self endedWithError];
+    
+    NSLog(@"player error = %@",error);
     
     [condition unlock];
     return (error==NULL);

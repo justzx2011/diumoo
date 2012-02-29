@@ -307,7 +307,6 @@
 							<int key="NSvFlags">18</int>
 							<string key="NSFrameSize">{520, 338}</string>
 							<reference key="NSSuperview" ref="1006"/>
-							<reference key="NSNextKeyView" ref="979154825"/>
 							<string key="NSReuseIdentifierKey">_NS:461</string>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1302,7 +1301,7 @@
 												<object class="NSButtonCell" key="NSCell" id="970092830">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
-													<string key="NSContents">ant.sz@gmail.com</string>
+													<string key="NSContents">ant.sz@xdlinux.info</string>
 													<reference key="NSSupport" ref="56037952"/>
 													<string key="NSCellIdentifier">_NS:1491</string>
 													<reference key="NSControlView" ref="996978736"/>

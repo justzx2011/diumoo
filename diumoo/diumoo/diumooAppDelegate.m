@@ -112,7 +112,11 @@
                     [[controlCenter sharedCenter] play_pause];
                 break;
             case NX_KEYTYPE_FAST:
-                if(([event modifierFlags] & NSShiftKeyMask) && [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ByeHotKey"]) [[controlCenter sharedCenter] bye];
+                
+                NSLog(@"%@\n\n",([event modifierFlags] & NSShiftKeyMask) && [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ByeHotKey"]);
+                
+                if(([event modifierFlags] & NSShiftKeyMask) && [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"ByeHotKey"]) 
+                    [[controlCenter sharedCenter] bye];
                 else if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"PlayPauseFastHotKey"] integerValue]==NSOnState)
                     [[controlCenter sharedCenter] skip];
                 break;
