@@ -117,10 +117,11 @@
         [player invalidate];
         [player release];
         player = nil;
+         NSLog(@"player error = %@",error);
         [self endedWithError];
     }
     
-    NSLog(@"player error = %@",error);
+   
     
     [condition unlock];
     return (error==NULL);
