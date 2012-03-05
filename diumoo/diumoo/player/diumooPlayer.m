@@ -103,8 +103,9 @@
 
     if(error==NULL) 
     {
-        [player setVolume:1.0];
+        
         [player autoplay];
+        [player setVolume:1.0];
         
         NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
 
