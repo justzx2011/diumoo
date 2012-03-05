@@ -253,10 +253,10 @@ controlCenter* sharedCenter;
         if(player!=nil && source!=nil && current!=nil && (current = [[source getNewSong]  retain])!=nil)
         {
             [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
-            return;
             #ifdef DEBUG
-            NSLog(@"New Song!");
+            NSLog(@"New Song With Error End!");
             #endif   
+            return;
         }
         else
         {
@@ -266,6 +266,9 @@ controlCenter* sharedCenter;
     if([lock tryLock]!=YES) return;
     if(player!=nil && source!=nil && current!=nil && (current =[[source getNewSongWhenEnd:[current valueForKey:@"sid"]]retain])!=nil)
     {
+        #ifdef DEBUG
+        NSLog(@"New Song With End!");
+        #endif 
         [player performSelectorOnMainThread:@selector(startToPlay:) withObject:current waitUntilDone:NO];
     }
     [lock unlock];

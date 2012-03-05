@@ -115,9 +115,6 @@
     }
     else 
     {
-        [player invalidate];
-        [player release];
-        player = nil;
          NSLog(@"player error = %@",error);
         [self endedWithError];
     }
