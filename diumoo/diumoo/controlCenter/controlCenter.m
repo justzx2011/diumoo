@@ -169,7 +169,7 @@ controlCenter* sharedCenter;
         [current release];
         if(player!=nil && (current=[source getNewSongBySkip:sid])!=nil)
             {
-                [player pause];
+                //[player pause];
                 [current retain];
                 [sid release]; 
                 [player performSelectorInBackground:@selector(startToPlay:) withObject:current];

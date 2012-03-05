@@ -50,11 +50,8 @@
     if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0)
     {
         NSLog(@"LoadError");
-        if((++count)>5)
-        {
-            
-        }
-        else{[self endedWithError];}
+        if((++count)<5)
+        {[self endedWithError];}
         return;
     }
     else count=0;
@@ -94,6 +91,7 @@
     [condition lock];
     [level toggleFreqLevels:NSOffState];
     if(player){
+        [player stop];
         [player invalidate];
         [player release];
         player=nil;
@@ -105,9 +103,8 @@
 
     if(error==NULL) 
     {
-        
-        [player autoplay];
         [player setVolume:1.0];
+        [player autoplay];
         
         NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
 
@@ -153,15 +150,15 @@
 -(void) lazyPause
 {
     [condition lock];
-    if(player ==nil || [player rate]<0.1){
-        [condition unlock];
-        return;
-    }
-        
+    
     float v=0.0f;
     float vo=[player volume];
     int i=0;
     for (; i<=VOLUME_DURATION; i++) {
+        if(player ==nil || [player rate]<0.1){
+            [condition unlock];
+            return;
+        }
         [player setVolume:(vo+(v-vo) *(i/VOLUME_DURATION))];
         [NSThread sleepForTimeInterval:VOLUME_INTERVAL];
     }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		149FC7E714B6E8DC0028C96B /* last_fm.png in Resources */ = {isa = PBXBuildFile; fileRef = 149FC7E614B6E8DC0028C96B /* last_fm.png */; };
-		1767198414F8988500F33979 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1767198014F8988500F33979 /* NSObject+SPInvocationGrabbing.m */; };
 		17D2627F14FB520B00C351FB /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D2627C14FB51BE00C351FB /* libxml2.2.7.3.dylib */; };
 		3F058EF814BF1D630047B2BE /* prefsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F058EFA14BF1D630047B2BE /* prefsPanel.xib */; };
 		3F64587014C1D8FB00F7E464 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F64586F14C1D8FB00F7E464 /* facebook.png */; };
@@ -20,6 +19,7 @@
 		F516CF7714C2E9F30058B9E4 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = F516CF7614C2E9F30058B9E4 /* login.png */; };
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B258114A2305E00903039 /* QuartzCore.framework */; };
+		F53DB2361504F8CA001CDF1D /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F53DB2301504F8CA001CDF1D /* SPMediaKeyTap.m */; };
 		F54951B314A18F3B00068581 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54951B214A18F3B00068581 /* QuickTime.framework */; };
 		F556B42714B89F1B003CA192 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F556B42614B89F1B003CA192 /* Sparkle.framework */; };
 		F556B42814B89F25003CA192 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F556B42614B89F1B003CA192 /* Sparkle.framework */; };
@@ -76,7 +76,6 @@
 		F5D9C0EA14A8BC3E00029663 /* douban.png in Resources */ = {isa = PBXBuildFile; fileRef = F5D9C0E914A8BC3E00029663 /* douban.png */; };
 		F5DAA05714AB6408004404AA /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA05614AB6408004404AA /* EMKeychainItem.m */; };
 		F5DAA05A14AB6442004404AA /* FrequencyLevels.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA05914AB6442004404AA /* FrequencyLevels.m */; };
-		F5DAA06114AB65CB004404AA /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */; };
 		F5E1B0EC14B07693009D00B1 /* icon-red.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E1B0EB14B07693009D00B1 /* icon-red.png */; };
 		F5E9EF9614B008EE00E0D57B /* all_bigstars.gif in Resources */ = {isa = PBXBuildFile; fileRef = F5E9EF9514B008EE00E0D57B /* all_bigstars.gif */; };
 		F5ECD21F14C323CE00A5CD50 /* account_ok.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5ECD21E14C323CE00A5CD50 /* account_ok.jpg */; };
@@ -99,8 +98,6 @@
 
 /* Begin PBXFileReference section */
 		149FC7E614B6E8DC0028C96B /* last_fm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = last_fm.png; sourceTree = "<group>"; };
-		1767197F14F8988500F33979 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
-		1767198014F8988500F33979 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
 		17D2627C14FB51BE00C351FB /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 		3F058EF914BF1D630047B2BE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/prefsPanel.xib; sourceTree = "<group>"; };
 		3F058EFB14BF1D6E0047B2BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/prefsPanel.xib"; sourceTree = "<group>"; };
@@ -115,6 +112,8 @@
 		F516CF7614C2E9F30058B9E4 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F53B258114A2305E00903039 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F53DB22F1504F8CA001CDF1D /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = mediaKeyTap/SPMediaKeyTap.h; sourceTree = "<group>"; };
+		F53DB2301504F8CA001CDF1D /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = mediaKeyTap/SPMediaKeyTap.m; sourceTree = "<group>"; };
 		F54951B214A18F3B00068581 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		F556B42614B89F1B003CA192 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = extern/Sparkle.framework; sourceTree = "<group>"; };
 		F56A840E148CF92800AE6F1E /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,8 +198,6 @@
 		F5DAA05614AB6408004404AA /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMKeychainItem.m; path = preference/EMKeychainItem.m; sourceTree = "<group>"; };
 		F5DAA05814AB6442004404AA /* FrequencyLevels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrequencyLevels.h; path = visualizer/FrequencyLevels.h; sourceTree = "<group>"; };
 		F5DAA05914AB6442004404AA /* FrequencyLevels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FrequencyLevels.m; path = visualizer/FrequencyLevels.m; sourceTree = "<group>"; };
-		F5DAA05F14AB65CB004404AA /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = mediaKeyTap/SPMediaKeyTap.h; sourceTree = "<group>"; };
-		F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = mediaKeyTap/SPMediaKeyTap.m; sourceTree = "<group>"; };
 		F5E1B0EB14B07693009D00B1 /* icon-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-red.png"; sourceTree = "<group>"; };
 		F5E9EF9514B008EE00E0D57B /* all_bigstars.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = all_bigstars.gif; sourceTree = "<group>"; };
 		F5ECD21E14C323CE00A5CD50 /* account_ok.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = account_ok.jpg; sourceTree = "<group>"; };
@@ -227,16 +224,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1767197B14F8988500F33979 /* SPInvocationGrabbing */ = {
-			isa = PBXGroup;
-			children = (
-				1767197F14F8988500F33979 /* NSObject+SPInvocationGrabbing.h */,
-				1767198014F8988500F33979 /* NSObject+SPInvocationGrabbing.m */,
-			);
-			name = SPInvocationGrabbing;
-			path = mediaKeyTap/SPInvocationGrabbing;
-			sourceTree = "<group>";
-		};
 		3F4D59F014C9783B00B6909F /* DiumooCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,7 +257,6 @@
 		F56A8403148CF92800AE6F1E = {
 			isa = PBXGroup;
 			children = (
-				17D2627C14FB51BE00C351FB /* libxml2.2.7.3.dylib */,
 				3FB7E36014C141F50039CBFD /* Localizable.strings */,
 				F58A8C8B149A48DE004E60AD /* resources */,
 				F58A8C5A149A2EB3004E60AD /* diumoo */,
@@ -291,6 +277,7 @@
 		F56A8411148CF92800AE6F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17D2627C14FB51BE00C351FB /* libxml2.2.7.3.dylib */,
 				F556B42614B89F1B003CA192 /* Sparkle.framework */,
 				F57EBD3614AB50D800484ED1 /* Security.framework */,
 				F57EBD3114AB3F2100484ED1 /* Carbon.framework */,
@@ -509,9 +496,8 @@
 		F5DAA05B14AB6454004404AA /* mediaKeyTap */ = {
 			isa = PBXGroup;
 			children = (
-				1767197B14F8988500F33979 /* SPInvocationGrabbing */,
-				F5DAA05F14AB65CB004404AA /* SPMediaKeyTap.h */,
-				F5DAA06014AB65CB004404AA /* SPMediaKeyTap.m */,
+				F53DB22F1504F8CA001CDF1D /* SPMediaKeyTap.h */,
+				F53DB2301504F8CA001CDF1D /* SPMediaKeyTap.m */,
 			);
 			name = mediaKeyTap;
 			path = ../diumoo;
@@ -654,11 +640,10 @@
 				F57EBD2F14AB1E5B00484ED1 /* diumooApp.m in Sources */,
 				F5DAA05714AB6408004404AA /* EMKeychainItem.m in Sources */,
 				F5DAA05A14AB6442004404AA /* FrequencyLevels.m in Sources */,
-				F5DAA06114AB65CB004404AA /* SPMediaKeyTap.m in Sources */,
 				3FB022D814CBED9800216867 /* diumooPlayer.m in Sources */,
 				F5A8957514F267EB00DD4727 /* HTMLNode.m in Sources */,
 				F5A8957614F267EB00DD4727 /* HTMLParser.m in Sources */,
-				1767198414F8988500F33979 /* NSObject+SPInvocationGrabbing.m in Sources */,
+				F53DB2361504F8CA001CDF1D /* SPMediaKeyTap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
