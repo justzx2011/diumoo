@@ -54,7 +54,10 @@
         {[self endedWithError];}
         return;
     }
-    else count=0;
+    else {
+        [player play];
+        count=0;
+    }
 }
 
 -(void) dealloc
@@ -91,7 +94,7 @@
     [condition lock];
     [level toggleFreqLevels:NSOffState];
     if(player){
-        [player stop];
+        if([player rate]>0.9) [player stop];
         [player invalidate];
         [player release];
         player=nil;
@@ -257,10 +260,9 @@
     {
         [level toggleFreqLevels:NSOffState];
         [level setMovie:nil];
-        
-        if([player duration].timeValue>1000 &&([player duration].timeValue - [player currentTime].timeValue)<100) 
+        if([player currentTime].timeValue>10000.0 &&([player duration].timeValue - [player currentTime].timeValue)<100.0) 
             [self ended];
-        if([player rate]>0.01f) [player setRate:1.0f];
+        //if([player rate]>0.01f) [player setRate:1.0f];
     }
 }
 
