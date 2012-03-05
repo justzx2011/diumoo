@@ -338,7 +338,6 @@ NSLog(@"user_info:%@",user_info);
 -(NSDictionary*) getNewSongWhenEnd:(NSString*)sid
 {
     [condition lock];
-    NSLog(@"getNewSongWhenEnd\n");
     return [self _quick_unlock:[self getNewSongByType:END andSid:sid]];
 }
 

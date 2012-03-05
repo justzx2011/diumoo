@@ -46,7 +46,9 @@
 
 -(void)loadStateChange:(NSNotification *)n
 {
+#ifdef DEBUG
     NSLog(@"STATE: %@",[player attributeForKey:QTMovieLoadStateAttribute]);
+#endif
     if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0)
     {
         NSLog(@"LoadError");
@@ -101,7 +103,9 @@
     }
     
     NSError* error = nil;
+#ifdef DEBUG
     NSLog(@"music = %@",music);
+#endif
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&error] retain]; 
 
     if(error==NULL) 
