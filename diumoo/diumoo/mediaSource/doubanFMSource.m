@@ -298,7 +298,7 @@ NSLog(@"user_info:%@",user_info);
     [playlist removeObjectAtIndex:0];
     
     while ([[current valueForKey:@"subtype"]length]!=0) {
-        NSLog(@"subtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
+        NSLog(@"ADs filter log:\nsubtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
         [current release];
         current = [[playlist objectAtIndex:0] retain];
         [playlist removeObjectAtIndex:0];
