@@ -241,6 +241,10 @@ NSLog(@"user_info:%@",user_info);
     [request setHTTPMethod:@"GET"];
     [request setHTTPBody:nil];
     
+#ifdef DEBUG
+    NSLog(@"Playlist Request URL: %@",[NSString stringWithFormat:@"%@?type=%@&r=%s&%@",PLAYLIST_URL_STRING,type,rnds,_s]);
+#endif
+    
     // 发送请求
     NSHTTPURLResponse* r=nil;
     NSError* e=nil;
@@ -254,6 +258,9 @@ NSLog(@"user_info:%@",user_info);
             if([[list valueForKey:@"r"] intValue]==0)
             {
                 NSArray* song=[list valueForKey:@"song"];
+#ifdef DEBUG
+                NSLog(@"list = %@",[list valueForKey:@"song"]);
+#endif
                 if([replacePlaylist containsObject:type] && [song count]>0){
                     [playlist removeAllObjects];
                 }
@@ -274,6 +281,7 @@ NSLog(@"user_info:%@",user_info);
 
 -(NSDictionary*) getNewSongByType:(NSString *)t andSid:(NSString*)sid
 {
+    NSLog(@"playlist count = %d",[playlist count]);
     if([playlist count]==0){
         [self requestPlaylistWithType:t andSid:sid];
         int retry=0;
@@ -284,7 +292,7 @@ NSLog(@"user_info:%@",user_info);
             return nil;
         };
     }
-    else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
+    //else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
     
     NSDictionary* current=[[playlist objectAtIndex:0]retain];
     [playlist removeObjectAtIndex:0];

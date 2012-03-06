@@ -221,10 +221,6 @@ controlCenter* sharedCenter;
 
 -(BOOL) changeChannelTo:(NSInteger)channel
 {
-    #ifdef DEBUG
-        NSLog(@"controlCenter changeChannelTo called");
-    #endif
-    
     [self pause];
     if([lock tryLock]!=YES)
         return NO;

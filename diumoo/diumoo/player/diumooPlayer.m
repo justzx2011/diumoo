@@ -71,7 +71,6 @@
 
 -(void) dealloc
 {
-    
     [condition release];
     [player release];
     [level release];
@@ -111,7 +110,9 @@
     
     NSError* error = nil;
 #ifdef DEBUG
-    NSLog(@"music = %@",music);
+    if ([music valueForKey:@"Location"] == nil) {
+        NSLog(@"music = %@",music);
+    }
 #endif
     player=[[QTMovie movieWithURL:[NSURL URLWithString:[music valueForKey:@"Location"]] error:&error] retain]; 
 
