@@ -46,20 +46,27 @@
 
 -(void)loadStateChange:(NSNotification *)n
 {
-#ifdef DEBUG
-    NSLog(@"STATE: %@",[player attributeForKey:QTMovieLoadStateAttribute]);
-#endif
-    if([[player attributeForKey:QTMovieLoadStateAttribute] longValue]<0)
+    if ([[player attributeForKey:QTMovieLoadStateAttribute] longValue] == 2000) {
+        NSLog(@"player: start to load music.\n");
+    }
+    if ([[player attributeForKey:QTMovieLoadStateAttribute] longValue] == 10000) {
+        NSLog(@"player: music playable.\n");
+    }
+    if ([[player attributeForKey:QTMovieLoadStateAttribute] longValue] == 20000) {
+        NSLog(@"player: playthrough OK.\n");
+    }
+    if ([[player attributeForKey:QTMovieLoadStateAttribute] longValue] == 100000) {
+        NSLog(@"player: load complete.\n");
+    }
+    if([[player attributeForKey:QTMovieLoadStateAttribute] longValue] == -1)
     {
         NSLog(@"LoadError");
         if((++count)<5)
         {[self endedWithError];}
         return;
     }
-    else {
-        //[player play];
+    else 
         count=0;
-    }
 }
 
 -(void) dealloc
