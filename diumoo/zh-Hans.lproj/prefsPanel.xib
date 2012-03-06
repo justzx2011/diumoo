@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">11D50</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2177</string>
 		<string key="IBDocument.AppKitVersion">1138.32</string>
 		<string key="IBDocument.HIToolboxVersion">568.00</string>
@@ -1155,7 +1155,7 @@
 											<object class="NSTextField" id="367952459">
 												<reference key="NSNextResponder" ref="979154825"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{294, 276}, {176, 17}}</string>
+												<string key="NSFrame">{{294, 279}, {176, 17}}</string>
 												<reference key="NSSuperview" ref="979154825"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="184796892"/>
@@ -1208,9 +1208,9 @@
 												<object class="NSTextFieldCell" key="NSCell" id="522211880">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
-													<string key="NSContents">Copyright © 2012 ant_sz </string>
-													<object class="NSFont" key="NSSupport" id="368788118">
-														<string key="NSName">LucidaGrande</string>
+													<string key="NSContents">版权所有 © 2012 ant_sz </string>
+													<object class="NSFont" key="NSSupport">
+														<string key="NSName">HiraginoSansGB-W3</string>
 														<double key="NSSize">11</double>
 														<int key="NSfFlags">16</int>
 													</object>
@@ -1226,14 +1226,18 @@
 												<string key="NSFrame">{{294, 40}, {117, 17}}</string>
 												<reference key="NSSuperview" ref="979154825"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="980225553"/>
+												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:3936</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="1070668766">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">All right reserved.</string>
-													<reference key="NSSupport" ref="368788118"/>
+													<object class="NSFont" key="NSSupport">
+														<string key="NSName">LucidaGrande</string>
+														<double key="NSSize">11</double>
+														<int key="NSfFlags">16</int>
+													</object>
 													<string key="NSCellIdentifier">_NS:3936</string>
 													<reference key="NSControlView" ref="1035990671"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -1252,8 +1256,8 @@
 												<object class="NSTextFieldCell" key="NSCell" id="719945169">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">272629760</int>
-													<string key="NSContents">Developing with: AnakinMac @Khao_T @seansay</string>
-													<reference key="NSSupport" ref="509702367"/>
+													<string key="NSContents">合作开发者:  @AnakinMac @Khao_T @seansay</string>
+													<reference key="NSSupport" ref="58568816"/>
 													<string key="NSCellIdentifier">_NS:3596</string>
 													<reference key="NSControlView" ref="184796892"/>
 													<reference key="NSBackgroundColor" ref="1153509"/>
@@ -2521,11 +2525,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="863993980"/>
-							<reference ref="367952459"/>
 							<reference ref="797568347"/>
 							<reference ref="114758314"/>
 							<reference ref="1035990671"/>
-							<reference ref="184796892"/>
 							<reference ref="777135905"/>
 							<reference ref="1045260163"/>
 							<reference ref="684573746"/>
@@ -2533,6 +2535,8 @@
 							<reference ref="165401770"/>
 							<reference ref="633410105"/>
 							<reference ref="585029428"/>
+							<reference ref="184796892"/>
+							<reference ref="367952459"/>
 						</object>
 						<reference key="parent" ref="696303915"/>
 					</object>

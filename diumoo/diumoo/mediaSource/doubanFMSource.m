@@ -294,9 +294,15 @@ NSLog(@"user_info:%@",user_info);
     }
     //else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
     
-    NSDictionary* current=[[playlist objectAtIndex:0]retain];
+     NSDictionary *current=[[playlist objectAtIndex:0] retain];
     [playlist removeObjectAtIndex:0];
-
+    
+    while ([[current valueForKey:@"subtype"]length]!=0) {
+        NSLog(@"subtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
+        [current release];
+        current = [[playlist objectAtIndex:0] retain];
+        [playlist removeObjectAtIndex:0];
+    }
     
     NSString* art=[current valueForKey:@"artist"];
     if(art==nil) 
