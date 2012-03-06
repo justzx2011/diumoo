@@ -57,7 +57,7 @@
         return;
     }
     else {
-        [player play];
+        //[player play];
         count=0;
     }
 }
