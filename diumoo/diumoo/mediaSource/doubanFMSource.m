@@ -7,6 +7,7 @@
 //
 
 #import "doubanFMSource.h"
+#import "listUpdater.h"
 
 @implementation doubanFMSource
 
@@ -47,7 +48,9 @@
         else channel=0;
         
         //读取电台频道信息
-        channelList=[[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:NSLocalizedString(@"CHANNEL_FILE_NAME",nil )ofType:@"plist"]] retain];
+        
+        channelList=[getChannelList() retain];
+        
         channelName=nil;
         
     }
@@ -296,9 +299,9 @@ NSLog(@"user_info:%@",user_info);
     
      NSDictionary *current=[[playlist objectAtIndex:0] retain];
     [playlist removeObjectAtIndex:0];
-    
-    while ([[current valueForKey:@"subtype"]length]!=0) {
-        NSLog(@"ADs filter log:\nsubtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
+    NSString* subtype=nil;
+    while ((subtype=[current valueForKey:@"subtype"]) && [subtype isEqualToString:@"T"]) {
+        //NSLog(@"ADs filter log:\nsubtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
         [current release];
         current = [[playlist objectAtIndex:0] retain];
         [playlist removeObjectAtIndex:0];

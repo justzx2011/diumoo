@@ -8,6 +8,4 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface listUpdater : NSApplication
-
-@end
+NSArray* getChannelList();

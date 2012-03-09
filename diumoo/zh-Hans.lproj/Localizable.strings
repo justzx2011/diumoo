@@ -49,3 +49,12 @@
 //Player
 "Whoops"="矮油，好慢！！";
 "NET_WORK_SLOW"="看到这个了？貌似你的网太慢了...";
+
+//channel list;
+
+"NEW_CHANNEL_LIST"="公共兆赫: 新增 %d 个频道,减少 %d 个频道\nDJ兆赫: 新增 %d 个频道,减少 %d 个频道";
+"NEW_CHANNEL_TITLE"="频道列表已更新";
+"PUB_LIST"="public";
+"PUB_LIST_NAME"="公共兆赫";
+"DJ_LIST_NAME"="DJ兆赫";
+

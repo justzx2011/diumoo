@@ -721,7 +721,7 @@
 					<key>channel_id</key>
 					<string>10292</string>
 					<key>name</key>
-					<string>我们也曾被称为'次世代'</string>
+					<string>我们也曾被称为&apos;次世代&apos;</string>
 				</dict>
 				<dict>
 					<key>channel_id</key>
@@ -1160,7 +1160,7 @@
 					<key>channel_id</key>
 					<string>10361</string>
 					<key>name</key>
-					<string>77'13分钟的爵士说唱</string>
+					<string>77&apos;13分钟的爵士说唱</string>
 				</dict>
 			</array>
 			<key>timestamp</key>
@@ -1179,7 +1179,7 @@
 					<key>channel_id</key>
 					<string>10546</string>
 					<key>name</key>
-					<string>15: Sally Can't Dance</string>
+					<string>15: Sally Can&apos;t Dance</string>
 				</dict>
 				<dict>
 					<key>channel_id</key>
@@ -1203,7 +1203,7 @@
 					<key>channel_id</key>
 					<string>10295</string>
 					<key>name</key>
-					<string>11: We'veOnlyJustBegun</string>
+					<string>11: We&apos;veOnlyJustBegun</string>
 				</dict>
 				<dict>
 					<key>channel_id</key>
@@ -2242,7 +2242,7 @@
 			<key>channel_id</key>
 			<string>10292</string>
 			<key>name</key>
-			<string>我们也曾被称为'次世代'</string>
+			<string>我们也曾被称为&apos;次世代&apos;</string>
 		</dict>
 		<dict>
 			<key>channel_id</key>
@@ -2590,13 +2590,13 @@
 			<key>channel_id</key>
 			<string>10361</string>
 			<key>name</key>
-			<string>77'13分钟的爵士说唱</string>
+			<string>77&apos;13分钟的爵士说唱</string>
 		</dict>
 		<dict>
 			<key>channel_id</key>
 			<string>10546</string>
 			<key>name</key>
-			<string>15: Sally Can't Dance</string>
+			<string>15: Sally Can&apos;t Dance</string>
 		</dict>
 		<dict>
 			<key>channel_id</key>
@@ -2620,7 +2620,7 @@
 			<key>channel_id</key>
 			<string>10295</string>
 			<key>name</key>
-			<string>11: We'veOnlyJustBegun</string>
+			<string>11: We&apos;veOnlyJustBegun</string>
 		</dict>
 		<dict>
 			<key>channel_id</key>
@@ -3107,13 +3107,13 @@
 					<key>channel_id</key>
 					<integer>20</integer>
 					<key>name</key>
-					<string>Girls'</string>
+					<string>Girls&apos;</string>
 				</dict>
 				<dict>
 					<key>channel_id</key>
 					<integer>28</integer>
 					<key>name</key>
-					<string>Cartons'</string>
+					<string>Cartons&apos;</string>
 				</dict>
 				<dict>
 					<key>channel_id</key>

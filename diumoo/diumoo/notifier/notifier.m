@@ -20,15 +20,16 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyAccount:) name:@"source.account" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PauseResumeNoti:) name:@"player.paused" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(PauseResumeNoti:) name:@"player.resume" object:nil];
+        
     }
     
     return self;
 }
 -(NSDictionary*) registrationDictionaryForGrowl{
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            [NSArray arrayWithObjects:@"New Song",@"Account", nil],
+            [NSArray arrayWithObjects:@"New Song",@"Account", @"New Channel List",nil],
             GROWL_NOTIFICATIONS_ALL,
-            [NSArray arrayWithObjects:@"New Song",@"Account", nil],
+            [NSArray arrayWithObjects:@"New Song",@"Account", @"New Channel List",nil],
             GROWL_NOTIFICATIONS_DEFAULT,
             nil];
 }

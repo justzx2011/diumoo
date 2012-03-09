@@ -51,5 +51,12 @@
 "Whoops"="Whoops, too slow!!";
 "NET_WORK_SLOW"="Your net connection is too slow....";
 
+//Channel list
+
+"NEW_CHANNEL_LIST"="Public HMz: %d new, %d removed\nDJ HMz %d new, %d removed";
+"NEW_CHANNEL_TITLE"="Channel List Updated";
+"PUB_LIST"="pub_english";
+"PUB_LIST_NAME"="Public HMz";
+"DJ_LIST_NAME"="DJ HMz";
 
 

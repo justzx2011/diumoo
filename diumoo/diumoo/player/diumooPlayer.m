@@ -272,7 +272,7 @@
     {
         [level toggleFreqLevels:NSOffState];
         [level setMovie:nil];
-        if([player currentTime].timeValue>10000.0 &&([player duration].timeValue - [player currentTime].timeValue)<100.0) 
+        if([player currentTime].timeValue>100.0 &&([player duration].timeValue - [player currentTime].timeValue)<100.0) 
             [self ended];
         //if([player rate]>0.01f) [player setRate:1.0f];
     }

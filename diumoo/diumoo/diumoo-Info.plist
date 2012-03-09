@@ -21,7 +21,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>701</string>
+	<string>725</string>
+	<key>DMU_FM_CHANNEL_LIST_URL</key>
+	<string>http://diumoo.xiuxiu.de/fmlist/</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
