@@ -219,6 +219,7 @@ NSLog(@"user_info:%@",user_info);
 {
     //生成获取列表的参数
     //    | 生成随机数
+    
     int rnd1=rand()&0xfffff;
     int rnd2=rand()&0xfffff;
     char rnds[11]={0};
@@ -295,13 +296,11 @@ NSLog(@"user_info:%@",user_info);
             return nil;
         };
     }
-    //else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
     
      NSDictionary *current=[[playlist objectAtIndex:0] retain];
     [playlist removeObjectAtIndex:0];
-    NSString* subtype=nil;
-    while ((subtype=[current valueForKey:@"subtype"]) && [subtype isEqualToString:@"T"]) {
-        //NSLog(@"ADs filter log:\nsubtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
+    while ([[current valueForKey:@"subtype"]isEqualToString:@"T"]) {
+        NSLog(@"ADs filter log:\nsubtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
         [current release];
         current = [[playlist objectAtIndex:0] retain];
         [playlist removeObjectAtIndex:0];
