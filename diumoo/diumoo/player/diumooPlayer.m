@@ -46,6 +46,7 @@
 
 -(void)loadStateChange:(NSNotification *)n
 {
+    NSLog(@"Load State Changed.\n");
     if ([[player attributeForKey:QTMovieLoadStateAttribute] longValue] == 2000) {
         NSLog(@"player: start to load music.\n");
     }

@@ -10,10 +10,10 @@
 #import "CJSONDeserializer.h"
 #import <Growl/Growl.h>
 
-static NSDictionary* fetchChannelDictionary(NSTimeInterval);
-static NSArray* arrayFromChannelList(NSDictionary*);
-static int compareList(NSArray*,NSArray*);
-static NSArray* parseChannelDictionary(NSDictionary*,NSDictionary*);
+NSDictionary* fetchChannelDictionary(NSTimeInterval);
+NSArray* arrayFromChannelList(NSDictionary*);
+int compareList(NSArray*,NSArray*);
+NSArray* parseChannelDictionary(NSDictionary*,NSDictionary*);
 
 
 NSDictionary* fetchChannelDictionary(NSTimeInterval t){
@@ -76,12 +76,13 @@ NSArray* parseChannelDictionary(NSDictionary* old,NSDictionary* new){
 
 }
 
-NSArray* getChannelList(){
+NSArray* getChannelList(void){
     NSDictionary* old=[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"channeldata" ofType:@"plist"]];
     @try {
         double timestamp=[[old valueForKey:@"timestamp"] doubleValue];
         NSDate* now = [[NSDate alloc] init];
         if(([now timeIntervalSince1970]-timestamp)>4*24*3600){
+            
             NSDictionary* newlist=fetchChannelDictionary(timestamp);
             if(newlist){
                 return parseChannelDictionary(old,newlist);

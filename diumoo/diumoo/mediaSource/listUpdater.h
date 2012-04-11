@@ -8,4 +8,4 @@
 
 #import <Cocoa/Cocoa.h>
 
-NSArray* getChannelList();
+NSArray* getChannelList(void);

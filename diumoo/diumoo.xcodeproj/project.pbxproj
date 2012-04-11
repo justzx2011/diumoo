@@ -17,12 +17,12 @@
 		F50F5A9014BDBF6F00587035 /* redheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A8F14BDBF6F00587035 /* redheart.png */; };
 		F50F5A9314BDBFC800587035 /* greyheart.png in Resources */ = {isa = PBXBuildFile; fileRef = F50F5A9214BDBFC800587035 /* greyheart.png */; };
 		F515529D1509A8820062F2EB /* listUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = F515529C1509A8810062F2EB /* listUpdater.m */; };
-		F51552AD1509CC540062F2EB /* channeldata.plist in Resources */ = {isa = PBXBuildFile; fileRef = F51552AC1509CC540062F2EB /* channeldata.plist */; };
 		F516CF7714C2E9F30058B9E4 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = F516CF7614C2E9F30058B9E4 /* login.png */; };
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B258114A2305E00903039 /* QuartzCore.framework */; };
 		F53DB2361504F8CA001CDF1D /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F53DB2301504F8CA001CDF1D /* SPMediaKeyTap.m */; };
 		F54951B314A18F3B00068581 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54951B214A18F3B00068581 /* QuickTime.framework */; };
+		F550B6BC1535658E00033851 /* channeldata.plist in Resources */ = {isa = PBXBuildFile; fileRef = F550B6BB1535658E00033851 /* channeldata.plist */; };
 		F556B42714B89F1B003CA192 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F556B42614B89F1B003CA192 /* Sparkle.framework */; };
 		F556B42814B89F25003CA192 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F556B42614B89F1B003CA192 /* Sparkle.framework */; };
 		F56A8413148CF92800AE6F1E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56A8412148CF92800AE6F1E /* Cocoa.framework */; };
@@ -104,20 +104,21 @@
 		3F64586F14C1D8FB00F7E464 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		3FB022D614CBED9800216867 /* diumooPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diumooPlayer.h; sourceTree = "<group>"; };
 		3FB022D714CBED9800216867 /* diumooPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = diumooPlayer.m; sourceTree = "<group>"; };
-		3FB7E35F14C141F50039CBFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3FB7E36114C141FB0039CBFD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3FB7E35F14C141F50039CBFD /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FECED3914BFECEF00F26097 /* Sina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sina.png; sourceTree = "<group>"; };
 		F50F5A8F14BDBF6F00587035 /* redheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redheart.png; sourceTree = "<group>"; };
 		F50F5A9214BDBFC800587035 /* greyheart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greyheart.png; sourceTree = "<group>"; };
 		F515529B1509A8810062F2EB /* listUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = listUpdater.h; sourceTree = "<group>"; };
 		F515529C1509A8810062F2EB /* listUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = listUpdater.m; sourceTree = "<group>"; };
-		F51552AC1509CC540062F2EB /* channeldata.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = channeldata.plist; sourceTree = "<group>"; };
 		F516CF7614C2E9F30058B9E4 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		F52CE623148F46FF0068D6FF /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		F53B258114A2305E00903039 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F53DB22F1504F8CA001CDF1D /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = mediaKeyTap/SPMediaKeyTap.h; sourceTree = "<group>"; };
 		F53DB2301504F8CA001CDF1D /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = mediaKeyTap/SPMediaKeyTap.m; sourceTree = "<group>"; };
 		F54951B214A18F3B00068581 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
+		F550B6BB1535658E00033851 /* channeldata.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = channeldata.plist; sourceTree = "<group>"; };
+		F550B6BD1535676400033851 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F550B6BF1535680B00033851 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		F556B42614B89F1B003CA192 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = extern/Sparkle.framework; sourceTree = "<group>"; };
 		F56A840E148CF92800AE6F1E /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F56A8412148CF92800AE6F1E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -384,9 +385,9 @@
 		F58A8C8B149A48DE004E60AD /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				F51552AC1509CC540062F2EB /* channeldata.plist */,
 				F5F7123314E058FE007D54DE /* songofsnail.png */,
 				F516CF7614C2E9F30058B9E4 /* login.png */,
+				F550B6BB1535658E00033851 /* channeldata.plist */,
 				3F64586F14C1D8FB00F7E464 /* facebook.png */,
 				F50F5A8F14BDBF6F00587035 /* redheart.png */,
 				F50F5A9214BDBFC800587035 /* greyheart.png */,
@@ -542,6 +543,10 @@
 			knownRegions = (
 				en,
 				"zh-Hans",
+				"zh-Hant",
+				zh,
+				"zh-Hans-CN",
+				"ar-AE",
 			);
 			mainGroup = F56A8403148CF92800AE6F1E;
 			productRefGroup = F56A840F148CF92800AE6F1E /* Products */;
@@ -593,7 +598,7 @@
 				F516CF7714C2E9F30058B9E4 /* login.png in Resources */,
 				F5ECD21F14C323CE00A5CD50 /* account_ok.jpg in Resources */,
 				F5F7123414E058FE007D54DE /* songofsnail.png in Resources */,
-				F51552AD1509CC540062F2EB /* channeldata.plist in Resources */,
+				F550B6BC1535658E00033851 /* channeldata.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,7 +671,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				3FB7E35F14C141F50039CBFD /* en */,
-				3FB7E36114C141FB0039CBFD /* zh-Hans */,
+				F550B6BD1535676400033851 /* zh */,
+				F550B6BF1535680B00033851 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

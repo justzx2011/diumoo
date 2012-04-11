@@ -295,7 +295,7 @@ NSLog(@"user_info:%@",user_info);
             return nil;
         };
     }
-    //else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
+    else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
     
      NSDictionary *current=[[playlist objectAtIndex:0] retain];
     [playlist removeObjectAtIndex:0];
@@ -332,6 +332,7 @@ NSLog(@"user_info:%@",user_info);
                   
                   nil];
     [current release];
+    NSLog(@"%@",currentMusic);
     return currentMusic;    
 }
 

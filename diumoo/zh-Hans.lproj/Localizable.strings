@@ -1,10 +1,10 @@
 /* 
-  Localizable.strings
-  diumoo
-
-  Created by AnakinGWY on 1/14/12.
-  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-*/
+ Localizable.strings
+ diumoo
+ 
+ Created by AnakinGWY on 1/14/12.
+ Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+ */
 
 //notification
 "PLAY_RECORD"="欢迎 %@ !\n您登陆成功了！\n-------------------\n累计收听:%@ 首\n标记红心:%@ 首\n不再播放:%@ 首\n-------------------\n享受这音乐吧！";

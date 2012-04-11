@@ -19,6 +19,8 @@
 -(void) iTunesNotification:(NSDictionary*)noti;
 -(void) PauseResumeNoti:(NSNotification*) n;
 -(void) dockNotification:(NSDictionary*)noti withImage:(id)img;
+
+
 //-(void) channelListUpdateNotification:(NSDictionary*) noti;
 
 @end

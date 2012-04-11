@@ -30,4 +30,6 @@
 
 -(IBAction)showPreference:(id)sender;
 
+-(IBAction)dockMenuItemActions:(id)sender;
+
 @end
