@@ -240,12 +240,12 @@ NSLog(@"user_info:%@",user_info);
     
     // 构造request
     [request setHTTPShouldHandleCookies:YES];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%s&%@",PLAYLIST_URL_STRING,type,rnds,_s]]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%s&%@&from=mainsite",PLAYLIST_URL_STRING,type,rnds,_s]]];
     [request setHTTPMethod:@"GET"];
     [request setHTTPBody:nil];
     
 #ifdef DEBUG
-    NSLog(@"Playlist Request URL: %@",[NSString stringWithFormat:@"%@?type=%@&r=%s&%@",PLAYLIST_URL_STRING,type,rnds,_s]);
+    NSLog(@"Playlist Request URL: %@",[NSString stringWithFormat:@"%@?type=%@&r=%s&%@&from=mainsite",PLAYLIST_URL_STRING,type,rnds,_s]);
 #endif
     
     // 发送请求
