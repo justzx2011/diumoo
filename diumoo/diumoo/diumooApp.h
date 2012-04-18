@@ -12,7 +12,8 @@
 
 @interface diumooApp : NSApplication
 {
-   
+    IBOutlet NSMenu* diumooDockMenu;
 }
+@property(retain,nonatomic) NSMenu* diumooDockMenu;
 
 @end

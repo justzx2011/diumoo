@@ -8,7 +8,7 @@
 
 //notification
 "LOGIN_SUCCESS"="Login Success!";
-"PLAY_RECORD"="Hello %@ !\nYou have logged in sucsess.\n-------------------\nPlayed:%@ songs\nRed Heart:%@ songs\nBanned:%@ songs\n-------------------\nNow enjoy the music!";
+"PLAY_RECORD"="Hello %@ !\nYou have logged in success.\n-------------------\nPlayed:%@ songs\nRed Heart:%@ songs\nBanned:%@ songs\n-------------------\nNow enjoy the music!";
 "LOGOUT"="Logged Out!";
 "ACCOUNT_LOG_OUT"="Your account has logged out or log in failed";
 "CON_FAIL"="Connection failed";

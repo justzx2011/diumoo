@@ -97,6 +97,7 @@
 {
     if([sender tag]==3) 
         [preference showPreferenceWithView:INFO_PREFERENCE_ID];
+    else if([sender tag]==2)[preference showPreferenceWithView:ACCOUT_PREFERENCE_ID];
     else [preference showPreferenceWithView:GENERAL_PREFERENCE_ID];
 }
 
@@ -125,6 +126,48 @@
                 break;
         }
 
+}
+
+-(IBAction) dockMenuItemActions:(id)sender
+{
+    NSInteger tag=[sender tag];
+    switch (tag) {
+        case 5:
+            [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:ant.sz@xdlinux.info"]];
+            break;
+        case 6:
+            [[controlCenter sharedCenter] skip];
+            break;
+        case 7:
+            [[controlCenter sharedCenter] rate];
+            [dmmenu lightHeart];
+            break;
+        case 10:
+        case 20:
+            [[controlCenter sharedCenter] service:@"douban"];
+            break;
+        case 11:
+            [[controlCenter sharedCenter] service:@"twitter"];
+            break;
+        case 12:
+            [[controlCenter sharedCenter] service:@"Sina"];
+            break;
+        case 13:
+            [[controlCenter sharedCenter] service:@"fanfou"];
+            break;
+        case 14:
+            [[controlCenter sharedCenter] service:@"Facebook"];
+            break;
+        case 15:
+            [[controlCenter sharedCenter] service:@"lastfm"];
+            break;
+        case 16:
+            [[controlCenter sharedCenter] service:@"google"];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

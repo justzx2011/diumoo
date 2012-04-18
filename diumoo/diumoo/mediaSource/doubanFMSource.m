@@ -219,7 +219,6 @@ NSLog(@"user_info:%@",user_info);
 {
     //生成获取列表的参数
     //    | 生成随机数
-    
     int rnd1=rand()&0xfffff;
     int rnd2=rand()&0xfffff;
     char rnds[11]={0};
@@ -241,12 +240,12 @@ NSLog(@"user_info:%@",user_info);
     
     // 构造request
     [request setHTTPShouldHandleCookies:YES];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%s&%@",PLAYLIST_URL_STRING,type,rnds,_s]]];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?type=%@&r=%s&%@&from=mainsite",PLAYLIST_URL_STRING,type,rnds,_s]]];
     [request setHTTPMethod:@"GET"];
     [request setHTTPBody:nil];
     
 #ifdef DEBUG
-    NSLog(@"Playlist Request URL: %@",[NSString stringWithFormat:@"%@?type=%@&r=%s&%@",PLAYLIST_URL_STRING,type,rnds,_s]);
+    NSLog(@"Playlist Request URL: %@",[NSString stringWithFormat:@"%@?type=%@&r=%s&%@&from=mainsite",PLAYLIST_URL_STRING,type,rnds,_s]);
 #endif
     
     // 发送请求
@@ -296,11 +295,13 @@ NSLog(@"user_info:%@",user_info);
             return nil;
         };
     }
+    else [self performSelectorInBackground:@selector(_back_request:) withObject:[NSDictionary dictionaryWithObjectsAndKeys:sid,@"sid",t,@"type", nil ]];
     
      NSDictionary *current=[[playlist objectAtIndex:0] retain];
     [playlist removeObjectAtIndex:0];
-    while ([[current valueForKey:@"subtype"]isEqualToString:@"T"]) {
-        NSLog(@"ADs filter log:\nsubtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
+    NSString* subtype=nil;
+    while ((subtype=[current valueForKey:@"subtype"]) && [subtype isEqualToString:@"T"]) {
+        //NSLog(@"ADs filter log:\nsubtype = %@,length = %d\ncurrent = %@",[current valueForKey:@"subtype"],[[current valueForKey:@"subtype"] length],current);
         [current release];
         current = [[playlist objectAtIndex:0] retain];
         [playlist removeObjectAtIndex:0];
@@ -331,6 +332,7 @@ NSLog(@"user_info:%@",user_info);
                   
                   nil];
     [current release];
+    NSLog(@"%@",currentMusic);
     return currentMusic;    
 }
 

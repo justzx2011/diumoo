@@ -12,6 +12,8 @@
 
 @implementation diumooApp
 
+@synthesize diumooDockMenu;
+
 - (id)init
 {
     self = [super init];

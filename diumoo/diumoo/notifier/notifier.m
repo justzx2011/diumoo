@@ -41,6 +41,7 @@
     [self iTunesNotification:noti.userInfo];
     [self dockNotification:noti.userInfo withImage:noti.object];
     
+    
 }
 
 -(void) notifyAccount:(NSNotification *)noti
@@ -62,6 +63,7 @@
            
 }
 
+
 -(void) growlNotification:(NSDictionary*)user_info withImage:(id)img
 {
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableGrowl"] integerValue]!=NSOnState) return;
@@ -80,9 +82,7 @@
     if([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"EnableiTunes"] integerValue]!=NSOnState) 
         return;
     
-    #ifdef DEBUG
-        NSLog(@"iTunes Playing Notification Send!\n");
-    #endif
+    
     
     NSMutableDictionary* dic=[[NSMutableDictionary alloc] init];
     [dic setValuesForKeysWithDictionary:noti];
@@ -94,6 +94,10 @@
 	}*/
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:@"com.apple.iTunes.playerInfo" object:@"com.apple.iTunes.player" userInfo:dic];
     [dic release];
+#ifdef DEBUG
+    NSLog(@"iTunes Playing Notification Sent!\n");
+#endif
+    
 }
   
 -(void) dockNotification:(NSDictionary*)noti withImage:(id)img
@@ -106,6 +110,14 @@
         else [[NSApp dockTile]setBadgeLabel:@""];
         [NSApp setApplicationIconImage:img];
         [[NSApp dockTile] display];
+        
+        // 设定 dock menu
+        NSMenu* dockmenu=[NSApp performSelector:@selector(diumooDockMenu)];
+        if(dockmenu){
+        [[dockmenu itemWithTag:20] setTitle:[noti valueForKey:@"Name"]];
+        [[dockmenu itemWithTag:21] setTitle:[noti valueForKey:@"Artist"]];
+        [[dockmenu itemWithTag:22] setTitle:[noti valueForKey:@"Album"]];
+        }
     }
 }
 
