@@ -87,7 +87,10 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
     self = [super init];
 
-    color=CGColorCreateGenericRGB(0.0f, 0.5f, 1.0f, 1.0f);
+    [self bind:@"nextcolor" toObject:
+     [NSUserDefaultsController sharedUserDefaultsController] withKeyPath:@"values.DesktopwaveColor" options:
+     [NSDictionary dictionaryWithObject:NSUnarchiveFromDataTransformerName forKey:NSValueTransformerNameBindingOption]];
+    [self updateColor];
 	
     // allocate memory for the QTAudioFrequencyLevels struct and set it up
     // depending on the number of channels and frequency bands you want    
@@ -165,7 +168,8 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     [mContainer release];
     [window release];
     [condition release];
-    [mTimer retain];
+    [mTimer release];
+    [nextcolor release];
     
     free(mFreqResults);
     free(values);
@@ -259,12 +263,15 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
 - (void)levelTimerMethod:(NSTimer*)theTimer
 {
+    
+    
     UInt8 i, j;
     
     // get the levels from the movie
     OSStatus err = GetMovieAudioFrequencyLevels([mMovie quickTimeMovie], kQTAudioMeter_StereoMix, mFreqResults);
     if (!err) 
     {
+        [self updateColor];
         // iterate though the frequency level array and though the UI elements getting
         // and setting the levels appropriately
         for (i = 0; i < mFreqResults->numChannels; i++) 
@@ -282,6 +289,7 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
 
 -(void) drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
 {
+    
     CGContextSaveGState(ctx);
     CGContextSetFillColorWithColor(ctx, color);
  
@@ -304,6 +312,19 @@ static UInt32 numberOfChannels       = 1;       // for StereoMix - If using Devi
     CGContextFillPath(ctx);
     //CGPathRelease(path);
     CGContextRestoreGState(ctx);
+}
+
+-(void) updateColor{
+    if((currentcolor != nextcolor) && nextcolor){
+        NSInteger numberofcomponents = [nextcolor numberOfComponents];
+        CGFloat components[numberofcomponents];
+        CGColorSpaceRef colorspace = [[nextcolor colorSpace] CGColorSpace];
+        
+        [nextcolor getComponents:(CGFloat*) &components];
+        if(color) CGColorRelease(color);
+        color= CGColorCreate(colorspace, components);
+        currentcolor=nextcolor;
+    }
 }
 
 //-(void) drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx

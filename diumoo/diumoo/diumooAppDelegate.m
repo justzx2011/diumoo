@@ -47,6 +47,11 @@
         [[controller values] setValue:[NSNumber numberWithBool:NO] forKey:@"IsFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:1] forKey:@"PlayedChannel"];        
     }
+    if([[controller values] valueForKey:@"DesktopwaveColor"]==nil){
+        NSColor* desktopwavecolor = [NSColor colorWithCalibratedRed:0.0f green:0.5f blue:1.0f alpha:1.0f];
+        NSData* colordata=[NSArchiver archivedDataWithRootObject:desktopwavecolor];
+        [[controller values] setValue:colordata forKey:@"DesktopwaveColor"];
+    }
    
 }
 

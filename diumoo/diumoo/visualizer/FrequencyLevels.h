@@ -65,7 +65,11 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
     CALayer				*mContainer;		// our root layer containing all sublayers
     QTMovie				*mMovie; // the movie in its QTKit representation
     NSWindow* window;
+    
     CGColorRef color;
+    NSColor* nextcolor;
+    NSColor* currentcolor;
+    
     NSCondition* condition;
 }
 
@@ -74,5 +78,6 @@ Copyright (C) 2007 Apple Inc. All Rights Reserved.
 - (CALayer*)layer;
 - (void)toggleFreqLevels:(NSCellStateValue)state;
 - (void)setMovie:(QTMovie *)inMovie;
+- (void) updateColor;
 
 @end
