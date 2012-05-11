@@ -21,7 +21,7 @@
         icon=[[NSImage imageNamed:@"icon.png"] retain];
         iconred=[[NSImage imageNamed:@"icon-red.png"] retain];
         [item setImage:icon];
-        [item setAlternateImage:[ NSImage imageNamed:@"icon-alt.png"]];
+        //[item setAlternateImage:[ NSImage imageNamed:@"icon-alt.png"]];
         [item setHighlightMode:YES];
 
         mainMenu=[[[NSMenu alloc]init] retain] ;
