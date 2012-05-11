@@ -22,6 +22,8 @@
 		F52CE624148F46FF0068D6FF /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52CE623148F46FF0068D6FF /* QTKit.framework */; };
 		F53B258214A2305E00903039 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53B258114A2305E00903039 /* QuartzCore.framework */; };
 		F53DB2361504F8CA001CDF1D /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = F53DB2301504F8CA001CDF1D /* SPMediaKeyTap.m */; };
+		F543EC25155CEE55000A6EA3 /* SZMTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F543EC24155CEE55000A6EA3 /* SZMTButton.m */; };
+		F543EC28155CF042000A6EA3 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = F543EC27155CF042000A6EA3 /* speaker.png */; };
 		F54951B314A18F3B00068581 /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54951B214A18F3B00068581 /* QuickTime.framework */; };
 		F556B42714B89F1B003CA192 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F556B42614B89F1B003CA192 /* Sparkle.framework */; };
 		F556B42814B89F25003CA192 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F556B42614B89F1B003CA192 /* Sparkle.framework */; };
@@ -117,6 +119,9 @@
 		F53B258114A2305E00903039 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F53DB22F1504F8CA001CDF1D /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMediaKeyTap.h; path = mediaKeyTap/SPMediaKeyTap.h; sourceTree = "<group>"; };
 		F53DB2301504F8CA001CDF1D /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMediaKeyTap.m; path = mediaKeyTap/SPMediaKeyTap.m; sourceTree = "<group>"; };
+		F543EC23155CEE55000A6EA3 /* SZMTButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZMTButton.h; sourceTree = "<group>"; };
+		F543EC24155CEE55000A6EA3 /* SZMTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZMTButton.m; sourceTree = "<group>"; };
+		F543EC27155CF042000A6EA3 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
 		F54951B214A18F3B00068581 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = System/Library/Frameworks/QuickTime.framework; sourceTree = SDKROOT; };
 		F556B42614B89F1B003CA192 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = extern/Sparkle.framework; sourceTree = "<group>"; };
 		F56A840E148CF92800AE6F1E /* diumoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diumoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +244,7 @@
 		3F4D59F114C9786200B6909F /* DiumooUI */ = {
 			isa = PBXGroup;
 			children = (
+				F543EC22155CEE55000A6EA3 /* SZMTButton */,
 				F58A8C71149A2EB3004E60AD /* view */,
 				F5766D1B149D93EF00D5FDA6 /* preferencePanel */,
 			);
@@ -253,6 +259,15 @@
 			);
 			name = visualizer;
 			path = ../diumoo;
+			sourceTree = "<group>";
+		};
+		F543EC22155CEE55000A6EA3 /* SZMTButton */ = {
+			isa = PBXGroup;
+			children = (
+				F543EC23155CEE55000A6EA3 /* SZMTButton.h */,
+				F543EC24155CEE55000A6EA3 /* SZMTButton.m */,
+			);
+			path = SZMTButton;
 			sourceTree = "<group>";
 		};
 		F56A8403148CF92800AE6F1E = {
@@ -384,6 +399,7 @@
 		F58A8C8B149A48DE004E60AD /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F543EC27155CF042000A6EA3 /* speaker.png */,
 				F51552AC1509CC540062F2EB /* channeldata.plist */,
 				F5F7123314E058FE007D54DE /* songofsnail.png */,
 				F516CF7614C2E9F30058B9E4 /* login.png */,
@@ -594,6 +610,7 @@
 				F5ECD21F14C323CE00A5CD50 /* account_ok.jpg in Resources */,
 				F5F7123414E058FE007D54DE /* songofsnail.png in Resources */,
 				F51552AD1509CC540062F2EB /* channeldata.plist in Resources */,
+				F543EC28155CF042000A6EA3 /* speaker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,6 +663,7 @@
 				F5A8957614F267EB00DD4727 /* HTMLParser.m in Sources */,
 				F53DB2361504F8CA001CDF1D /* SPMediaKeyTap.m in Sources */,
 				F515529D1509A8820062F2EB /* listUpdater.m in Sources */,
+				F543EC25155CEE55000A6EA3 /* SZMTButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

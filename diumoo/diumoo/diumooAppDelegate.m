@@ -52,7 +52,7 @@
         NSData* colordata=[NSArchiver archivedDataWithRootObject:desktopwavecolor];
         [[controller values] setValue:colordata forKey:@"DesktopwaveColor"];
     }
-   
+    if([[controller values] valueForKey:@"volume"]==nil) [[controller values]setValue:[NSNumber numberWithFloat:1.0f] forKey:@"volume"];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)Notification

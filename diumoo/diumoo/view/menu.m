@@ -65,6 +65,8 @@
         next=[[NSButton alloc]initWithFrame:b_rect] ;
         rate=[[NSButton alloc]initWithFrame:b_rect] ;
         bye=[[NSButton alloc]initWithFrame:b_rect] ;
+        volume = [[SZMTButton alloc]initWithFrame:b_rect];
+        [volume useDefault];
 
         [play_pause setTag:1];
         [next setTag:2];
@@ -99,7 +101,9 @@
         [next setImage:[NSImage imageNamed:@"next.png"]];
         [rate setImage:unlike];
         [bye setImage:[NSImage imageNamed:@"bye.png"]];
-
+        [volume setImage:[NSImage imageNamed:@"speaker.png"]];
+        
+        
 
         [play_pause setButtonType:NSMomentaryChangeButton];
         [next setButtonType:NSMomentaryChangeButton];
@@ -124,8 +128,6 @@
         [controlItem setView:controlView];
 
         [albumItem setView:[dv view]];
-        
-        
 
         [exit setAction:@selector(exitApp:)];
         [exit setTarget:self];
@@ -137,13 +139,20 @@
         [aboutItem setTarget:self];
 
         //int i = 0;
+        
 
         [play_pause setFrameOrigin:NSMakePoint(0*ICON_WIDTH+20, 4)],[controlView addSubview:play_pause]; 
         [next setFrameOrigin:NSMakePoint(1*ICON_WIDTH+20, 4)],[controlView addSubview:next]; 
         [rate setFrameOrigin:NSMakePoint(2*ICON_WIDTH+20, 4)],[controlView addSubview:rate];
         [bye setFrameOrigin:NSMakePoint(3*ICON_WIDTH+20, 4)],[controlView addSubview:bye];
-        [controlView setFrameSize:NSMakeSize(4*ICON_WIDTH+40, ICON_WIDTH+8)];
-
+        [volume setFrameOrigin:NSMakePoint(4*ICON_WIDTH+20, 4)],[controlView addSubview:volume];
+        [controlView setFrameSize:NSMakeSize(5*ICON_WIDTH+40, ICON_WIDTH+8)];
+        
+        NSNumber* defualts_volume = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"volume"];
+        [volume setValue:[defualts_volume floatValue]];
+        
+        [volume addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew context:NULL];
+        
         condition=[[NSCondition alloc] init];
 
         controlCenter* c=[controlCenter sharedCenter];
@@ -156,6 +165,14 @@
     }
 
     return self;
+}
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"value"]){
+        NSNumber * value = [NSNumber numberWithFloat:volume.value] ;
+        [[[NSUserDefaultsController sharedUserDefaultsController] values] setValue:value forKey:@"volume"];
+    }
 }
 
 -(IBAction)showPrefs:(id)sender

@@ -10,6 +10,7 @@
 #import "controlCenter.h"
 #import "DetailView.h"
 #import "preference.h"
+#import "SZMTButton.h"
 
 #define ICON_WIDTH 32
 #define ALBUM_VIEW_WIDTH 200
@@ -27,6 +28,8 @@
     NSButton * next;
     NSButton * rate;
     NSButton * bye;
+    SZMTButton * volume;
+    
     
     NSImage * play;
     NSImage * pause;

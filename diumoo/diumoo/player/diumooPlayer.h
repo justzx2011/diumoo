@@ -29,7 +29,11 @@
 	NSTimer* autoFadeTimer;
     NSInteger count;
     
+    float local_volume;
+    
 }
+
+@property(atomic) float local_volume;
 
 //playing functions
 -(BOOL) startToPlay:(NSDictionary*) music;

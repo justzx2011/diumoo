@@ -13,6 +13,8 @@
 
 @implementation diumooPlayer
 
+@synthesize local_volume;
+
 //----------------------------------------- init and dealloc-----------------------------------------
 - (id)init
 {
@@ -39,10 +41,33 @@
         condition=[[NSCondition alloc] init];
         
         level=[[FrequencyLevels alloc] init];
-    }
-    
+        
+        // -------------------------------- bind to user preference ---------------------------------
+        id values = [[NSUserDefaultsController sharedUserDefaultsController] values];
+        NSNumber* _v = [values valueForKey:@"volume"];
+        if(_v) self.local_volume = [_v floatValue];
+        else{ 
+            [values setValue:[NSNumber numberWithFloat:1.0] forKey:@"volume"];
+            self.local_volume = 1.0;
+        }
+        [[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.volume" options:NSKeyValueObservingOptionOld context:NULL];
+        }
+
     return self;
 }
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    //NSLog(@"%@",keyPath);
+    if([keyPath isEqualToString:@"values.volume"]){
+        NSNumber* volume = [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:@"volume"];
+        self.local_volume = [volume floatValue];
+        if(autoFadeTimer==nil && player && [player rate]>0.9){
+            [player setVolume:self.local_volume];
+        }
+    }
+}
+
 
 -(void)loadStateChange:(NSNotification *)n
 {
@@ -121,7 +146,7 @@
     {
         
         [player autoplay];
-        [player setVolume:1.0];
+        [player setVolume:self.local_volume];
         
         NSImage* image=[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[music valueForKey:@"Picture"]]];
 
@@ -194,7 +219,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"player.rateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:target] forKey:@"rate"] ];
 	autoFadeDuration = duration;
 	autoFadeStartVolume = startVolume;
-	autoFadeTargetVolume = target;
+	autoFadeTargetVolume = target ;
     autoFadeTimer = [[NSTimer timerWithTimeInterval:duration target:self selector:@selector(updateAutoFade:) userInfo:nil repeats:YES]retain];
     CFRunLoopAddTimer(CFRunLoopGetCurrent(), (CFRunLoopTimerRef)autoFadeTimer, kCFRunLoopCommonModes);
 	[autoFadeTimer fire];
@@ -218,7 +243,7 @@
     {
         if (player.volume>0) 
         {
-            [player setVolume:([player volume]-(1/VOLUME_DURATION))];
+            [player setVolume:([player volume]-(1/VOLUME_DURATION))* self.local_volume];
         } 
         else [self stopAutoFade];
     }
@@ -226,7 +251,7 @@
     {
         if (autoFadeTargetVolume == 1 && [player volume] < 1) 
         {
-            [player setVolume:([player volume]+(1/VOLUME_DURATION))];
+            [player setVolume:([player volume]+(1/VOLUME_DURATION))* self.local_volume];
         } else 
         {
             [self stopAutoFade];
