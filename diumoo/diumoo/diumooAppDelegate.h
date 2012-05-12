@@ -10,7 +10,7 @@
 #import "doubanFMSource.h"
 #import "diumooPlayer.h"
 #import "notifier.h"
-#import "menu.h"
+#import "menuController.h"
 #import "SPMediaKeyTap.h"
 
 @interface diumooAppDelegate : NSObject <NSApplicationDelegate> {
@@ -19,7 +19,7 @@
     diumooPlayer* player;
     doubanFMSource* source;
     notifier* growlnotify;
-    menu* dmmenu;
+    menuController* dmmenu;
     SPMediaKeyTap *keyTap;
 
 }

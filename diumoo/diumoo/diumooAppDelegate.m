@@ -61,7 +61,7 @@
     growlnotify=[[notifier alloc] init];
     source=[[doubanFMSource alloc] init];
     player=[[diumooPlayer alloc] init];
-    dmmenu=[[menu alloc]init];
+    dmmenu=[[menuController alloc]init];
     
      
     [[controlCenter sharedCenter] setPlayer:player];
